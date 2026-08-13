@@ -1,0 +1,17 @@
+To: Ally
+Cc: Hugh, Cameron, Chris, Tremayne
+Subject: Re: Client Profile - Capital Financing
+
+Hi Ally,
+
+Thanks for the profile — really thorough. Kicking off on my end with two docs for review, both attached:
+
+1. Apollo Targeting Filters — the search criteria I'll use to pull lists across trades, logistics and labour hire (industries, titles, turnover/company-size proxy, and how I'm handling ABN/GST verification since Apollo can't filter on those directly).
+2. Cold Email Sequence — a 4-step sequence (initial + 2 follow-ups + a nurture-transition breakup email), signed as Rohan, built off the Messaging Toolkit swipe lines and cash-flow-gap angle. Included worked openers for all 3 industries so you and Chris can see how the trigger language flexes per audience.
+
+Flagging one thing for Rohan/Chris to weigh in on: since Apollo doesn't expose monthly turnover or ABN/GST status directly, I'm using employee count + revenue estimate as a proxy and spot-checking a ~10% sample against ABN Lookup before each send wave rather than verifying every contact — wanted to make sure that level of rigor works before I build the full lists.
+
+Ready to move on list-building and domain setup once account access comes through Monday. Let me know if anything needs adjusting on either doc.
+
+Thanks,
+Eikko
