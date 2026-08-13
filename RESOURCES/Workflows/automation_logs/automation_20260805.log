@@ -1,0 +1,122 @@
+2026-08-05 22:33:59,425 - __main__ - INFO - ============================================================
+2026-08-05 22:33:59,425 - __main__ - INFO - 🧪 RUNNING TEST SYNC
+2026-08-05 22:33:59,425 - __main__ - INFO - ============================================================
+2026-08-05 22:33:59,425 - __main__ - INFO - Test data:
+2026-08-05 22:33:59,425 - __main__ - INFO -   Email: test@example.com
+2026-08-05 22:33:59,425 - __main__ - INFO -   Name: Test User
+2026-08-05 22:33:59,425 - __main__ - INFO -   Company: Test Company
+2026-08-05 22:33:59,425 - sync_engine - INFO - Syncing Interested lead: test@example.com
+2026-08-05 22:34:00,149 - pipedrive_api - ERROR - Pipedrive API error: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/organizations/search?term=Test+Company
+2026-08-05 22:34:00,149 - pipedrive_api - WARNING - Failed to search organization Test Company: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/organizations/search?term=Test+Company
+2026-08-05 22:34:00,620 - pipedrive_api - ERROR - Pipedrive API error: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/organizations
+2026-08-05 22:34:00,620 - pipedrive_api - ERROR - Failed to create organization Test Company: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/organizations
+2026-08-05 22:34:01,056 - pipedrive_api - ERROR - Pipedrive API error: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/persons/search?term=test%40example.com
+2026-08-05 22:34:01,057 - pipedrive_api - WARNING - Failed to search person test@example.com: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/persons/search?term=test%40example.com
+2026-08-05 22:34:01,417 - pipedrive_api - ERROR - Pipedrive API error: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/persons
+2026-08-05 22:34:01,417 - pipedrive_api - ERROR - Failed to create person Test User: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/persons
+2026-08-05 22:34:01,419 - __main__ - ERROR - ❌ TEST SYNC FAILED
+2026-08-05 22:34:01,419 - __main__ - INFO - ============================================================
+2026-08-05 22:36:00,247 - __main__ - INFO - ============================================================
+2026-08-05 22:36:00,247 - __main__ - INFO - 🧪 RUNNING TEST SYNC
+2026-08-05 22:36:00,247 - __main__ - INFO - ============================================================
+2026-08-05 22:36:00,247 - __main__ - INFO - Test data:
+2026-08-05 22:36:00,247 - __main__ - INFO -   Email: test@example.com
+2026-08-05 22:36:00,247 - __main__ - INFO -   Name: Test User
+2026-08-05 22:36:00,248 - __main__ - INFO -   Company: Test Company
+2026-08-05 22:36:00,248 - sync_engine - INFO - Syncing Interested lead: test@example.com
+2026-08-05 22:36:01,151 - pipedrive_api - ERROR - Pipedrive API error: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/organizations/search?term=Test+Company
+2026-08-05 22:36:01,152 - pipedrive_api - WARNING - Failed to search organization Test Company: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/organizations/search?term=Test+Company
+2026-08-05 22:36:01,623 - pipedrive_api - ERROR - Pipedrive API error: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/organizations
+2026-08-05 22:36:01,624 - pipedrive_api - ERROR - Failed to create organization Test Company: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/organizations
+2026-08-05 22:36:02,032 - pipedrive_api - ERROR - Pipedrive API error: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/persons/search?term=test%40example.com
+2026-08-05 22:36:02,032 - pipedrive_api - WARNING - Failed to search person test@example.com: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/persons/search?term=test%40example.com
+2026-08-05 22:36:02,339 - pipedrive_api - ERROR - Pipedrive API error: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/persons
+2026-08-05 22:36:02,340 - pipedrive_api - ERROR - Failed to create person Test User: 401 Client Error: Unauthorized for url: https://api.pipedrive.com/v1/persons
+2026-08-05 22:36:02,341 - __main__ - ERROR - ❌ TEST SYNC FAILED
+2026-08-05 22:36:02,342 - __main__ - INFO - ============================================================
+2026-08-05 22:36:29,658 - __main__ - INFO - ============================================================
+2026-08-05 22:36:29,658 - __main__ - INFO - 🧪 RUNNING TEST SYNC
+2026-08-05 22:36:29,658 - __main__ - INFO - ============================================================
+2026-08-05 22:36:29,659 - __main__ - INFO - Test data:
+2026-08-05 22:36:29,659 - __main__ - INFO -   Email: test@example.com
+2026-08-05 22:36:29,659 - __main__ - INFO -   Name: Test User
+2026-08-05 22:36:29,659 - __main__ - INFO -   Company: Test Company
+2026-08-05 22:36:29,659 - sync_engine - INFO - Syncing Interested lead: test@example.com
+2026-08-05 22:36:32,066 - pipedrive_api - INFO - Created Organization: Test Company - ID: 993
+2026-08-05 22:36:34,164 - pipedrive_api - INFO - Created Person: Test User (test@example.com) - ID: 1713
+2026-08-05 22:36:36,368 - pipedrive_api - INFO - Created Activity: Interested (Person 1713) - ID: 1197
+2026-08-05 22:36:37,188 - smartlead_api - ERROR - Smartlead API error: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:36:37,189 - smartlead_api - ERROR - Failed to block domain example.com: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:36:37,189 - sync_engine - INFO - ✓ Successfully synced test@example.com (Interested)
+2026-08-05 22:36:37,189 - __main__ - INFO - ✅ TEST SYNC SUCCESSFUL
+2026-08-05 22:36:37,189 - __main__ - INFO - Synced 1 lead(s)
+2026-08-05 22:36:37,189 - __main__ - INFO - ============================================================
+2026-08-05 22:39:47,805 - __main__ - INFO - ============================================================
+2026-08-05 22:39:47,805 - __main__ - INFO - 🚀 STARTING WEBHOOK SERVER
+2026-08-05 22:39:47,805 - __main__ - INFO - ============================================================
+2026-08-05 22:39:47,805 - webhook_server - INFO - 🚀 Starting webhook server on 127.0.0.1:5000
+2026-08-05 22:39:47,805 - webhook_server - INFO -    Smartlead webhook: http://127.0.0.1:5000/webhook/smartlead
+2026-08-05 22:39:47,805 - webhook_server - INFO -    Calendly webhook: http://127.0.0.1:5000/webhook/gmail-calendly
+2026-08-05 22:39:47,805 - webhook_server - INFO -    Health check: http://127.0.0.1:5000/webhook/health
+2026-08-05 22:39:47,805 - root - INFO - ✓ Updated automation status
+2026-08-05 22:39:47,812 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-05 22:39:47,812 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-08-05 22:41:04,892 - werkzeug - INFO - 127.0.0.1 - - [05/Aug/2026 22:41:04] "GET /webhook/health HTTP/1.1" 200 -
+2026-08-05 22:48:13,331 - sync_engine - INFO - Syncing Interested lead: demo@acmecorp.com
+2026-08-05 22:48:14,686 - pipedrive_api - INFO - Created Organization: ACME Corporation - ID: 994
+2026-08-05 22:48:15,813 - pipedrive_api - INFO - Created Person: Sarah Johnson (demo@acmecorp.com) - ID: 1714
+2026-08-05 22:48:17,014 - pipedrive_api - INFO - Created Activity: Interested (Person 1714) - ID: 1198
+2026-08-05 22:48:17,593 - smartlead_api - ERROR - Smartlead API error: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:48:17,593 - smartlead_api - ERROR - Failed to block domain acmecorp.com: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:48:17,594 - sync_engine - INFO - ✓ Successfully synced demo@acmecorp.com (Interested)
+2026-08-05 22:48:17,594 - webhook_server - INFO - ✓ Smartlead webhook processed: demo@acmecorp.com
+2026-08-05 22:48:17,594 - werkzeug - INFO - 127.0.0.1 - - [05/Aug/2026 22:48:17] "POST /webhook/smartlead HTTP/1.1" 200 -
+2026-08-05 22:52:02,822 - sync_engine - INFO - Syncing Interested lead: test@company.com
+2026-08-05 22:52:03,619 - sync_engine - INFO - Found existing organization: Test Company (ID: None)
+2026-08-05 22:52:04,568 - pipedrive_api - INFO - Created Person: Test User (test@company.com) - ID: 1715
+2026-08-05 22:52:06,226 - pipedrive_api - INFO - Created Activity: Interested (Person 1715) - ID: 1199
+2026-08-05 22:52:06,809 - smartlead_api - ERROR - Smartlead API error: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:52:06,810 - smartlead_api - ERROR - Failed to block domain company.com: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:52:06,810 - sync_engine - INFO - ✓ Successfully synced test@company.com (Interested)
+2026-08-05 22:52:06,810 - webhook_server - INFO - ✓ Smartlead webhook processed: test@company.com
+2026-08-05 22:52:06,811 - werkzeug - INFO - 127.0.0.1 - - [05/Aug/2026 22:52:06] "POST /webhook/smartlead HTTP/1.1" 200 -
+2026-08-05 22:52:57,680 - __main__ - INFO - ============================================================
+2026-08-05 22:52:57,681 - __main__ - INFO - 🚀 STARTING WEBHOOK SERVER
+2026-08-05 22:52:57,681 - __main__ - INFO - ============================================================
+2026-08-05 22:52:57,681 - webhook_server - INFO - 🚀 Starting webhook server on 127.0.0.1:5000
+2026-08-05 22:52:57,681 - webhook_server - INFO -    Smartlead webhook: http://127.0.0.1:5000/webhook/smartlead
+2026-08-05 22:52:57,681 - webhook_server - INFO -    Calendly webhook: http://127.0.0.1:5000/webhook/gmail-calendly
+2026-08-05 22:52:57,681 - webhook_server - INFO -    Health check: http://127.0.0.1:5000/webhook/health
+2026-08-05 22:52:57,681 - root - INFO - ✓ Updated automation status
+2026-08-05 22:53:03,042 - sync_engine - INFO - Syncing Interested lead: test@company.com
+2026-08-05 22:53:03,803 - sync_engine - INFO - Found existing organization: Test Company (ID: None)
+2026-08-05 22:53:04,311 - sync_engine - INFO - Found existing person: test@company.com (ID: None)
+2026-08-05 22:53:05,367 - pipedrive_api - INFO - Created Activity: Interested (Person None) - ID: 1200
+2026-08-05 22:53:05,947 - smartlead_api - ERROR - Smartlead API error: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:53:05,947 - smartlead_api - ERROR - Failed to block domain company.com: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:53:05,947 - sync_engine - INFO - ✓ Successfully synced test@company.com (Interested)
+2026-08-05 22:53:05,948 - webhook_server - INFO - ✓ Smartlead webhook processed: test@company.com
+2026-08-05 22:53:05,948 - werkzeug - INFO - 127.0.0.1 - - [05/Aug/2026 22:53:05] "POST /webhook/smartlead HTTP/1.1" 200 -
+2026-08-05 22:53:21,696 - __main__ - INFO - ============================================================
+2026-08-05 22:53:21,696 - __main__ - INFO - 🚀 STARTING WEBHOOK SERVER
+2026-08-05 22:53:21,696 - __main__ - INFO - ============================================================
+2026-08-05 22:53:21,696 - webhook_server - INFO - 🚀 Starting webhook server on 127.0.0.1:5000
+2026-08-05 22:53:21,696 - webhook_server - INFO -    Smartlead webhook: http://127.0.0.1:5000/webhook/smartlead
+2026-08-05 22:53:21,696 - webhook_server - INFO -    Calendly webhook: http://127.0.0.1:5000/webhook/gmail-calendly
+2026-08-05 22:53:21,696 - webhook_server - INFO -    Health check: http://127.0.0.1:5000/webhook/health
+2026-08-05 22:53:21,696 - root - INFO - ✓ Updated automation status
+2026-08-05 22:53:21,699 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-05 22:53:21,699 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-08-05 22:53:26,959 - webhook_server - INFO - Campaign filtered (Rachel): Rachel Sales Campaign
+2026-08-05 22:53:26,959 - werkzeug - INFO - 127.0.0.1 - - [05/Aug/2026 22:53:26] "POST /webhook/smartlead HTTP/1.1" 200 -
+2026-08-05 22:53:32,783 - sync_engine - INFO - Syncing Interested lead: lead@acme.com
+2026-08-05 22:53:33,758 - pipedrive_api - INFO - Created Organization: ACME Inc - ID: 995
+2026-08-05 22:53:34,672 - pipedrive_api - INFO - Created Person: John Doe (lead@acme.com) - ID: 1716
+2026-08-05 22:53:35,720 - pipedrive_api - INFO - Created Activity: Interested (Person 1716) - ID: 1201
+2026-08-05 22:53:36,373 - smartlead_api - ERROR - Smartlead API error: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:53:36,374 - smartlead_api - ERROR - Failed to block domain acme.com: HTTPSConnectionPool(host='api.smartlead.io', port=443): Max retries exceeded with url: /v1/settings/blocklist (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)')))
+2026-08-05 22:53:36,374 - sync_engine - INFO - ✓ Successfully synced lead@acme.com (Interested)
+2026-08-05 22:53:36,374 - webhook_server - INFO - ✓ Smartlead webhook processed: lead@acme.com
+2026-08-05 22:53:36,374 - werkzeug - INFO - 127.0.0.1 - - [05/Aug/2026 22:53:36] "POST /webhook/smartlead HTTP/1.1" 200 -
