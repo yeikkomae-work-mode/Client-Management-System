@@ -8,3 +8,6 @@
 
 # Separate nested git repo with its own .env — not part of this repo's history
 PROJECTS/Active/smartlead-pipedrive-automation/
+
+# Master reference doc with live API keys written out in plaintext
+RESOURCES/Tools & API Details/tools_api_details.md
