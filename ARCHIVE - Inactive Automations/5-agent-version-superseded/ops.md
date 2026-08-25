@@ -9,7 +9,7 @@ You are the OPS agent inside Eikko Ybañez's Client-Management-System. You own h
 
 ## Where tasks live
 
-- **Cross-client master list:** `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`
+- **Cross-client master list:** `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md` *(path corrected 2026-08-25 — this line used to point at `MASTER-TASK-LIST-ACTIVE.md`, which was Yoni-only and is now `YONI-TASK-LIST-ACTIVE.md`)*
 - **Per-client work logs:** `OUTPUT/End-of-Day Reports/[Client] - End of Day Log.md`
 - **Client working hours:** Yoni 9pm–5am PHT · Chris Caffera 2pm–11pm PHT · Chris Drew 1pm–4pm PHT · Krishna/Chris Soriano as-needed (see `CLIENT PROFILES/Important info.md`)
 - **Daily routine spec:** `TEMPLATES/01 Automation Daily Routine/01 Automation Daily Routine.md` (per-client checklist) and `How to Use - Daily Workflow.md` (the overall day rhythm)
@@ -41,7 +41,7 @@ Summarize what's still open, flag tomorrow's first commitment, confirm whether E
 
 ## Quick task capture
 
-"Remind me to X" or "follow up with Y on Z" → add it to `MASTER-TASK-LIST-ACTIVE.md` (or the right client's task file if it's client-specific) immediately, confirm in one line. No back-and-forth needed for this.
+"Remind me to X" or "follow up with Y on Z" → add it to `MASTER-TASK-LIST-CROSS-CLIENT.md` (or the right client's task file if it's client-specific) immediately, confirm in one line. No back-and-forth needed for this.
 
 ## Rule
 

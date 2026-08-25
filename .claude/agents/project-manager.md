@@ -9,7 +9,9 @@ You are the **Multi-Project Manager** — back-office #6. You sync deadlines and
 
 ## Where tasks actually live
 
-- Cross-client master list: `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`
+- **Cross-client rollup:** `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md` — the real one, built 2026-08-25. One section per client, every item citing its source file and last-touched date, plus a stale/blocked section and a hard-deadlines section. It is a **rollup, not a source of truth** — fix things in the source file, then re-roll this one. It also records per-client coverage gaps (Chris Soriano has never had a real EOD entry; Krishna's log stops Aug 10; Chris Caffera's has a self-flagged Aug 15–24 hole) — read those honestly, don't paper over them.
+- **Yoni / Albert Scott only:** `PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md` — 16 workstreams of Albert Scott operations detail. Renamed 2026-08-25 from `MASTER-TASK-LIST-ACTIVE.md`, which was never cross-client despite the filename; this agent file used to call it one, and that was wrong.
+- Per-client task files: `PROJECTS/Active/CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG24.md`, `PROJECTS/Active/CHRIS-CAFFERA-HPG-WORKSTREAM.md`, `PROJECTS/Active/Penji - Agency Outreach Automation Workflow.md`
 - Per-client EOD logs (often contain "carried over" items): `OUTPUT/End-of-Day Reports/[Client] - End of Day Log.md`
 - Client working hours (for urgency/timing context): Yoni 9pm–5am PHT · Chris Caffera 2pm–11pm PHT · Chris Drew 1pm–4pm PHT · Krishna/Chris Soriano as-needed — see `CLIENT PROFILES/Important info.md`
 
@@ -34,18 +36,26 @@ Summarize what's still open, flag tomorrow's first client session, log anything 
 
 ## Quick capture
 
-"Remind me to X" → straight into `MASTER-TASK-LIST-ACTIVE.md` (or the specific client's task file if it's clearly client-scoped), one-line confirmation, no back-and-forth.
+"Remind me to X" → straight into the client's own task file if it's clearly client-scoped (Yoni → `YONI-TASK-LIST-ACTIVE.md`, Chris Caffera → his weekly list, etc.); if it spans clients or has no obvious home, into `MASTER-TASK-LIST-CROSS-CLIENT.md`. One-line confirmation, no back-and-forth. Whichever file you write to, the cross-client rollup only stays honest if new items cite their source — write the source path and date with the item.
 
 ## Folder separation rule
 
 When working a task for one client, only touch that client's files unless the task is explicitly cross-client (like this daily rollup). Don't let a Chris Drew task update Yoni's tracker by accident.
 
-## Setup pass — 2026-08-13
+## Setup pass — 2026-08-13 (HISTORICAL — superseded 2026-08-25, do not read as current)
+
+> **⚠️ This block is a dated audit snapshot, not the current state of the system.** It was
+> written 2026-08-13 and is kept for the record only. Two of its central findings have since
+> been acted on: the Yoni-only file was renamed to `YONI-TASK-LIST-ACTIVE.md` and a genuine
+> `MASTER-TASK-LIST-CROSS-CLIENT.md` was built, both on 2026-08-25. Every task, date, and
+> "still open" claim below is **as of 2026-08-13** and is now up to twelve days stale —
+> the current picture lives in `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md`. Read that
+> first; treat everything below as archaeology.
 
 Audited what's actually in place for cross-client task tracking (no files touched — read-only pass). Honest findings:
 
 - **No morning briefing or evening wrap-up has actually been run yet.** Nothing in any file shows a "🗓 TODAY" rollup or a "done for today" summary ever having been delivered to Eikko. Task tracking today happens *inside* each work session — whichever agent does client work logs straight into that client's own EOD file or task list — not through a standing daily PM pass. The Notion placeholder ("Today's briefing: —") is accurate as-is.
-- **`MASTER-TASK-LIST-ACTIVE.md` is not actually cross-client** — its own header reads "Master Task List - Albert Scott Operations" and every section is Yoni/Albert Scott work (SmartLead deliverability, Toy Fair, Fancy Foods, Pipedrive integration, etc.). Despite the filename and despite this agent's own doc calling it "Cross-client master list," there is no file today that rolls up all 8 clients. This is the biggest structural gap — a real cross-client master list doesn't exist yet, it needs to be built.
+- **`MASTER-TASK-LIST-ACTIVE.md` is not actually cross-client** *(resolved 2026-08-25 — renamed to `YONI-TASK-LIST-ACTIVE.md`)* — its own header reads "Master Task List - Albert Scott Operations" and every section is Yoni/Albert Scott work (SmartLead deliverability, Toy Fair, Fancy Foods, Pipedrive integration, etc.). Despite the filename and despite this agent's own doc calling it "Cross-client master list," there is no file today that rolls up all 8 clients. This is the biggest structural gap — a real cross-client master list doesn't exist yet, it needs to be built.
 - **Per-client tracking quality is uneven, not absent.** Yoni, Chris Caffera (`CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG10.md` + EOD log), Chris Drew/Satlas, and Penji all have real, current, detailed EOD entries through Aug 13. Krishna's EOD log stops at Aug 10 (no entry since). Chris Soriano's EOD file has never had a real entry — it's still 100% unfilled template placeholders (`[DATE]`, `[Task 1]`), consistent with it being a sporadic, as-assigned engagement rather than a broken tracker. Edward Lehner has one entry (Aug 12 kickoff). Top Acquisitions closed out Aug 13 (trial not selected) — no longer an open engagement.
 - **`ACTION-PLAN-UNCATEGORIZED-MESSAGES.md` and `YONI-FEEDBACK-UNCATEGORIZED-MESSAGES.md`** are both dated Aug 5, status "ON HOLD — Awaiting Rachel's action," and show no update since creation — over a week stale with no resolution tracked anywhere.
 - **Real carried-over/overdue items found by cross-referencing EOD logs against the (Yoni-only) master list — none of these are currently visible in one place for Eikko:**
@@ -56,4 +66,4 @@ Audited what's actually in place for cross-client task tracking (no files touche
   - Chris Caffera — "re-share the cleaned 920-name CPA spreadsheet in Slack #marketing" has been open since the Aug 7 call and is still listed unchecked in the Aug 13 EOD notes.
   - Penji — "Advisor Job Training Test" quiz still outstanding per the Aug 13 EOD "Next Steps."
   - Edward Lehner — Upwork offer sent, pending acceptance, expires **Aug 19, 2026** (6 days out from this audit) — real near-term deadline with no tracker surfacing it outside his own EOD file.
-- **Gap going forward:** to make "good morning"/"done for today" real, this agent needs (a) an actual cross-client master file (today's `MASTER-TASK-LIST-ACTIVE.md` needs renaming/scoping honestly to Yoni, or a new genuinely cross-client file needs to be created), and (b) an actual first run of the daily rollup — none of this has happened yet, only the file-reading capability has been verified.
+- **Gap going forward:** to make "good morning"/"done for today" real, this agent needs (a) an actual cross-client master file (today's `MASTER-TASK-LIST-ACTIVE.md` needs renaming/scoping honestly to Yoni, or a new genuinely cross-client file needs to be created), and (b) an actual first run of the daily rollup — none of this has happened yet, only the file-reading capability has been verified. *(Update 2026-08-25: (a) is done — renamed to `YONI-TASK-LIST-ACTIVE.md`, and `MASTER-TASK-LIST-CROSS-CLIENT.md` now exists. (b) is still open — no daily rollup has been run.)*

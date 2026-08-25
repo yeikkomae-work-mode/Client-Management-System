@@ -4,6 +4,22 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-25 — Two Campaigns Paused Pending Domain Fixes
+
+**Tasks Completed:**
+- Paused two campaigns pending domain fixes
+
+**Notes:**
+- Logged from Eikko's one-line end-of-day report on 2026-08-25 (during the chief-of-staff
+  build verification). **Which two campaigns and which domains were not specified** — not
+  inferred here. Fill in the campaign names and the domains next session, or this entry can't
+  be reconciled against PlusVibe.
+- Likely related to the open Zapmail decision in the 2026-08-22 entry below (10 domains,
+  30 mailboxes, all `isWarmedUp: false`, domain health 22.65/100) — **not confirmed**, stated
+  as a lead to check, not a fact.
+
+---
+
 ## 2026-08-22 — Full Infra Audit: PlusVibe, InboxKit, Zapmail (reconnected), Porkbun
 
 **Tasks Completed:**

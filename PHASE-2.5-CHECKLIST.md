@@ -155,7 +155,7 @@ All endpoints should return JSON with `"success": true`:
 
 1. Modify a file in `/PROJECTS/Active/`:
    ```bash
-   echo "# Test run $(date)" >> "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md"
+   echo "# Test run $(date)" >> "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md"
    ```
 
 2. Wait 2-3 seconds

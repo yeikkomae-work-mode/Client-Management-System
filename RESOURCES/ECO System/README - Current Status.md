@@ -4,7 +4,7 @@ The status/workflow docs that used to live in this folder (`ECO_MASTER_STATUS.md
 
 **`ARCHIVE - Inactive Automations/`** (root of Client-Management-System)
 
-They described 3 automations (morning email briefing, Lemwarm monitor, PlusVibe mailbox monitor) as active. All 3 are currently **disabled**. Only `daily-eod-sync` is actually running on schedule.
+They described 3 automations (morning email briefing, Lemwarm monitor, PlusVibe mailbox monitor) as active. **Corrected 2026-08-25: none of them exist as task definitions, and neither does `daily-eod-sync`, which this line previously claimed was running on schedule.** A live check found no scheduled tasks in this system at all. See `ARCHIVE - Inactive Automations/README.md`.
 
 Still here and current: `ECO_CLIENTS.md`, `ECO_README.md`, and the API/Chrome-profile setup guides in this folder.
 

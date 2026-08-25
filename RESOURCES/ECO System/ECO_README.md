@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-06  
 **Status:** ✅ Production Ready
 
-**Note (Aug 13):** every `ECO_MASTER_STATUS.md` / `ECO_*.md` reference below points to files that have since moved to `ARCHIVE - Inactive Automations/` at the root of Client-Management-System (they described automations that are now disabled). See that folder's README for current status, and `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md` for the up-to-date consolidated guide.
+**Note (Aug 13):** every `ECO_MASTER_STATUS.md` / `ECO_*.md` reference below points to files that have since moved to `ARCHIVE - Inactive Automations/` at the root of Client-Management-System (they described automations that are now disabled). See that folder's README for current status. **Update 2026-08-25:** `ECO - Chief of Staff Guide.md` has itself been archived to `ARCHIVE - Inactive Automations/5-agent-version-superseded/` — it is no longer "up to date" and describes the superseded 5-agent system. For how routing works today, read `.claude/agents/chief-of-staff.md` — Eikko's second-in-command, which is what the ECO "chief of staff" role became.
 
 ---
 

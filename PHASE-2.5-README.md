@@ -181,7 +181,7 @@ Get recent activity across all agents.
       "agent_name": "lead-prospector",
       "timestamp": "2026-08-16T07:22:00Z",
       "status": "completed",
-      "details": "File changed: MASTER-TASK-LIST-ACTIVE.md"
+      "details": "File changed: YONI-TASK-LIST-ACTIVE.md"
     }
   ]
 }
