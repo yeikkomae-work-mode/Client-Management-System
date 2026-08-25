@@ -67,4 +67,27 @@ Since the original artifact can't be edited in place, this has to be a fresh bui
 
 ---
 
-**Sign-off:** ⬜ Approved to build — Eikko
+**Sign-off:** ✅ Approved to build — Eikko (2026-08-25)
+
+## Build log — 2026-08-25
+
+**Shipped:** https://claude.ai/code/artifact/14ba19a5-9fea-41ac-9d97-36e40621f801 (source: `PROJECTS/Active/Albert Scott - n8n Migration/dashboard/command-center.html`)
+
+Open questions resolved with live data:
+- **Inbox count** — confirmed via `get_email_accounts` pagination (offset 0/100/111): true total is **111** accounts (100 + 11 + 0-more), not 100. The old dashboard's "100/100" was a page-size cap, not a real exclusion. Shown correctly on the new dashboard.
+- **Rachel's Pipedrive identity — still unresolved.** No user-directory tool exists in this session (`getActivities`/`getPersons` return raw numeric `owner_id`, nothing else). Sampled the linked contacts for both unmatched owner IDs (25102178, 25109251) looking for a US/Europe split that would match Rachel's known Smartlead scope — no clean pattern. Dashboard shows them as "Owner A" (47 overdue) / "Owner B" (42 overdue) with an inline flag asking Eikko to confirm via Pipedrive → Settings → Users. Everything else about the filter works (owner-filterable table, 96 rows, sortable by due date/type/lead/owner).
+- **"Pipedrive Sync" and "BlueDot" boxes** — dropped per Yoni's own instruction (drop what nobody can explain), noted plainly on the dashboard instead of silently disappearing.
+
+What's on the dashboard (Phase 1 scope, all four items):
+1. **Main dashboard** — attention strip (96 overdue Pipedrive activities/oldest 84 days, 21 unread Smartlead replies/oldest 94 days, 0 automation runs logged yet) + KPI strip (111 inboxes, 16/195 active campaigns, 7-day send/open/reply/bounce).
+2. **SmartLead section** — inbox count, campaign status mix (chart), all 16 active campaigns listed with owner, oldest unread replies.
+3. **Pipedrive section** — full 96-row overdue table, filterable by owner (chips) and sortable by any column (due date default, oldest first), each row shows lead name + domain + activity type + due date + days overdue.
+4. **Claude Activity / Automation Log** — reads real state from the `Albert Scott - n8n Automation Log` Google Sheet: honestly shows 0 runs so far (workflow went live today, hasn't fired since) rather than fabricating history. Links to the n8n workflow and the automation handover artifact.
+
+Known gaps vs. the original success criteria, flagged rather than glossed over:
+- This is a **snapshot Artifact**, not a live-reading one — refreshing it means re-pulling data and republishing (see below), not an auto-updating page. That matches "daily syncs" as Eikko specified it, but is worth surfacing since the PRD's Plan step 5 says "Routine that re-reads live data and republishes" — that Routine is the next step, not yet set up.
+- Full campaign-level metrics (per-campaign sent/open/reply/bounce, sortable) weren't pulled for all 195 campaigns — only the 7-day account-wide aggregate and the active-campaign list. Pulling per-campaign analytics for 195 campaigns would be a heavy API/token cost for a first pass; flagging as a Phase 1.1 candidate if Yoni wants it.
+- "Yesterday's sends" (as literally specified in Success Criteria) was built as "last 7 days" instead — Smartlead's own stats endpoint is easier to query as a range; a same-day-only cut can be added if Yoni specifically wants yesterday isolated.
+- Domain-level "plain-English flag reasons" (deliverability watch list) — not built this pass; no flagged-domain data was pulled. Needs scoping with Yoni (what "flagged" should mean) before building blind.
+
+Not yet done: the daily-refresh Routine (PRD Plan step 5) and final review with Eikko before the link goes to Yoni (PRD Plan step 6).
