@@ -1,6 +1,8 @@
 # Claude Code Subagents — Client-Management-System
 
-**10-agent team**, split front-office (client-facing) / back-office (internal ops), adapted from Eikko's research into this actual system. Built 2026-08-13, replacing the earlier 5-agent functional version (kept in `_archived-5-agent-version/` for reference, not deleted).
+**14-agent team.** The original 10 split front-office (client-facing) / back-office (internal ops), adapted from Eikko's research into this actual system — built 2026-08-13, replacing the earlier 5-agent functional version (kept in `_archived-5-agent-version/` for reference, not deleted).
+
+Four more were added 2026-08-25 as the **CMO layer**: a marketing-domain orchestrator and three track specialists. The CMO layer doesn't replace any of the 10 — it sits above them and delegates into them.
 
 ## Front-office (client-facing)
 
@@ -22,9 +24,36 @@
 | `file-organizer` | Keeps this whole system clean — dedup, archive stale docs, fix naming, fix broken references |
 | `meeting-summarizer` | Transcript → minutes + action items, pushed to task files |
 
+## Marketing — the CMO layer (added 2026-08-25)
+
+`cmo` is the marketing-domain orchestrator. It runs intake, picks tracks, holds the phase gates, owns the client's living Marketing Brief, and delegates — to its three track specialists and to the existing 10. It is **not** a global router: billing, inbox, meetings, task rollups, and file hygiene belong to `chief-of-staff`, and `cmo` hands those straight back.
+
+```
+cmo  (marketing engagements only)
+├── outbound-agent   → cold outbound, end to end
+├── seo-agent        → SEO audits and checks
+└── brand-agent      → positioning, identity, website, content
+        │
+        └── all three delegate into the existing 10:
+            market-scout (research) · copywriter (all copy)
+            lead-prospector (lists) · reply-handler (inbound)
+```
+
+| Agent | Scope |
+|---|---|
+| `cmo` | Marketing orchestrator — intake, track selection, phase gates, owns `CLIENT PROFILES/<Client> - Marketing Brief.md` |
+| `outbound-agent` | Cold outbound end to end: research → ICP → lead export → verification → copy → campaign build → domain/mailbox capacity → deliverability monitoring. Builds to DRAFT and holds |
+| `seo-agent` | SEO audits via the `claude-seo` plugin — zero-key mode by default, client-neutral, narrowest command that answers the ask |
+| `brand-agent` | Positioning, verbal and visual identity, brand guidelines, website, content engine, inbound campaigns. Hands outbound to `outbound-agent` |
+
+**Delegation over duplication.** The track agents call `copywriter` rather than restating its per-client copy rules — those rules came out of real client feedback and live in exactly one file. A second copy would drift, and the drifted copy is the one that reaches a client's inbox.
+
+**Model note:** `cmo` runs on `opus` (orchestration and gate judgement); the other 13 run on `sonnet`. One line in its frontmatter if that should change.
+
 ## Shared context (not agents — reference files the agents read)
 
 - `_shared/connector-status.md` — **the single source of truth** for which tools are actually connected vs. broken vs. need authorizing vs. don't exist. Update this ONE file when a connector changes status; every agent reads it instead of carrying its own stale copy.
+- `_shared/cmo-intake.md` — the merged marketing intake form, read by `cmo` at the start of every engagement. Replaces the three separate intake forms the SEO / brand / outbound source prompts each carried. Track-scoped, so a cold-email client never sits through a brand interview. Its Step 0 requires reading the client's existing docs before asking anything.
 
 ## How to use
 
@@ -33,6 +62,7 @@ Claude Code auto-picks a subagent from its `description` when a task matches, or
 ```
 Use the lead-prospector agent to build Krishna's next Apollo list.
 Use the billing-auditor agent for this month's income review.
+Use the cmo agent to start a new outbound engagement for <client>.
 ```
 
 ## The three chaos-prevention rules baked into these agents

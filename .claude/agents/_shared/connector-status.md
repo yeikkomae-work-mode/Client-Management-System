@@ -1,10 +1,10 @@
 # Connector Status — Single Source of Truth
 
-**All 10 agents read this before claiming any tool is live.** Update this ONE file when you fix/authorize a connector — don't hand-edit the status inside individual agent files.
+**All 14 agents read this before claiming any tool is live.** Update this ONE file when you fix/authorize a connector — don't hand-edit the status inside individual agent files.
 
 **Twin copy in Notion:** [🔌 Connector Status](https://app.notion.com/p/3ba811e21c7f8193a87fd0e68c38987a), inside the [🎛️ VA Command Center](https://app.notion.com/p/3ba811e21c7f8000b6a5f7952cb0c76b). Update both when something changes — this file is the one agents actually read at runtime; the Notion copy is for Eikko to check without opening Claude Code.
 
-**Last verified:** 2026-08-24 (Zapmail / InboxKit / Porkbun rows updated from the 2026-08-22 Satlas infra audit)
+**Last verified:** 2026-08-25 (Higgsfield / 21st / Arcads rows added for the CMO layer build; Higgsfield balance re-checked live. Zapmail / InboxKit / Porkbun rows from the 2026-08-22 Satlas infra audit)
 
 | Tool | Status | Notes |
 |---|---|---|
@@ -33,5 +33,8 @@
 | Lemlist | ⚫ No connector | Browser-only |
 | LinkedIn (personal profiles) | ⚫ No connector | No API path; browser-assisted only, and LinkedIn flags automated activity — keep to drafting, not unattended posting |
 | Asana, ClickUp, Trello | ⚫ Not in use | Task tracking currently lives in markdown files (`PROJECTS/Active/`) and Google Sheets, not a PM tool |
+| Higgsfield | 🟡 Connected, unusable | MCP connector is live and authenticated, but the account is `plan_type: free` with **0 credits** — verified live 2026-08-25 via `balance`. Every `generate_image` / `generate_video` / Marketing Studio / `virality_predictor` call will fail. Read-only tools (`show_generations`, `show_medias`, `balance`, `models_explore`) work fine. `brand-agent` must check the balance before planning any generation phase, not discover this mid-run. |
+| 21st (21st.dev) | 🟡 Not configured | MCP needs a free API key from 21st.dev/mcp — not set up. Per-component installs still work without it: `npx shadcn@latest add "<21st.dev component url>"`. Used by `brand-agent` Phase 5. |
+| Arcads | ⚫ No integration | By design — no native Claude Code path. `brand-agent` drafts UGC scripts and hands them off to their web platform for production. |
 
 **Rule for all agents:** if a task needs a 🔴 or 🟡 or ⚫ item, say so plainly and use the fallback (manual log, browser check, or flag-for-Eikko) instead of reporting fabricated live data.
