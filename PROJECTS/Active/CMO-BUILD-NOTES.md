@@ -158,6 +158,20 @@ Re-ran with `Task` **and** `Agent` both declared. **Still no dispatch tool grant
 
 **12. Cosmetic but corrosive:** the skill's spintax section is still headed **"Instantly copy format"** (line 39) though Instantly is dead and PlusVibe is live. The format carried over intact; only the heading is stale. It's the kind of thing that makes an agent distrust a file it should be following.
 
+---
+
+## copywriter.md updated (2026-08-25, authorized by Eikko)
+
+Scope was widened by explicit request to cover two changes in `copywriter.md` — otherwise untouched, as one of the original 10.
+
+**Added:**
+1. **A standing skill-check rule for every client**, not just Satlas. Globs all three skill locations, requires reading `references/` and not just `SKILL.md`, and instructs that a skill's *rules* are authoritative while its *status tables* are a dated snapshot to reconcile against campaign tracking. Written generically so it covers whatever client gets a skill next.
+2. **The Satlas skill pointer** — `~/.claude/skills/synced/satlas-cold-email/`, naming what the profile summary omits (approved launched copy, sentence-level RANDOM spintax, PlusVibe merge-field syntax, 50–80 word limit, tracking off) and instructing a check for existing approved copy before drafting from scratch.
+3. **The approval gate** — Spencer Hirst and Chris review all new segment copy before launch, with the open question of whether it applies to a *refresh* flagged rather than decided.
+4. **The two live profile-vs-skill contradictions** flagged in place, with the instruction to follow what shipped and say so, pending Eikko and Chris settling them.
+
+**Deliberately not done:** the signature spec was *not* resolved. The profile says "name + phone + RANDOM close," the skill says "real name, company, phone," and no RANDOM close appears in any launched email. That's a decision for Eikko and Chris (thread #14), not an edit — picking one silently is exactly what the conflict rule exists to prevent. Frontmatter untouched; `copywriter` still has `Write` and no read-only mode (thread unchanged).
+
 ## Open threads
 
 | # | Thread | Owner | Raised | Blocking |
@@ -172,8 +186,8 @@ Re-ran with `Task` **and** `Agent` both declared. **Still no dispatch tool grant
 | 8 | Confirm `copywriter` delegation fires end-to-end on the first real `@cmo` run | Eikko | 2026-08-25 | Untested — registry needed a restart |
 | 9 | Document Satlas's launch approval authority (can Ally sign off?) | Eikko | 2026-08-25 | Phase 6 gate has no named owner |
 | 10 | Resolve the Hillary — Finance Broker 4-step vs 3-email rule contradiction | Eikko + Chris | 2026-08-25 | Any new finance-broker copy |
-| 11 | Fold the signature spec + Spencer/Chris review gate into `copywriter.md`'s Satlas line | Eikko | 2026-08-25 | Copy shipping unsigned or unreviewed |
-| 12 | Add a Satlas skill pointer to `copywriter.md` | Eikko | 2026-08-25 | Direct `@copywriter` calls missing approved copy |
+| 11 | ~~Fold the Spencer/Chris review gate into `copywriter.md`~~ ✅ **Done 2026-08-25.** Signature-spec half stays open — see #14, it's a decision not an edit | — | 2026-08-25 | Closed |
+| 12 | ~~Add a Satlas skill pointer to `copywriter.md`~~ ✅ **Done 2026-08-25** — plus a standing rule for all clients | — | 2026-08-25 | Closed |
 | 13 | Decide the canonical 5-part structure — profile's or the skill's | Eikko + Chris | 2026-08-25 | Any conformance check on Satlas copy |
 | 14 | Decide the canonical signature spec (RANDOM close isn't in shipped copy) | Eikko + Chris | 2026-08-25 | Same |
 | 15 | Reframe the finance-broker ask as a refresh against approved copy, not a new write | Eikko | 2026-08-25 | Wasted work + ignoring launched assets |
