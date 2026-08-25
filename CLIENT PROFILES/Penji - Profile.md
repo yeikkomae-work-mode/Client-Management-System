@@ -115,7 +115,7 @@
 - **New 2026-08-18:** Dripify is on a 7-day free trial, expiring 2026-08-24 — needs a paid seat/upgrade confirmed before then. 🔴 **That is today (Aug 24) — unresolved as of this update.**
 - **New 2026-08-19:** First persona-account work logged — the **Amanda Scott** (`amanda@trypenji.co`) account had its Google password reset, the new password was recorded in the "Sales & PR Team Linkedin Accounts" sheet (Female tab, row 11), and an internal warm-up email was sent from it to Hudson Miller and Shane Williams. See the Aug 19 entry in `OUTPUT/End-of-Day Reports/Penji - End of Day Log.md`. Open thread: the email promised a meeting link that was never sent.
 - **New 2026-08-24 (from signed documents):** the engagement is **full-time employment**, not a retainer — see the correction banner at the top and the Work Arrangement section. Two open questions for Penji: (1) which title is operative for reporting, LinkedIn Outreach Specialist or Agency Advisor; (2) whether the contract's "wage plus commission" structure includes a commission component for this role, since the offer letter names none.
-- **New 2026-08-24:** the 8am–5pm full-day requirement is a real capacity constraint against the rest of the client roster (Cüneyt/Starfix, Yoni, Chris Drew). Worth an explicit look before taking on more client hours.
+- **New 2026-08-24:** the 8am–5pm full-day requirement is a real capacity constraint against the rest of the client roster (Cüneyt/SellerVate, Yoni, Chris Drew). Worth an explicit look before taking on more client hours.
 
 ---
 

@@ -1,7 +1,7 @@
 # Trial Agreement & Instantly DKIM Diagnosis
 
 **Date:** 2026-08-13
-**Client:** Cüneyt (Starfix / Elevate Commerce)
+**Client:** Cüneyt (SellerVate / Elevate Commerce)
 **Fathom recording:** https://fathom.video/calls/783801898
 **Recorded by:** eikko mae ybanez
 
@@ -20,7 +20,7 @@
 **Topics:**
 - Instantly campaigns targeting US/UK Amazon sellers are failing, with emails landing in spam.
 - Symptom: mailboxes suspended by Hostinger, showing 0% warm-up progress in Instantly.
-- Client (Junaid) runs Starfix — Amazon review-removal service (pay-per-removed-review model) plus Sellervate (Amazon account management, Germany-focused).
+- Client (Junaid) runs SellerVate — Amazon review-removal service (pay-per-removed-review model) plus Sellervate (Amazon account management, Germany-focused).
 - Lead source: a freelancer's manually-built lists (some duplicated, quality inconsistent) — no email verification currently run (ran out of Instantly credits).
 - Discussed Spintax email variation as a concept Junaid wasn't previously familiar with.
 - Rate negotiation: started at $5/hr, settled on $7/hr for the 20-hour trial, with $10/hr discussed for long-term/retainer.
@@ -155,4 +155,4 @@
 
 ---
 
-**Note:** Speaker labeled "Speaker 2" in the raw Fathom transcript is Junaid, the client contact — relabeled here for clarity. Confirm against `CLIENT PROFILES/Cüneyt - Profile (Starfix).md` if "Junaid" and "Cüneyt" refer to different people at the same company; the profile may need a note on who the actual day-to-day contact is.
+**Note:** Speaker labeled "Speaker 2" in the raw Fathom transcript is Junaid, the client contact — relabeled here for clarity. Confirm against `CLIENT PROFILES/Cüneyt - Profile (SellerVate).md` if "Junaid" and "Cüneyt" refer to different people at the same company; the profile may need a note on who the actual day-to-day contact is.

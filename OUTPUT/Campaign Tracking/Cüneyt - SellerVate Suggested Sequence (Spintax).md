@@ -1,9 +1,9 @@
-# Cüneyt (Starfix) — Suggested Email Sequence (Spintax)
+# Cüneyt (SellerVate) — Suggested Email Sequence (Spintax)
 
-**Built from:** the 9 live Starfix sequences pulled Aug 13 (`Cüneyt - Starfix Email Sequences (2026-08-13).md`) + the sequence framework Eikko uses across other clients (Satlas/Chris Drew, Capital Financing).
+**Built from:** the 9 live SellerVate sequences pulled Aug 13 (`Cüneyt - SellerVate Email Sequences (2026-08-13).md`) + the sequence framework Eikko uses across other clients (Satlas/Chris Drew, Capital Financing).
 **Convention used:** Satlas-style sentence-level `{{RANDOM | opt1 | opt2 | opt3}}` spintax — same syntax already proven on Capital Financing and documented in the `satlas-cold-email` skill.
-**Structure:** 3 emails only (Day 0 / Day 3 / Day 7) — not 4-5 like most current Starfix campaigns. Fewer steps = fewer spam flags, and the audit showed no engagement past step 2-3 on most campaigns anyway.
-**Why this framework:** Hook (specific, believable finding) → Context (what Starfix does) → Proof (real number) → Ask (soft CTA) → Signature. Same 5-part shape that's driving Chris Drew's campaigns, adapted to the Amazon review-removal angle that's already working best for Starfix (UK Seller campaign — 3 opportunities off just 284 leads, the best conversion rate in the whole audit).
+**Structure:** 3 emails only (Day 0 / Day 3 / Day 7) — not 4-5 like most current SellerVate campaigns. Fewer steps = fewer spam flags, and the audit showed no engagement past step 2-3 on most campaigns anyway.
+**Why this framework:** Hook (specific, believable finding) → Context (what SellerVate does) → Proof (real number) → Ask (soft CTA) → Signature. Same 5-part shape that's driving Chris Drew's campaigns, adapted to the Amazon review-removal angle that's already working best for SellerVate (UK Seller campaign — 3 opportunities off just 284 leads, the best conversion rate in the whole audit).
 
 ---
 

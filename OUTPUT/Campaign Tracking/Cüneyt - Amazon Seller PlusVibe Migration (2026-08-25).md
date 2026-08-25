@@ -10,7 +10,7 @@
 ## What was moved
 
 The drafted **UK/USA Amazon Seller** campaign — Sequence B (product-category angle) from
-`Cüneyt - Starfix Revised Sequences (Cleaned Database, 2026-08-21).md`, run against the cleaned
+`Cüneyt - SellerVate Revised Sequences (Cleaned Database, 2026-08-21).md`, run against the cleaned
 `3_UK_USA_Amazon_Seller_CLEANED.csv` list.
 
 This was the one Amazon list whose drafted copy was never built anywhere — it had no rating data,

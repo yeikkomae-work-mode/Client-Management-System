@@ -1,4 +1,4 @@
-"""Migrate the drafted 'UK/USA Amazon Seller' campaign (Cüneyt / Starfix) into PlusVibe.
+"""Migrate the drafted 'UK/USA Amazon Seller' campaign (Cüneyt / SellerVate) into PlusVibe.
 
 Creates the campaign PAUSED. Nothing sends until it is explicitly activated.
 """

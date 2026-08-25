@@ -1,7 +1,7 @@
 # PlusVibe campaign migration
 
 Builds a drafted campaign into PlusVibe via the API — campaign shell, sequences, settings,
-mailboxes, and leads. Written for Cüneyt (Starfix), but the shape is reusable.
+mailboxes, and leads. Written for Cüneyt (SellerVate), but the shape is reusable.
 
 Campaigns are always created **PAUSED**. Nothing sends until it is activated by hand.
 
@@ -43,6 +43,6 @@ Useful reads: `campaign/list?workspace_id=`, `campaign/get/status`, `campaign/ge
 
 `sequences.py` holds Sequence B (product-category). The two star-rating lists — Amazon USA Product
 Review 2nd SMB (613) and Amazon Leads MAIN List (714) — need Sequence A from
-`OUTPUT/Campaign Tracking/Cüneyt - Starfix Revised Sequences (Cleaned Database, 2026-08-21).md`,
+`OUTPUT/Campaign Tracking/Cüneyt - SellerVate Revised Sequences (Cleaned Database, 2026-08-21).md`,
 with `{{star_rating}}` mapped from the `Rating` column as `{{custom_star_rating}}`. Point
 `CSV_PATH` and `CAMP_NAME` in `migrate.py` at the right list.

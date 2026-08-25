@@ -1,4 +1,4 @@
-# Cüneyt (Starfix) — End of Day Log
+# Cüneyt (SellerVate) — End of Day Log
 
 Running daily record of work completed, metrics, and notes.
 
@@ -32,9 +32,9 @@ Build script + the API gotchas (Cloudflare blocks urllib; `schedules` is an arra
 enabled keys; `wait_time` must be ≥1 on every step) saved to `scripts/plusvibe-migration/`.
 
 **Correction, same day — the business is SellerVate, not Starfix.** Eikko flagged it and confirmed
-with https://sellervate.de. The site carries neither "Starfix" nor "Elevate Commerce"; Elevate Commerce
+with https://sellervate.de. The site carries neither "SellerVate" nor "Elevate Commerce"; Elevate Commerce
 looks to be the legal entity (Cüneyt's email is info@elevate-commerce.de) with **SellerVate** as the
-brand. Starfix survives only as sending-domain identity (hellostarfix.com, starfix.online). Profile
+brand. SellerVate survives only as sending-domain identity (hellostarfix.com, starfix.online). Profile
 corrected. **The campaign copy was unaffected — it names no brand and signs off with
 `{{sender_signature}}`.** Note the site's own "5,000+ resolved cases" and Amazon SPN partner claims
 line up with the copy already written.
@@ -45,8 +45,25 @@ Every email would currently end with no sign-off at all. The single populated on
 SellerVate** and would have gone out that way. Both need fixing before launch; the real sign-off block
 has to come from Cüneyt.
 
+**Signatures now set across all 19 PlusVibe inboxes.** House format, matching the one that already
+existed: `Best, / {First name} / SellerVate | sellervate.de`. The `SellerVeta` typo on laura@ is gone.
+Two role mailboxes (audits@, hello@) had first names stored as "Audits" and "Hello" — they'd have
+signed off "Best, Audits", so they use `The SellerVate Team` instead. Verified 19/19 via the API.
+Still worth replacing with Cüneyt's real sign-off block if he wants titles/phone in there.
+
+**Bigger find — the Instantly copy has been going out under the wrong brand.** The live sequences
+pulled Aug 13 and the Aug 14 drafts sign off as "Starfix" ("At Starfix, we help…", "Starfix Team").
+Across the Jun–Aug audit window that's ~1,699 emails sent under a brand name that isn't the business.
+Left the recorded copy verbatim (it's the record of what actually sent) and put an IMPORTANT banner on
+both docs instead. **Anything reused from those pages needs Starfix → SellerVate first.**
+
+**Repo swept Starfix → SellerVate** — 73 replacements across 30 files, 9 paths renamed. Preserved as
+real identifiers: hellostarfix.com, starfix.online, the live "Starfix New UK/US Leads" campaign names,
+`STARFIX_HOSTINGER_API_KEY*`, the `Starfix` git branch, and all verbatim email copy inside code fences.
+
 **Next Steps:**
-- Get Cüneyt's signature block and set it across the 9 sending inboxes; fix the "SellerVeta" typo on laura@
+- Swap Starfix → SellerVate in the Instantly copy before any of it is relaunched or reused
+- Ask Cüneyt whether he wants a fuller signature block (title, phone) than name + brand + site
 - Decide how far to carry the Starfix → SellerVate rename through the repo (9 files + a meetings folder carry "Starfix" in the name)
 - Test-send from PlusVibe and confirm `{{custom_product_category}}` renders before activating
 - Confirm `{{sender_signature}}` is set per inbox — signatures don't carry over from Instantly
@@ -65,7 +82,7 @@ has to come from Cüneyt.
 
 **Personalization field check per list:** confirmed Rating is 100% populated in both Product Review 2nd SMB and MAIN List (real, ready for `{{star_rating}}`). UK_USA Seller has no rating data at all — only `Product Type` (100% populated), so it needs a different angle.
 
-**Sequences revised:** kept the existing star-rating sequence (from 2026-08-20) for the two rating-based lists — verified against cleaned data, no changes needed. Wrote a new Sequence B for UK_USA Seller using `{{product_category}}` (mapped from Product Type) since it has no rating field to personalize on. Both filed in `OUTPUT/Campaign Tracking/Cüneyt - Starfix Revised Sequences (Cleaned Database, 2026-08-21).md`.
+**Sequences revised:** kept the existing star-rating sequence (from 2026-08-20) for the two rating-based lists — verified against cleaned data, no changes needed. Wrote a new Sequence B for UK_USA Seller using `{{product_category}}` (mapped from Product Type) since it has no rating field to personalize on. Both filed in `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Revised Sequences (Cleaned Database, 2026-08-21).md`.
 
 **Open items:**
 - [ ] Get Cüneyt's sign-off on Sequence B (product-category angle) before building it in Instantly
@@ -81,9 +98,9 @@ has to come from Cüneyt.
 
 Confirmed the 4 campaigns discussed are the existing drafts — Eikko still organizing the lead lists before launch (per the email-availability mapping from Aug 19).
 
-**New request from Cüneyt: personalize each cold email per prospect's actual Amazon product.** Took a round of back-and-forth to land on the actual ask — Cüneyt initially asked for "personalization" in a way that read like a case-study/social-proof angle (a past client's bad-review removal and sales impact), Eikko asked for a use case, but Cüneyt clarified he meant something different: **pull product name, current star rating, and number of negative reviews per-prospect, and reference in the email that Starfix already checked their listing and found potentially non-compliant reviews.** Eikko is checking whether this can be done with Instantly's variable/merge-field system.
+**New request from Cüneyt: personalize each cold email per prospect's actual Amazon product.** Took a round of back-and-forth to land on the actual ask — Cüneyt initially asked for "personalization" in a way that read like a case-study/social-proof angle (a past client's bad-review removal and sales impact), Eikko asked for a use case, but Cüneyt clarified he meant something different: **pull product name, current star rating, and number of negative reviews per-prospect, and reference in the email that SellerVate already checked their listing and found potentially non-compliant reviews.** Eikko is checking whether this can be done with Instantly's variable/merge-field system.
 
-**Deliverable:** drafted suggested email copy using this personalization, matching the existing Instantly format/style (merge fields + RANDOM spintax), to share with Cüneyt over WhatsApp. See `OUTPUT/Campaign Tracking/Cüneyt - Starfix Personalized Sequence Draft (2026-08-20).md`.
+**Deliverable:** drafted suggested email copy using this personalization, matching the existing Instantly format/style (merge fields + RANDOM spintax), to share with Cüneyt over WhatsApp. See `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Personalized Sequence Draft (2026-08-20).md`.
 
 **Feasibility checked same day** against Cüneyt's actual lead sheet (Amazon USA Product Review 2nd - Small Medium Size Companies): columns are Full Name, First Name, Last Name, Job Title, Email, Direct number, Website, LinkedIn URL, Company, Amazon URL, **Rating**, Review (total count), Company LinkedIn, City, State, Country, Company Number, Employees, Industry, Comment. Result: **star rating is real and ready to use. Product name isn't a clean column** (only a raw Amazon URL). **Negative review count doesn't exist anywhere in the sheet** — the "Review" column is total reviews, not a bad-review count; getting that number means manually auditing each listing, which is the paid service itself, not a free data point. Drafted a "realistic version" of Email 1 using only what's actually available (star rating + softer language) alongside the full-vision version, both filed in the draft doc.
 
@@ -136,7 +153,7 @@ sellervate.net renewal still shows due Sep 28, 2026 — not yet renewed.
 - Add maximilian@sellervate.net to Instantly
 - **Talk to Cüneyt before resuming anything** — confirm which campaigns should actually be active
 - Renew sellervate.net
-- Full detail logged in `CLIENT PROFILES/Cüneyt - Profile (Starfix).md` under "Live Recheck (Aug 16, 2026)"
+- Full detail logged in `CLIENT PROFILES/Cüneyt - Profile (SellerVate).md` under "Live Recheck (Aug 16, 2026)"
 
 **Decisions locked in (same day):**
 - cueneyt@ and daniel@hellostarfix.com are permanently out of rotation — no more re-enabling, don't assign to rebuilt campaigns
@@ -181,12 +198,12 @@ Pulled the Google Sheet Cüneyt referenced for List B ([Leads Copy](https://docs
 
 **Update (Hostinger hPanel, same day):** Found alex@starfix.online showing Suspended at the Hostinger account level (separate issue from the Instantly-side 554 5.7.1). Unsuspended it directly in hPanel (Mailboxes → alex@starfix.online → Settings → cleared suspend toggle → Update) — confirmed Active. Also created and stored a new Hostinger API token ("Claude," all-mailboxes scope, SMTP/IMAP + webhooks) for starfix.online, confirmed covering alex@, ben@, jake@, sam@starfix.online — see `RESOURCES/Tools & API Details/tools_api_details.md` entry #12.
 
-**Update (Hostinger, sellervate.net):** Received and stored the third Hostinger API key, covering all 5 mailboxes on sellervate.net (david@, jonas@, maximilian@, sebastian@, tobias@) — all Active, 0/5 seats left, 10 GB quota each. Note: maximilian@ is a mailbox not seen in the original Aug 13 Instantly audit. See entry #13. **All 3 Starfix domains now have Hostinger API access on file.**
+**Update (Hostinger, sellervate.net):** Received and stored the third Hostinger API key, covering all 5 mailboxes on sellervate.net (david@, jonas@, maximilian@, sebastian@, tobias@) — all Active, 0/5 seats left, 10 GB quota each. Note: maximilian@ is a mailbox not seen in the original Aug 13 Instantly audit. See entry #13. **All 3 SellerVate domains now have Hostinger API access on file.**
 
-**Update (campaign performance audit, Jun 1–Aug 13 window):** Ran full analytics pull across all 11 active Instantly campaigns. Totals: 1,699 emails sent, 14 unique replies, 30 bounces, 7 opportunities. Standout: UK Seller (starfix) has the best conversion (3 opportunities off just 284 leads contacted). Biggest gap: zero opens recorded on any campaign — open tracking is off/broken fleet-wide, so there's no funnel visibility past replies. Several low-volume campaigns (Amazon Seller 2nd/2cnd, Starfix New UK Leads 2026-08) show zero engagement and are candidates to pause or rework. Full breakdown and recommendations logged in `OUTPUT/Campaign Tracking/Cüneyt - Starfix Campaign Tracking.md`.
+**Update (campaign performance audit, Jun 1–Aug 13 window):** Ran full analytics pull across all 11 active Instantly campaigns. Totals: 1,699 emails sent, 14 unique replies, 30 bounces, 7 opportunities. Standout: UK Seller (starfix) has the best conversion (3 opportunities off just 284 leads contacted). Biggest gap: zero opens recorded on any campaign — open tracking is off/broken fleet-wide, so there's no funnel visibility past replies. Several low-volume campaigns (Amazon Seller 2nd/2cnd, Starfix New UK Leads 2026-08) show zero engagement and are candidates to pause or rework. Full breakdown and recommendations logged in `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Campaign Tracking.md`.
 
 **Tasks Completed:**
-- Fielded inbound cold outreach from Cüneyt (Elevate Commerce / Starfix), replied with "Deliverability" keyword response + proof case study
+- Fielded inbound cold outreach from Cüneyt (Elevate Commerce / SellerVate), replied with "Deliverability" keyword response + proof case study
 - Same-day call held (Google Meet, ~30 min) — diagnosed failing Instantly campaigns
 - Root cause found: missing DKIM record across all 3 Hostinger domains (hellostarfix.com, starfix.online, sellervate.net), causing mailbox suspensions and spam placement
 - Agreed trial terms: 20 hours @ $7/hr, weekly billing, 50% upfront for week 1
@@ -194,7 +211,7 @@ Pulled the Google Sheet Cüneyt referenced for List B ([Leads Copy](https://docs
 - Ran full campaign audit (5 active campaigns) and mailbox audit (11 mailboxes across 3 domains)
 - Ran domain-level audit in Hostinger — registration status, expiry, DNS, mailbox seat counts
 
-**Findings (see full detail in `CLIENT PROFILES/Cüneyt - Profile (Starfix).md`):**
+**Findings (see full detail in `CLIENT PROFILES/Cüneyt - Profile (SellerVate).md`):**
 - 5 of 11 mailboxes disabled (554 5.7.1 — hPanel-level disable, not Instantly-side)
 - sellervate.net renews Sep 27/28, 2026 — ~46 days out, flagged for renewal
 - Lead source ("Limlid") flagged as slow with duplicates; discussed cheaper alternatives (QuickEmailVerification, MillionVerifier, Apify)
@@ -211,13 +228,13 @@ All 3 target campaigns showed **zero mailboxes attached** despite looking active
 **Same-day follow-up:** jonas@ and sebastian@sellervate.net briefly flapped to an unhealthy status in Instantly; checked Hostinger directly, no suspension was active on either, and both self-recovered before further action. As a precaution, removed both from every active/paused campaign using them and backfilled with jake@/alex@starfix.online. Confirmed this is at least the second time sellervate.net mailboxes have flapped — flagged for Cüneyt as worth investigating if it recurs.
 
 **Deliverables produced this session:**
-- `OUTPUT/Campaign Tracking/Cüneyt - Starfix Before-After Report (2026-08-13).md` — full before/after + sweep findings
-- `OUTPUT/Campaign Tracking/Cüneyt - Starfix Email Sequences (2026-08-13).md` — all live email copy compiled for review
+- `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Before-After Report (2026-08-13).md` — full before/after + sweep findings
+- `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Email Sequences (2026-08-13).md` — all live email copy compiled for review
 - Client-facing Google Doc (issues/fixes/open items/email copy) under yeikkomae@gmail.com, ready to send to Cüneyt
 - Full Client Management System committed and pushed to `Starfix` branch on `yeikkomae-work-mode/Client-Management-System`
 
 **Metrics:**
-- 9 of 10 active/paused Starfix campaigns confirmed healthy and sending by end of day (up from 5 broken/misconfigured at session start)
+- 9 of 10 active/paused SellerVate campaigns confirmed healthy and sending by end of day (up from 5 broken/misconfigured at session start)
 - 1 campaign (Amazon seller 2nd) intentionally paused — needs new leads
 - 1 campaign (50K DE Amazon Leads) paused, awaiting Cüneyt's go-ahead
 

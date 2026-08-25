@@ -2,7 +2,7 @@ import json
 import re
 
 # Sequence B — Product Category angle (UK/USA Amazon Seller list, no rating data)
-# Source: OUTPUT/Campaign Tracking/Cüneyt - Starfix Revised Sequences (Cleaned Database, 2026-08-21).md
+# Source: OUTPUT/Campaign Tracking/Cüneyt - SellerVate Revised Sequences (Cleaned Database, 2026-08-21).md
 #
 # Instantly -> PlusVibe conversion applied:
 #   {{first_name}}       -> {{first_name}}              (unchanged — PlusVibe uses snake_case too)

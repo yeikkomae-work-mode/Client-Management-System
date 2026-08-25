@@ -42,7 +42,13 @@ PlusVibe copy for blank names.**
 
 Reusable build script + API gotchas: `scripts/plusvibe-migration/`.
 
+**Aug 25 follow-through:** repo swept Starfix → SellerVate (domains, live Instantly campaign names,
+credential keys and verbatim email copy preserved). All 19 PlusVibe inboxes now carry a SellerVate
+signature; the `SellerVeta` typo on laura@ is fixed. **Open risk: the Instantly copy itself still says
+"Starfix"** — see the banners on the two sequence docs.
+
 **Not yet done — needs a decision:**
+- [ ] Swap Starfix → SellerVate in the Instantly email copy before reusing or relaunching any of it
 - [ ] Test-send Amazon Seller UK/USA and confirm `{{custom_product_category}}` renders, then activate after ~Sep 7
 - [ ] Build the two star-rating lists into PlusVibe (Product Review 2nd SMB 613, MAIN List 714 — Sequence A)
 - [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
@@ -133,7 +139,7 @@ Inbound cold outreach — Cüneyt messaged Eikko directly asking about cold emai
 - 50K DE Amazon Leads — sellervate.net + starfix.online, **paused**, awaiting Cüneyt's go-ahead
 - Amazon seller 2nd — hellostarfix.com, **paused**, lead list exhausted (52/52 contacted), needs a new list before resuming
 
-Full before/after detail: `OUTPUT/Campaign Tracking/Cüneyt - Starfix Before-After Report (2026-08-13).md`. Current live email copy for every campaign: `OUTPUT/Campaign Tracking/Cüneyt - Starfix Email Sequences (2026-08-13).md`.
+Full before/after detail: `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Before-After Report (2026-08-13).md`. Current live email copy for every campaign: `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Email Sequences (2026-08-13).md`.
 
 **Lead source note:** Current lead provider ("Limlid"/Lemlist-adjacent, per call) is slow and produces duplicates. Discussed switching to cheaper verifiers (QuickEmailVerification, MillionVerifier) and scraping tools (Apify, other scrapers) for future lead gen.
 
@@ -223,7 +229,7 @@ Full before/after detail: `OUTPUT/Campaign Tracking/Cüneyt - Starfix Before-Aft
 - Amazon USA Product Review
 - Amazon USA Product Review 2nd (SMB)
 
-*Completed / likely legacy, relevance unconfirmed (8) — flagged, not yet verified as Starfix-relevant:*
+*Completed / likely legacy, relevance unconfirmed (8) — flagged, not yet verified as SellerVate-relevant:*
 - Review2 – Office Supplies DE (150K+)
 - Review2 – Home & Kitchen DE (200-300K)
 - Review2 – Home & Kitchen DE (100-200K)
