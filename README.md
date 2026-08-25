@@ -1,8 +1,8 @@
 # Eikko's Client Management System
 
-**Organized workspace for managing 5 active clients, prospective clients, automation, campaigns, and personal business operations.**
+**Organized workspace for managing active, trial, and prospective clients, a 10-agent Claude Code system, automation, campaigns, and personal business operations.**
 
-Last reorganized: Aug 6, 2026 | Status: 🟢 Fully organized (root folder cleaned up)
+Last updated: Aug 15, 2026 | Status: 🟢 Organized — agent system rebuilt, Fathom meeting sync live, PRD-first build discipline + unattended builder pipeline added
 
 ---
 
@@ -12,54 +12,111 @@ Last reorganized: Aug 6, 2026 | Status: 🟢 Fully organized (root folder cleane
 Your personal profile and system overview.
 - `CLAUDE.md` — System overview & working rules
 - `GETTING STARTED.md` — Quick-start guide
+- `Operating Instructions.md` — Added Aug 15, updated same day for the "Global instructions" field specifically. Paste into Claude Settings → Cowork → **Global instructions** (account-level, applies to every session). Opens with a session-bootstrap step (auto-connect this folder, read `CLAUDE.md`/`README.md` unprompted, cross-check Notion VA Command Center) so new sessions stop losing context — then covers PRD-first, pushback/no-yes-man, aggressive note-taking, reversibility.
+
+Root-level `CLAUDE.md` is a lighter agent quick-reference that Claude Code reads automatically each session — see **Agent System** below.
 
 ### **CLIENT PROFILES**
-One consolidated profile per client (quick-reference details + full engagement history merged into a single file each — previously split across separate quick/detailed files for Chris Drew and Yoni, merged Aug 13).
+One consolidated profile per client (10 files).
 - `Important info.md` — Master reference (rates, contact, payment info)
 - `Chris Caffera - Profile.md` — Personal Assistant ($7/hr, 20h/week, 2pm-11pm)
 - `Chris Drew - Profile (Satlas).md` — Satlas Lead Gen, full engagement history, infrastructure & campaign playbook ($200 AUD/mo, 1pm-4pm)
 - `Yoni - Profile (Albert Scott).md` — Albert Scott Outreach, full workflow reference incl. key people, tools, reply taxonomy, copy rules ($5/hr, 5h/day, 9pm-5am PHT)
 - `Krishna - Profile.md` — Free Lead Gen (3h/week, flexible)
 - `Chris Soriano - Profile.md` — Data Entry (as-needed, sporadic)
+- `Penji - Profile.md` + `Penji - Agency Advisor Quick Reference.md` — Signed Aug 10, role confirmed Aug 13 (Agency Advisor — Outbound Outreach Specialist)
+- `Cüneyt - Profile (Starfix).md` — Trial client (20h @ $7/hr), started Aug 13
+- `Edward Lehner - Profile.md` — Prospective client, Talk-Through / Focus Accountability Partner role (Upwork)
 
 ### **SKILLS**
 Your skills documentation and competencies (empty — ready for expansion).
 
 ### **PROJECTS**
 Active and prospective projects organized by status.
-- **Active/** — Live task lists & the smartlead-pipedrive-automation codebase:
-  - `MASTER-TASK-LIST-ACTIVE.md` — Albert Scott operations task list (owner: Yoni & Aiko)
-  - `ACTION-PLAN-UNCATEGORIZED-MESSAGES.md` — Uncategorized message resolution (assigned to Rachel, on hold)
-  - `YONI-FEEDBACK-UNCATEGORIZED-MESSAGES.md` — Feedback log on uncategorized messages
+- **Active/** — Live task lists:
+  - `MASTER-TASK-LIST-ACTIVE.md` — Albert Scott operations task list
+  - `CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG10.md` — Chris Caffera's weekly task list
+  - `ACTION-PLAN-UNCATEGORIZED-MESSAGES.md` / `YONI-FEEDBACK-UNCATEGORIZED-MESSAGES.md` — Message triage tracking
   - `LATEST-COMPLETED-WORK.md` — Most recent completed work summary
-  - `smartlead-pipedrive-automation/` — Live Python codebase (git repo) syncing Smartlead ↔ Pipedrive
-- **Prospective/** — New client onboarding
-  - `NEW CLIENTS - ONBOARDING PIPELINE.md` — Penji (final interview next week) & Top Acquisitions (paid trial, due Aug 11)
+  - `Penji - Agency Outreach Automation Workflow.md` — Phased automation design for Penji's sourcing→enrichment→outreach→CRM pipeline
+- **Prospective/** — `NEW CLIENTS - ONBOARDING PIPELINE.md`, tracking Cüneyt's trial and the now-closed Top Acquisitions opportunity
+- **Pending/ · In-Progress/ · Done/ · Failed/** — Added Aug 15. Autonomous builder pipeline: drop an approved PRD in `Pending/`, a scheduled task builds it unattended and files the result in `Done/` (or `Failed/` with a blocker note). See **Builder Pipeline** below and `PROJECTS/README - Builder Pipeline.md`.
 
 ### **TEMPLATES**
 Reusable workflows and automation setup.
-- **01 Automation Daily Routine/** — ECO system files, work logs, briefing prompts
+- **01 Automation Daily Routine/** — ECO system files, work logs, briefing prompts, `ECO - Chief of Staff Guide.md` (merged reference)
 - **02 Plugin Client Templates/** — Checklists, meeting templates, campaign trackers
 - **03 App Dashboard & Work Logger/** — Browser-based work logging app
+- `PRD Template.md` — Added Aug 15. Used for any nontrivial build (new agent, automation, client system, structural change) — problem, success criteria, scope, plan, sign-off, before building.
 
 ### **OUTPUT**
 Reports, data, metrics, and end-of-day summaries from your work.
-- **End-of-Day Reports/** — Daily logs per client (Chris Caffera, Chris Drew, Yoni, Krishna, Soriano)
-- **Campaign Tracking/** — Live campaign metrics & logs:
-  - `Chris Drew - Satlas Infrastructure & Campaigns.md`, `Plusvibe Mailbox Health - Daily Monitor.md`, `PLUSVIBE MONITORING SETUP.md`, `Instantly to Plusvibe - Campaign Migration Guide.md`, `Peru Silver Chain Wholesalers - Campaign Log.md`
-  - `DOMAIN_INVENTORY.md` — Chris Drew's domain inventory
-  - `Daily-Lead-Summary.md`, `Smartlead-Pipedrive-Sync-Log.md` — Daily sync/lead activity
-  - `Q4-Toy-Campaign-Call-Notes-Yoni.md`, `Yoni-Projects-Active.md` — Yoni's active campaign work
+- **End-of-Day Reports/** — Daily logs, one per client/prospect (10 files): Chris Caffera, Chris Drew, Yoni, Krishna, Chris Soriano, Penji, Cüneyt, Edward Lehner, Top Acquisitions (closed)
+- **Meetings/** — One folder per client, one file per meeting, sourced live from Fathom (connected Aug 13). Each file has the meeting purpose, key takeaways, action items with owner + timestamp links, and either the full transcript or a note that it's available on request. Currently: Yoni (6), Chris Caffera (2), Cüneyt (1, trial agreement), Edward Lehner (2, hiring call + first session). See **Meeting Sync (Fathom)** below.
+- **Campaign Tracking/** — Live campaign metrics & logs (24 files), including Satlas infrastructure & Plusvibe health, Peru/Philippines/US Silver Chain campaigns (Krishna), Capital Financing (Chris Drew), Starfix campaign tracking & sequences (Cüneyt), Penji's agency email sequence, and Chris Caffera's Lemlist metrics + engaged-lead call list
 - **Monthly Reports/** — Monthly financial summaries & expense tracking
 - **Data & Metrics/** — `Salary & Income Tracking.md` (revenue across all clients)
 
 ### **RESOURCES**
 System files, tool documentation, and reference materials.
-- **ECO System/** — Claude Code Chief of Staff configuration, setup, session logs & sync verification (17 files)
-- **Tools & API Details/** — `Connected Tools Status.md`, `tools_api_details.md`, `google_accounts_details.md`
-  - **OAuth Credentials/** — Google OAuth client secret JSONs (Albert Scott, Fractio, Personal, Satlas) — ⚠️ sensitive, do not share
-- **Workflows/** — Sync system docs, deployment guide, implementation blueprint, monitoring workflows, and `automation_logs/` (raw automation run logs)
+- **ECO System/** — Legacy Chief of Staff config, session logs & sync verification (11 files, several superseded — see **Agent System** below for what's actually current)
+- **Tools & API Details/** — `Connected Tools Status.md`, `tools_api_details.md`, `google_accounts_details.md`, plus a Gmail multi-account client (custom OAuth script for the 3 non-primary Gmail accounts)
+  - **OAuth Credentials/** — Google OAuth client secrets + tokens (Albert Scott, Fractio, Personal, Satlas) — ⚠️ sensitive, do not share
+- **Workflows/** — Sync system guide, Smartlead↔Pipedrive automation docs (current + archived Python build), Yoni's live automation runbook, `automation_logs/`
 - **Documentation/** — Reference guides, templates, how-tos (empty — ready for expansion)
+
+### **ARCHIVE - Inactive Automations** (root level)
+Stale automation/status docs kept for reference, not deleted. See its own `README.md` for exactly what's disabled and why — short version: only `daily-eod-sync` is still running; the original morning-briefing, Lemwarm monitor, and PlusVibe monitor tasks have been off since ~Aug 6.
+
+### **.claude/agents/** (root level — the current agent system)
+10 Claude Code subagents, front-office/back-office split, built Aug 13 replacing the earlier 5-agent ECO framework. See **Agent System** below.
+
+### **Top Acquisitions/** (root level)
+Leftover sourcing file (`top-acquisitions-hvac-sourcing.md`) from the closed trial — candidate for archiving alongside the ECO cleanup.
+
+---
+
+## 🤖 Agent System (current, built Aug 13)
+
+Claude Code auto-routes to the right subagent based on the task, or you can call one directly ("Use the billing-auditor agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager` slash command.
+
+**Front-office (client-facing — drafts only, nothing sends without your yes):**
+`inbox-triage` · `copywriter` · `lead-prospector` · `reply-handler` · `market-scout`
+
+**Back-office (internal ops):**
+`project-manager` · `billing-auditor` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
+
+**Shared reference:** `.claude/agents/_shared/connector-status.md` — single source of truth every agent reads before claiming a tool is live. Twin copy in Notion: 🎛️ VA Command Center.
+
+**Slash commands:** `/agent-manager` (list/inspect agents) · `/eod-sync <client>` (set up a recurring per-client EOD automation with Notion sync)
+
+---
+
+## 🎥 Meeting Sync (Fathom, connected Aug 13)
+
+Every meeting you record in Fathom now gets pulled, matched to a client, and filed automatically by the `meeting-summarizer` agent.
+
+**Where it goes:** `OUTPUT/Meetings/<Client Name>/YYYY-MM-DD - <title>.md` — separate from End-of-Day Reports, which stays a running daily log. Meeting files are the detailed backing record.
+
+**What's in each file:** meeting purpose, key takeaways, topics, full action-item list with owner + clickable timestamp link back into the recording, and either the full transcript (for foundational meetings — hiring/terms calls, trial agreements, first sessions) or a note that it's available on request (for routine/recurring calls, to keep files lean).
+
+**Client matching:** done by attendee/company name against `CLIENT PROFILES/*.md`. If a meeting doesn't clearly match anyone, you'll be asked rather than have it filed on a guess — this already happened once (an EDU12/Brightspace call turned out to be Edward Lehner's actual work).
+
+**Current state:** 11 meetings backfilled at connection time — 6 Yoni, 2 Chris Caffera, 1 Cüneyt (trial agreement), 2 Edward Lehner (hiring + first session). Going forward, new Fathom recordings should be picked up each time you ask for a briefing/update, or you can say "check Fathom for new meetings" any time.
+
+**Note:** the Cüneyt trial call was actually with someone named **Junaid**, not Cüneyt directly — worth confirming with the client profile whether these are the same person or Junaid is a separate contact at Starfix.
+
+---
+
+## 🏗️ Builder Pipeline (added Aug 15)
+
+Drop a signed-off PRD, wake up to a finished build — adapted from Tina Huang's "autonomous builder" pattern.
+
+**How it works:** write a PRD using `TEMPLATES/PRD Template.md`, check the sign-off box, drop it in `PROJECTS/Pending/`. The scheduled task `project-builder-check` (every 3 hours) picks it up, moves it to `In-Progress/`, builds exactly what's scoped, and files it in `Done/` with a build log appended — or in `Failed/` with a clear blocker note if it hits something ambiguous, destructive, or missing.
+
+**Ground rules:** only approved PRDs get built. Nothing outside the PRD's stated scope gets touched. Destructive/irreversible steps always get flagged to `Failed/` for a real go-ahead rather than run unattended. Full detail: `PROJECTS/README - Builder Pipeline.md`.
+
+**Related:** `ABOUT ME/Operating Instructions.md` — paste into Claude Settings → Cowork → **Global instructions** for account-wide PRD-first / pushback / reversibility rules, and the session-bootstrap fix that stops new sessions from losing this folder's context.
 
 ---
 
@@ -68,12 +125,13 @@ System files, tool documentation, and reference materials.
 ### **Starting Your Day**
 1. Open: `ABOUT ME/CLAUDE.md` (system overview)
 2. Open: `CLIENT PROFILES/Important info.md` (quick client reference)
-3. Run in Claude Code → `good morning` (auto-generates briefing)
+3. Run in Claude Code → `good morning` (auto-generates briefing) — note: not on a live schedule, manual trigger only
 4. Check: `TEMPLATES/03 App Dashboard & Work Logger/app.html` (open work logger)
 
 ### **Logging Work**
 - Use the browser app: `TEMPLATES/03 App Dashboard & Work Logger/app.html`
 - Or edit directly: `OUTPUT/End-of-Day Reports/[Client] - End of Day Log.md`
+- Or run `/eod-sync <client>` to set up a recurring automated version
 
 ### **Checking Campaigns**
 - Open: `OUTPUT/Campaign Tracking/[Campaign] - Campaign Log.md`
@@ -85,101 +143,86 @@ System files, tool documentation, and reference materials.
 ### **Monthly Financial Review**
 - Open: `OUTPUT/Monthly Reports/Monthly Income & Expense Review.md`
 
-### **Activating ECO (AI Assistant)**
-- Full guide: `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md` (merged from 5 former companion docs Aug 13)
-- Quick start: `RESOURCES/ECO System/ECO - COWORK QUICK START.md`
-- Configuration: `TEMPLATES/01 Automation Daily Routine/ECO - YOUR CONFIGURATION.md`
-- Current live-vs-inactive automation status: `ARCHIVE - Inactive Automations/README.md` — most of ECO's original automations (morning briefing, Lemwarm monitor, PlusVibe monitor) are disabled as of Aug 6; only `daily-eod-sync` runs today
+### **Using the Agent System**
+- List all agents: `/agent-manager`
+- Set up per-client EOD automation: `/eod-sync <client-name>`
+- Full guide: `.claude/agents/README.md`
 
 ---
 
 ## 📊 Current Clients at a Glance
 
-| Client | Folder | Rate | Hours | Status | Focus |
-|--------|--------|------|-------|--------|-------|
-| Yoni | CLIENT PROFILES | $5/hr | 5h/day (9pm-5am PHT) | ✅ Active | Outreach, Smartlead, Pipedrive |
-| Chris Caffera | CLIENT PROFILES | $7/hr | 20h/week (2pm-11pm) | ✅ Active | Personal Assistant, ICP, Apollo |
-| Chris Drew | CLIENT PROFILES | $200 AUD/mo | Variable (1pm-4pm) | ✅ Active | Lead Gen, Satlas, Plusvibe |
-| Krishna | CLIENT PROFILES | Free | 3h/week | ✅ Active | Lead Gen, Apollo, Email sequences |
-| Chris Soriano | CLIENT PROFILES | $7/hr | As-needed | ✅ Active | Data Entry, Research, List building |
-
----
-
-## 🚀 Prospective Clients (Active Onboarding)
-
-- **Penji** — Final interview scheduled next week with CMO (PROJECTS/Prospective)
-- **Top Acquisitions (Nick Adasi)** — Paid trial task (Aug 8-10, due Monday Aug 11 EOD UK time) (PROJECTS/Prospective)
+| Client | Rate | Hours | Status | Focus |
+|--------|------|-------|--------|-------|
+| Yoni (Albert Scott) | $5/hr | 5h/day (9pm-5am PHT) | ✅ Active | Outreach, Smartlead, Pipedrive |
+| Chris Caffera | $7/hr | 20h/week (2pm-11pm) | ✅ Active | Personal Assistant, ICP, Apollo, Lemlist |
+| Chris Drew (Satlas) | $200 AUD/mo | Variable (1pm-4pm) | ✅ Active | Lead Gen, Plusvibe, Capital Financing |
+| Krishna | Free | 3h/week | ✅ Active | Lead Gen, Apollo, Silver Chain campaigns |
+| Chris Soriano | $7/hr | As-needed | ✅ Active | Data Entry, Research, List building |
+| Penji | TBD | TBD | ✅ Signed (Aug 10) | Agency Advisor — Outbound Outreach |
+| Cüneyt (Starfix) | $7/hr | 20h trial | 🟡 Trial (started Aug 13) | Cold Email & Lead Gen, Deliverability |
+| Edward Lehner | $5/hr billed | 5h/week | 🟠 Prospective | Talk-Through / Focus Accountability Partner |
+| Top Acquisitions | — | — | 🔴 Closed (Aug 13) | Not selected |
 
 ---
 
 ## 🔧 System & Automation
 
-### **ECO (Claude Code Chief of Staff)**
-- 5-agent system: CLIENTS, COMMS, OPS, METRICS, STRATEGY
-- Guide: `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md`; supporting files in `RESOURCES/ECO System/`
-- Activation: Say "good morning", "done for today", or "monthly income & expense review" in Claude Code
-- Note: most of the original scheduled automations are currently disabled — see `ARCHIVE - Inactive Automations/README.md` for current status
+### **Scheduled Automations — what's actually running**
+Checked directly against the scheduled-tasks system, Aug 13:
+
+| Task | Status |
+|---|---|
+| `daily-eod-sync` | ✅ **Active** — the only one currently running |
+| `eco-morning-email-briefing` | ⏸ Disabled since ~Aug 6 |
+| `lemwarm-alex-daily-monitor` | ⏸ Disabled since ~Aug 6 |
+| `plusvibe-daily-mailbox-monitor` | ⏸ Disabled since ~Aug 6 |
+
+Full detail and reactivation notes: `ARCHIVE - Inactive Automations/README.md`
 
 ### **Smartlead ↔ Pipedrive Automation**
 - Current live workflow (MCP-connector based): `RESOURCES/Workflows/Smartlead-Pipedrive-Automation-Workflow.md`
-- Original Python sync engine (fallback/reference): `PROJECTS/Active/smartlead-pipedrive-automation/`, docs in `RESOURCES/Workflows/Smartlead-Pipedrive-Python-Build (Archived).md`
+- Original Python sync engine (fallback/reference, archived): `RESOURCES/Workflows/Smartlead-Pipedrive-Python-Build (Archived).md`
 - Run logs: `RESOURCES/Workflows/automation_logs/`
 
 ### **Triggers You Can Use**
-- `good morning` — Generate morning briefing (2pm PHT, manual trigger)
+- `good morning` — Manual-trigger morning briefing
 - `done for today` — Evening wrap-up with pending items
 - `monthly income & expense review` — Full financial summary
-
-### **Automated Alerts**
-- 15 minutes before client sessions (configured per client timezone)
-- Email checks every 6 hours
-- No automatic goal warnings (manual only)
-
-### **iMessage Notifications**
-- **2pm PHT:** Morning briefing (calendar, emails, tasks, concerns)
-- **5am PHT:** Evening wrap-up (accomplishments, hours, pending)
-- Sent to: eikkomaeybanez@icloud.com & 09162013432
+- `/agent-manager` — List/inspect the 10 agents
+- `/eod-sync <client>` — Set up recurring automated EOD sync for a client
 
 ---
 
-## ⚙️ Connected Tools & APIs
+## ⚙️ Connector Status (verified Aug 14 — see `.claude/agents/_shared/connector-status.md` for full detail)
 
-**Working (live data pulling):**
-- ✅ Smartlead (Yoni prospects)
-- ✅ Pipedrive (Yoni CRM)
-- ✅ TimeDoctors (Yoni time tracking)
-- ✅ Gmail (email)
-- ✅ Google Calendar (scheduling)
-- ✅ Google Tasks (task management)
-- ✅ Google Drive (file storage)
-- ✅ Apollo (Chris Drew, Krishna lead gen)
+**✅ Connected:**
+Apollo (raw API key, Satlas/Chris Drew + separate key for Krishna) · Pipedrive (Yoni/Albert Scott) · Smartlead (Albert Scott account only) · Gmail ×4 (yeikkomae@gmail.com native; Satlas, Albert Scott, and Fractio via custom multi-account script, read+draft only) · Notion (eikko mae ybanez's Space) · PlusVibe (Chris Drew/Satlas, raw API key) · Instantly + Hostinger (Cüneyt/Starfix — separate account from Satlas's, don't confuse the two) · **Fathom** (live meeting sync — see **Meeting Sync** above)
 
-**Manual input only:**
-- Hubspot (Chris Caffera)
-- Lemlist (Chris Caffera)
-- LinkedIn (Chris Caffera)
+**🟡 Needs authorizing / incomplete:**
+HubSpot · Slack · Fireflies (no longer needed now that Fathom is live) · Porkbun (key present, missing paired secret)
 
-**Credentials on file:** OAuth client secrets for Albert Scott, Fractio, Personal, and Satlas Google accounts — see `RESOURCES/Tools & API Details/OAuth Credentials/`.
+**⚫ Dead / no connector (manual or browser-only):**
+Instantly (Satlas — deprecated, migrated off) · Zapmail (dead key) · InboxKit (inconclusive, likely wrong path) · MillionVerifier (2FA, can't automate) · Lemlist (browser-only) · LinkedIn (no API path)
+
+**Note:** Satlas team's own "Cold Email" Notion hub is a different workspace from the one connected here — still needs separate access.
 
 ---
 
 ## 📝 How to Use This System
 
 ### **Daily Workflow**
-1. **Morning (2pm PHT):** Run `good morning` for automated briefing
-2. **Throughout day:** Log work in app or edit end-of-day files
-3. **Evening (5am PHT):** Get iMessage wrap-up with summary
-4. **End of day:** Run `done for today` for comprehensive recap
+1. **Morning:** Run `good morning` for a manual briefing, or check your calendar directly
+2. **Throughout day:** Log work in the app or edit end-of-day files — or let `/eod-sync` handle it per client
+3. **End of day:** Run `done for today`, or rely on `daily-eod-sync` (the one automation still live)
 
 ### **Weekly Tasks**
-- Monday 10am: Chris Caffera meeting
-- Monitor campaign health in Plusvibe daily
-- Check email every 6 hours
+- Monitor campaign health in Plusvibe / Starfix Instantly
+- Check in on Cüneyt's trial progress (DKIM fix, upfront payment)
+- Chase down connector gaps (HubSpot, Slack, Fireflies, Porkbun) when convenient
 
 ### **Monthly Tasks**
 - Run `monthly income & expense review`
-- Financial summary and expense tracking
-- Analyze metrics and performance
 
 ---
 
@@ -188,24 +231,17 @@ System files, tool documentation, and reference materials.
 ```
 Client-Management-System/
 ├── README.md (you are here)
+├── CLAUDE.md (root — agent quick-reference, read by Claude Code each session)
+├── .claude/
+│   ├── agents/ (10 subagent definitions + README + _shared/connector-status.md)
+│   └── commands/ (agent-manager.md, eod-sync.md)
 ├── ABOUT ME/
 │   ├── CLAUDE.md
 │   └── GETTING STARTED.md
-├── CLIENT PROFILES/
-│   ├── Important info.md
-│   ├── Chris Caffera - Profile.md
-│   ├── Chris Drew - Profile (Satlas).md
-│   ├── Yoni - Profile (Albert Scott).md
-│   ├── Krishna - Profile.md
-│   └── Chris Soriano - Profile.md
+├── CLIENT PROFILES/ (10 files — 9 clients/prospects + Important info.md)
 ├── SKILLS/ (empty)
 ├── PROJECTS/
-│   ├── Active/
-│   │   ├── MASTER-TASK-LIST-ACTIVE.md
-│   │   ├── ACTION-PLAN-UNCATEGORIZED-MESSAGES.md
-│   │   ├── YONI-FEEDBACK-UNCATEGORIZED-MESSAGES.md
-│   │   ├── LATEST-COMPLETED-WORK.md
-│   │   └── smartlead-pipedrive-automation/ (git repo)
+│   ├── Active/ (6 files)
 │   └── Prospective/
 │       └── NEW CLIENTS - ONBOARDING PIPELINE.md
 ├── TEMPLATES/
@@ -213,30 +249,32 @@ Client-Management-System/
 │   ├── 02 Plugin Client Templates/
 │   └── 03 App Dashboard & Work Logger/
 ├── OUTPUT/
-│   ├── End-of-Day Reports/
-│   ├── Campaign Tracking/ (16 files)
+│   ├── End-of-Day Reports/ (10 files)
+│   ├── Meetings/ (11 files across 4 client folders — live from Fathom)
+│   ├── Campaign Tracking/ (24 files, incl. Capital Financing/ subfolder)
 │   ├── Monthly Reports/
 │   └── Data & Metrics/
-└── RESOURCES/
-    ├── ECO System/ (11 files)
-    ├── Tools & API Details/
-    │   └── OAuth Credentials/ (4 JSON secrets)
-    ├── Workflows/ (6 files + automation_logs/)
-    └── Documentation/ (empty)
-
-ARCHIVE - Inactive Automations/ (root level — stale automation/status docs kept for reference, see its README.md)
+├── RESOURCES/
+│   ├── ECO System/ (11 files — legacy, see ARCHIVE for current status)
+│   ├── Tools & API Details/ (incl. Gmail Multi-Account Client/, OAuth Credentials/)
+│   ├── Workflows/ (7 files + automation_logs/)
+│   └── Documentation/ (empty)
+├── ARCHIVE - Inactive Automations/ (disabled automation docs, see its README.md)
+└── Top Acquisitions/ (leftover sourcing file from closed trial)
 ```
 
 ---
 
 ## ✅ System Status
 
-- **Folder structure:** 🟢 Fully organized — root folder cleaned of loose files; client profiles and overlapping automation docs merged/deduplicated Aug 13
-- **ECO setup:** 🟡 Framework configured (5 agents, guide in place), but most scheduled automations (morning briefing, Lemwarm monitor, PlusVibe monitor) are **disabled** — only `daily-eod-sync` is currently running. See `ARCHIVE - Inactive Automations/README.md`.
-- **Client profiles:** 🟢 One consolidated file per client (merged quick-reference + detailed versions)
-- **Automation:** 🟡 smartlead-pipedrive sync codebase exists in `PROJECTS/Active/`; current live process is manual/MCP-connector driven (see Smartlead-Pipedrive-Automation-Workflow.md), not the Python cron/webhook system
-- **API connections:** 🟡 Some tools connected (Gmail, Calendar, Drive, Smartlead, Pipedrive); several others (Apollo, Notion, Slack, etc.) still need OAuth authorization
-- **Prospective clients:** 🟢 Penji & Top Acquisitions onboarding
+- **Folder structure:** 🟢 Organized — client profiles consolidated, stale automation docs archived (not deleted) Aug 13
+- **Agent system:** 🟢 Rebuilt Aug 13 — 10-agent front/back-office split replacing the 5-agent ECO framework, with a single connector-status source of truth
+- **Automation:** 🟡 Only `daily-eod-sync` is actually running; morning briefing, Lemwarm monitor, PlusVibe monitor are disabled (re-enable via the `schedule` skill if needed — check for staleness first)
+- **Client profiles:** 🟢 One consolidated file per client/prospect, 9 total
+- **Connector status:** 🟡 Core lead-gen/CRM tools + Fathom connected; HubSpot, Slack, Fireflies, Porkbun need auth; several tools (Zapmail, Lemlist, LinkedIn, etc.) have no viable connector and stay manual
+- **Client roster:** 🟢 6 active, 1 signed (Penji), 1 trial (Cüneyt), 1 prospective (Edward Lehner), 1 closed (Top Acquisitions)
+- **Meeting sync:** 🟢 Fathom connected Aug 13 — 11 meetings backfilled into `OUTPUT/Meetings/`, new ones filed automatically going forward
+- **Build discipline:** 🟢 Added Aug 15 — Operating Instructions doc (paste into Cowork Settings), PRD-first habit for nontrivial builds, and an unattended builder pipeline (`PROJECTS/Pending/` → `project-builder-check` every 3h → `Done/`/`Failed/`)
 
 ---
 
@@ -244,12 +282,13 @@ ARCHIVE - Inactive Automations/ (root level — stale automation/status docs kep
 
 **Need to check:**
 - Client rate/hours? → `CLIENT PROFILES/Important info.md`
+- Which agent handles X? → `/agent-manager` or `.claude/agents/README.md`
+- Is a tool actually connected? → `.claude/agents/_shared/connector-status.md`
 - Campaign health? → `OUTPUT/Campaign Tracking/Plusvibe Mailbox Health - Daily Monitor.md`
-- Today's schedule? → Run `good morning` in Claude Code
 - Active tasks? → `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`
 - Monthly finances? → `OUTPUT/Monthly Reports/Monthly Income & Expense Review.md`
-- Set up a tool? → `RESOURCES/Tools & API Details/`
+- Which automations are actually live? → `ARCHIVE - Inactive Automations/README.md`
 
 ---
 
-**Next step:** Open `ABOUT ME/CLAUDE.md` or run `good morning` in Claude Code.
+**Next step:** Open `ABOUT ME/CLAUDE.md`, run `/agent-manager` to see the current agent team, or run `good morning` in Claude Code.

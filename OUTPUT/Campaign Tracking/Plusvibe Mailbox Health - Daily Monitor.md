@@ -4,7 +4,7 @@
 **Client:** Chris Drew (Satlas)  
 **Monitor Frequency:** Daily  
 **Alert Threshold:** 98% utilization or any errors/alerts  
-**Last Updated:** 2026-08-06 (Daily Automated Check)
+**Last Updated:** 2026-08-22 (Manual check via API — Eikko)
 
 ---
 
@@ -20,7 +20,45 @@
 
 ---
 
-## TODAY'S SNAPSHOT — 2026-08-06
+## TODAY'S SNAPSHOT — 2026-08-22
+
+### Status Check — 2026-08-22 (Manual, via PlusVibe/InboxKit/Zapmail/Porkbun APIs)
+**Check Method:** Direct API pull (account/list, mailboxes/list, domain/listAll)
+**Status:** 🟡 WARNING — 2 mailboxes below 90% warmup health, 6 mailboxes above 5% bounce rate. Also see Zapmail note below.
+
+```
+PLUSVIBE
+Total Accounts:         60/60 Active
+Total Domains:          20 Active
+Warmup Status:          60/60 Running
+Bounce >5%:              6 mailboxes (worst: tremaynec@satlasmail.com, 20%)
+Warmup health <90%:      2 mailboxes (tremayne.c@satlaszone.com 83.3%, tremayne.c@satlasplus.com 89.3%)
+30-day reply rate:       0.66% (2,588 sent / 17 replied) — below 2% target
+30-day bounce rate:      1.28% (33 / 2,588)
+
+INBOXKIT
+Domains:                 15/15 Active
+Mailboxes:               30/30 Active (15 Google, 15 Microsoft 365)
+Slots remaining:         0
+
+ZAPMAIL (connector reconnected 2026-08-22, previously reported dead)
+Domains:                 10 Active
+Mailboxes:               30 Active, 0 warmed up (isWarmedUp: false on all 30)
+Domain health score:     22.65 / 100 (sampled 3 of 10 domains, all identical) — CloudNS SURBL issue still unresolved
+Status:                  🔴 Not sending-safe. These are the "10 unused Porkbun domains" flagged 2026-08-22 morning — they are not spare, they're Zapmail's live (degraded) infrastructure.
+
+PORKBUN
+Domains registered:      25 total (15 wired to InboxKit + 10 wired to Zapmail = all 25 accounted for)
+```
+
+**Action items surfaced:**
+- Decide: cancel/release the 10 Zapmail domains (dead reputation, unwarmed) or attempt recovery — do not launch campaigns from them as-is
+- Pause or investigate the 6 high-bounce PlusVibe mailboxes (satlasmail.com pair especially, 13–20% bounce)
+- 0.66% reply rate is below the 2% north-star threshold — worth a copy/targeting review, not just an infra issue
+
+---
+
+## PREVIOUS SNAPSHOT — 2026-08-06
 
 ### Status Check — 2026-08-06 (Automated)
 **Time:** 9:00 AM PHT  

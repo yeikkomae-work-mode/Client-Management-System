@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agents Office - Central Command</title>
+
+  <!-- Reuse dashboard styles -->
+  <style>
+    :root{
+      /* Light theme (default) */
+      --bg:#f5f7fc;
+      --bg-grid-opacity:0;
+      --sidebar-bg:#ffffff;
+      --sidebar-border:rgba(30,64,140,0.09);
+      --card-bg:#ffffff;
+      --panel-border:rgba(30,64,140,0.10);
+      --panel-border-hover:rgba(47,111,237,0.35);
+      --panel-shadow:0 1px 2px rgba(20,40,90,0.04), 0 8px 24px -12px rgba(20,40,90,0.10);
+      --text-0:#101a33;
+      --text-1:#4c5876;
+      --text-2:#8a94ad;
+      --blue-deep:#1b3a8a;
+      --blue-mid:#2f6fed;
+      --blue-bright:#2f6fed;
+      --cyan:#0c8fa3;
+      --green:#0f9d68;
+      --amber:#b4740e;
+      --red:#d1374a;
+      --hero-grad:linear-gradient(120deg, rgba(47,111,237,0.10), rgba(12,143,163,0.06));
+      --hero-border:rgba(47,111,237,0.28);
+      --hero-glow:0 0 0 rgba(0,0,0,0);
+      --backdrop-blur:0px;
+      --mono: 'SF Mono', 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif;
+    }
+
+    :root[data-appearance="dark"]{
+      --bg:#070a12;
+      --bg-grid-opacity:0.035;
+      --sidebar-bg:rgba(12,17,30,0.85);
+      --sidebar-border:rgba(90,150,255,0.14);
+      --card-bg:rgba(255,255,255,0.02);
+      --panel-border:rgba(90,150,255,0.18);
+      --panel-border-hover:rgba(110,180,255,0.4);
+      --panel-shadow:0 8px 30px -12px rgba(0,0,0,0.5);
+      --text-0:#e8edf9;
+      --text-1:#9db0d6;
+      --text-2:#5d6d94;
+      --blue-deep:#1b3a8a;
+      --blue-mid:#3d7dff;
+      --blue-bright:#5ec8ff;
+      --cyan:#4ee3d8;
+      --green:#3ddc84;
+      --amber:#ffb454;
+      --red:#ff5d6c;
+      --hero-grad:linear-gradient(120deg, rgba(61,125,255,0.16), rgba(78,227,216,0.08));
+      --hero-border:rgba(94,200,255,0.35);
+      --hero-glow:0 0 40px -10px rgba(61,125,255,0.35), inset 0 0 60px -30px rgba(94,200,255,0.4);
+      --backdrop-blur:18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 0%, rgba(61,125,255,0.10), transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(78,227,216,0.07), transparent 40%),
+        repeating-linear-gradient(0deg, rgba(90,150,255,var(--bg-grid-opacity)) 0px, rgba(90,150,255,var(--bg-grid-opacity)) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(90,150,255,var(--bg-grid-opacity)) 0px, rgba(90,150,255,var(--bg-grid-opacity)) 1px, transparent 1px, transparent 40px),
+        var(--bg);
+      color: var(--text-0);
+      font-family: var(--sans);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: rgba(47, 111, 237, 0.25);
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    pre {
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      padding: 12px;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+  </style>
+
+  <!-- Agents Office styles -->
+  <link rel="stylesheet" href="css/agents-office.css">
+</head>
+<body data-appearance="light">
+  <div id="agentsContainer"></div>
+
+  <!-- Scripts -->
+  <script type="module">
+    // Set API base URL (can be overridden)
+    window.__API_BASE_URL__ = 'http://localhost:3001';
+
+    // Load theme preference
+    const savedTheme = localStorage.getItem('dashboard-theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-appearance', 'dark');
+    }
+
+    // Import and initialize
+    import { initAgentsPage } from './js/pages/agents.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAgentsPage();
+    });
+
+    // Allow keyboard shortcut to toggle theme (D)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'd' && e.ctrlKey) {
+        e.preventDefault();
+        const current = document.documentElement.getAttribute('data-appearance');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-appearance', next);
+        localStorage.setItem('dashboard-theme', next);
+      }
+    });
+  </script>
+</body>
+</html>

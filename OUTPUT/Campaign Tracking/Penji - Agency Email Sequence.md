@@ -1,5 +1,7 @@
 # Penji — Agency Cold Email Sequence
 
+> ⚠️ **Status as of 2026-08-18: likely out of scope.** Confirmed via `Penji - Sales Ecosystem & Team Standards.md` (Aug 17) — "ALL outbound must ONLY focus on LinkedIn outreach" and email automation belongs solely to Jayvy ("JV"). This doc is kept for reference/history, but Eikko's day-to-day outreach is LinkedIn-only (see `Penji - Agency Advisor Quick Reference.md` for the live RPS script actually in use). Not deleted in case a Shekinah confirmation reopens email as in-scope.
+
 4-touch Lemlist sequence, 12 days, per Agency Listing training standard. Every send picks **one** primary angle based on the agency's segment (see angle guide below) — don't mix angles within a single sequence run for one agency.
 
 Merge tags used: `{{firstName}}`, `{{companyName}}`, `{{icebreaker}}` (agency-specific observation pulled during Gojiberry/manual research — required, never leave generic).

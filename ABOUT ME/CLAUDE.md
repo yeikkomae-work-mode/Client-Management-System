@@ -1,6 +1,6 @@
 # Client Management System — CLAUDE.md
 
-**What this is:** A three-part personal client management system (automation, plugin, app) for managing 6 active clients + 1 prospective with centralized task tracking, communication monitoring, campaign metrics, and daily recap generation.
+**What this is:** A three-part personal client management system (automation, plugin, app) for managing 7 active clients + 1 prospective with centralized task tracking, communication monitoring, campaign metrics, and daily recap generation.
 
 **Desired outcome:** A single workspace where Eikko can see all client work, yesterday's recap, upcoming meetings, task deadlines, and log daily progress without information scattered across WhatsApp, email, Slack, and multiple CRMs.
 
@@ -112,7 +112,7 @@ Client-Management-System/
   - A client's status, rate, or next action changes → update their row in the Clients database.
   - A connector gets authorized, breaks, or gets fixed → update both the Notion Connector Status page AND `.claude/agents/_shared/connector-status.md` (they must always match — the local file is what agents actually read at runtime, the Notion page is what Eikko checks by eye).
   - Any of the 10 agents (`.claude/agents/`) actually completes real work (not a dry run) → log it under the relevant Front-Office or Back-Office section.
-  - A prospective client closes (signed or rejected) → update their Clients database row and, if rejected, set Status to "Paused" (no "Closed" option exists in the schema — Paused is the closest fit) with the outcome noted in Next Action.
+  - A prospective client closes (signed or rejected) → update their Clients database row: signed clients get Status "Active", rejected ones get Status "Closed" (schema option renamed from "Paused" to "Closed" — check current options before assuming, in case it changes again) with the outcome noted in Next Action.
   - Treat "the Notion page is stale" as a bug to fix immediately when noticed, not a backlog item.
 
 ---

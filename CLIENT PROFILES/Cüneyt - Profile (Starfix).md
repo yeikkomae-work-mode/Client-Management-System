@@ -1,7 +1,37 @@
 # Cüneyt (Starfix) — Client Profile
 
 **Status:** 🟡 Trial (20 hours) | **Rate:** $7/hr | **Role:** Cold Email & Lead Gen Specialist (Deliverability + Campaign Ops)
-**Coverage Period:** Aug 13, 2026 – Present | **Last Updated:** 2026-08-13
+**Coverage Period:** Aug 13, 2026 – Present | **Last Updated:** 2026-08-24 (full migration to PlusVibe — 19 mailboxes connected and warming)
+
+---
+
+## Update (Aug 24, 2026) — Full migration off Instantly to PlusVibe
+
+Contingency plan from the original Aug 13 audit ("if Instantly deliverability doesn't hold, migrate to SmartLead or PlusVibe") is now in effect — **full migration to PlusVibe**, per explicit instruction. PlusVibe API key provided directly in chat; workspace confirmed as "Cüneyt's Workspace" (id `6a8c1c4f92e45be273aa9201`) — same account, correct client.
+
+**Suspension check across all 3 domains (live in Hostinger):**
+| Domain | Suspended | Active |
+|---|---|---|
+| hellostarfix.com | partners@, sarah@, team@ (3) | 10 |
+| starfix.online | none | 4 |
+| sellervate.net | none | 5 |
+
+**19 non-suspended mailboxes connected to PlusVibe, all confirmed `status: ACTIVE`, `warmup_status: ACTIVE`:**
+- hellostarfix.com (10): alex@, audits@, chris@, david@, emma@, hello@, james@, kevin@, laura@, ryan@
+- starfix.online (4): alex@, ben@, jake@, sam@
+- sellervate.net (5): david@, jonas@, maximilian@, sebastian@, tobias@ (maximilian@ was previously unused capacity — now finally connected somewhere)
+
+**Password gap resolved:** had working passwords for 9 of 19 already (from earlier sessions). Reset the other 10 (james@hellostarfix.com + all of starfix.online + all of sellervate.net) directly in Hostinger to connect them — none of those had been touched since the original Aug 13 setup.
+
+**Double-send risk check:** confirmed every non-completed Instantly campaign is already Paused (none Active) — so nothing was actively sending during the migration, no overlap/conflict risk.
+
+**API detail for future reference:** PlusVibe's bulk-add endpoint is `POST https://api.plusvibe.ai/api/v1/account/bulk-add-regular-accounts` (not the `partner-upload-regular-accounts` variant, which needs an unrelated `provider_id`). Takes `workspace_id` + an `accounts` array with IMAP/SMTP creds; `enable_warmup: "yes"` starts warmup in the same call. Account list: `GET /api/v1/account/list?workspace_id=...`.
+
+**Not yet done — needs a decision:**
+- [ ] Rebuild/launch actual campaigns in PlusVibe (mailboxes are connected and warming, but no campaigns exist there yet — this was purely the infrastructure migration)
+- [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
+- [ ] Formally retire/archive the paused Instantly campaigns once PlusVibe campaigns are live and confirmed working
+- [ ] sellervate.net renewal still due Sep 28, 2026 — not yet renewed
 
 ---
 
@@ -23,7 +53,9 @@ Inbound cold outreach — Cüneyt messaged Eikko directly asking about cold emai
 ## Deal Terms
 
 - **Trial:** 20 hours @ $7/hr
-- **Billing:** Weekly, **50% upfront** for week one (⏳ **pending — not yet received** as of Aug 13)
+- **Billing:** Weekly, **50% upfront** for week one (⏳ **pending — not yet received** as of Aug 14; Eikko sending Wise payment details to Cüneyt)
+- **Payment method:** Wise (confirmed via WhatsApp, Aug 14)
+- **Check-in trigger:** Cüneyt asked to be notified once the first 10 hours of the trial are reached (WhatsApp, Aug 13)
 - **Path forward:** Monthly retainer + lead-gen services possible after a successful trial
 
 ---
@@ -74,12 +106,17 @@ Inbound cold outreach — Cüneyt messaged Eikko directly asking about cold emai
 
 **New Hostinger API token created for starfix.online:** via Emails → starfix.online → Developers → Agentic mail → API access → Create API token. Named "Claude," scoped to **All mailboxes** on the domain, permissions: manage all SMTP/IMAP actions + manage webhooks. Confirmed covers alex@, ben@, jake@, sam@starfix.online (all Active, 0% usage, 5.00 GB each). Stored as entry #12 in `RESOURCES/Tools & API Details/tools_api_details.md` (`STARFIX_HOSTINGER_API_KEY_STARFIXONLINE`).
 
-**Active campaigns (Instantly):**
-- Liste von Dennis — daily limit 30, link tracking on, open tracking off, stops on reply
-- Amazon Seller 2cnd (2) — Tue–Thu 9am–5pm (Arctic/Longyearbyen tz), daily limit 30, no open tracking, stops on reply
-- Sports & Fitness (sellervate, reviews) — Tue–Thu 9am–5pm (Arctic/Longyearbyen tz), daily limit 30, no tracking
-- Starfix New UK Leads 2026-08 — Mon–Thu 8am–8:30pm (Isle of Man tz), daily limit 40, no tracking
-- Starfix New US Leads 2026-07-29 — weekdays 8am–4pm (America/Chicago), daily limit 60, text-only, stops on auto-reply, prioritizes new leads
+**Active campaigns (Instantly, as of Aug 13 EOD — 9 of 10 healthy and sending):**
+- Liste von Dennis — sellervate.net + starfix.online, daily limit 30, link tracking on, open tracking off, stops on reply
+- Amazon Seller 2cnd (2) — sellervate.net + starfix.online, Tue–Thu 9am–5pm (Arctic/Longyearbyen tz), daily limit 30, open tracking on, stops on reply
+- Sports & Fitness (sellervate, reviews) — sellervate.net + starfix.online, Tue–Thu 9am–5pm (Arctic/Longyearbyen tz), daily limit 30, no tracking
+- Starfix New UK Leads 2026-08 — starfix.online, Mon–Thu 8am–8:30pm (Isle of Man tz), daily limit 30 (Instantly-recommended, down from 40), open tracking on
+- Starfix New US Leads 2026-07-29 — starfix.online, Mon–Thu 8am–4pm (America/Chicago), daily limit 30 (down from 60), text-only, stops on auto-reply, prioritizes new leads
+- Sports & Fitness (mixed), Baby (mixed), Pet (mixed) — hellostarfix.com, daily limit 15 each
+- 50K DE Amazon Leads — sellervate.net + starfix.online, **paused**, awaiting Cüneyt's go-ahead
+- Amazon seller 2nd — hellostarfix.com, **paused**, lead list exhausted (52/52 contacted), needs a new list before resuming
+
+Full before/after detail: `OUTPUT/Campaign Tracking/Cüneyt - Starfix Before-After Report (2026-08-13).md`. Current live email copy for every campaign: `OUTPUT/Campaign Tracking/Cüneyt - Starfix Email Sequences (2026-08-13).md`.
 
 **Lead source note:** Current lead provider ("Limlid"/Lemlist-adjacent, per call) is slow and produces duplicates. Discussed switching to cheaper verifiers (QuickEmailVerification, MillionVerifier) and scraping tools (Apify, other scrapers) for future lead gen.
 
@@ -89,21 +126,149 @@ Inbound cold outreach — Cüneyt messaged Eikko directly asking about cold emai
 
 ## Immediate Action Items (from Aug 13 call + audit)
 
-- [x] Add missing DKIM record to all 3 Hostinger domains (hellostarfix.com, starfix.online, sellervate.net) — fixed Aug 13, all 5 previously-disabled mailboxes recovered
-- [ ] Coordinate with Instantly support to confirm DKIM propagation / re-verify domains (recovery looks self-resolved but worth a formal confirmation)
+- [x] Add missing DKIM record to all 3 Hostinger domains (hellostarfix.com, starfix.online, sellervate.net) — fixed Aug 13, all 5 previously-disabled mailboxes recovered. **Correction (later same day):** starfix.online's DKIM had not actually propagated — re-checked via DNS, found missing, regenerated and verified live in hPanel. All 3 domains confirmed with working DKIM as of Aug 13 EOD.
+- [x] ~~Coordinate with Instantly support to confirm DKIM propagation / re-verify domains~~ — self-verified via direct DNS lookup (Google + Cloudflare resolvers) instead; all 3 domains confirmed live
 - [x] ~~Investigate and re-enable (or replace) the 5 mailboxes disabled with 554 5.7.1~~ — resolved by DKIM fix, no manual re-enable/replacement needed
-- [ ] Delete suspended mailboxes and create replacements in Hostinger where needed — likely no longer needed, confirm not required
-- [ ] Verify MX/SPF/DMARC (not just DKIM) on all 3 domains
+- [x] ~~Delete suspended mailboxes and create replacements in Hostinger where needed~~ — confirmed not required
+- [x] Verify MX/SPF/DMARC (not just DKIM) on all 3 domains — confirmed via DNS, all fine on all 3 domains
 - [ ] Run full domain/mailbox health report, send to Junaid
-- [ ] Launch new Instantly campaigns using existing lead list (to preserve warmup history rather than starting fresh)
-- [ ] Flag sellervate.net renewal (~46 days out as of Aug 13) so it doesn't lapse mid-trial
+- [x] Launch new Instantly campaigns using existing lead list (to preserve warmup history) — 9 of 10 campaigns relaunched/resumed Aug 13, mailboxes reattached rather than rebuilt
+- [ ] Flag sellervate.net renewal (~45 days out as of Aug 13 EOD) so it doesn't lapse mid-trial
 - [ ] Confirm 50% upfront payment for week 1 (still pending)
 - [x] Hostinger API key received (Aug 13) — stored in `RESOURCES/Tools & API Details/tools_api_details.md` (#11, `STARFIX_HOSTINGER_API_KEY`). Confirmed covers hellostarfix.com mailboxes (cueneyt@, daniel@, james@); sellervate.net and starfix.online scope not yet confirmed
 - [x] starfix.online — separate API token created and confirmed (entry #12)
 - [x] sellervate.net — API token received and stored (entry #13), all 3 domains now covered
-- [ ] Decide on open tracking (currently off/broken fleet-wide across all 11 campaigns — no funnel visibility past reply rate); see full performance audit in `OUTPUT/Campaign Tracking/Cüneyt - Starfix Campaign Tracking.md`
-- [ ] Pause or rework zero-engagement, low-volume campaigns: Amazon Seller 2nd, Amazon Seller 2cnd (2), Starfix New UK Leads 2026-08
+- [x] Decide on open tracking — turned on for Amazon Seller 2cnd (2), Starfix New UK/US Leads as part of the Aug 13 fix; other campaigns still off by original design, not yet revisited fleet-wide
+- [x] Pause or rework zero-engagement, low-volume campaigns: Amazon Seller 2nd, Amazon Seller 2cnd (2), Starfix New UK Leads 2026-08 — root cause (broken mailbox assignment) fixed and all resumed Aug 13; Amazon seller 2nd specifically re-paused same day (lead list exhausted, not an engagement issue)
 - [ ] Investigate why UK Seller (starfix) converts far better than the rest (3 opportunities off 284 leads) — replicate that angle into underperforming campaigns
+- [x] Plan upgraded — 10 new mailbox slots purchased on hellostarfix.com (Aug 13). **Final names confirmed (generic/role-based, not first-name style):** info@, contact@, hello@, support@, team@, sales@, office@, admin@, mail@, service@ (all @hellostarfix.com)
+- ⚠️ **Flagged to Eikko, not yet resolved with Cüneyt:** generic/role-based inboxes typically hurt cold-outreach deliverability vs. first-name inboxes (spam filters + recipients read them as less personal, warmup/inbox placement tends to be worse). Worth confirming with Cüneyt whether these are meant for outbound sending or for receiving/support/admin purposes before they go live in campaigns.
+- [ ] Actually create the 10 mailboxes in hPanel using the confirmed names, then set up warmup + add to Instantly
+- [ ] hellostarfix.com now has 13 mailbox seats total (3 original + 10 new) — update the "Infrastructure Snapshot" table above once mailboxes are live
+- [ ] **New:** Confirm which lead list/segment to load into Amazon seller 2nd before resuming (list exhausted, 52/52 contacted)
+- [ ] **New:** Confirm go-ahead on 50K DE Amazon Leads (paused, mailboxes fine, awaiting decision)
+- [ ] **New:** Watch Amazon Seller 2cnd (2) bounce rate (8% on a small 25-email sample) as volume builds
+- [ ] **New:** Watch sellervate.net mailboxes (jonas@, sebastian@) — flapped unhealthy and self-recovered same day; investigate root cause if it recurs
+- [ ] **New (Aug 14):** 4 new campaigns built in Instantly as drafts — UK & USA Amazon Brand Leads, UK/USA Amazon Seller, Amazon USA Product Review, Amazon USA Product Review 2nd (SMB) — full 4-step sequences written, merge fields verified working. **Not launched yet** — will run on the 10 new hellostarfix.com mailboxes, which need to finish warmup (~2–3 weeks from Aug 14, so roughly late Aug/early Sept) before mailbox assignment and launch. Leads (2,138 across the 4 source lists) also need to go through email verification before upload — not yet uploaded.
+- [x] **Naming conflict — resolved (Aug 16, live check):** hPanel confirms the actual 10 new hellostarfix.com mailboxes are **alex@, audits@, chris@, david@, emma@, hello@, laura@, partners@, sarah@, team@** — matching the "team/hello/partners/audits/sarah/emma/laura/chris/alex/david" entry. The info@/contact@/support@/sales@/office@/admin@/mail@/service@ set discussed in chat was **never actually created** — treat that as superseded, not live.
+- [x] **New (Aug 14, from WhatsApp):** 3 mailboxes that were manually unsuspended earlier reverted back to Suspended in Hostinger. **Confirmed via live recheck (Aug 16): these are cueneyt@hellostarfix.com and daniel@hellostarfix.com**, both still showing Suspended in Hostinger and "Sending error" in Instantly. The planned delete-and-recreate never happened — still open.
+- [ ] **New (Aug 16):** Full report delivered to Cüneyt as a Google Doc (https://docs.google.com/document/d/1YMiLgxg1cWVMUiCz6ODcXwk1OvujVxt8PaokamxaYFg/edit) — acknowledged by Cüneyt. Keep this doc in sync with the internal profile/EOD going forward.
+- [x] **This week's opening task (per Eikko, Aug 14):** Full Hostinger + Instantly recheck before the new week starts — done Aug 16, see "Live Recheck" section below for full findings.
+
+---
+
+## Live Recheck (Aug 16, 2026) — logged into Hostinger + Instantly directly
+
+**Hostinger — mailbox seats:**
+- hellostarfix.com: 13/13 seats used (0 left). 11 Active, **2 Suspended: cueneyt@ and daniel@hellostarfix.com** (previously healthy originals, now down — this is the mailbox-flapping issue Cüneyt flagged Aug 14, confirmed still unresolved).
+- starfix.online: 4/4 seats used, all Active (alex@, ben@, jake@, sam@).
+- sellervate.net: 5/5 seats used, all Active (david@, jonas@, maximilian@, sebastian@, tobias@). Renewal still shows due **Sep 28, 2026** — not yet renewed.
+
+**Instantly — mailboxes:** matches Hostinger — **cueneyt@ and daniel@hellostarfix.com show "Sending error."** Everything else across all 3 domains is healthy (97–100% health score, warmup counts climbing normally). One gap found: **maximilian@sellervate.net exists and is Active in Hostinger but was never added to Instantly** — it's sitting unused, not part of the sending pool.
+
+**Instantly — campaigns:** nearly everything that was actively sending is now showing **Paused**: Liste von Dennis (83%, 532 sent, 26.06% reply), 50K DE Amazon Leads (100%, 126 sent, 35.29% reply), Baby mixed (50%, 521 sent, 11.25% reply), Pet mixed (54%, 507 sent, 17.57% reply), Sports & Fitness mixed (32%, 450 sent, 24.81% reply), Amazon seller 2nd (100%, 52 sent), Amazon Seller 2cnd (2) (0%, 25 sent), Starfix New UK Leads 2026-08 (2%, 46 sent). The 4 new campaigns from Aug 14 (UK & USA Amazon Brand Leads, UK/USA Amazon Seller, Amazon USA Product Review, Amazon USA Product Review 2nd) remain in **Draft**, not launched. Reply rates on the paused campaigns are actually strong (11–35%) — much better than the Jun–Aug audit period — but nothing is currently sending.
+
+**Net status vs. what was logged Aug 13 ("9 of 10 healthy and sending"): that is no longer accurate.** Between Cüneyt pausing 3 campaigns himself (per WhatsApp) and whatever happened after, the account is now mostly paused. This needs a conversation with Cüneyt before touching anything — unclear how much of this pause is intentional.
+
+**Action items from this recheck:**
+- [x] Fix cueneyt@ and daniel@hellostarfix.com — **resolved by Aug 19:** both fully deleted from hellostarfix.com (confirmed live), freeing 2 mailbox seats. See "Update (Aug 19)" below.
+- [ ] Add maximilian@sellervate.net to Instantly — currently unused capacity.
+- [x] **Confirm with Cüneyt which campaigns should actually be running** — decision made (Aug 16): keep all campaigns paused for now; next week is a full rebuild, not a resume.
+- [ ] Renew sellervate.net before Sep 28, 2026.
+- [ ] Decide on launch timing for the 4 draft campaigns (blocked on lead verification + mailbox warmup per the Aug 14 note).
+
+---
+
+## Decisions (Aug 16) — Next Week's Plan
+
+1. **Suspended mailboxes are out.** cueneyt@ and daniel@hellostarfix.com will **no longer be used in campaigns** going forward — no more retry/re-enable cycles. Treat them as dead until/unless separately fixed; don't assign them to any rebuilt campaign.
+2. **All campaigns confirmed paused.** Verified live (Aug 16): 0 campaigns currently Active in Instantly — this was already true going into this decision, so no further action was needed to pause anything.
+3. **Next week's task: rebuild campaigns from scratch.** Go through every existing campaign one by one and audit: (a) email copy, (b) settings (schedule, tracking, daily limits), (c) which mailboxes are assigned. Use that audit to build the new campaign set — not just resume the old ones as-is.
+4. **Two lists to maintain going into the rebuild:**
+
+**List A — Campaigns currently on Instantly (live, Aug 16):**
+
+*Paused (10):*
+- Liste von Dennis
+- Amazon Seller 2cnd (2)
+- Sports & Fitness (sellervate, reviews)
+- Starfix New UK Leads 2026-08
+- Starfix New US Leads 2026-07-29
+- Sports & Fitness (mixed)
+- Baby (mixed)
+- Pet (mixed)
+- Amazon seller 2nd
+- 50K DE Amazon Leads
+
+*Draft, not yet launched (4):*
+- UK & USA Amazon Brand Leads
+- UK/USA Amazon Seller
+- Amazon USA Product Review
+- Amazon USA Product Review 2nd (SMB)
+
+*Completed / likely legacy, relevance unconfirmed (8) — flagged, not yet verified as Starfix-relevant:*
+- Review2 – Office Supplies DE (150K+)
+- Review2 – Home & Kitchen DE (200-300K)
+- Review2 – Home & Kitchen DE (100-200K)
+- Review2 – Home & Kitchen DE (50-100K)
+- Review
+- 50K Leads
+- Agency Leads
+- Upwork Leads
+
+**Discrepancy checked (Aug 16, follow-up):** "UK Seller (starfix)" and "USA Seller" from the Jun–Aug audit no longer exist as named campaigns, and Instantly's own "Seller" tag (which one/both were presumably tagged with) now returns **0 campaigns**. Most likely explanation: they were renamed into **Starfix New UK Leads 2026-08** and **Starfix New US Leads 2026-07-29** rather than deleted — those two campaigns match the same audience and the tag being empty-but-still-present supports a rename rather than a fresh build. Not 100% confirmed (Instantly doesn't expose rename history in the UI), but treat as very likely the same campaigns, not lost data.
+
+**List B — Campaigns to build from the Google Sheet lead list** (source: [Leads Copy sheet](https://docs.google.com/spreadsheets/d/1nCcqx6bz6QkrVRlRgbf1vpv4Fwfz2QiH11JGqgGTPww/edit?gid=0#gid=0), checked Aug 16):
+
+| Sheet source list | Target campaign name | Sheet status | To-Do flag | Leads | Email availability |
+|---|---|---|---|---|---|
+| UK & USA Amazon Brand Leads | UK & USA Amazon Brand Leads | — | X | 640 | ❌ No email — more on LinkedIn |
+| Amazon Seller Leads (UK & USA) | UK/USA Amazon Seller | Active UK | US | 109 | ✅ Has emails |
+| Amazon USA Product Review | Amazon USA Product Review | Active | — | 735 | ⚠️ Only Sheet 1 has emails (partial) |
+| Amazon USA Product Review 2nd Small Medium Size Companies | Amazon USA Product Review 2nd (SMB) | — | — | 654 | ✅ Has emails |
+| **Total** | | | | **2,138** | |
+
+This confirms List B is the same 4 campaigns already sitting as Drafts in Instantly (matches the "2,138 leads across 4 source lists" noted Aug 14) — so List A's drafts and List B are one and the same, not two separate builds. ⚠️ **One mismatch to flag:** the sheet marks "Amazon Seller Leads (UK & USA)" as **Active UK** and "Amazon USA Product Review" as **Active**, but both still show as **Draft** in Instantly — the sheet status hasn't been updated to reflect that these haven't actually launched yet, or leads were meant to go live already and didn't. Worth confirming which is true before next week's rebuild.
+
+**Update (Aug 19) — email availability mapped, changes the launch plan:** Instantly campaigns can only run on lead lists that actually have email addresses. Of the 4:
+- **UK & USA Amazon Brand Leads (640 leads) — NOT Instantly-ready.** No emails, contacts are LinkedIn-only. This campaign can't launch as an email campaign until either (a) emails get sourced/enriched for this list, or (b) it's run as a LinkedIn outreach effort instead — different channel entirely, worth flagging to Cüneyt as a decision point.
+- **UK/USA Amazon Seller (109 leads) — ready.** Has emails.
+- **Amazon USA Product Review (735 leads) — partially ready.** Only "Sheet 1" of this list has emails; need to confirm what portion of the 735 that actually covers before loading it in.
+- **Amazon USA Product Review 2nd SMB (654 leads) — ready.** Has emails.
+
+**Net effect on next week's rebuild/launch order:** realistically only 2 lists (UK/USA Amazon Seller, Amazon USA Product Review 2nd SMB — 763 leads combined) are fully ready to load as-is. Amazon USA Product Review needs the Sheet 1 subset isolated first. UK & USA Amazon Brand Leads is blocked until emails exist or the channel changes.
+
+**Confirmed (Aug 16):** these 4 draft campaigns (built Aug 14 via Claude Code) are the ones Eikko will review next week — copy, settings, and mailbox assignment, per the "rebuild" plan above, before deciding on launch.
+
+---
+
+## Update (Aug 19, 2026) — WhatsApp check-in + mailbox resolution
+
+**Status:** still in mailbox warmup, no campaigns launched yet. Eikko organizing launch order, leaning toward the Google Sheet lead-list campaigns (List B) first.
+
+**cueneyt@ and daniel@hellostarfix.com — resolved.** Both confirmed deleted from Instantly (per Cüneyt's WhatsApp instruction) and, checked live, **fully deleted from Hostinger too** — not just suspended. This freed exactly 2 mailbox seats.
+
+**2 replacement mailboxes approved.** Cüneyt agreed to create 2 new mailboxes to replace them. **No purchase needed** — hPanel confirms "2/13 mailboxes left" on hellostarfix.com with a free "Add mailboxes" option (separate from "Buy more mailboxes"). Eikko had raised a cost/tax concern about buying new slots on his own end; Cüneyt didn't think a purchase was necessary, and the live check confirmed Cüneyt was right — use the 2 already-freed seats.
+
+**Open items:**
+- [x] Choose names for the 2 new mailboxes — **kevin@hellostarfix.com created and confirmed live** (1/13 seats left, Aug 19). **ryan@hellostarfix.com** also confirmed created/Active by Aug 20 (0/13 seats left).
+- [x] ~~Finish creating ryan@hellostarfix.com~~ — confirmed Active in hPanel as of Aug 20
+- [x] **Connected kevin@ and ryan@hellostarfix.com to Instantly (Aug 20)** — both added via API (daily limit 30, matching the rest of the fleet), status Active. DNS already covered domain-wide, no new records needed.
+- [x] **Warmup started on both (Aug 20)** — confirmed `warmup_status: 1` on both accounts. Not yet assigned to any campaign — hold until warmup completes (~2–3 weeks) per the existing hellostarfix.com mailbox rule.
+
+**Hostinger IMAP/SMTP server settings for hellostarfix.com** (for connecting kevin@/ryan@ in Instantly):
+
+| Protocol | Hostname | Port | TLS/SSL |
+|---|---|---|---|
+| Incoming (IMAP) | imap.hostinger.com | 993 | ✅ |
+| Outgoing (SMTP) | smtp.hostinger.com | 465 | ✅ |
+| Incoming (POP3) — not recommended | pop.hostinger.com | 995 | ✅ |
+
+Username = full mailbox address (kevin@hellostarfix.com / ryan@hellostarfix.com), password = whatever was set when each mailbox was created.
+- [ ] Confirm with Cüneyt whether he still needs to review the campaign email copy before launch — asked in chat, no answer yet
+- [ ] Finalize campaign launch order — given the email-availability mapping below, likely start with UK/USA Amazon Seller + Amazon USA Product Review 2nd SMB (both fully ready)
+- [ ] Decide how to handle UK & USA Amazon Brand Leads (640 leads, no emails, LinkedIn-only) — enrich for email or run as a separate LinkedIn channel
+- [ ] Isolate the email-having "Sheet 1" subset of Amazon USA Product Review before loading it into Instantly
 
 ---
 
