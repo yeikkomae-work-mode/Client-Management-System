@@ -22,6 +22,10 @@ Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building
 - **onboarding-guide** — New client setup, folder structure, onboarding checklist
 - **meeting-summarizer** — Call transcripts → minutes & action items
 
+## Strategy
+
+- **cto** — Chief Technology Officer. Evaluates new tools/techniques against the real stack (ADOPT/TRIAL/HOLD/KILL), designs what to build next, audits the stack for silent decay, tracks skills worth learning. Opus. Recommends and writes PRDs — **builds only after your explicit sign-off**. Outputs to `RESOURCES/Tech Radar.md` + `OUTPUT/Learning Log/`.
+
 ## Specialized
 
 - **Explore** — Fast code search (find files, grep symbols)
@@ -34,3 +38,4 @@ Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building
 - `/simplify` — Simplify changed code
 - `/claude-api` — Reference Claude API and models
 - `/run` — Launch and test the app
+- `/tech-radar` — Look up or list Tech Radar verdicts

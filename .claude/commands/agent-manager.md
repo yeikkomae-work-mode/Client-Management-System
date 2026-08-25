@@ -3,7 +3,7 @@ description: List available client-management agents and what each one does
 argument-hint: "[agent-name] (optional — shows detail on one agent)"
 ---
 
-If `$ARGUMENTS` is empty, list all agents below with a one-line description each, grouped Front-office / Back-office.
+If `$ARGUMENTS` is empty, list all agents below with a one-line description each, grouped Front-office / Back-office / Strategy.
 
 If `$ARGUMENTS` names an agent, read `.claude/agents/$ARGUMENTS.md` (fuzzy-match on name) and summarize its scope, tools, model, and any per-client rules it contains.
 
@@ -22,5 +22,9 @@ If `$ARGUMENTS` names an agent, read `.claude/agents/$ARGUMENTS.md` (fuzzy-match
 - **file-organizer** — Folder structure, deduplication, file hygiene
 - **onboarding-guide** — New client setup, folder structure, onboarding checklist
 - **meeting-summarizer** — Call transcripts → minutes & action items
+
+## Strategy
+
+- **cto** — Tool/technique verdicts against the real stack, PRDs for what to build next, stack-decay checks, skill gaps. Opus. Builds nothing without sign-off.
 
 To use one, either invoke it directly with the Agent tool by name, or just describe the task — Claude Code will route to the right agent based on its description.

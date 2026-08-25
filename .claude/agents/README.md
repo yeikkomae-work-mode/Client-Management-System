@@ -1,6 +1,6 @@
 # Claude Code Subagents — Client-Management-System
 
-**10-agent team**, split front-office (client-facing) / back-office (internal ops), adapted from Eikko's research into this actual system. Built 2026-08-13, replacing the earlier 5-agent functional version (kept in `_archived-5-agent-version/` for reference, not deleted).
+**11-agent team** — front-office (client-facing) / back-office (internal ops) / strategy, adapted from Eikko's research into this actual system. Built 2026-08-13, replacing the earlier 5-agent functional version (kept in `_archived-5-agent-version/` for reference, not deleted).
 
 ## Front-office (client-facing)
 
@@ -22,6 +22,12 @@
 | `file-organizer` | Keeps this whole system clean — dedup, archive stale docs, fix naming, fix broken references |
 | `meeting-summarizer` | Transcript → minutes + action items, pushed to task files |
 
+## Strategy
+
+| Agent | Scope |
+|---|---|
+| `cto` | Chief Technology Officer. Tool/technique verdicts against the real stack, PRDs for what to build next, lightweight stack-decay check every session, skill-gap tracking. Model: `opus`. **Two-phase build gate** — research → PRD → explicit yes → build. Cannot edit `connector-status.md`; flags drift only. Added 2026-08-25. |
+
 ## Shared context (not agents — reference files the agents read)
 
 - `_shared/connector-status.md` — **the single source of truth** for which tools are actually connected vs. broken vs. need authorizing vs. don't exist. Update this ONE file when a connector changes status; every agent reads it instead of carrying its own stale copy.
@@ -35,11 +41,17 @@ Use the lead-prospector agent to build Krishna's next Apollo list.
 Use the billing-auditor agent for this month's income review.
 ```
 
+## Where the CTO's output lives
+
+- `RESOURCES/Tech Radar.md` — append-only verdict log. Checked before any new evaluation so tools don't get re-litigated.
+- `OUTPUT/Learning Log/YYYY-MM-DD.md` — per-session record of what was reviewed, kept, rejected.
+- `PROJECTS/Pending/` — PRDs, **only after sign-off** (this folder feeds the unattended builder).
+
 ## The three chaos-prevention rules baked into these agents
 
 1. **Human-in-the-loop:** `inbox-triage`, `copywriter`, `reply-handler`, and `onboarding-guide` all draft only — nothing sends, publishes, or launches without Eikko's explicit yes/edit/skip. This is written into each of their files, not left to chance.
 2. **Folder separation:** each agent is scoped to touch only the client files relevant to the task at hand unless it's explicitly a cross-client rollup (like `project-manager`'s daily briefing).
-3. **Central control room:** ✅ built — [🎛️ VA Command Center](https://app.notion.com/p/3ba811e21c7f8000b6a5f7952cb0c76b) in Notion (workspace: "eikko mae ybanez's Space"). Has a Front-Office log, Back-Office log, a Clients database (status/tools/next action per client), and a Connector Status page mirroring `_shared/connector-status.md`. Agents should write their output there once they're actually running live — right now the sections are seeded but empty since none of the 10 are on a live schedule yet. Note: this is a *different* Notion workspace from the Satlas team one that owns the "Cold Email" hub discussed earlier — that one still needs separate access.
+3. **Central control room:** ✅ built — [🎛️ VA Command Center](https://app.notion.com/p/3ba811e21c7f8000b6a5f7952cb0c76b) in Notion (workspace: "eikko mae ybanez's Space"). Has a Front-Office log, Back-Office log, a Clients database (status/tools/next action per client), and a Connector Status page mirroring `_shared/connector-status.md`. Agents should write their output there once they're actually running live — right now the sections are seeded but empty since none of the 11 are on a live schedule yet. Note: this is a *different* Notion workspace from the Satlas team one that owns the "Cold Email" hub discussed earlier — that one still needs separate access.
 
 ## Known connector gaps (see `_shared/connector-status.md` for full detail)
 

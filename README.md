@@ -1,6 +1,6 @@
 # Eikko's Client Management System
 
-**Organized workspace for managing active, trial, and prospective clients, a 10-agent Claude Code system, automation, campaigns, and personal business operations.**
+**Organized workspace for managing active, trial, and prospective clients, an 11-agent Claude Code system, automation, campaigns, and personal business operations.**
 
 Last updated: Aug 15, 2026 | Status: 🟢 Organized — agent system rebuilt, Fathom meeting sync live, PRD-first build discipline + unattended builder pipeline added
 
@@ -56,6 +56,7 @@ Reports, data, metrics, and end-of-day summaries from your work.
 - **Campaign Tracking/** — Live campaign metrics & logs (24 files), including Satlas infrastructure & Plusvibe health, Peru/Philippines/US Silver Chain campaigns (Krishna), Capital Financing (Chris Drew), Starfix campaign tracking & sequences (Cüneyt), Penji's agency email sequence, and Chris Caffera's Lemlist metrics + engaged-lead call list
 - **Monthly Reports/** — Monthly financial summaries & expense tracking
 - **Data & Metrics/** — `Salary & Income Tracking.md` (revenue across all clients)
+- **Learning Log/** — Added Aug 25. Per-session record of weekend tool/skill research, written by the `cto` agent. Sister file to the Tech Radar: the radar holds standing verdicts, this holds what happened that day.
 
 ### **RESOURCES**
 System files, tool documentation, and reference materials.
@@ -76,7 +77,7 @@ Leftover sourcing file (`top-acquisitions-hvac-sourcing.md`) from the closed tri
 
 ---
 
-## 🤖 Agent System (current, built Aug 13)
+## 🤖 Agent System (current, built Aug 13 · `cto` added Aug 25)
 
 Claude Code auto-routes to the right subagent based on the task, or you can call one directly ("Use the billing-auditor agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager` slash command.
 
@@ -86,9 +87,12 @@ Claude Code auto-routes to the right subagent based on the task, or you can call
 **Back-office (internal ops):**
 `project-manager` · `billing-auditor` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
 
+**Strategy (added Aug 25):**
+`cto` — Chief Technology Officer. Evaluates tools/techniques against the actual stack with an ADOPT/TRIAL/HOLD/KILL verdict stating cost, stack fit, time-to-value, and fragility every time. Designs what to build next as PRDs. Runs a 3-line stack-decay check at the start of every session. Runs on `opus`. **Builds nothing without explicit sign-off**, and cannot edit `connector-status.md` — it flags drift, Eikko verifies. Deliberately has no scheduled task: adding an unmonitored automation to fix "automations go stale silently" is the trap itself.
+
 **Shared reference:** `.claude/agents/_shared/connector-status.md` — single source of truth every agent reads before claiming a tool is live. Twin copy in Notion: 🎛️ VA Command Center.
 
-**Slash commands:** `/agent-manager` (list/inspect agents) · `/eod-sync <client>` (set up a recurring per-client EOD automation with Notion sync)
+**Slash commands:** `/agent-manager` (list/inspect agents) · `/tech-radar` (verdict lookup) · `/eod-sync <client>` (set up a recurring per-client EOD automation with Notion sync)
 
 ---
 
