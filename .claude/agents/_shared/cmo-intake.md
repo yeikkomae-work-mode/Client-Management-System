@@ -8,13 +8,24 @@
 
 ## Step 0 — Check before asking
 
-**Re-asking a documented fact is the specific failure this system exists to prevent.** Before you ask a single question, read:
+**Re-asking a documented fact is the specific failure this system exists to prevent.**
+
+**First, resolve the client key.** Files in this system are keyed by **person name**, not company — the company sits in parentheses. Satlas is `Chris Drew - Profile (Satlas).md`; Starfix is `Cüneyt - Profile (Starfix).md`; Fractio is `Chris Caffera - Profile.md`, where the company isn't in the filename at all. A request phrased by company name will not glob. Resolve it before reading anything:
+
+```
+ls "CLIENT PROFILES/" | grep -i "<whatever the request called them>"
+```
+
+Use the **person name** as `<Client>` in every path below and in the Marketing Brief filename, so one client never ends up with two briefs. If the request names a company you can't resolve to exactly one profile, ask which client is meant — don't create a new key.
+
+Then read:
 
 1. `CLIENT PROFILES/<Client> - Profile*.md` — offer, voice rules, approval rules, key people, rate, tooling
 2. `CLIENT PROFILES/<Client> - Marketing Brief.md` — if it exists, this engagement is already partly briefed; you're topping it up, not starting over
-3. `OUTPUT/Campaign Tracking/` — live campaigns, lead volumes, past performance, what's already been tried
-4. `OUTPUT/End-of-Day Reports/<Client> - End of Day Log.md` — recent state, open issues
-5. `PROJECTS/Active/` — any live task list for this client
+3. **Any client-specific skill** — check `ListSkills` / `.claude/skills/` for one named after this client or their system (e.g. a `<client>-cold-email` skill). **These hold operational detail that exists nowhere else** — approved copy verbatim, merge-field syntax, warmup floors, segmentation rules, per-segment search filters. Missing one is the single easiest way to re-ask something already documented.
+4. `OUTPUT/Campaign Tracking/` — live campaigns, lead volumes, past performance, what's already been tried
+5. `OUTPUT/End-of-Day Reports/<Client> - End of Day Log.md` — recent state, open issues
+6. `PROJECTS/Active/` — any live task list for this client. **An empty result here is not "no open work"** — several clients are tracked only in their profile and EOD log. Treat silence as "tracked elsewhere," and say which source you took open threads from.
 
 Then present what you already know back to Eikko as a filled-in draft and ask only for the gaps. Format it as:
 
@@ -67,7 +78,7 @@ Only if Outbound is ticked. Everything here is per-campaign, not per-client — 
 | Target niche for **this** campaign | The market being prospected into, **not** the client's own niche. E.g. "US Series A–C SaaS, VP Sales / Head of RevOps" |
 | Campaign goal / desired CTA | E.g. "book a 15-min call." Drives every step's ask |
 | Target lead volume for this run | E.g. 1,000 exported → ~700 verified after `ok`-only filtering |
-| Sending infrastructure available | Domains and mailboxes already live, warmed, and connected — or "none yet." Cross-check against Zapmail / InboxKit / Porkbun rather than taking a number on trust |
+| Sending infrastructure available | Domains and mailboxes already live, warmed, and connected — or "none yet." Take documented counts as a starting point, not truth: a mailbox that exists but isn't warmed is not capacity. `cmo` has no Bash and cannot hit these APIs — **delegate the live cross-check against Zapmail / InboxKit / Porkbun to `outbound-agent`** at Phase 7 and note the as-of date of whatever figures you're quoting meanwhile |
 | Sending platform for this client | PlusVibe, Smartlead, Instantly, or Apollo-native. Per-client and easy to get wrong — see `_shared/connector-status.md` for which account each connector is actually authenticated to |
 | Apollo account | Which key applies (`APOLLO_API_KEY` or `APOLLO_API_KEY_ACCOUNT2`). Name the variable, never the value |
 | Catch-all inclusion | Default is `ok`-only. Only ask if volume is tight — catch-alls add reach and bounce risk |

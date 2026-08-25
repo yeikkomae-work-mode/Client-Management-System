@@ -73,6 +73,42 @@ Referenced by both root `CLAUDE.md` and `PROJECTS/README - Builder Pipeline.md` 
 
 ---
 
+---
+
+## Dry-run findings (2026-08-25, Satlas)
+
+`cmo.md` + `cmo-intake.md` were executed against Satlas read-only. **Step 0 worked** — it produced 7 genuine questions out of 30+ possible, with everything else recovered from files. The connector-status-first rule earned its place immediately: without it the run would have reported PlusVibe as MCP-connected and pulled a different client's numbers into a Satlas brief.
+
+**Fixed during the build** (all in the new files):
+
+| Finding | Fix |
+|---|---|
+| `<Client>` didn't resolve — "Satlas" globs nothing, the file is `Chris Drew - Profile (Satlas).md`. Would have produced two Marketing Briefs for one client across sessions | Client-key resolution rule added to `cmo-intake.md` Step 0 — files are keyed by **person name**, company in parens |
+| Step 0 never checked client-specific **skills**. `satlas-cold-email` holds approved copy verbatim, merge-field syntax, warmup floors, segmentation rules — none of it in any profile | Skills added as Step 0 source #3, with why |
+| `cmo` has no Bash but intake told it to cross-check infra against Zapmail/InboxKit/Porkbun — APIs it structurally can't reach | Line rewritten to delegate the live check to `outbound-agent` and date any quoted figures |
+| Phase gates assume an interactive session; a subagent runs once and returns | Gate mechanics documented in `cmo.md` — a gate is stop-and-return, re-invocation is the sign-off |
+| No procedure for when documented sources disagree with each other | Added to `cmo.md`: report all versions with paths, say which the live artefacts reflect, don't pick |
+| Delegation table never handed over the Marketing Brief path | Added to all three specialist rows |
+
+---
+
+## 🔴 Cannot fix in scope — for Eikko
+
+These are defects in **existing** files. The build was scoped not to touch the 10 existing agents, client profiles, or skills, so they're recorded rather than fixed.
+
+**1. `reply-handler` can't reach Satlas's inbox — cross-client data risk.**
+`reply-handler.md` has `tools: Read, Grep, Glob, Write` — no Bash. Satlas's PlusVibe Master Inbox is reachable *only* by raw API key over Bash, and the native PlusVibe MCP connector points at Yoni's account. So routing Satlas replies to `reply-handler` returns either nothing or **another client's replies**. `cmo.md` now warns about this and routes around it, but the underlying agent still can't do the job. Fix is one word in its frontmatter — `Bash` — plus a per-client reach note.
+
+**2. Satlas cadence is written two ways.** `copywriter.md` says Day 0/3/7; the `satlas-cold-email` skill says Day 1/4/8 (SKILL.md line 87 and `references/copywriting.md` line 33–35). **These are the same cadence** — both are +3 then +4 days — just different conventions for whether the send day is Day 0 or Day 1. Not a behavioural conflict, but two numbering schemes for one rule will eventually get read as two rules. Worth aligning `copywriter.md` to the skill's Day 1/4/8, since that's what the launched campaigns use.
+
+**3. The `satlas-cold-email` skill points at a path that doesn't exist.** It declares its references at `/mnt/skills/user/satlas-cold-email/references/`; they actually live at `/root/.claude/skills/synced/satlas-cold-email/references/`. An agent following that pointer literally gets nothing.
+
+**4. `copywriter` has `Write` and no read-only mode.** Dry-running anything that delegates to it depends purely on prompt compliance from an agent holding the Write tool. Worth considering a read-only convention for dry runs.
+
+**5. Satlas has no documented approval-authority line.** Yoni's profile has a hard one ("all campaigns through Yoni or Rachel"). Satlas's records that Spencer and Chris review copy, but says nothing about who can approve a *launch*, or whether Ally can. `outbound-agent` will hold at the gate regardless, but the gate has no named owner.
+
+**Not reproduced:** the dry-run could not fire the `copywriter` delegation, because it ran as a `general-purpose` stand-in with no subagent-spawning tool. `cmo.md` declares `Task` in its frontmatter, so a real `cmo` invocation after a Claude Code restart should be able to. **The delegation path is therefore structurally correct but untested end-to-end** — worth confirming on the first real run.
+
 ## Open threads
 
 | # | Thread | Owner | Raised | Blocking |
@@ -81,3 +117,8 @@ Referenced by both root `CLAUDE.md` and `PROJECTS/README - Builder Pipeline.md` 
 | 2 | Diff the built files against the real CMO PRD | Eikko | 2026-08-25 | Sign-off on the build |
 | 3 | Confirm `claude-seo`, `ui-ux-pro-max`, `remotion`, `impeccable` commands are installed locally | Eikko | 2026-08-25 | `seo-agent` and `brand-agent` running as written |
 | 4 | Create `PROJECTS/Pending/` or drop the references to it | Eikko | 2026-08-25 | Builder pipeline |
+| 5 | Give `reply-handler` Bash, or permanently route raw-key-only inboxes to `outbound-agent` | Eikko | 2026-08-25 | Phase 8 on Satlas — live cross-client data risk |
+| 6 | Align `copywriter.md`'s Day 0/3/7 to the skill's Day 1/4/8 | Eikko | 2026-08-25 | Nothing yet — same cadence, two notations |
+| 7 | Fix the `satlas-cold-email` skill's references path | Eikko | 2026-08-25 | Any agent following the declared pointer |
+| 8 | Confirm `copywriter` delegation fires end-to-end on the first real `@cmo` run | Eikko | 2026-08-25 | Untested — registry needed a restart |
+| 9 | Document Satlas's launch approval authority (can Ally sign off?) | Eikko | 2026-08-25 | Phase 6 gate has no named owner |
