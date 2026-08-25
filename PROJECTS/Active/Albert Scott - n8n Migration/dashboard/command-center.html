@@ -850,11 +850,87 @@
 
       <!-- ============ LINKEDIN (deferred) ============ -->
       <section class="view" id="view-linkedin">
-        <div class="page-head"><h1>LinkedIn Outreach</h1><p>Deferred to a later phase.</p></div>
-        <div class="placeholder">
-          <div class="icon-lg"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3.2c0-1 .8-1.8 2-1.8s2 .8 2 1.8V16"/></svg></div>
-          <h3>No data source connected yet</h3>
-          <p>Per <code>connector-status.md</code>, there's no API path for LinkedIn today — outreach there is browser-assisted only. This section needs its own scoping pass once a real data source exists, rather than a page of numbers with nothing behind them.</p>
+        <div class="page-head">
+          <h1>LinkedIn Outreach</h1>
+          <p>Pulled live from HeyReach (workspace API key connected 2026-08-26) — Yoni's and Rachel's LinkedIn accounts, one active campaign.</p>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card hero">
+            <div class="kpi-top">
+              <div class="kpi-label">Connections sent (6 days)</div>
+              <div class="kpi-badge"><svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 8h5M18.5 5.5v5"/></svg></div>
+            </div>
+            <div class="kpi-value tabular">111</div>
+            <div class="kpi-foot"><span class="status-pill">11 accepted · 9.9%</span></div>
+          </div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Message reply rate</div></div><div class="kpi-value tabular">18.2<span class="suffix">%</span></div><div class="kpi-foot"><span class="status-pill neutral">2 replies / 11 started</span></div></div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Auto-tagged interested</div></div><div class="kpi-value tabular">1</div></div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Unread in inbox</div></div><div class="kpi-value tabular">6</div><div class="kpi-foot"><span class="status-pill warning">of 80 conversations</span></div></div>
+        </div>
+
+        <div class="card" style="margin-bottom: 18px;">
+          <div class="card-head">
+            <h2>Global Brands</h2>
+            <span class="meta">Started 2026-08-20 · list "Global Brands 4"</span>
+          </div>
+          <div class="card-body">
+            <div style="display:flex; height:14px; border-radius:7px; overflow:hidden; background:var(--surface-alt); margin-bottom:10px;">
+              <span style="width:91.0%; background:var(--text-tertiary);" title="Pending 1815"></span>
+              <span style="width:7.8%; background:var(--chart-blue);" title="In progress 156"></span>
+              <span style="width:1.1%; background:var(--danger);" title="Failed 22"></span>
+              <span style="width:0.1%; background:var(--success);" title="Finished 2"></span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:var(--text-secondary); margin-bottom:16px;">
+              <span><span class="swatch" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--text-tertiary);margin-right:5px;"></span>Pending 1,815</span>
+              <span><span class="swatch" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--chart-blue);margin-right:5px;"></span>In progress 156</span>
+              <span><span class="swatch" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--danger);margin-right:5px;"></span>Failed 22</span>
+              <span><span class="swatch" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--success);margin-right:5px;"></span>Finished 2</span>
+              <span class="faint">1,995 total leads</span>
+            </div>
+            <div class="table-scroll" style="padding:0;">
+              <table class="data">
+                <thead><tr><th>Sender</th><th>LinkedIn</th><th>Daily connection limit</th><th>Navigator</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Yoni Lebovits</td>
+                    <td><a href="https://www.linkedin.com/in/yoni-lebovits-932855149" target="_blank" rel="noopener" style="color:var(--crimson); text-decoration:none;">Profile ↗</a></td>
+                    <td class="num tabular">22 / 40</td>
+                    <td><span class="pill good">Valid</span></td>
+                    <td><span class="pill good">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Rachel Safra</td>
+                    <td><a href="https://www.linkedin.com/in/ssafrareis" target="_blank" rel="noopener" style="color:var(--crimson); text-decoration:none;">Profile ↗</a></td>
+                    <td class="num tabular">25 / 40</td>
+                    <td><span class="pill good">Valid</span></td>
+                    <td><span class="pill good">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-title-bar">
+            <h2>Inbox — unread</h2>
+            <span class="count tabular" id="liCount">6</span>
+            <span class="meta" style="margin-left:2px;">of 80 total conversations</span>
+          </div>
+          <div class="chip-row" id="liOwnerFilter">
+            <button type="button" class="chip active" data-owner="all">All <span class="tabular">6</span></button>
+            <button type="button" class="chip" data-owner="Yoni">Yoni <span class="tabular">6</span></button>
+            <button type="button" class="chip" data-owner="Rachel">Rachel <span class="tabular">0</span></button>
+          </div>
+          <div class="table-scroll">
+            <table class="data" style="min-width:760px;">
+              <thead><tr><th>Contact</th><th>Company</th><th>Owner</th><th>Last message</th><th>When</th></tr></thead>
+              <tbody id="liBody"></tbody>
+            </table>
+          </div>
+          <p id="liEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No unread conversations for this owner.</p>
+          <div class="info-note">One of these — Claire Boggs (Tremendous) — is an inbound vendor pitch to Yoni, not a prospect reply; flagged rather than counted as real outreach backlog. The rest are declines (wrong region, wrong Amazon marketplace, no US focus) — none from this batch are tagged Interested. No automation touches LinkedIn replies yet; this is a manual-read view only.</div>
         </div>
       </section>
 
@@ -1106,6 +1182,47 @@
           "<td>" + esc(r[2]) + "</td>" +
           '<td class="num tabular">' + r[3] + "d</td>" +
           '<td><span class="pill idle">Not yet classified</span></td></tr>';
+      }).join("");
+      emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.owner = btn.getAttribute("data-owner");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    render();
+  })();
+
+  // ---- LinkedIn (HeyReach) inbox — unread conversations ----
+  var LI_ROWS = [
+    ["Claire Boggs", "Tremendous", "Yoni", "Hi Yoni, how much time does Albert Scott spend managing global marketing incentives every month? (vendor pitch)", "2026-08-25"],
+    ["Thomas Klemenz", "GEFU Küchenboss", "Yoni", "I am Not at GeFu since 2018", "2026-08-25"],
+    ["Jaganath Reddy Bollapu", "EPOS", "Yoni", "I appreciate your effort. But I don't handle Amazon US for EPOS.", "2026-08-21"],
+    ["Wilson Yeung", "Venchi", "Yoni", "Amazon US is not in my scope, do you know about Amazon Australia?", "2026-08-18"],
+    ["Lukas Schlenz", "Schöffel Sport", "Yoni", "Happy to connect, however at the moment we have no focus on the US market and want to master the European marketplaces first.", "2026-08-15"],
+    ["Enrico Lomoro", "NeoLife International", "Yoni", "Farmasi does not allow its products to be sold on e-commerce platforms such as Amazon, eBay, etc.", "2026-08-12"]
+  ];
+  (function () {
+    var state = { owner: "all" };
+    var tbody = document.getElementById("liBody");
+    var emptyEl = document.getElementById("liEmpty");
+    var countEl = document.getElementById("liCount");
+    var filterEl = document.getElementById("liOwnerFilter");
+    if (!tbody || !filterEl) return;
+
+    function render() {
+      var rows = LI_ROWS.filter(function (r) { return state.owner === "all" || r[2] === state.owner; });
+      countEl.textContent = rows.length;
+      tbody.innerHTML = rows.map(function (r) {
+        return "<tr><td>" + esc(r[0]) + "</td>" +
+          "<td>" + esc(r[1]) + "</td>" +
+          "<td>" + esc(r[2]) + "</td>" +
+          '<td class="faint">' + esc(r[3]) + "</td>" +
+          '<td class="num tabular">' + r[4] + "</td></tr>";
       }).join("");
       emptyEl.style.display = rows.length ? "none" : "block";
     }

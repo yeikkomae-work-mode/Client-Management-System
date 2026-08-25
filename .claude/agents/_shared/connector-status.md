@@ -4,7 +4,7 @@
 
 **Twin copy in Notion:** [🔌 Connector Status](https://app.notion.com/p/3ba811e21c7f8193a87fd0e68c38987a), inside the [🎛️ VA Command Center](https://app.notion.com/p/3ba811e21c7f8000b6a5f7952cb0c76b). Update both when something changes — this file is the one agents actually read at runtime; the Notion copy is for Eikko to check without opening Claude Code.
 
-**Last verified:** 2026-08-26 (HeyReach row added — Albert Scott LinkedIn outreach)
+**Last verified:** 2026-08-26 (HeyReach connected — Albert Scott LinkedIn outreach)
 
 | Tool | Status | Notes |
 |---|---|---|
@@ -32,7 +32,7 @@
 | MillionVerifier | ⚫ No connector | Manual 2FA login by design — can't be automated regardless |
 | Lemlist | ⚫ No connector | Browser-only |
 | LinkedIn (personal profiles, direct) | ⚫ No connector | No API path; browser-assisted only, and LinkedIn flags automated activity — keep to drafting, not unattended posting |
-| HeyReach (Albert Scott LinkedIn outreach) | 🟡 Not connected | No MCP connector exists — this is raw REST API only (`https://api.heyreach.io/api/public`, `X-API-KEY` header). Key received 2026-08-26 tested live against `/auth/CheckApiKey`: real key, but HeyReach's own API rejected it as **organization-level, not workspace-level** — campaign/lead/inbox endpoints need a workspace key. No public org-level endpoint exists to list workspaces from this key. Fix: in HeyReach → Settings (bottom-left) → Integrations → HeyReach API → Get API key, **inside the specific workspace**, not the org/account switcher. |
+| HeyReach (Albert Scott LinkedIn outreach) | ✅ Connected | No MCP connector exists — raw REST API only (`https://api.heyreach.io/api/public`, `X-API-KEY` header). Workspace-level key received and verified live 2026-08-26 (`/auth/CheckApiKey` → 200). Confirmed real data: 2 LinkedIn senders (Yoni, Rachel), 1 active campaign ("Global Brands," 1,995-lead list), 111 connections sent / 11 accepted in the last 6 days, 80 inbox conversations (6 unread). The first key Eikko pasted (same day) was organization-level and got rejected — workspace-level is the one that works, grabbed from inside the specific workspace's own Integrations → HeyReach API settings, not the account/org switcher. |
 | Asana, ClickUp, Trello | ⚫ Not in use | Task tracking currently lives in markdown files (`PROJECTS/Active/`) and Google Sheets, not a PM tool |
 
 **Rule for all agents:** if a task needs a 🔴 or 🟡 or ⚫ item, say so plainly and use the fallback (manual log, browser check, or flag-for-Eikko) instead of reporting fabricated live data.
