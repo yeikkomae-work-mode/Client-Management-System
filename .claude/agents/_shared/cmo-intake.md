@@ -22,7 +22,15 @@ Then read:
 
 1. `CLIENT PROFILES/<Client> - Profile*.md` — offer, voice rules, approval rules, key people, rate, tooling
 2. `CLIENT PROFILES/<Client> - Marketing Brief.md` — if it exists, this engagement is already partly briefed; you're topping it up, not starting over
-3. **Any client-specific skill** — check `ListSkills` / `.claude/skills/` for one named after this client or their system (e.g. a `<client>-cold-email` skill). **These hold operational detail that exists nowhere else** — approved copy verbatim, merge-field syntax, warmup floors, segmentation rules, per-segment search filters. Missing one is the single easiest way to re-ask something already documented.
+3. **Any client-specific skill.** **These hold operational detail that exists nowhere else** — approved copy verbatim, merge-field syntax, warmup floors, segmentation rules, per-segment search filters. Missing one is the single easiest way to re-ask something already documented.
+
+   ⚠️ **Client skills are usually NOT in this repo.** A dry run on 2026-08-25 checked `.claude/skills/` in the repo, found nothing, and reported "no skill exists" — while `satlas-cold-email` was sitting in the user-level directory the whole time. Check **both**, and check for the synced subfolder:
+
+   ```
+   ls .claude/skills/ ~/.claude/skills/ ~/.claude/skills/synced/ 2>/dev/null | grep -i "<client-or-company>"
+   ```
+
+   Report "checked, none found" only after both locations come back empty. Never report absence from a single glob.
 4. `OUTPUT/Campaign Tracking/` — live campaigns, lead volumes, past performance, what's already been tried
 5. `OUTPUT/End-of-Day Reports/<Client> - End of Day Log.md` — recent state, open issues
 6. `PROJECTS/Active/` — any live task list for this client. **An empty result here is not "no open work"** — several clients are tracked only in their profile and EOD log. Treat silence as "tracked elsewhere," and say which source you took open threads from.

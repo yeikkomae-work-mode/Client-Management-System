@@ -109,6 +109,30 @@ These are defects in **existing** files. The build was scoped not to touch the 1
 
 **Not reproduced:** the dry-run could not fire the `copywriter` delegation, because it ran as a `general-purpose` stand-in with no subagent-spawning tool. `cmo.md` declares `Task` in its frontmatter, so a real `cmo` invocation after a Claude Code restart should be able to. **The delegation path is therefore structurally correct but untested end-to-end** — worth confirming on the first real run.
 
+---
+
+## Second dry-run (2026-08-25, Satlas, agents registered)
+
+Re-run once Claude Code picked up the four new agents. It surfaced three defects the stand-in run couldn't, because the stand-in wasn't `cmo` and didn't have `cmo`'s tool grant.
+
+| Finding | Severity | Fix |
+|---|---|---|
+| **`cmo` declared `Task` but the runtime didn't grant it** — every delegation in the file was dead, making the orchestrator an intake-only agent | 🔴 Blocking | Frontmatter now declares **both `Task` and `Agent`**; harnesses differ on what the subagent-dispatch tool is called, and unknown names are dropped silently rather than erroring |
+| **Every `_shared/` path was wrong from the working directory.** Written agent-dir-relative (`_shared/connector-status.md`) while every other path in the same files was repo-root-relative. The existing agents all use the full `.claude/agents/_shared/…` form — my files broke house convention and the first two reads of each run failed | 🔴 Blocking | All 8 occurrences rewritten to `.claude/agents/_shared/…` |
+| **The Step 0 skill check produced a false negative.** The run globbed `.claude/skills/` in the repo, found nothing, and reported "no Satlas skill exists" — while `satlas-cold-email` was in the user-level directory the whole time, holding the approved copy verbatim, RANDOM tag format, warmup floors and segmentation rules | 🔴 Blocking | Instruction now checks repo **and** `~/.claude/skills/` **and** `~/.claude/skills/synced/`, and forbids reporting absence from a single glob |
+
+Also tightened: Satlas named explicitly as the archetypal `reply-handler` reach failure; `cmo` now quotes `connector-status.md`'s `Last verified` date rather than just reading the file; and a generic instruction to check the client profile for a copy-review gate before returning any copy.
+
+### 🔴 Two more for Eikko — existing files, out of scope
+
+**6. The Hillary — Finance Broker campaign contradicts the 3-email rule.**
+`CLIENT PROFILES/Chris Drew - Profile (Satlas).md` line 106 records it as **4 steps**, migrated. The documented Satlas rule (same profile, lines 187–191) is a 3-step sequence, "not 6 — more steps = more spam flags." It's held in draft, not launched, so nothing is sending — but **this is the exact segment a new finance-broker campaign would target**, and it needs resolving before copy is commissioned: approved exception, or migration artefact to correct?
+
+**7. `copywriter.md`'s Satlas summary drops two rules that are in the profile.**
+Missing: the **signature spec** (name + phone + RANDOM close — profile line ~194) and the **Spencer-and-Chris copy review before launch** (line ~192). The file does say "read the full profile before writing — this is a summary, not the whole spec," so it's mitigated by instruction. But the review requirement is an *approval rule*, and an agent trusting the summary would route copy straight past it. `cmo.md` now carries a generic instruction to check the profile for a review gate; folding the two rules into `copywriter.md`'s Satlas line would close it properly.
+
+**Correction to finding 2 above (cadence):** with the skill now actually readable, the profile says Day 0/3/7 and the skill says Day 1/4/8. Still the same cadence — both are +3 then +4 — so this remains notation, not behaviour. Worth aligning, not urgent.
+
 ## Open threads
 
 | # | Thread | Owner | Raised | Blocking |
@@ -122,3 +146,5 @@ These are defects in **existing** files. The build was scoped not to touch the 1
 | 7 | Fix the `satlas-cold-email` skill's references path | Eikko | 2026-08-25 | Any agent following the declared pointer |
 | 8 | Confirm `copywriter` delegation fires end-to-end on the first real `@cmo` run | Eikko | 2026-08-25 | Untested — registry needed a restart |
 | 9 | Document Satlas's launch approval authority (can Ally sign off?) | Eikko | 2026-08-25 | Phase 6 gate has no named owner |
+| 10 | Resolve the Hillary — Finance Broker 4-step vs 3-email rule contradiction | Eikko + Chris | 2026-08-25 | Any new finance-broker copy |
+| 11 | Fold the signature spec + Spencer/Chris review gate into `copywriter.md`'s Satlas line | Eikko | 2026-08-25 | Copy shipping unsigned or unreviewed |
