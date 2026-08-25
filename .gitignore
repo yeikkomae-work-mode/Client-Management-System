@@ -11,3 +11,20 @@ PROJECTS/Active/smartlead-pipedrive-automation/
 
 # Master reference doc with live API keys written out in plaintext
 RESOURCES/Tools & API Details/tools_api_details.md
+
+# ── Added 2026-08-25: pre-push safety exclusions ──────────────────
+
+# Nested automation repo (has its own .git + live .env with Smartlead/
+# Pipedrive/Gmail API keys). Moved from PROJECTS/Active to ARCHIVE.
+ARCHIVE - Inactive Automations/smartlead-pipedrive-automation/
+
+# 50 rows of live mailbox email + PLAINTEXT PASSWORD for Albert Scott
+RESOURCES/Tools & API Details/Albertscott Domains and Emails/Premium Inboxes.csv
+
+# Local sync config (copy .env.example -> .env)
+.env
+
+# Editor/tooling noise
+*.bak-*
+.claude-dashboard/logs/
+**/node_modules/
