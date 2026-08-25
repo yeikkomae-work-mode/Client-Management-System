@@ -33,8 +33,28 @@
 | Lemlist | ⚫ No connector | Browser-only |
 | LinkedIn (personal profiles) | ⚫ No connector | No API path; browser-assisted only, and LinkedIn flags automated activity — keep to drafting, not unattended posting |
 | Asana, ClickUp, Trello | ⚫ Not in use | Task tracking currently lives in markdown files (`PROJECTS/Active/`) and Google Sheets, not a PM tool |
-| Higgsfield | 🟡 Connected, unusable | MCP connector is live and authenticated, but the account is `plan_type: free` with **0 credits** — verified live 2026-08-25 via `balance`. Every `generate_image` / `generate_video` / Marketing Studio / `virality_predictor` call will fail. Read-only tools (`show_generations`, `show_medias`, `balance`, `models_explore`) work fine. `brand-agent` must check the balance before planning any generation phase, not discover this mid-run. |
-| 21st (21st.dev) | 🟡 Not configured | MCP needs a free API key from 21st.dev/mcp — not set up. Per-component installs still work without it: `npx shadcn@latest add "<21st.dev component url>"`. Used by `brand-agent` Phase 5. |
-| Arcads | ⚫ No integration | By design — no native Claude Code path. `brand-agent` drafts UGC scripts and hands them off to their web platform for production. |
+| Higgsfield | 🟡 Connected, unusable | MCP connector is live and authenticated, but the account is `plan_type: free` with **0 credits** — verified live 2026-08-25 via `balance`. Every `generate_image` / `generate_video` / Marketing Studio / `virality_predictor` call will fail. Read-only tools (`show_generations`, `show_medias`, `balance`, `models_explore`) work fine. `cmo` (Brand mode) must check the balance before planning any generation phase, not discover this mid-run. |
+| 21st (21st.dev) | 🟡 Not configured | MCP needs a free API key from 21st.dev/mcp — not set up. Per-component installs still work without it: `npx shadcn@latest add "<21st.dev component url>"`. Used by `cmo` Brand mode, Phase 5. |
+| Arcads | ⚫ No integration | By design — no native Claude Code path. `cmo` (Brand mode) drafts UGC scripts and hands them off to their web platform for production. |
 
 **Rule for all agents:** if a task needs a 🔴 or 🟡 or ⚫ item, say so plainly and use the fallback (manual log, browser check, or flag-for-Eikko) instead of reporting fabricated live data.
+
+---
+
+## Standing rules
+
+*Agent-writable section. Status rows above are human-verified; this section is not. Every entry is dated and attributed to the agent that added it. Added 2026-08-25 per Amendment C2.*
+
+- **2026-08-25 (`cfo`) — All client tools are client-paid unless explicitly documented otherwise.** Apollo, Smartlead, PlusVibe, Instantly, Porkbun, Zapmail, InboxKit, Hostinger and MillionVerifier run on the client's account and bill to the client. They are not part of Eikko's expense base. Eikko's own base is the internal stack, of which Claude (~₱7,000/mo) is roughly 92%. Cost detail: `OUTPUT/Monthly Reports/Tools & Subscriptions Register.md`.
+- **2026-08-25 (`cto`) — A scheduled task is only real once it appears in the scheduled-task list after creation, and that verification is reported.** Documentation is not evidence. Use the remote scheduled-task tools; local cron dies with the session and the task silently never runs.
+
+## Write authority
+
+| Who | May write |
+|---|---|
+| **Eikko (human)** | Everything, including all `Status` values. |
+| **`cfo`** | Its own cost-related rows and fields, dated and attributed. **Never a `Status` value.** (Eikko's explicit decision, 2026-08-25.) |
+| **Any agent** | The `## Standing rules` section only, dated and attributed. |
+| **Everyone else** | Read-only. Report what you observed; let Eikko update the row. |
+
+Allowing an agent to write rows here weakens the human-verified guarantee that makes this file trustworthy. That trade-off was stated and accepted for `cfo`'s cost rows only. If `cto`'s drift check finds an agent-written row contradicting live observation, that is reported loudly, not quietly fixed.
