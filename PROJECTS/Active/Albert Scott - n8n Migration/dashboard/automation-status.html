@@ -1,0 +1,497 @@
+<title>Automation Status Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground:      #F1F3F5;
+    --surface:     #FFFFFF;
+    --surface-2:   #E8EDF1;
+    --ink:         #10161C;
+    --ink-2:       #47535E;
+    --muted:       #79858F;
+    --line:        #D7E0E6;
+    --line-soft:   #E4EAEE;
+
+    --accent:      #146A5C;
+    --accent-bg:   #DCEEE8;
+    --warn:        #9B5B0E;
+    --warn-bg:     #F5E6CF;
+    --critical:    #A5312F;
+    --critical-bg: #F6DEDD;
+    --idle:        #5B6672;
+    --idle-bg:     #E4E8EB;
+
+    --shadow: 0 1px 2px rgba(16,22,28,.05), 0 8px 22px -12px rgba(16,22,28,.16);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0E1317;
+      --surface:     #161C21;
+      --surface-2:   #1F262C;
+      --ink:         #E7ECEF;
+      --ink-2:       #B6C0C7;
+      --muted:       #83909A;
+      --line:        #2B333A;
+      --line-soft:   #232A30;
+
+      --accent:      #4FBFA8;
+      --accent-bg:   #133029;
+      --warn:        #E0A94E;
+      --warn-bg:     #332711;
+      --critical:    #E48885;
+      --critical-bg: #331918;
+      --idle:        #9AA5AF;
+      --idle-bg:     #232A30;
+
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 26px -14px rgba(0,0,0,.65);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:      #0E1317;
+    --surface:     #161C21;
+    --surface-2:   #1F262C;
+    --ink:         #E7ECEF;
+    --ink-2:       #B6C0C7;
+    --muted:       #83909A;
+    --line:        #2B333A;
+    --line-soft:   #232A30;
+
+    --accent:      #4FBFA8;
+    --accent-bg:   #133029;
+    --warn:        #E0A94E;
+    --warn-bg:     #332711;
+    --critical:    #E48885;
+    --critical-bg: #331918;
+    --idle:        #9AA5AF;
+    --idle-bg:     #232A30;
+
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 26px -14px rgba(0,0,0,.65);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Public Sans", system-ui, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 44px 28px 80px;
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  code, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    padding-bottom: 22px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 30px;
+  }
+  .masthead-left { max-width: 62ch; }
+  .kicker {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 3.6vw, 36px);
+    letter-spacing: -.015em;
+    line-height: 1.08;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .masthead-meta {
+    text-align: right;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .masthead-meta a { color: var(--ink-2); }
+
+  /* ---------- overall state banner ---------- */
+
+  .state-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--warn-bg);
+    border: 1px solid color-mix(in srgb, var(--warn) 35%, var(--line));
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+  }
+  .state-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--warn);
+    flex: none;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--warn) 18%, transparent);
+  }
+  .state-banner p { margin: 0; font-size: 14.5px; color: var(--ink); }
+  .state-banner strong { font-weight: 700; }
+
+  /* ---------- branch cards ---------- */
+
+  .branches {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  @media (min-width: 760px) { .branches { grid-template-columns: 1fr 1fr; } }
+
+  .branch-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .branch-head {
+    padding: 18px 20px 16px;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .branch-name {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -.005em;
+    margin: 0 0 4px;
+  }
+  .branch-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .pill {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex: none;
+  }
+  .pill-idle    { background: var(--idle-bg);    color: var(--idle); }
+  .pill-warn    { background: var(--warn-bg);    color: var(--warn); }
+  .pill-live    { background: var(--accent-bg);  color: var(--accent); }
+  .pill-crit    { background: var(--critical-bg);color: var(--critical); }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .stat {
+    padding: 16px 18px;
+    border-right: 1px solid var(--line-soft);
+  }
+  .stat:last-child { border-right: 0; }
+  .stat-num {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: .01em;
+  }
+
+  .branch-foot {
+    padding: 13px 20px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- section headings ---------- */
+
+  h2 {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -.01em;
+    margin: 0 0 4px;
+  }
+  .section-sub {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin: 0 0 16px;
+    max-width: 68ch;
+  }
+  section { margin-bottom: 40px; }
+
+  /* ---------- checklist ---------- */
+
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .check-item {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .check-item:last-child { border-bottom: 0; }
+  .check-mark {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .check-mark.done { background: var(--accent-bg); color: var(--accent); }
+  .check-mark.pending {
+    background: transparent;
+    border: 1.5px solid var(--muted);
+    color: transparent;
+  }
+  .check-text { font-size: 14px; }
+  .check-text strong { font-weight: 600; }
+  .check-detail { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .check-tag {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ---------- activity feed ---------- */
+
+  .feed-empty {
+    background: var(--surface);
+    border: 1px dashed var(--line);
+    border-radius: 6px;
+    padding: 34px 24px;
+    text-align: center;
+  }
+  .feed-empty p { margin: 0 auto; max-width: 46ch; color: var(--muted); font-size: 14px; }
+  .feed-empty .feed-empty-title {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 13.5px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  thead th {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--surface-2);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12.5px; color: var(--ink-2); }
+
+  footer {
+    margin-top: 46px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  footer .mono { color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-left">
+      <p class="kicker">Albert Scott · Automation Status</p>
+      <h1>Reply &amp; Booking Automation</h1>
+    </div>
+    <div class="masthead-meta">
+      <div>Synced <span class="mono">2026-08-25 08:26 UTC</span></div>
+      <div><a href="https://eikko.app.n8n.cloud/workflow/H5tFVaQm6MWayvv4" target="_blank" rel="noopener">Open in n8n →</a></div>
+    </div>
+  </header>
+
+  <div class="state-banner">
+    <span class="state-dot" aria-hidden="true"></span>
+    <p><strong>Not syncing yet.</strong> The workflow is built and live in n8n, but no credentials are attached and the log sheet's second tab hasn't been created — see the checklist below. This page will start showing real activity once both branches can actually run.</p>
+  </div>
+
+  <div class="branches">
+
+    <article class="branch-card">
+      <div class="branch-head">
+        <div>
+          <h3 class="branch-name">Calendly Bookings</h3>
+          <p class="branch-sub">Webhook → Pipedrive lead → domain block</p>
+        </div>
+        <span class="pill pill-idle">Awaiting setup</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Bookings today</div></div>
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Leads created</div></div>
+        <div class="stat"><div class="stat-num">—</div><div class="stat-label">Last booking</div></div>
+      </div>
+      <div class="branch-foot">
+        <span>Trigger: Calendly webhook</span>
+        <span>Log tab: <span class="mono">calendly-log</span></span>
+      </div>
+    </article>
+
+    <article class="branch-card">
+      <div class="branch-head">
+        <div>
+          <h3 class="branch-name">Smartlead Reply Triage</h3>
+          <p class="branch-sub">Hourly poll → Claude Opus 5 classifier → Pipedrive / block</p>
+        </div>
+        <span class="pill pill-idle">Awaiting setup</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Replies today</div></div>
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Synced to CRM</div></div>
+        <div class="stat"><div class="stat-num">—</div><div class="stat-label">Last run</div></div>
+      </div>
+      <div class="branch-foot">
+        <span>Trigger: Every Hour</span>
+        <span>Log tab: <span class="mono">inbox-sync-log</span></span>
+      </div>
+    </article>
+
+  </div>
+
+  <section id="setup">
+    <h2>Setup checklist</h2>
+    <p class="section-sub">What's standing between this board and real activity. Checked items are confirmed done as of the last sync above.</p>
+
+    <div class="checklist">
+      <div class="check-item">
+        <span class="check-mark done">✓</span>
+        <div>
+          <div class="check-text"><strong>Workflow built</strong> — 51 nodes, both branches, live in n8n</div>
+        </div>
+        <span class="check-tag">done</span>
+      </div>
+      <div class="check-item">
+        <span class="check-mark done">✓</span>
+        <div>
+          <div class="check-text"><strong>Log spreadsheet created</strong> — "Albert Scott - n8n Automation Log"</div>
+          <div class="check-detail">First tab seeded with the calendly-log header row</div>
+        </div>
+        <span class="check-tag">done</span>
+      </div>
+      <div class="check-item">
+        <span class="check-mark pending"></span>
+        <div>
+          <div class="check-text">Rename the default <strong>Sheet1</strong> tab to <strong>calendly-log</strong></div>
+        </div>
+        <span class="check-tag">manual, ~10s</span>
+      </div>
+      <div class="check-item">
+        <span class="check-mark pending"></span>
+        <div>
+          <div class="check-text">Add a second tab named <strong>inbox-sync-log</strong> with its header row</div>
+          <div class="check-detail">timestamp, campaign, lead_name, lead_email, category_applied, confidence, pipedrive_action, domain_blocked, reply_excerpt</div>
+        </div>
+        <span class="check-tag">manual, ~30s</span>
+      </div>
+      <div class="check-item">
+        <span class="check-mark pending"></span>
+        <div>
+          <div class="check-text">Attach 5 credentials in n8n: <strong>Calendly, Pipedrive, Google Sheets, Smartlead, Anthropic</strong></div>
+          <div class="check-detail">Pipedrive and Google Sheets are shared across both branches once set</div>
+        </div>
+        <span class="check-tag">manual, n8n UI</span>
+      </div>
+      <div class="check-item">
+        <span class="check-mark pending"></span>
+        <div>
+          <div class="check-text">Fill in 3 Pipedrive owner-ID placeholders</div>
+          <div class="check-detail">Create Organization / Create Person / Create Lead, on the Calendly branch</div>
+        </div>
+        <span class="check-tag">manual, n8n UI</span>
+      </div>
+      <div class="check-item">
+        <span class="check-mark pending"></span>
+        <div>
+          <div class="check-text">Shadow-run the classifier against live replies before trusting it unattended</div>
+        </div>
+        <span class="check-tag">verification</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="activity">
+    <h2>Recent activity</h2>
+    <p class="section-sub">Every booking synced and every reply triaged, most recent first. Pulled from both log tabs on each daily sync.</p>
+
+    <div class="feed-empty">
+      <div class="feed-empty-title">No runs recorded yet</div>
+      <p>Once credentials are attached and the workflow starts firing, bookings and triaged replies will appear here — refreshed once a day.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Source: <span class="mono">Albert Scott - n8n Automation Log</span> (Google Sheets), tabs <span class="mono">calendly-log</span> + <span class="mono">inbox-sync-log</span></span>
+    <span>Refreshes daily · next sync ~24h after last</span>
+  </footer>
+
+</div>
