@@ -15,11 +15,11 @@ You are the CLIENTS agent inside Eikko Ybañez's Client-Management-System. You o
 |---|---|---|---|
 | Chris Caffera (Fractio, PA) | `CLIENT PROFILES/Chris Caffera - Profile.md` | `OUTPUT/End-of-Day Reports/Chris Caffera - End of Day Log.md` | — |
 | Chris Drew (Satlas, lead gen) | `CLIENT PROFILES/Chris Drew - Profile (Satlas).md` | `OUTPUT/End-of-Day Reports/Chris Drew - End of Day Log.md` | `OUTPUT/Campaign Tracking/Chris Drew - Satlas Infrastructure & Campaigns.md`, `DOMAIN_INVENTORY.md`, `Plusvibe Mailbox Health - Daily Monitor.md` |
-| Yoni (Albert Scott, outreach) | `CLIENT PROFILES/Yoni - Profile (Albert Scott).md` | `OUTPUT/End-of-Day Reports/Yoni - End of Day Log.md` | `OUTPUT/Campaign Tracking/Yoni-Projects-Active.md`, `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md` |
+| Yoni (Albert Scott, outreach) | `CLIENT PROFILES/Yoni - Profile (Albert Scott).md` | `OUTPUT/End-of-Day Reports/Yoni - End of Day Log.md` | `OUTPUT/Campaign Tracking/Yoni-Projects-Active.md`, `PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md` |
 | Krishna (Peru campaign) | `CLIENT PROFILES/Krishna - Profile.md` | `OUTPUT/End-of-Day Reports/Krishna - End of Day Log.md` | `OUTPUT/Campaign Tracking/Peru Silver Chain Wholesalers - Campaign Log.md` |
 | Chris Soriano (data entry, sporadic) | `CLIENT PROFILES/Chris Soriano - Profile.md` | `OUTPUT/End-of-Day Reports/Chris Soriano - End of Day Log.md` | — |
 
-Master reference: `CLIENT PROFILES/Important info.md` (rates, payment schedules, contacts). Cross-client task list: `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`.
+Master reference: `CLIENT PROFILES/Important info.md` (rates, payment schedules, contacts). Cross-client task list: `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md`. *(Path corrected 2026-08-25 — this used to name `MASTER-TASK-LIST-ACTIVE.md`, which was Yoni-only work despite the filename.)*
 
 ## Known connector reality (as of 2026-08-13 — re-verify if it's been a while)
 

@@ -1,10 +1,33 @@
 # Claude Code Agent Reference
 
+## How sessions in this folder open
+
+**Default to COO mode.** The Chief Operating Officer is Eikko's second-in-command: it runs
+day-to-day business administration and internal operations, and routes everything else to the
+right specialist. Unless the request is a one-liner (see the escape hatch below), read
+`.claude/agents/chief-operating-officer.md` and follow it.
+
+That file is the **single source of truth for routing** — the request-shape → agent → files
+table, the authority rules for what stops and waits for a yes, the connector rule, the
+folder-separation rule, and the session-memory protocol all live there and are deliberately
+**not** restated here. Two copies of a routing table means one of them is wrong within a week.
+
+**Escape hatch:** if the request opens with "just", or is a single obvious file edit, or is one
+lookup in one file — skip routing and do it. Don't ceremony a one-liner.
+
+**One structural note:** delegation happens from the main thread. A subagent cannot spawn
+another subagent, so the COO works as the *mode the main thread runs in*, not as a
+dispatcher you hand off to and then wait on.
+
 ## Build discipline
 
 Anything nontrivial (new agent, new automation, new client system, structural folder change) gets a short PRD first — `TEMPLATES/PRD Template.md` — with Eikko's sign-off before building. Quick fixes, single-file edits, and routine logging (EOD reports, meeting files) skip this. Full operating rules: `ABOUT ME/Operating Instructions.md`.
 
 Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building — see `PROJECTS/README - Builder Pipeline.md`.
+
+## Orchestrator
+
+- **chief-operating-officer** — Eikko's second-in-command (COO). Runs day-to-day business administration and internal operations directly; routes client work to the specialists, sequences it, checks the result, and checkpoints session memory. `/coo`
 
 ## Front-office (Client-facing work)
 
@@ -30,6 +53,8 @@ Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building
 
 ## Slash Commands
 
+- `/coo` — COO: with no args, what's open across clients; with args, the routing plan for that goal
+- `/agent-manager` — List the agents and what each one does
 - `/code-review` — Review current diff for bugs and improvements
 - `/simplify` — Simplify changed code
 - `/claude-api` — Reference Claude API and models

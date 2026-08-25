@@ -751,847 +751,847 @@ window.__DASHBOARD_DATA__ = {
         {
           "status": "done",
           "text": "Tracking enabled on all 13 active campaigns (confirmed via SmartLead support chat, Aug 10)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Daily send limits cut to 20/mailbox/day (from 12+); goal to return to 30 once reputation recovers",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Time Doctor screencast settings fixed (Aug 11 \u2014 confirmed by Eikko)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Reduce daily send limits further to 10-12/mailbox/day (SmartLead's recommendation, tighter than the 20/day already applied) until bounce rate is under 4%, ta\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Reconnect/unblock the 20 warmup-blocked mailboxes (OAuth reconnect or clear bounce threshold)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Audit last 7 days of bounces by type (hard vs. soft) to find bad list/domain sources",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Mix in 30-40% HTML emails across the 11 plain-text campaigns",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Confirm \"stop on reply\" is enabled so engaged leads don't get unnecessary follow-ups",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Research plain-text vs. HTML mode fully; confirm SmartLead's 28-day reputation window; share findings with Yoni",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Hourly monitoring setup during work hours (login to logout)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Clarify hourly check implementation:",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Email Copy Polish (ALL 3 EMAILS) \u2014 grammar/tone pass done across all 9 spintax variations",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Subject Line Fixes \u2014 capitalization strategy applied across all 3 emails",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "First Name Field \u2014 {{first_name}} merge field verified",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Messaging Improvements \u2014 Atlas Olive Oils example, CTA phrasing, Amazon/Amazon US wording finalized",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Email Account Validation \u2014 12 accounts checked (warmup/day cap settings)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Campaign Settings Review \u2014 sequence timing, volume cap, 72 leads, subsequence confirmed",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Launch \u2014 campaign live",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Deduplication & Organization",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Cross-Reference with Google Drive",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Deliverable",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Replace Mouth Watchers case study with BeYoutiful (correct spelling, no invented/borrowed numbers) \u2014 done Aug 11, then superseded by Yoni's own final revision",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Vary \"toy and game brands\" phrasing \u2014 fixed Aug 11",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "9 spintax variations doc compiled and sent to Yoni for review",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Yoni reviewed and sent back his own final revised copy (Google Doc) \u2014 pulled, converted to spintax, and saved live to Smartlead campaign 3771090 (all 3 seque\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Leads loaded into campaign 3771090",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Campaign flipped to ACTIVE and sending",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Sending schedule live: Mon-Fri, 9am-6pm ET",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Track opens/replies/bounces on this campaign now that tracking is confirmed on",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Watch for early bounce-rate signal given the fleet-wide deliverability issue (Section 0)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Source 1: Smartlead",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Source 2: Google Drive",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Consolidation & Dedup",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Create Smartlead Campaign",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build 5-Email Sequence",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Messaging Framework",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Polish & Validation",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Campaign Settings",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Launch",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Check all email accounts used in campaigns",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Settings Review:",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Deliverable",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Campaign data pull missed \"Sweets and Snacks\" campaign (June 1)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Master list discrepancy (240K lines vs. 117K unique contacts)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Research how to create a shared Claude project both Eikko and Yoni can access",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Propose setup to Yoni (standard workflow: create a \"Project\" e.g. \"Yoni SmartLead,\" then \"Artifacts\" within it for specific tasks like weekly reports or camp\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Collaborate with Yoni on migrating/rebuilding the SEO project under shared access",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Define a repeatable process for shared development on future Claude projects",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Transfer the existing SmartLead\u2194Pipedrive Claude automation system to Yoni's own Claude account",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build single Claude interface to: pull Yoni's outstanding Pipedrive tasks, synthesize full SmartLead + Gmail conversation history, draft/send replies via Cla\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Phase 1: Data cleaning & enrichment \u2014 Claude researches each brand for correct website domain + parent company name/domain (e.g. \"Crunch\" \u2192 \"Ferrero\")",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Phase 2: Contact acquisition (TBD) \u2014 use Apollo/LinkedIn to find contacts for the enriched list",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Phase 3: Hyper-personalized outreach \u2014 Claude drafts emails using SmartScout data (est. monthly revenue, number of sellers) for relevance",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build Claude-driven system to track and re-engage past leads who expressed interest, so no opportunities are lost",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Meta Ads Director: Claude manages strategy, budgeting, execution, reporting, ROI optimization",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "LinkedIn Ads Strategist: Claude develops and launches LinkedIn ad campaigns",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "LinkedIn Outreach Agent: content creation (Amazon-related posts for Yoni's approval) + connection request management",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Research and experiment with Claude for LinkedIn outreach",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Eikko: send new SmartLead API key to Shimi",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Shimi: use the new API key to fix the connector on Yoni's account",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Eikko: send screenshot of the Pipedrive connector request to Yoni \u2192 Yoni forwards to Shimi",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Yoni: notify Eikko once the connector is confirmed fixed",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Eikko: set up the SmartLead\u2194Pipedrive automation on Yoni's own Claude account, using Smartlead-Pipedrive-Automation-Workflow.md \u2014 done Aug 11",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Eikko: executed live setup via Claude Code on the web (SmartLead custom client + Pipedrive MCP connector) \u2014 confirmed working Aug 12, documented in Yoni - Li\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Verified directly against the live repo (salesmanager-crypto/smartlead-api-client) \u2014 automation transfer confirmed real and running (scheduled sync prompt wi\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "\u26a0\ufe0f CONFIRM: was the SmartLead API key that got pasted into chat during setup actually rotated? Repo inspection CANNOT answer this (no GitHub Advanced Securit\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Wire a permanent ProxyAgent into client.js so NODE_USE_ENV_PROXY=1 isn't a manual flag going forward \u2014 confirmed still not done as of Aug 12",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Fix leads:block hardcoded client_id: null in src/cli.js \u2014 confirmed still present as of Aug 12",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Test the automation on Yoni's account end-to-end",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Fancy Foods: 3-step, 9-variant spintax email sequence built and saved to Smartlead (campaign 3792273, \"Eikko - Fancy Foods Q4\"), tracking + HTML enabled from\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Fancy Foods: lead list cleaning/consolidation complete (Aug 11)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Fancy Foods email sequence ON HOLD \u2014 do not load leads or schedule until Yoni reviews the 9-variant copy and signs off",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Export leads from all relevant SmartLead campaigns per search term (Winter Fancy Fair, Sweets & Snacks, Expo West)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Pull matching leads from the master Drive sheet (status: New, Qualified, or blank)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Consolidate into one sheet per campaign, dedupe by email (preserve unique contacts sharing a name)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Verify emails (QuickEmailVerification, same as Toy Fair)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Create a new master \"lead-lists\" Drive folder, move the Toy Fair list into it, grant Claude access",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build order: Fancy Foods (copy + leads done, awaiting Yoni review) \u2192 Winter Fancy Fair \u2192 Sweets & Snacks \u2192 Expo West",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Confirmed all 7 requested mailbox domains already provisioned on Toy Fair Q4 (21 accounts: albertscottexperts.com, albertscottcommerce.com, albertscottoutrea\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Pulled Toy Fair Q4 settings as the template (tracking on, HTML on, Mon-Fri 9am-6pm ET, stop-on-reply, 70% follow-up)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Pulled tone reference from historical campaigns: Winter Fancy Fair (id 2873879), Sweets and Snacks q4 strategy (id 2764360), Expo West intro (id 2971319)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Drafted case study assignments: Winter Fancy Fair \u2192 Atlas Olive Oils, Sweets & Snacks \u2192 Human Beanz, Expo West \u2192 Nora Seaweed Snacks",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Not yet created \u2014 no campaigns exist in SmartLead for these 3 yet. Yoni to build on his own Claude account using the prep above (see EOD log Aug 14 entry for\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Fancy Foods (3792273) still needs Toy Fair Q4 settings + 7-domain mailboxes applied \u2014 not yet done, also queued for Yoni's account",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Eikko: refine the Claude prompt to ensure it reads all 15 tabs and understands the model's full purpose/logic before generating projections",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Test against the shared template sheet",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Eikko: research cost and implementation details for the Cloud Code / GitHub script approach",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Campaign search by keyword (found 2 \"Winter Fancy Fair\"-type campaigns using \"winter\"/\"fancy fair\"/\"WFF\")",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Lead export from those campaigns (866 leads) \u2014 matched a prior manual pull exactly",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Connect Google Calendar to Claude for a complete daily meeting digest (update the morning script)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build the post-meeting flow: Claude pulls BlueDot summary + recording link \u2192 adds as a note on the matching Pipedrive deal",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build a Claude flow: pull all overdue Pipedrive activities for Yoni's owner ID (26939288) + each lead's full SmartLead conversation history, surfaced togethe\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build a reusable Claude template for rapid campaign creation (3-email sequence, day intervals, spintax variations) \u2014 same pattern already used for Toy Fair/F\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "First use: build the Winter Fancy Fair campaign with it",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Eikko: send Yoni Apify links (Amazon seller email scraper, webinar scraper) + research other Apify use cases beyond lead scraping",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Yoni: ask Shlomo about SmartScout's plan/API access (API requires Business/Enterprise plan); coordinate with Shimi on the Claude connector",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Interim: export SmartScout brand lists as CSV for manual Claude processing",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Full pipeline once ready: SmartScout brand export (e.g. Grocery, $200K-$30M revenue) \u2192 Claude enriches parent company/domain \u2192 Apify scrapes targeted contact\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Define lead parameters, then generate a report on all Pipedrive leads: source, status, reason not closed \u2014 to inform a re-engagement strategy for stalled hig\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build a Claude agent giving Yoni a high-level overview across all projects/tasks",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Create a timeline covering Claude/SmartLead/Pipedrive/SmartScout/Apify rollout",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Remove all blacklisted accounts from every active SmartLead campaign",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Cancel the blacklisted accounts",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Purchase replacement mailboxes",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Update Toy Fair Q4X specifically to use only non-blacklisted inboxes",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Audit SmartLead provider-matching; confirm all (non-blacklisted) mailboxes are actually in use",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Coordinate cancellation/reprovisioning timeline",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Claude learns tone/style from existing email sequences",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Create a general email guideline doc for Claude to reference",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Claude creates campaigns end-to-end: writes copy for Yoni's approval, configures settings (timezone, schedule)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Inbox strategy: use all available non-blacklisted inboxes on every campaign to maximize send volume",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Define SmartLead best-practice settings and apply to new campaigns",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build Claude flow to find company domain + parent company for a 100-brand sample (rows 1001-1100 of the 6k-item SmartScout list \u2014 mid-tier sample, not top br\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Use SmartScout cols C, D, Z",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Add 2 Natural Products Expo West lists to the master list; dedupe",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Test 4 Apify scrapers against a 100-seller sample (from an 8,374-item list) to find one accepting Seller ID/Seller Name as input, returning emails",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Report findings to Yoni",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Future: use Amazon seller business names (SmartScout col L) with Apollo to find emails",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Build a Claude agent to auto-extract tasks/action items from meeting transcripts (reduces manual EOD-log/tracker processing)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Send Yoni the meeting transcript summary from this meeting",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Claude: find each SmartScout brand's + parent company's official LinkedIn profile (rows 1001-1100 sample)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Claude: identify the right decision-maker per brand (e-commerce director, VP, etc., based on company size)",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Produce a target-contact list with LinkedIn URLs",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Scrape emails from that list via external tool (LinkedIn scraper or Fiverr freelancer) \u2014 Apollo subscription not approved, so no direct Apollo email lookup",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Prepare a detailed written plan for Monday's review with Yoni",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Verify independently using external blacklist-checker tools before treating the 90% figure as real \u2014 confirmed still open as of Aug 18 GitHub audit: no diagn\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Report findings to Yoni",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "\"Create Campaigns\" Claude agent operational \u2014 automates campaign setup, generates spintax-ready sequences for review (this is Section 14a, now live). Note: d\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Claude agent for interactive SmartLead analytics dashboard built on branch claude/campaign-analytics-reporting-ui39uf: core computation module, CLI, self-con\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Scope: all campaigns created after July 1, 2026 \u2014 implemented",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Cadence: on-demand + weekly \u2014 implemented",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Alert threshold: bounce rate above average \u2014 implemented, plus a fix (Aug 14) so tracking-disabled campaigns don't get false-flagged for \"0 opens\"",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Reorganized for presentation (exec summary, anchor nav, print styles) \u2014 Aug 17",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Research Arc Ads (AI UGC video creator) + Yoni's in-progress \"Arc Ads specialist\" Claude agent",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Lead-list/export tooling built out extensively (branch claude/smartlead-export-leads-csv-30x469, Aug 13-17): Google Drive integration, Google Sheets client,\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Bug fix: SmartLead's /campaigns/{id}/status endpoint requires POST not PATCH (was 404ing) \u2014 fixed Aug 14, affects start/pause/stop campaign calls.",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "Domain-block standing rule updated \u2014 synced into Smartlead-Pipedrive-Automation-Workflow.md (see Section 3/5 of that doc): OOO and Wrong Person replies are n\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "done",
           "text": "New reference doc: \"Email deliverability roles/responsibilities\" (Aug 13).",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "Apify integration \u2014 only an APIFY_TOKEN placeholder added (Aug 17). No scraper script, no seller-sample test run yet.",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "LinkedIn brand-contact targeting flow (Section 15a) \u2014 zero repo evidence. Needs to be built before Monday's review.",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
           "status": "todo",
           "text": "~54 blacklisted mailbox removal/replacement (Section 14) \u2014 can't be confirmed or denied via repo (SmartLead-dashboard action, not a code change). Confirm dir\u2026",
-          "sourceFile": "MASTER-TASK-LIST-ACTIVE.md",
+          "sourceFile": "YONI-TASK-LIST-ACTIVE.md",
           "bucket": "Active"
         },
         {
@@ -1761,9 +1761,9 @@ window.__DASHBOARD_DATA__ = {
         "isDir": false
       },
       {
-        "name": "MASTER-TASK-LIST-ACTIVE",
+        "name": "YONI-TASK-LIST-ACTIVE",
         "modified": "2026-08-18T04:34:09.533135+00:00",
-        "relPath": "PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md",
+        "relPath": "PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md",
         "isDir": false
       },
       {

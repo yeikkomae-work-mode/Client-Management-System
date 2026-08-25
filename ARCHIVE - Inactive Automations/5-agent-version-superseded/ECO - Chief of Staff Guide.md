@@ -1,10 +1,57 @@
-# ECO — Claude Code Chief of Staff — Full Guide
+# ECO — Claude Code Chief of Staff — Full Guide  *(HISTORICAL)*
+
+> # ⚠️ HISTORICAL — superseded, kept for reference. Do not follow this as current.
+>
+> **Archived:** 2026-08-25. **Nothing here was deleted** — this is the original document, moved.
+>
+> **What superseded it:**
+> - The **5-agent ECO framework** it describes (CLIENTS · COMMS · OPS · METRICS · STRATEGY) was
+>   replaced on 2026-08-13 by the 10-agent front-office/back-office team in `.claude/agents/`.
+>   Those five agent files are archived alongside this one in this same folder.
+> - The **"chief of staff" role** it describes was rebuilt on 2026-08-25 as a real Claude Code
+>   agent — and **renamed**. The current role is the **Chief Operating Officer**:
+>   **`.claude/agents/chief-operating-officer.md`**, with `/coo` as its slash command. That file —
+>   not this one — is the current source of truth for routing, authority rules, the connector
+>   rule, and the session-memory protocol.
+>
+> **On the name:** the current agent was briefly called `chief-of-staff` when first built on
+> 2026-08-25 and was renamed to `chief-operating-officer` the same day. The rename is why this
+> document's title no longer collides with anything live. Note there is still a *third*,
+> unrelated "Chief of Staff" in this system: a **client deliverable Yoni asked for**
+> (`PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md` §13f) — an agent giving Yoni an overview of his own
+> projects. Three different things, one phrase; only Yoni's is still called that.
+>
+> **What in here is still accurate, and where it actually lives now:**
+>
+> | Content below | Current home |
+> |---|---|
+> | Per-client emails, API accounts, Drive search terms | `TEMPLATES/01 Automation Daily Routine/CLIENT ACCOUNT MAPPING - CRITICAL.md` (still live, not archived) |
+> | Monthly goals — 84,000 PHP target / 112,000 stretch / 75,000 profit | `OUTPUT/Monthly Reports/Monthly Income & Expense Review.md` |
+> | Client rates | `CLIENT PROFILES/Important info.md` and each client's profile |
+> | Which tools are actually connected | `.claude/agents/_shared/connector-status.md` — the single source of truth. **Never** trust the tool list below |
+> | Task rollups / "what's on my plate" | `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md` |
+>
+> **Two things below are simply wrong now, not just stale:**
+> 1. **The client roster.** The narrative section names three clients (Yoni, Chris Caffera,
+>    Chris Drew) and the Quick Reference table covers five. The actual roster as of 2026-08-25 is
+>    eight: those three plus **Penji, Cüneyt (Starfix), Krishna, Chris Soriano, and Edward
+>    Lehner**. Working hours, rates, and tool mappings here are all missing the later five.
+> 2. **The `/clients`, `/comms`, `/ops`, `/metrics`, `/strategy` commands don't exist.** Nor do
+>    `@eco status`, `/focus`, or `/now`. The current commands are `/coo`, `/agent-manager`, and
+>    `/eod-sync`.
+>
+> **Reuse, don't reactivate.** The house-style spec, the operating rules (show the plan before
+> acting, report failures immediately, no "Great question" openers), and the account-segregation
+> rule are all still good and were carried forward into the current agents. Lift phrasing from
+> here if it's useful — don't rebuild the 5-agent system from it.
+
+---
 
 **Your AI personal assistant for multi-client management, task automation, and daily execution.**
 
 *(Consolidated from 5 companion docs that were built together as one onboarding kit and heavily overlapped — ECO - Claude Code Chief of Staff.md, ECO - Quick Start Guide.md, ECO - SETUP COMPLETE Checklist.md, ACTIVATE ECO - Step by Step.md, ECO QUICK REFERENCE - KEEP HANDY.md. Merged here into one reference. Originally created August 5, 2026.)*
 
-**Note on current status:** this describes the ECO framework/design, not live automation status. Per the actual scheduled-tasks system (checked 2026-08-13), most of the specific automations referenced below (email checks every 6h, client-session alerts, morning briefing) are **not currently running** — see `ARCHIVE - Inactive Automations/README.md` at the root of Client-Management-System for what's actually live today. Use this guide if reactivating or rebuilding the ECO system.
+**Note on current status (original, from 2026-08-13):** this describes the ECO framework/design, not live automation status. Per the actual scheduled-tasks system (checked 2026-08-13), most of the specific automations referenced below (email checks every 6h, client-session alerts, morning briefing) are **not currently running** — see `ARCHIVE - Inactive Automations/README.md` at the root of Client-Management-System for what's actually live today. Use this guide if reactivating or rebuilding the ECO system.
 
 ---
 
@@ -170,4 +217,4 @@ help [command]       → explains that command
 
 ---
 
-**Status:** Reference guide (not a live-status claim) | **Owner:** Eikko Ybañez (yeikkomae@gmail.com) | **Originally created:** August 5, 2026
+**Status:** ⚠️ HISTORICAL — archived 2026-08-25, superseded by `.claude/agents/chief-operating-officer.md` (see the banner at the top of this file). Originally filed as: Reference guide (not a live-status claim) | **Owner:** Eikko Ybañez (yeikkomae@gmail.com) | **Originally created:** August 5, 2026

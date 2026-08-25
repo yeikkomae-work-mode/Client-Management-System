@@ -3,9 +3,13 @@ description: List available client-management agents and what each one does
 argument-hint: "[agent-name] (optional — shows detail on one agent)"
 ---
 
-If `$ARGUMENTS` is empty, list all agents below with a one-line description each, grouped Front-office / Back-office.
+If `$ARGUMENTS` is empty, list all agents below with a one-line description each — the orchestrator first, then grouped Front-office / Back-office.
 
 If `$ARGUMENTS` names an agent, read `.claude/agents/$ARGUMENTS.md` (fuzzy-match on name) and summarize its scope, tools, model, and any per-client rules it contains.
+
+## Orchestrator (not part of the front/back-office split)
+
+- **chief-operating-officer** — Eikko's second-in-command (COO). Runs day-to-day business administration and internal operations directly; routes client work to the 10 specialists, sequences it, sanity-checks results, checkpoints session memory. Holds the routing table, authority rules, and session-memory protocol. Run `/coo`.
 
 ## Front-office (Client-facing work)
 
@@ -23,4 +27,6 @@ If `$ARGUMENTS` names an agent, read `.claude/agents/$ARGUMENTS.md` (fuzzy-match
 - **onboarding-guide** — New client setup, folder structure, onboarding checklist
 - **meeting-summarizer** — Call transcripts → minutes & action items
 
-To use one, either invoke it directly with the Agent tool by name, or just describe the task — Claude Code will route to the right agent based on its description.
+To use one, either invoke it directly with the Agent tool by name, or just describe the task — sessions in this folder default to COO mode and route for you (see the root `CLAUDE.md`), and Claude Code will also auto-pick a specialist from its description when the match is obvious.
+
+Delegation happens from the main thread — a subagent can't spawn another subagent — so the COO is the mode the main thread runs in, not a dispatcher to hand off to.
