@@ -133,6 +133,31 @@ Missing: the **signature spec** (name + phone + RANDOM close — profile line ~1
 
 **Correction to finding 2 above (cadence):** with the skill now actually readable, the profile says Day 0/3/7 and the skill says Day 1/4/8. Still the same cadence — both are +3 then +4 — so this remains notation, not behaviour. Worth aligning, not urgent.
 
+---
+
+## Third dry-run (2026-08-25) — nested delegation is a platform limit
+
+Re-ran with `Task` **and** `Agent` both declared. **Still no dispatch tool granted.** Two runs, both harnesses' tool names, same result: in this environment a subagent cannot spawn another subagent. Confirmed by inspection — none of the original 10 agents declares a dispatch tool either.
+
+**This is not fixable in a prompt.** `cmo.md` now handles it instead of dying on it: it checks its actual tool grant, and when no dispatch tool exists it completes intake/track-selection/brief, returns an explicit **run-list** (which agents, in what order, with the exact prompt for each including the resolved client key, brief path and skill path), and reports the delegated phases as **blocked, not completed**. It explicitly must not become the specialist and write the copy itself. Eikko or the top-level session runs the list.
+
+**Whether this also applies on Eikko's local Claude Code is untested** — `Task`/`Agent` stay declared so delegation works automatically if the local harness permits it.
+
+**Also fixed this round:** Step 0's shell snippets told a Bash-less agent to run `ls`/`grep` (now Glob-phrased); Step 0 said "read the skill" but not "enumerate `references/`", where the approved copy actually lives; Step 6 created the brief unconditionally with no dry-run carve-out; the stop-and-return gate had nowhere to record which phase it stopped at (**Engagement State** block added to the brief template); and `cmo`'s conflict rule now covers specs asserted by the *caller*, not just specs found in files.
+
+### 🔴 More for Eikko — existing files, out of scope
+
+**8. `copywriter.md` has no pointer to the Satlas skill.** Its Satlas paragraph cites only the profile. So even with delegation working, `copywriter` would most likely write from the profile summary alone and miss the approved copy, the spintax requirement and the merge-field syntax. `cmo.md` now passes the skill path in every handover, which mitigates it — but only for work routed through `cmo`. A direct `@copywriter` call still misses it. One line in `copywriter.md` closes it.
+
+**9. The profile and the skill specify two different 5-part structures.** Profile: Hook (specific stat) → Context → Proof (small number) → Ask → Signature. Skill `references/copywriting.md`: Relevant intro → Pain point → Solution → Soft CTA → Signature. The profile has a Proof slot and no Pain slot; the skill has a Pain slot and no Proof slot. **The launched copy follows the skill's version**, with the proof number folded into the Solution beat. `copywriter.md` restates the *profile's* version. Which is canonical?
+
+**10. Signature spec disagrees too.** Profile: "name + phone + RANDOM close." Skill: "Real name, company, phone." The approved copy uses `{{sender_signature}}` on Emails 1 and 3 and a bare first name on Email 2 — **no RANDOM close appears in any launched email**. The profile's version is not what shipped.
+
+**11. Approved finance-broker copy already exists — and the segment isn't live anywhere.**
+`references/copywriting.md` holds launched finance-broker copy verbatim (Email 1 Versions A and B, Email 2 A and B, Email 3 A, fully spintaxed, signed **Tremayne** — not Chris Drew). Meanwhile the four Instantly finance-broker segments are completed/archived and the only PlusVibe one ("Hillary — Finance Broker") sits in draft with zero leads. **So a "new finance-broker campaign" is really a refresh against approved assets, not a blank page** — and it maps directly onto the open "0.66% reply rate vs 2% target" thread. Worth framing that way before commissioning copy.
+
+**12. Cosmetic but corrosive:** the skill's spintax section is still headed **"Instantly copy format"** (line 39) though Instantly is dead and PlusVibe is live. The format carried over intact; only the heading is stale. It's the kind of thing that makes an agent distrust a file it should be following.
+
 ## Open threads
 
 | # | Thread | Owner | Raised | Blocking |
@@ -148,3 +173,9 @@ Missing: the **signature spec** (name + phone + RANDOM close — profile line ~1
 | 9 | Document Satlas's launch approval authority (can Ally sign off?) | Eikko | 2026-08-25 | Phase 6 gate has no named owner |
 | 10 | Resolve the Hillary — Finance Broker 4-step vs 3-email rule contradiction | Eikko + Chris | 2026-08-25 | Any new finance-broker copy |
 | 11 | Fold the signature spec + Spencer/Chris review gate into `copywriter.md`'s Satlas line | Eikko | 2026-08-25 | Copy shipping unsigned or unreviewed |
+| 12 | Add a Satlas skill pointer to `copywriter.md` | Eikko | 2026-08-25 | Direct `@copywriter` calls missing approved copy |
+| 13 | Decide the canonical 5-part structure — profile's or the skill's | Eikko + Chris | 2026-08-25 | Any conformance check on Satlas copy |
+| 14 | Decide the canonical signature spec (RANDOM close isn't in shipped copy) | Eikko + Chris | 2026-08-25 | Same |
+| 15 | Reframe the finance-broker ask as a refresh against approved copy, not a new write | Eikko | 2026-08-25 | Wasted work + ignoring launched assets |
+| 16 | Fix the skill's stale "Instantly copy format" heading | Eikko | 2026-08-25 | Nothing — cosmetic |
+| 17 | Test whether nested delegation works on Eikko's local Claude Code | Eikko | 2026-08-25 | Whether `cmo` can orchestrate directly or must return run-lists |

@@ -9,6 +9,20 @@
 
 ---
 
+## Engagement State
+
+**Read this first on every re-invocation — it's how a run picks up where the last one stopped.**
+
+| Field | Value |
+|---|---|
+| Last phase **completed** | [e.g. Phase 2 — ICP approved] |
+| Next phase **awaiting sign-off** | [e.g. Phase 3 — lead export, presented YYYY-MM-DD] |
+| Blocked phases | [phase + what's blocking it. A phase blocked by a missing tool or an unavailable delegation is **blocked, not completed** — say so here] |
+| Resolved client key | [the person-name key used in all filenames] |
+| Client skill path | [resolved path, or "checked all three locations, none found"] |
+
+---
+
 ## Engagement Scope
 
 **Active tracks:** [✅ Outbound / ⬜ SEO / ⬜ Brand — most engagements are outbound-only]
@@ -102,7 +116,7 @@
 
 [Outbound engagements only — delete if not applicable]
 
-**Sending platform:** [PlusVibe / Smartlead / Instantly / Apollo-native — and **which account**, per `_shared/connector-status.md`]
+**Sending platform:** [PlusVibe / Smartlead / Instantly / Apollo-native — and **which account**, per `.claude/agents/_shared/connector-status.md`]
 
 **Domains:** [count, registrar, owner of record]
 

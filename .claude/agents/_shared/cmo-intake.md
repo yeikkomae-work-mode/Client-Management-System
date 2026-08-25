@@ -2,7 +2,7 @@
 
 **Read by `cmo` at the start of every marketing engagement.** This replaces the three separate intake forms that used to live in the SEO, Brand & Marketing, and Outbound Outreach source prompts — those overlapped heavily on client/offer/URL and made a cold-email client sit through a full brand interview. One form now, scoped by track.
 
-**Companion file:** `_shared/connector-status.md` — check it before promising any tool. Never ask the client or Eikko to paste an API key into this form; keys live in `.env` and are referenced by variable name only.
+**Companion file:** `.claude/agents/_shared/connector-status.md` — check it before promising any tool. Never ask the client or Eikko to paste an API key into this form; keys live in `.env` and are referenced by variable name only.
 
 ---
 
@@ -12,9 +12,7 @@
 
 **First, resolve the client key.** Files in this system are keyed by **person name**, not company — the company sits in parentheses. Satlas is `Chris Drew - Profile (Satlas).md`; Starfix is `Cüneyt - Profile (Starfix).md`; Fractio is `Chris Caffera - Profile.md`, where the company isn't in the filename at all. A request phrased by company name will not glob. Resolve it before reading anything:
 
-```
-ls "CLIENT PROFILES/" | grep -i "<whatever the request called them>"
-```
+Glob `CLIENT PROFILES/*` and match on the company name in parentheses. **Don't reach for a shell command** — `cmo` has no Bash, so `ls | grep` fails for it.
 
 Use the **person name** as `<Client>` in every path below and in the Marketing Brief filename, so one client never ends up with two briefs. If the request names a company you can't resolve to exactly one profile, ask which client is meant — don't create a new key.
 
@@ -26,11 +24,17 @@ Then read:
 
    ⚠️ **Client skills are usually NOT in this repo.** A dry run on 2026-08-25 checked `.claude/skills/` in the repo, found nothing, and reported "no skill exists" — while `satlas-cold-email` was sitting in the user-level directory the whole time. Check **both**, and check for the synced subfolder:
 
-   ```
-   ls .claude/skills/ ~/.claude/skills/ ~/.claude/skills/synced/ 2>/dev/null | grep -i "<client-or-company>"
-   ```
+   Glob all three, matching the client or company name — again, no shell, `cmo` has no Bash:
 
-   Report "checked, none found" only after both locations come back empty. Never report absence from a single glob.
+   - `.claude/skills/*` (repo)
+   - `~/.claude/skills/*` (user)
+   - `~/.claude/skills/synced/*` (user, synced — where the Satlas skill actually lives)
+
+   Report "checked, none found" only after all three come back empty. Never report absence from a single glob.
+
+   **Read the whole skill, not just `SKILL.md`.** Enumerate its `references/` directory and read those too — that's where approved copy, merge-field syntax, and per-segment filters live. A skill's own internal path pointers may be wrong for this environment; trust what you can glob, not what the file claims about itself.
+
+   ⚠️ **Treat a skill's status tables as a dated snapshot, never as live state.** The Satlas skill is dated July 2026 and its claims about which campaigns are live and which infrastructure is deprecated are both contradicted by the 2026-08-22 audit. Reconcile every status claim against `OUTPUT/Campaign Tracking/` and `.claude/agents/_shared/connector-status.md` before repeating it. Take the skill's *rules* as authoritative and its *status* as historical.
 4. `OUTPUT/Campaign Tracking/` — live campaigns, lead volumes, past performance, what's already been tried
 5. `OUTPUT/End-of-Day Reports/<Client> - End of Day Log.md` — recent state, open issues
 6. `PROJECTS/Active/` — any live task list for this client. **An empty result here is not "no open work"** — several clients are tracked only in their profile and EOD log. Treat silence as "tracked elsewhere," and say which source you took open threads from.
@@ -87,7 +91,7 @@ Only if Outbound is ticked. Everything here is per-campaign, not per-client — 
 | Campaign goal / desired CTA | E.g. "book a 15-min call." Drives every step's ask |
 | Target lead volume for this run | E.g. 1,000 exported → ~700 verified after `ok`-only filtering |
 | Sending infrastructure available | Domains and mailboxes already live, warmed, and connected — or "none yet." Take documented counts as a starting point, not truth: a mailbox that exists but isn't warmed is not capacity. `cmo` has no Bash and cannot hit these APIs — **delegate the live cross-check against Zapmail / InboxKit / Porkbun to `outbound-agent`** at Phase 7 and note the as-of date of whatever figures you're quoting meanwhile |
-| Sending platform for this client | PlusVibe, Smartlead, Instantly, or Apollo-native. Per-client and easy to get wrong — see `_shared/connector-status.md` for which account each connector is actually authenticated to |
+| Sending platform for this client | PlusVibe, Smartlead, Instantly, or Apollo-native. Per-client and easy to get wrong — see `.claude/agents/_shared/connector-status.md` for which account each connector is actually authenticated to |
 | Apollo account | Which key applies (`APOLLO_API_KEY` or `APOLLO_API_KEY_ACCOUNT2`). Name the variable, never the value |
 | Catch-all inclusion | Default is `ok`-only. Only ask if volume is tight — catch-alls add reach and bounce risk |
 
@@ -127,6 +131,6 @@ Only if Brand is ticked. This is the long one; don't run it unless the engagemen
 
 ## Step 6 — Write it down
 
-The moment intake is answered, `cmo` creates `CLIENT PROFILES/<Client> - Marketing Brief.md` from `TEMPLATES/Client Marketing Brief Template.md` and fills in everything gathered. **Nothing downstream depends on chat history.** If a brief already exists, update it in place and date the change in its decisions log.
+**Unless the run is explicitly a dry run or read-only** — in which case report what you would write and create nothing — the moment intake is answered, `cmo` creates `CLIENT PROFILES/<Client> - Marketing Brief.md` from `TEMPLATES/Client Marketing Brief Template.md` and fills in everything gathered. **Nothing downstream depends on chat history.** If a brief already exists, update it in place and date the change in its decisions log.
 
 Do not edit `CLIENT PROFILES/<Client> - Profile*.md` from intake. The profile is the client relationship; the brief is the marketing engagement. If intake surfaces something that contradicts the profile, flag the contradiction to Eikko and let him decide which is right — never silently overwrite a profile.
