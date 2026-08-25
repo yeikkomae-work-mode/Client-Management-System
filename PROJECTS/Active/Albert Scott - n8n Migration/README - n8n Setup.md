@@ -20,14 +20,17 @@ If Calendly webhooks can't reach your n8n instance (self-hosted behind a firewal
 
 ## 2. Credentials to create in n8n
 
-| Name | Type | Where used |
-|---|---|---|
-| `Pipedrive - Albert Scott` | Pipedrive API (`pipedriveApi`) | Every Pipedrive HTTP Request node |
-| `Anthropic - Claude` | Generic Header Auth (`httpHeaderAuth`) — header `x-api-key`, value your Anthropic API key | Classify Reply node |
-| `Google Sheets - Albert Scott` | Google Sheets OAuth2 | Both Append Log Row nodes |
-| `Calendly - Albert Scott` | Calendly API (n8n's built-in Calendly credential) | Calendly Booking trigger |
+**Corrected 2026-08-25** — the plan below (Smartlead as a workflow variable) is what this doc originally said, but it's not what actually got built. Every Smartlead HTTP Request node (`Fetch Replies`, `Set Smartlead Category`, `Check Block List`, `Block Domain`, `Block Domain in Smartlead`) uses `authentication: genericCredentialType` / `genericAuthType: httpTemplatedCustomAuth`, same pattern as Anthropic. `list_credentials` on the live n8n instance returns zero credentials, and none of these nodes have a `credentials` object attached — nothing is wired up yet. There's no MCP tool that can create an n8n credential (only list/attach one that already exists), and raw API keys shouldn't pass through Claude anyway — this section is written so Eikko can do it directly in the n8n UI.
 
-Smartlead calls stay as plain HTTP Request nodes with the API key as a query parameter (matching `src/client.js`'s own auth style) rather than a stored credential — set `SMARTLEAD_API_KEY` as a workflow variable instead (below). Move it into a proper credential later if you want it out of variable storage.
+| Name | Type | Where used | Value to paste (as **Custom Auth** JSON — no header/query fields to fill in individually, just this one JSON block) |
+|---|---|---|---|
+| `Pipedrive - Albert Scott` | Pipedrive API (`pipedriveApi`) — has its own dedicated field, not custom auth | Every `n8n-nodes-base.pipedrive` node | Your Pipedrive API token (Pipedrive → Settings → Personal preferences → API) |
+| `Smartlead - Albert Scott` | Custom Auth | `Fetch Replies`, `Set Smartlead Category`, `Check Block List`, `Block Domain`, `Block Domain in Smartlead` | `{"qs": {"api_key": "YOUR_SMARTLEAD_KEY"}}` |
+| `Anthropic - Claude` | Custom Auth | `Classify Reply` | `{"headers": {"x-api-key": "YOUR_ANTHROPIC_KEY"}}` |
+| `Google Sheets - Albert Scott` | Google Sheets OAuth2 | Both Append Log Row nodes | Sign in with the Google account that owns/can access the run-log sheet |
+| `Calendly - Albert Scott` | Calendly API (n8n's built-in Calendly credential) | Calendly Booking trigger | Your Calendly API key or OAuth2 sign-in |
+
+Once these 5 exist in n8n (Settings → Credentials → New — the API tokens themselves should come from wherever they're already kept, e.g. a password manager, never pasted into chat), tell Claude and it'll wire each one into its nodes via `setNodeCredential` in one pass rather than you clicking through 51 nodes by hand.
 
 ## 3. Workflow variables to set
 
