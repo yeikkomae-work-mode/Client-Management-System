@@ -1,0 +1,632 @@
+{
+  "name": "Smartlead Reply Triage → Pipedrive",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "hours", "hoursInterval": 1 }]
+        }
+      },
+      "id": "b2000000-0000-4000-8000-000000000001",
+      "name": "Every Hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [-680, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Checkpoint lives in workflow static data, which replaces the old\n// .last-checkpoint file. NOTE: static data only persists on PRODUCTION runs —\n// a manual \"Execute workflow\" test reads it but never writes it back.\nconst state = $getWorkflowStaticData('global');\n\nconst now = new Date();\n\n// A run tagged weekly (set WEEKLY_BACKLOG=true in workflow variables, or run a\n// second copy of this workflow) rescans 8 days instead of trusting the\n// checkpoint, to catch anything missed during a reply-volume spike.\nconst weekly = String($vars.WEEKLY_BACKLOG ?? 'false') === 'true';\n\nlet since;\nif (weekly) {\n  since = new Date(now.getTime() - 8 * 24 * 60 * 60 * 1000).toISOString();\n} else if (state.lastCheckpoint) {\n  since = state.lastCheckpoint;\n} else {\n  // First ever run: match the old script's 24-hour default.\n  since = new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString();\n}\n\nreturn [{ json: { since, until: now.toISOString(), weekly } }];"
+      },
+      "id": "b2000000-0000-4000-8000-000000000002",
+      "name": "Read Checkpoint",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-460, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.SMARTLEAD_BASE_URL }}/master-inbox/inbox-replies",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "api_key", "value": "={{ $vars.SMARTLEAD_API_KEY }}" },
+            { "name": "fetch_message_history", "value": "true" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ offset: 0, limit: 100, sortBy: 'REPLY_TIME_DESC', filters: { emailStatus: 'Replied', replyTimeBetween: [$json.since, $json.until] } }) }}",
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000003",
+      "name": "Fetch Replies",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [-240, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Apply the scope rules from the production runbook, then emit one item per\n// reply that actually needs triage.\nconst res = $input.first().json;\nconst rows = res.data ?? res.replies ?? [];\nconst totalCount = Number(res.total_count ?? rows.length);\n\n// The fetch above asks for 100 in one page. If Smartlead reports more than we\n// received, replies would be silently dropped — surface it loudly instead.\n// (Fix when it ever fires: add offset pagination, or shorten the interval.)\nif (totalCount > rows.length) {\n  throw new Error(\n    `Smartlead reported ${totalCount} replies in this window but only ${rows.length} were fetched. ` +\n    `Replies would be dropped. Add pagination or shorten the schedule interval.`\n  );\n}\n\nconst out = [];\nlet skippedRachel = 0;\nlet skippedRead = 0;\n\nfor (const r of rows) {\n  const campaign = String(r.email_campaign_name ?? '');\n\n  // Rachel's campaigns have a different owner and are handled separately.\n  // Never touch category, pause state, or block list for these.\n  if (campaign.startsWith('Rachel -')) { skippedRachel++; continue; }\n\n  if (r.has_new_unread_email !== true) { skippedRead++; continue; }\n\n  // Pull the most recent inbound message out of the thread history.\n  const history = r.email_history ?? [];\n  const inbound = history.filter((m) => m.type === 'REPLY');\n  const latest = inbound[inbound.length - 1] ?? {};\n  const bodyHtml = String(latest.email_body ?? r.email_body ?? '');\n  const bodyText = bodyHtml\n    .replace(/<br\\s*\\/?>/gi, '\\n')\n    .replace(/<\\/p>/gi, '\\n')\n    .replace(/<[^>]+>/g, ' ')\n    .replace(/&nbsp;/g, ' ')\n    .replace(/&amp;/g, '&')\n    .replace(/&lt;/g, '<')\n    .replace(/&gt;/g, '>')\n    .replace(/&quot;/g, '\"')\n    .replace(/&#39;/g, \"'\")\n    .replace(/[ \\t]+/g, ' ')\n    .replace(/\\n{3,}/g, '\\n\\n')\n    .trim();\n\n  if (!bodyText) continue;\n\n  const email = String(r.lead_email ?? latest.from ?? '').trim().toLowerCase();\n  const domain = email.split('@')[1] ?? '';\n\n  out.push({\n    json: {\n      campaignId: r.email_campaign_id,\n      campaignName: campaign,\n      leadId: r.email_lead_id,\n      leadName: r.lead_name ?? '',\n      leadEmail: email,\n      domain,\n      company: r.lead_company_name ?? '',\n      replyTime: r.last_reply_time ?? null,\n      replyText: bodyText.slice(0, 6000),\n      counters: { skippedRachel, skippedRead, fetched: rows.length },\n    },\n  });\n}\n\nreturn out;"
+      },
+      "id": "b2000000-0000-4000-8000-000000000004",
+      "name": "Scope Filter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-20, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: 'claude-opus-5',\n  max_tokens: 2000,\n  output_config: {\n    effort: 'low',\n    format: {\n      type: 'json_schema',\n      schema: {\n        type: 'object',\n        additionalProperties: false,\n        required: ['category', 'names_alternate_contact', 'confidence', 'reasoning'],\n        properties: {\n          category: { type: 'string', enum: ['interested','meeting_request','follow_up','not_interested','do_not_contact','out_of_office','wrong_person','unsure','ignore'] },\n          names_alternate_contact: { type: 'boolean' },\n          confidence: { type: 'string', enum: ['high','medium','low'] },\n          reasoning: { type: 'string' }\n        }\n      }\n    }\n  },\n  system: $vars.CLASSIFIER_SYSTEM_PROMPT,\n  messages: [{ role: 'user', content: 'Campaign: ' + $json.campaignName + '\\nFrom: ' + $json.leadName + ' <' + $json.leadEmail + '>\\n\\nReply body:\\n\"\"\"\\n' + $json.replyText + '\\n\"\"\"' }]\n}) }}",
+        "options": {
+          "response": { "response": { "neverError": false } }
+        }
+      },
+      "id": "b2000000-0000-4000-8000-000000000005",
+      "name": "Classify Reply",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Turn one classification into an explicit action plan. Every rule here comes\n// from Sections 3 and 5 of the production workflow doc — change them there\n// first, then mirror the change into this table.\nconst reply = $('Scope Filter').item.json;\nconst res = $json;\n\n// A safety decline never matches the schema — fail loudly rather than\n// mis-categorising a real lead.\nif (res.stop_reason === 'refusal') {\n  throw new Error(`Classifier refused on lead ${reply.leadEmail}; needs manual triage.`);\n}\nif (res.stop_reason === 'max_tokens') {\n  throw new Error(`Classifier hit max_tokens on lead ${reply.leadEmail}; output incomplete.`);\n}\n\nconst textBlock = (res.content ?? []).find((b) => b.type === 'text');\nif (!textBlock) {\n  throw new Error(`Classifier returned no text block for ${reply.leadEmail}.`);\n}\n\nlet verdict;\ntry {\n  verdict = JSON.parse(textBlock.text);\n} catch (e) {\n  throw new Error(`Classifier output was not valid JSON for ${reply.leadEmail}: ${textBlock.text.slice(0, 200)}`);\n}\n\nconst category = verdict.category;\nconst namesAlternate = verdict.names_alternate_contact === true;\n\n// category -> Smartlead category id. Information Request collapses into\n// Follow Up (5301) to match the label used in the production doc.\nconst CATEGORY_ID = {\n  interested: 1,\n  meeting_request: 2,\n  not_interested: 3,\n  do_not_contact: 4,\n  out_of_office: 6,\n  wrong_person: 7,\n  unsure: 5271,\n  follow_up: 5301,\n  ignore: 4497,\n};\n\nconst categoryId = CATEGORY_ID[category];\nif (!categoryId) {\n  throw new Error(`Classifier returned an unmapped category \"${category}\" for ${reply.leadEmail}.`);\n}\n\nconst QUALIFYING = new Set(['interested', 'meeting_request', 'follow_up']);\nconst syncToPipedrive = QUALIFYING.has(category);\n\n// Blocking rules:\n//  - qualifying replies get blocked so no campaign re-contacts a live deal\n//  - hard rejections get blocked\n//  - an OOO or wrong-person reply that names a reachable colleague must NOT be\n//    blocked, or that colleague becomes uncontactable\n//  - unsure is left alone entirely for a human to look at\nlet blockDomain;\nif (category === 'unsure') {\n  blockDomain = false;\n} else if (category === 'out_of_office' || category === 'wrong_person') {\n  blockDomain = !namesAlternate;\n} else {\n  blockDomain = true;\n}\n\n// pause_lead: true when the lead is disqualified or fully handled.\nconst pauseLead = ['not_interested', 'do_not_contact', 'ignore', 'wrong_person'].includes(category);\n\nlet action = 'none';\nif (syncToPipedrive) action = 'crm';\nelse if (blockDomain) action = 'block';\n\nreturn {\n  json: {\n    ...reply,\n    category,\n    categoryId,\n    confidence: verdict.confidence,\n    reasoning: verdict.reasoning,\n    namesAlternate,\n    syncToPipedrive,\n    blockDomain,\n    pauseLead,\n    action,\n    activityType: category === 'meeting_request' ? 'meeting' : 'task',\n  },\n};"
+      },
+      "id": "b2000000-0000-4000-8000-000000000006",
+      "name": "Plan Actions",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.SMARTLEAD_BASE_URL }}/campaigns/{{ $json.campaignId }}/leads/{{ $json.leadId }}/category",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "api_key", "value": "={{ $vars.SMARTLEAD_API_KEY }}" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ category_id: $json.categoryId, pause_lead: $json.pauseLead }) }}",
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000007",
+      "name": "Set Smartlead Category",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [640, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "rule-crm",
+                    "leftValue": "={{ $('Plan Actions').item.json.action }}",
+                    "rightValue": "crm",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "crm"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "rule-block",
+                    "leftValue": "={{ $('Plan Actions').item.json.action }}",
+                    "rightValue": "block",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "block"
+            }
+          ]
+        },
+        "options": { "fallbackOutput": "extra", "renameFallbackOutput": "none" }
+      },
+      "id": "b2000000-0000-4000-8000-000000000008",
+      "name": "Route by Action",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [860, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.pipedrive.com/v1/persons/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pipedriveApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "term", "value": "={{ $('Plan Actions').item.json.leadEmail }}" },
+            { "name": "fields", "value": "email" },
+            { "name": "exact_match", "value": "true" },
+            { "name": "limit", "value": "1" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000009",
+      "name": "Search Person",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [1080, 140]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const lead = $('Plan Actions').item.json;\nconst hit = $json?.data?.items?.[0]?.item ?? null;\n\nreturn {\n  json: {\n    ...lead,\n    personId: hit?.id ?? null,\n    personFound: Boolean(hit),\n    orgId: hit?.organization?.id ?? null,\n  },\n};"
+      },
+      "id": "b2000000-0000-4000-8000-000000000010",
+      "name": "Resolve Person",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1300, 140]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-person-found",
+              "leftValue": "={{ $json.personFound }}",
+              "rightValue": "",
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000011",
+      "name": "Person Exists?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [1520, 140]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-has-company",
+              "leftValue": "={{ $json.company }}",
+              "rightValue": "",
+              "operator": { "type": "string", "operation": "notEmpty", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000012",
+      "name": "Company Known?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [1740, 260]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.pipedrive.com/v1/organizations/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pipedriveApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "term", "value": "={{ $json.company }}" },
+            { "name": "limit", "value": "1" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000013",
+      "name": "Search Organization",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [1960, 200]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const prev = $('Resolve Person').item.json;\nconst hit = $json?.data?.items?.[0]?.item ?? null;\n\nreturn {\n  json: { ...prev, orgId: hit?.id ?? null, orgFound: Boolean(hit) },\n};"
+      },
+      "id": "b2000000-0000-4000-8000-000000000014",
+      "name": "Resolve Org",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2180, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-org-missing",
+              "leftValue": "={{ $json.orgFound }}",
+              "rightValue": "",
+              "operator": { "type": "boolean", "operation": "false", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000015",
+      "name": "Org Missing?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [2400, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pipedrive.com/v1/organizations",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pipedriveApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ name: $json.company, owner_id: $vars.PIPEDRIVE_OWNER_ID }) }}",
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000016",
+      "name": "Create Organization",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [2620, 120]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Join point for: org just created / org already existed / no company known.\nconst prev = $('Resolve Person').item.json;\nconst createdOrgId = $json?.data?.id ?? null;\nconst carriedOrgId = $json?.orgId ?? null;\n\nreturn {\n  json: { ...prev, orgId: createdOrgId ?? carriedOrgId ?? prev.orgId ?? null },\n};"
+      },
+      "id": "b2000000-0000-4000-8000-000000000017",
+      "name": "Org Ready",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2840, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pipedrive.com/v1/persons",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pipedriveApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(Object.assign({ name: $json.leadName || $json.leadEmail, email: [{ value: $json.leadEmail, primary: true, label: 'work' }], owner_id: $vars.PIPEDRIVE_OWNER_ID }, $json.orgId ? { org_id: $json.orgId } : {})) }}",
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000018",
+      "name": "Create Person",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [3060, 200]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Every item past this point has a real personId.\n// NOTE: job_title / notes / postal_address / im / birthday are deliberately\n// never sent to Pipedrive — contact sync is off on this account and those\n// fields 403. The reply text goes in the Activity note instead.\nconst prev = $('Resolve Person').item.json;\n\nconst createdPersonId = $json?.data?.id ?? null;\nconst createdOrgId = $json?.data?.org_id?.value ?? $json?.orgId ?? null;\n\nconst personId = createdPersonId ?? prev.personId ?? null;\nif (!personId) {\n  throw new Error(`No Pipedrive person resolved or created for ${prev.leadEmail}`);\n}\n\nreturn {\n  json: { ...prev, personId, orgId: createdOrgId ?? prev.orgId ?? null },\n};"
+      },
+      "id": "b2000000-0000-4000-8000-000000000019",
+      "name": "Person Ready",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [3280, 140]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pipedrive.com/v1/activities",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pipedriveApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ subject: ($json.category === 'meeting_request' ? 'Meeting request' : 'Follow up') + ' — ' + ($json.leadName || $json.leadEmail), type: $json.activityType, owner_id: $vars.PIPEDRIVE_OWNER_ID, participants: [{ person_id: $json.personId, primary: true }], org_id: $json.orgId || null, note: 'Campaign: ' + $json.campaignName + '\\nCategory: ' + $json.category + ' (' + $json.confidence + ' confidence)\\nWhy: ' + $json.reasoning + '\\n\\n--- Inbound reply ---\\n' + $json.replyText }) }}",
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000020",
+      "name": "Create Activity",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [3500, 140]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $vars.SMARTLEAD_BASE_URL }}/leads/get-domain-block-list",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "api_key", "value": "={{ $vars.SMARTLEAD_API_KEY }}" },
+            { "name": "filter_email_or_domain", "value": "={{ $('Plan Actions').item.json.domain }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000021",
+      "name": "Check Block List",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [3720, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Only block when the workflow decided to AND the domain isn't already listed.\nconst lead = $('Plan Actions').item.json;\nconst existing = $json?.data ?? $json?.domain_block_list ?? [];\nconst list = Array.isArray(existing) ? existing : [];\n\nconst already = list.some((e) => {\n  const v = String(e?.domain ?? e?.value ?? e ?? '').toLowerCase();\n  return v === lead.domain.toLowerCase();\n});\n\nreturn {\n  json: { ...lead, alreadyBlocked: already, shouldBlock: lead.blockDomain && !already },\n};"
+      },
+      "id": "b2000000-0000-4000-8000-000000000022",
+      "name": "Block Needed?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [3940, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-should-block",
+              "leftValue": "={{ $json.shouldBlock }}",
+              "rightValue": "",
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000023",
+      "name": "Should Block?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [4160, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.SMARTLEAD_BASE_URL }}/leads/add-domain-block-list",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "api_key", "value": "={{ $vars.SMARTLEAD_API_KEY }}" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ domain_block_list: [$json.domain], client_id: null }) }}",
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000024",
+      "name": "Block Domain",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [4380, 220]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// One row per lead the workflow actually acted on. Mirrors the columns of the\n// old inbox-sync-log.csv so existing reporting keeps working.\nconst lead = $('Plan Actions').item.json;\n\nlet pipedriveAction = 'none';\ntry {\n  const p = $('Person Ready').item.json;\n  if (p?.personId) pipedriveAction = p.personFound ? 'updated' : 'created';\n} catch (e) {\n  // Item never went down the CRM branch — 'none' is correct.\n}\n\nlet domainBlocked = 'no';\ntry {\n  const b = $('Block Needed?').item.json;\n  if (b?.alreadyBlocked) domainBlocked = 'already';\n  else if (b?.shouldBlock) domainBlocked = 'yes';\n} catch (e) {}\n\nreturn {\n  json: {\n    timestamp: new Date().toISOString(),\n    campaign: lead.campaignName,\n    lead_name: lead.leadName,\n    lead_email: lead.leadEmail,\n    category_applied: lead.category,\n    confidence: lead.confidence,\n    pipedrive_action: pipedriveAction,\n    domain_blocked: domainBlocked,\n    reply_excerpt: String(lead.replyText).replace(/\\s+/g, ' ').slice(0, 200),\n  },\n};"
+      },
+      "id": "b2000000-0000-4000-8000-000000000025",
+      "name": "Build Log Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [4600, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $vars.RUN_LOG_SHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "inbox-sync-log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": []
+        },
+        "options": {}
+      },
+      "id": "b2000000-0000-4000-8000-000000000026",
+      "name": "Append Log Row",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [4820, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Advance the checkpoint only after everything above succeeded. If any item\n// threw, the workflow stops before this node and the window is retried next\n// run — at worst a reply is re-processed, never skipped.\n//\n// A weekly backlog run must NOT move the checkpoint backwards.\nconst state = $getWorkflowStaticData('global');\nconst window = $('Read Checkpoint').first().json;\n\nlet newest = window.until;\ntry {\n  const times = $('Scope Filter').all()\n    .map((i) => i.json.replyTime)\n    .filter(Boolean)\n    .sort();\n  if (times.length) {\n    const maxReply = times[times.length - 1];\n    if (new Date(maxReply) > new Date(newest)) newest = maxReply;\n  }\n} catch (e) {}\n\nconst prev = state.lastCheckpoint ? new Date(state.lastCheckpoint) : null;\nif (!prev || new Date(newest) > prev) {\n  state.lastCheckpoint = newest;\n}\n\nconst processed = $input.all().length;\nreturn [{ json: { checkpoint: state.lastCheckpoint, processed, weekly: window.weekly } }];"
+      },
+      "id": "b2000000-0000-4000-8000-000000000027",
+      "name": "Save Checkpoint",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [5040, 300]
+    },
+    {
+      "parameters": {},
+      "id": "b2000000-0000-4000-8000-000000000028",
+      "name": "Leave For Human",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1080, 460]
+    }
+  ],
+  "connections": {
+    "Every Hour": {
+      "main": [[{ "node": "Read Checkpoint", "type": "main", "index": 0 }]]
+    },
+    "Read Checkpoint": {
+      "main": [[{ "node": "Fetch Replies", "type": "main", "index": 0 }]]
+    },
+    "Fetch Replies": {
+      "main": [[{ "node": "Scope Filter", "type": "main", "index": 0 }]]
+    },
+    "Scope Filter": {
+      "main": [[{ "node": "Classify Reply", "type": "main", "index": 0 }]]
+    },
+    "Classify Reply": {
+      "main": [[{ "node": "Plan Actions", "type": "main", "index": 0 }]]
+    },
+    "Plan Actions": {
+      "main": [[{ "node": "Set Smartlead Category", "type": "main", "index": 0 }]]
+    },
+    "Set Smartlead Category": {
+      "main": [[{ "node": "Route by Action", "type": "main", "index": 0 }]]
+    },
+    "Route by Action": {
+      "main": [
+        [{ "node": "Search Person", "type": "main", "index": 0 }],
+        [{ "node": "Check Block List", "type": "main", "index": 0 }],
+        [{ "node": "Leave For Human", "type": "main", "index": 0 }]
+      ]
+    },
+    "Search Person": {
+      "main": [[{ "node": "Resolve Person", "type": "main", "index": 0 }]]
+    },
+    "Resolve Person": {
+      "main": [[{ "node": "Person Exists?", "type": "main", "index": 0 }]]
+    },
+    "Person Exists?": {
+      "main": [
+        [{ "node": "Person Ready", "type": "main", "index": 0 }],
+        [{ "node": "Company Known?", "type": "main", "index": 0 }]
+      ]
+    },
+    "Company Known?": {
+      "main": [
+        [{ "node": "Search Organization", "type": "main", "index": 0 }],
+        [{ "node": "Org Ready", "type": "main", "index": 0 }]
+      ]
+    },
+    "Search Organization": {
+      "main": [[{ "node": "Resolve Org", "type": "main", "index": 0 }]]
+    },
+    "Resolve Org": {
+      "main": [[{ "node": "Org Missing?", "type": "main", "index": 0 }]]
+    },
+    "Org Missing?": {
+      "main": [
+        [{ "node": "Create Organization", "type": "main", "index": 0 }],
+        [{ "node": "Org Ready", "type": "main", "index": 0 }]
+      ]
+    },
+    "Create Organization": {
+      "main": [[{ "node": "Org Ready", "type": "main", "index": 0 }]]
+    },
+    "Org Ready": {
+      "main": [[{ "node": "Create Person", "type": "main", "index": 0 }]]
+    },
+    "Create Person": {
+      "main": [[{ "node": "Person Ready", "type": "main", "index": 0 }]]
+    },
+    "Person Ready": {
+      "main": [[{ "node": "Create Activity", "type": "main", "index": 0 }]]
+    },
+    "Create Activity": {
+      "main": [[{ "node": "Check Block List", "type": "main", "index": 0 }]]
+    },
+    "Check Block List": {
+      "main": [[{ "node": "Block Needed?", "type": "main", "index": 0 }]]
+    },
+    "Block Needed?": {
+      "main": [[{ "node": "Should Block?", "type": "main", "index": 0 }]]
+    },
+    "Should Block?": {
+      "main": [
+        [{ "node": "Block Domain", "type": "main", "index": 0 }],
+        [{ "node": "Build Log Row", "type": "main", "index": 0 }]
+      ]
+    },
+    "Block Domain": {
+      "main": [[{ "node": "Build Log Row", "type": "main", "index": 0 }]]
+    },
+    "Leave For Human": {
+      "main": [[{ "node": "Build Log Row", "type": "main", "index": 0 }]]
+    },
+    "Build Log Row": {
+      "main": [[{ "node": "Append Log Row", "type": "main", "index": 0 }]]
+    },
+    "Append Log Row": {
+      "main": [[{ "node": "Save Checkpoint", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
