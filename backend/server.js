@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -10,7 +11,9 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const PORT = process.env.PORT || 3001;
-const COWORK_BASE_DIR = '/Users/eikkoyu/Claude Code:Cowork/Client-Management-System';
+// Portable: honour COWORK_DIR (set by scripts/setup-cloud-env.sh), else fall
+// back to the repo root, which is always the parent of backend/.
+const COWORK_BASE_DIR = process.env.COWORK_DIR || path.resolve(__dirname, '..');
 
 // Initialize Express app
 const app = express();
