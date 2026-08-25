@@ -22,6 +22,12 @@
 | Lemlist | Chris Caffera | Automation not possible | Manual metrics at end of day |
 | LinkedIn | Chris Caffera | Platform restriction | Manual post/engagement tracking |
 
+### ⚠️ LOCAL-ONLY (works on Eikko's Mac, NOT from cloud/web Claude sessions)
+
+| Tool | Client(s) | Status | Notes |
+|------|-----------|--------|-------|
+| AdsPower | Penji | ⚠️ Local-only | API key held (stored in `tools_api_details.md`, gitignored). The AdsPower API is served by the desktop app on `localhost:50325` — `local.adspower.net` resolves to loopback by design, so a remote/web Claude session cannot reach it. Verified 2026-08-25: connection refused from the cloud container. Wired up in `.mcp.json` (`adspower-local-api`) + the `adspower-browser` skill; both only function in a **local** Claude Code session with AdsPower running. |
+
 ### ❓ TO BE TESTED (Report Back After Testing)
 
 | Tool | Client(s) | Target Status | Action |
@@ -111,4 +117,4 @@ I'll update this file and the automation workflows:
 
 Keep this file updated as tools are tested. It's your source of truth for what gets auto-pulled vs. manually logged.
 
-**Last updated:** 2026-08-05 — Initial setup, awaiting API test results
+**Last updated:** 2026-08-25 — Added AdsPower (Penji): API key received, MCP server + skill wired up, confirmed local-only.

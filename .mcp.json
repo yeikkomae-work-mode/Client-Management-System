@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "adspower-local-api": {
+      "command": "npx",
+      "args": ["-y", "local-api-mcp-typescript"],
+      "env": {
+        "PORT": "50325",
+        "API_KEY": "${ADSPOWER_API_KEY}"
+      }
+    }
+  }
+}
