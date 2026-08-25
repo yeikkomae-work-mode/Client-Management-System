@@ -268,6 +268,20 @@
   }
   .chip:hover { border-color: var(--crimson); color: var(--text); }
   .chip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  .subnav { display: flex; gap: 6px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 999px; padding: 4px; width: fit-content; margin-bottom: 18px; }
+  .subnav-btn {
+    font-size: 12.5px; font-weight: 700; color: var(--text-secondary); background: transparent; border: none;
+    border-radius: 999px; padding: 7px 16px; cursor: pointer; display: flex; align-items: center; gap: 7px;
+  }
+  .subnav-btn:hover { color: var(--text); }
+  .subnav-btn.active { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+  .subnav-badge {
+    background: var(--pink); color: #fff; font-size: 10px; font-weight: 800; min-width: 16px; height: 16px;
+    border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; padding: 0 4px;
+  }
+  .subview { display: none; }
+  .subview.active { display: block; }
   .legend-key {
     display: flex; flex-wrap: wrap; gap: 16px; padding: 12px 20px 0; font-size: 11.5px; color: var(--text-tertiary);
   }
@@ -596,61 +610,134 @@
           <p>Outbound email campaigns, inboxes and domain health — pulled live from the Smartlead API, laid out to sort and compare in ways Smartlead's own UI doesn't.</p>
         </div>
 
-        <div class="kpi-row">
-          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Inboxes</div></div><div class="kpi-value tabular">111</div><div class="kpi-foot"><span class="status-pill success">All accounted for</span></div></div>
-          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Campaigns total</div></div><div class="kpi-value tabular">195</div></div>
-          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Active now</div></div><div class="kpi-value tabular">16</div></div>
-          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Unread replies</div></div><div class="kpi-value tabular">21</div><div class="kpi-foot"><span class="status-pill warning">Oldest 94d</span></div></div>
+        <div class="subnav" id="smartleadSubnav">
+          <button type="button" class="subnav-btn active" data-sub="campaigns">Campaigns</button>
+          <button type="button" class="subnav-btn" data-sub="inbox">Inbox monitor <span class="subnav-badge">2</span></button>
         </div>
 
-        <div class="info-note" style="margin: 0 0 18px;"><strong style="color:var(--text);">Inbox count, resolved:</strong> the old dashboard showed "100/100" — that was a pagination page-size cap, not a real exclusion. Paging the Smartlead API at offsets 0/100/111 confirms the true total is <strong>111 active inboxes</strong>, all counted here.</div>
+        <div class="subview active" data-sub="campaigns">
+          <div class="kpi-row">
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Inboxes</div></div><div class="kpi-value tabular">111</div><div class="kpi-foot"><span class="status-pill success">All accounted for</span></div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Campaigns total</div></div><div class="kpi-value tabular">195</div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Active now</div></div><div class="kpi-value tabular">16</div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Unread replies</div></div><div class="kpi-value tabular">21</div><div class="kpi-foot"><span class="status-pill warning">Oldest 94d</span></div></div>
+          </div>
 
-        <div class="card table-card">
-          <div class="table-title-bar">
-            <h2>Campaigns</h2>
-            <span class="count tabular">195</span>
-            <div class="fill"></div>
-            <a class="btn-action" href="https://app.smartlead.ai" target="_blank" rel="noopener">Open Smartlead ↗</a>
-          </div>
-          <div class="chip-row" id="statusFilter">
-            <button type="button" class="chip active" data-status="all">All <span class="tabular">195</span></button>
-            <button type="button" class="chip" data-status="Active">Active <span class="tabular">16</span></button>
-            <button type="button" class="chip" data-status="Completed">Completed <span class="tabular">141</span></button>
-            <button type="button" class="chip" data-status="Paused">Paused <span class="tabular">21</span></button>
-            <button type="button" class="chip" data-status="Drafted">Drafted <span class="tabular">9</span></button>
-            <button type="button" class="chip" data-status="Stopped">Stopped <span class="tabular">8</span></button>
-          </div>
-          <div class="table-scroll">
-            <table class="data" id="campaignTable">
-              <thead><tr>
-                <th data-key="0" class="sortable sort-active">Campaign <span class="arrow">▲</span></th>
-                <th data-key="1" class="sortable">Owner</th>
-                <th data-key="2" class="sortable">Status</th>
-              </tr></thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <p id="campaignEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No campaigns match this filter/search.</p>
-          <div class="info-note">Only the 16 <strong>active</strong> campaigns and account-wide 7-day totals have been pulled so far — per-campaign sent/open/reply/bounce for all 195 (including the 149 completed/paused/stopped/drafted) is a heavier pull, flagged as a Phase 1.1 candidate rather than guessed at here.</div>
-        </div>
+          <div class="info-note" style="margin: 0 0 18px;"><strong style="color:var(--text);">Inbox count, resolved:</strong> the old dashboard showed "100/100" — that was a pagination page-size cap, not a real exclusion. Paging the Smartlead API at offsets 0/100/111 confirms the true total is <strong>111 active inboxes</strong>, all counted here.</div>
 
-        <div class="chart-row" style="grid-template-columns: 1fr 1fr;">
-          <div class="card">
-            <div class="card-head"><h2>Last 7 days — account-wide</h2></div>
-            <div class="card-body">
-              <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: 12px;">
-                <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Sent</div><div class="kpi-value tabular" style="font-size:22px;">7,880</div></div>
-                <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Open rate</div><div class="kpi-value tabular" style="font-size:22px;">45.5<span class="suffix">%</span></div></div>
-                <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Reply rate</div><div class="kpi-value tabular" style="font-size:22px;">1.3<span class="suffix">%</span></div></div>
-                <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Bounce rate</div><div class="kpi-value tabular" style="font-size:22px;">7.8<span class="suffix">%</span></div></div>
+          <div class="card table-card">
+            <div class="table-title-bar">
+              <h2>Campaigns</h2>
+              <span class="count tabular">195</span>
+              <div class="fill"></div>
+              <a class="btn-action" href="https://app.smartlead.ai" target="_blank" rel="noopener">Open Smartlead ↗</a>
+            </div>
+            <div class="chip-row" id="statusFilter">
+              <button type="button" class="chip active" data-status="all">All <span class="tabular">195</span></button>
+              <button type="button" class="chip" data-status="Active">Active <span class="tabular">16</span></button>
+              <button type="button" class="chip" data-status="Completed">Completed <span class="tabular">141</span></button>
+              <button type="button" class="chip" data-status="Paused">Paused <span class="tabular">21</span></button>
+              <button type="button" class="chip" data-status="Drafted">Drafted <span class="tabular">9</span></button>
+              <button type="button" class="chip" data-status="Stopped">Stopped <span class="tabular">8</span></button>
+            </div>
+            <div class="table-scroll">
+              <table class="data" id="campaignTable">
+                <thead><tr>
+                  <th data-key="0" class="sortable sort-active">Campaign <span class="arrow">▲</span></th>
+                  <th data-key="1" class="sortable">Owner</th>
+                  <th data-key="2" class="sortable">Status</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p id="campaignEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No campaigns match this filter/search.</p>
+            <div class="info-note">Only the 16 <strong>active</strong> campaigns and account-wide 7-day totals have been pulled so far — per-campaign sent/open/reply/bounce for all 195 (including the 149 completed/paused/stopped/drafted) is a heavier pull, flagged as a Phase 1.1 candidate rather than guessed at here.</div>
+          </div>
+
+          <div class="chart-row" style="grid-template-columns: 1fr 1fr;">
+            <div class="card">
+              <div class="card-head"><h2>Last 7 days — account-wide</h2></div>
+              <div class="card-body">
+                <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: 12px;">
+                  <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Sent</div><div class="kpi-value tabular" style="font-size:22px;">7,880</div></div>
+                  <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Open rate</div><div class="kpi-value tabular" style="font-size:22px;">45.5<span class="suffix">%</span></div></div>
+                  <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Reply rate</div><div class="kpi-value tabular" style="font-size:22px;">1.3<span class="suffix">%</span></div></div>
+                  <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Bounce rate</div><div class="kpi-value tabular" style="font-size:22px;">7.8<span class="suffix">%</span></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h2>Domains</h2><span class="meta">~51 domains</span></div>
+              <div class="card-body">
+                <div class="info-note" style="margin:0;">The old dashboard flagged some domains as <strong>"Deliverability Watch List"</strong> with no explanation of why. That domain-by-domain data hasn't been pulled into this build yet — showing an unexplained label here would repeat the same problem it's meant to fix. Needs a scoping pass: what should count as "flagged" (bounce rate threshold? spam complaints? blocklist hits?) before this section goes live with real reasons attached.</div>
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-head"><h2>Domains</h2><span class="meta">~51 domains</span></div>
-            <div class="card-body">
-              <div class="info-note" style="margin:0;">The old dashboard flagged some domains as <strong>"Deliverability Watch List"</strong> with no explanation of why. That domain-by-domain data hasn't been pulled into this build yet — showing an unexplained label here would repeat the same problem it's meant to fix. Needs a scoping pass: what should count as "flagged" (bounce rate threshold? spam complaints? blocklist hits?) before this section goes live with real reasons attached.</div>
+        </div>
+
+        <div class="subview" data-sub="inbox">
+          <div class="flag-note" style="margin: 0 0 18px;"><strong>Automation is not live yet</strong> — n8n has zero credentials configured, so nothing here classifies or syncs to Pipedrive automatically. The two rows below were <strong>manually run through the same triage logic by Claude on 2026-08-25</strong> to prove the categorization + Pipedrive-sync rules work correctly before go-live; everything else in the Master Inbox is still sitting unclassified.</div>
+
+          <div class="kpi-row">
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Unread in Master Inbox</div></div><div class="kpi-value tabular">21</div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Manually QA'd</div></div><div class="kpi-value tabular">2</div><div class="kpi-foot"><span class="status-pill success">Logic verified</span></div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Auto-classified by n8n</div></div><div class="kpi-value tabular">0</div><div class="kpi-foot"><span class="status-pill danger">Not live</span></div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Awaiting classification</div></div><div class="kpi-value tabular">19</div></div>
+          </div>
+
+          <div class="card table-card">
+            <div class="table-title-bar">
+              <h2>Reply → category → Pipedrive sync</h2>
+              <span class="count tabular">2 verified</span>
+              <div class="fill"></div>
+              <a class="btn-action" href="https://app.pipedrive.com" target="_blank" rel="noopener">Open Pipedrive ↗</a>
             </div>
+            <div class="legend-key">
+              <span class="row"><span class="swatch" style="background:var(--success);"></span>Interested</span>
+              <span class="row"><span class="swatch" style="background:var(--text-tertiary);"></span>Not interested</span>
+            </div>
+            <div class="table-scroll">
+              <table class="data" style="min-width:760px;">
+                <thead><tr><th>Lead</th><th>Campaign</th><th>Category assigned</th><th>Pipedrive action</th><th>Verified</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>alisa <span class="faint">bellacucina.com</span></td>
+                    <td>Eikko — Fancy Foods Q4</td>
+                    <td><span class="pill good">Interested</span></td>
+                    <td>Org + person + activity created (Bella Cucina, id 1020) · domain blocked in Smartlead</td>
+                    <td class="faint">Manual QA, 2026-08-25</td>
+                  </tr>
+                  <tr>
+                    <td>Alexandra Moorfoot <span class="faint">thenextfish.com</span></td>
+                    <td>Eikko — ICAST 2026</td>
+                    <td><span class="pill idle">Not interested</span></td>
+                    <td>No Pipedrive record (correct per rule) · domain blocked in Smartlead</td>
+                    <td class="faint">Manual QA, 2026-08-25</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="info-note">Rule confirmed working: "Not interested" replies block the domain only and skip Pipedrive, per <code>CLIENT PROFILES/Yoni - Profile (Albert Scott).md</code> — this deviates from a literal "add every reply to Pipedrive" reading, flagged to Eikko rather than guessed at silently.</div>
+          </div>
+
+          <div class="card table-card">
+            <div class="table-title-bar">
+              <h2>Unread — awaiting classification</h2>
+              <span class="count tabular">oldest 5 of 19</span>
+            </div>
+            <div class="table-scroll">
+              <table class="data" style="min-width:640px;">
+                <thead><tr><th>Lead</th><th>Campaign</th><th>Waiting</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>CHRISTOPHER BROWN <span class="faint">nomorelids.com</span></td><td>London Coffee Festival</td><td class="num tabular">94d</td><td><span class="pill idle">Not yet classified</span></td></tr>
+                  <tr><td>Marcus Bomsdorff <span class="faint">bomsdorff.de</span></td><td>Nordstil</td><td class="num tabular">11d</td><td><span class="pill idle">Not yet classified</span></td></tr>
+                  <tr><td>Weronika Wróbel <span class="faint">jkoptrade.com</span></td><td>Tones of Beauty 2026</td><td class="num tabular">48d</td><td><span class="pill idle">Not yet classified</span></td></tr>
+                  <tr><td>Nicole <span class="faint">hormbles.com — BLOCKED</span></td><td>Sweets &amp; Snacks 2026 Cards</td><td class="num tabular">1d</td><td><span class="pill idle">Not yet classified</span></td></tr>
+                  <tr><td>7 more from ISM Cologne / Pitti Immagine Uomo</td><td>Rachel — Europe</td><td class="num tabular">7d</td><td><span class="pill idle">Not yet classified</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="info-note">These stay unclassified until the n8n credentials are created and the workflow actually runs — showing them as "done" before that would misrepresent what's actually happened.</div>
           </div>
         </div>
       </section>
@@ -963,6 +1050,18 @@
       el.classList.toggle("show");
     });
   });
+
+  // ---- SmartLead subnav (Campaigns / Inbox monitor) ----
+  var smartleadSubnav = document.getElementById("smartleadSubnav");
+  if (smartleadSubnav) {
+    smartleadSubnav.addEventListener("click", function (e) {
+      var btn = e.target.closest(".subnav-btn");
+      if (!btn) return;
+      var sub = btn.getAttribute("data-sub");
+      smartleadSubnav.querySelectorAll(".subnav-btn").forEach(function (b) { b.classList.toggle("active", b === btn); });
+      document.querySelectorAll("#view-smartlead .subview").forEach(function (v) { v.classList.toggle("active", v.getAttribute("data-sub") === sub); });
+    });
+  }
 
   // ---- Nav / view switching ----
   function goTo(view) {
