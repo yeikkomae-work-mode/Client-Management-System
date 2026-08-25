@@ -4,7 +4,7 @@
 
 **Twin copy in Notion:** [🔌 Connector Status](https://app.notion.com/p/3ba811e21c7f8193a87fd0e68c38987a), inside the [🎛️ VA Command Center](https://app.notion.com/p/3ba811e21c7f8000b6a5f7952cb0c76b). Update both when something changes — this file is the one agents actually read at runtime; the Notion copy is for Eikko to check without opening Claude Code.
 
-**Last verified:** 2026-08-13
+**Last verified:** 2026-08-24 (Zapmail / InboxKit / Porkbun rows updated from the 2026-08-22 Satlas infra audit)
 
 | Tool | Status | Notes |
 |---|---|---|
@@ -17,17 +17,18 @@
 | Gmail (eikko.ybanez@fractio.co) | ✅ Connected | Same custom script, account key `fractio`. Read + draft only. |
 | Gmail (eikkomaeybanez@gmail.com) | ✅ Connected | Same custom script, account key `personal`. Read + draft only. |
 | Notion (this workspace) | ✅ Connected | eikko mae ybanez's Space |
+| Fathom | ✅ Connected | Live meeting recordings — summary, action items, and full transcript on demand. Verified 2026-08-14, 11 meetings pulled and filed into `OUTPUT/Meetings/<Client>/`. Replaces the need for Fireflies for now. |
 | Satlas team Notion ("Cold Email" hub) | 🟡 Not connected | Different workspace from this one — still needs access |
-| PlusVibe (Chris Drew/Satlas) | ✅ Connected | Raw API key over curl/Bash (`SATLAS_PLUSVIBE_API_KEY` + `workspace_id=6a5f60452fd3fe45b2605b48`), not the native connector — verified live 2026-08-13, 13 real campaigns returned. Old key was dead; replaced same day. |
+| PlusVibe (Chris Drew/Satlas) | ✅ Connected | Raw API key over curl/Bash (`SATLAS_PLUSVIBE_API_KEY` + `workspace_id=6a5f60452fd3fe45b2605b48`), not the native connector — re-verified 2026-08-22, 17 campaigns + 60 mailboxes returned. ⚠️ The native/MCP PlusVibe connector is authenticated to the unrelated Yoni Lebovits / albertscott*.com account — never use it for Satlas. |
 | HubSpot | 🟡 Not connected | Connector exists in registry — needs Eikko to authorize in claude.ai connector settings |
 | Slack | 🟡 Not connected | Same — exists, needs authorizing |
-| Fireflies | 🟡 Not connected | Needed for live meeting transcript pulls; needs authorizing |
+| Fireflies | 🟡 Not connected | No longer needed for meeting transcripts now that Fathom is live — leave unauthorized unless a specific need comes up |
 | Instantly (Satlas) | ⚫ Deprecated | Migrated off in early Aug — shouldn't be in active use. Fresh key tested dead 2026-08-13 (`ERR_AUTH_FAILED`) regardless — moot either way, don't wire in. |
 | Instantly (Cüneyt/Starfix) | ✅ Active | **Separate account from Satlas's — don't confuse the two.** Live and in active use for this client's 11 campaigns as of 2026-08-13 (`STARFIX_INSTANTLY_API_KEY`). Not yet tested directly against the API by Claude — status per client profile/EOD log, not independently verified here. |
 | Hostinger (Starfix — hellostarfix.com, starfix.online, sellervate.net) | ✅ Active | 3 domain-scoped API tokens, all added 2026-08-13 (`STARFIX_HOSTINGER_API_KEY_HELLOSTARFIX/STARFIXONLINE/SELLERVATE`). Received as account access, not yet independently tested against the API by Claude. |
-| Porkbun | 🟡 Incomplete | Raw API key tested 2026-08-13 — clean `MISSING_SECRETAPIKEY` response, meaning Porkbun's paired secret key was never stored. Need that from Eikko before this can go live. |
-| Zapmail | ⚫ Dead key | Fresh key tested 2026-08-13 — clean `401 Invalid API key` (not a path issue). Needs a new key from the Zapmail dashboard. |
-| InboxKit | ❓ Inconclusive | Fresh key tested 2026-08-13 across 4 endpoint guesses — all generic 404s, not auth-rejected. Likely a wrong/undocumented path rather than a dead key. See `tools_api_details.md` for exactly what was tried. |
+| Porkbun | ✅ Connected | Production key pair ("claudeee") verified 2026-08-22 — pulled the real 25-domain Satlas inventory. The missing secret key from 2026-08-13 has been supplied. |
+| Zapmail | ✅ Connected | **Reconnected 2026-08-22** via MCP connector — live `get_domain_health_score` + mailbox warmup pulls returned real Satlas data (10 domains, 30 mailboxes). Supersedes the 2026-08-13 dead-key finding. Note what it returned: health 22.65/100, 0/30 warmed up. |
+| InboxKit | ✅ Connected | Live 2026-08-22 — `domains/list` + `mailboxes/list` returned 15 domains / 30 mailboxes for Satlas. The 2026-08-13 "inconclusive" result was the wrong endpoint path, as suspected. |
 | MillionVerifier | ⚫ No connector | Manual 2FA login by design — can't be automated regardless |
 | Lemlist | ⚫ No connector | Browser-only |
 | LinkedIn (personal profiles) | ⚫ No connector | No API path; browser-assisted only, and LinkedIn flags automated activity — keep to drafting, not unattended posting |
