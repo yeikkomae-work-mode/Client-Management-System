@@ -14,9 +14,9 @@ Two deliberate differences from the local dashboard:
      would leak one client's commercial terms to another if the link is ever
      shared. Counts survive; the sensitive strings do not.
 
-  2. TYPOGRAPHY. The hosted page loads its own faces (IBM Plex Sans/Mono for
-     the operational body and figures, Archivo for display). The local file
-     stays on system-ui so it renders instantly with no network.
+  2. TITLE. The hosted copy is named "Client Command Center" so it reads
+     clearly in the Artifact gallery. Typography, palette and layout are
+     inherited from the local dashboard unchanged.
 
 The data-viz palette is NOT changed — it was validated against these exact
 surfaces, and re-tinting them would invalidate the contrast results.
@@ -31,32 +31,6 @@ SRC = HERE / "command-center.html"
 DATA = HERE / "dashboard-data.json"
 LIVE = HERE / "campaigns-data.json"   # optional; absent until a sync has run
 OUT = HERE / "command-center-hosted.html"
-
-FONTS = (
-    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-    "family=Archivo:wght@500;600;700&"
-    "family=IBM+Plex+Sans:wght@400;500;600&"
-    "family=IBM+Plex+Mono:wght@400;500&display=swap\">\n"
-)
-
-# Only the two type tokens change; every colour token is inherited untouched.
-TYPE_OVERRIDE = """
-<style>
-  /* Hosted-only type identity. Colour tokens are inherited from the local
-     dashboard unchanged — they were validated against those surfaces. */
-  :root {
-    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    --display: "Archivo", var(--sans);
-  }
-  .page-title, .stat-val, .brand-name { font-family: var(--display); }
-  .stat-val { letter-spacing: -.04em; font-weight: 700; }
-  .page-title { font-weight: 600; }
-  th, .col-head, .nav-label { font-family: var(--sans); }
-</style>
-"""
 
 BANNER = """
 <div class="note" style="margin:0 0 14px;display:flex;gap:9px;align-items:flex-start">
@@ -121,12 +95,9 @@ def main() -> None:
     if "__DASHBOARD_DATA__ =" not in html.split("<style>")[0]:
         raise SystemExit("data loader not found — did command-center.html change shape?")
 
-    # 2a. Fonts in the head, before the stylesheet.
+    # 2. Name it for the gallery.
     html = html.replace("<title>Command Center</title>",
-                        "<title>Client Command Center</title>\n" + FONTS, 1)
-    # 2b. Type identity AFTER the main stylesheet — the local :root also
-    #     defines --sans/--mono, so an earlier override would simply lose.
-    html = html.replace('<div class="shell">', TYPE_OVERRIDE + '\n<div class="shell">', 1)
+                        "<title>Client Command Center</title>", 1)
 
     # 3. Snapshot banner at the top of every view.
     stamp = (data.get("generatedAt", "") or "")[:16].replace("T", " ") + " UTC"
