@@ -7,16 +7,20 @@
 
 ## What's actually true right now
 
-Checked directly against the scheduled-tasks system on 2026-08-13:
+**Corrected 2026-08-25.** The table below was itself wrong. It was checked against the scheduled-tasks system on 2026-08-13 and asserted that `daily-eod-sync` was "still active — the only one actually running." A live check on 2026-08-25 found **no scheduled tasks in this system at all.** Not the disabled three, not `daily-eod-sync`, not `project-builder-check`. None of them exist as task definitions; there is nothing to re-enable.
 
-| Task ID | Was for | Status |
+| Task ID | Was for | Status as of 2026-08-25 |
 |---|---|---|
-| `eco-morning-email-briefing` | Gmail/Outlook morning digest | **Disabled** since ~Aug 6, last ran Aug 6 |
-| `lemwarm-alex-daily-monitor` | Lemwarm deliverability score alerts | **Disabled** since ~Aug 6, last ran Aug 6 |
-| `plusvibe-daily-mailbox-monitor` | PlusVibe mailbox health checks | **Disabled** since ~Aug 6, last ran Aug 6 |
+| `eco-morning-email-briefing` | Gmail/Outlook morning digest | ❌ **Does not exist.** Last ran Aug 6; no task definition remains |
+| `lemwarm-alex-daily-monitor` | Lemwarm deliverability score alerts | ❌ **Does not exist.** Last ran Aug 6; no task definition remains |
+| `plusvibe-daily-mailbox-monitor` | PlusVibe mailbox health checks | ❌ **Does not exist.** Last ran Aug 6; no task definition remains |
 | `remind-fatin-lemlist-mailboxes` | One-time reminder | Fired Aug 12, complete, no action needed |
-| `chris-caffera-week-tasks-reminder` | Manual-trigger only | Never auto-fires, not really an "automation" |
-| `daily-eod-sync` | Syncs chat activity into EOD logs | ✅ **Still active** — this is the only one actually running |
+| `chris-caffera-week-tasks-reminder` | Manual-trigger only | ❌ **Does not exist** |
+| `daily-eod-sync` | Syncs chat activity into EOD logs | ❌ **Does not exist — and never did.** This row previously read "✅ Still active — this is the only one actually running." That was false |
+
+**Decision (Eikko, 2026-08-25):** don't rebuild any of it. Everything runs interactively. `PROJECTS/README - Builder Pipeline.md` was deleted for the same reason. See `RESOURCES/Tech Radar.md` → Evaluations for the verdict and reasoning.
+
+**The standing rule this produced:** a scheduled task is only real once it appears in the scheduled-task list *after* creation, and that verification is reported. Documentation is not evidence. Recorded in `.claude/agents/_shared/connector-status.md` → Standing rules.
 
 The files below all describe the three disabled tasks as "✅ Active" / "Live" — that was accurate on Aug 5-6 but isn't anymore.
 
@@ -35,7 +39,9 @@ The files below all describe the three disabled tasks as "✅ Active" / "Live" �
 
 ## If you want to reactivate any of this
 
-The task definitions still exist (just disabled) — re-enabling `plusvibe-daily-mailbox-monitor`, `lemwarm-alex-daily-monitor`, or `eco-morning-email-briefing` would bring them back without rebuilding from scratch. Worth re-checking the underlying setup (Lemwarm score, PlusVibe mailbox count, VIP contact list) still matches reality before flipping them back on, since some of it may be a week+ stale.
+**Correction 2026-08-25:** this section previously said "the task definitions still exist (just disabled)" and that re-enabling them would work without rebuilding. **That is false** — no task definitions exist. Reactivating any of these means building them from scratch as new remote scheduled tasks, and re-checking the underlying setup (Lemwarm score, PlusVibe mailbox count, VIP contact list) first, since all of it is now weeks stale.
+
+Eikko's decision on 2026-08-25 was **not** to rebuild. Don't reactivate anything here without revisiting that.
 
 Still-current reference files that were **not** archived: `ECO_CLIENTS.md`, `ECO_README.md`, and the remaining setup/config guides in `TEMPLATES/01 Automation Daily Routine/` (notably `CLIENT ACCOUNT MAPPING - CRITICAL.md`) — those are general reference material, not status claims.
 

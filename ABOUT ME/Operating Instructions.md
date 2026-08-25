@@ -24,7 +24,7 @@ Added 2026-08-15, updated same day to fix the cross-session sync gap. Originally
 
 - **PRD first for anything nontrivial.** New agents, new automations, new client systems, or structural folder changes get a short PRD (problem, scope, plan, open questions) before building — see `TEMPLATES/PRD Template.md`. Quick fixes, single-file edits, and routine logging (EOD reports, meeting files) don't need this.
 - **Check what already exists first.** This system already has a 10-specialist agent structure behind a `chief-of-staff`, a connector-status single source of truth, and established per-client file conventions — build on those, don't duplicate or reinvent them.
-- Get my sign-off on the PRD before starting the actual build. Approved PRDs can go in `PROJECTS/Pending/` for the unattended builder pipeline — see `PROJECTS/README - Builder Pipeline.md`.
+- Get my sign-off on the PRD before starting the actual build. **There is no unattended builder** — the `PROJECTS/Pending/` pipeline was documented but never existed and was removed 2026-08-25. Approved PRDs get built interactively; the finished PRD is filed in `PROJECTS/Done/` as a record.
 
 ## Pushback
 

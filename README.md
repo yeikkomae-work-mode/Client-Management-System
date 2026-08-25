@@ -1,8 +1,8 @@
 # Eikko's Client Management System
 
-**Organized workspace for managing active, trial, and prospective clients, a Claude Code agent system (10 specialists behind a Chief of Staff orchestrator), automation, campaigns, and personal business operations.**
+**Organized workspace for managing active, trial, and prospective clients, a Claude Code agent system (13 agents: a Chief of Staff front door, a 3-agent C-suite, and 9 operators), automation, campaigns, and personal business operations.**
 
-Last updated: Aug 15, 2026 | Status: 🟢 Organized — agent system rebuilt, Fathom meeting sync live, PRD-first build discipline + unattended builder pipeline added
+Last updated: Aug 25, 2026 | Status: 🟢 Organized — agent system reconciled to 13 agents, Fathom meeting sync live, PRD-first build discipline. **No scheduled automations exist** (verified 2026-08-25); everything runs interactively.
 
 ---
 
@@ -41,7 +41,7 @@ Active and prospective projects organized by status.
   - `LATEST-COMPLETED-WORK.md` — Most recent completed work summary
   - `Penji - Agency Outreach Automation Workflow.md` — Phased automation design for Penji's sourcing→enrichment→outreach→CRM pipeline
 - **Prospective/** — `NEW CLIENTS - ONBOARDING PIPELINE.md`, tracking Cüneyt's trial and the now-closed Top Acquisitions opportunity
-- **Pending/ · In-Progress/ · Done/ · Failed/** — Added Aug 15. Autonomous builder pipeline: drop an approved PRD in `Pending/`, a scheduled task builds it unattended and files the result in `Done/` (or `Failed/` with a blocker note). See **Builder Pipeline** below and `PROJECTS/README - Builder Pipeline.md`.
+- **Done/** — Completed PRDs, kept as a historical record. *(The `Pending/ · In-Progress/ · Failed/` builder-pipeline folders were documented from Aug 15 but never actually created, and the `project-builder-check` task they depended on never existed. The pipeline was removed 2026-08-25.)*
 
 ### **TEMPLATES**
 Reusable workflows and automation setup.
@@ -67,28 +67,35 @@ System files, tool documentation, and reference materials.
 - **Documentation/** — Reference guides, templates, how-tos (empty — ready for expansion)
 
 ### **ARCHIVE - Inactive Automations** (root level)
-Stale automation/status docs kept for reference, not deleted. See its own `README.md` for exactly what's disabled and why — short version: only `daily-eod-sync` is still running; the original morning-briefing, Lemwarm monitor, and PlusVibe monitor tasks have been off since ~Aug 6.
+Stale automation/status docs kept for reference, not deleted. See its own `README.md` for what each file claimed and why it's archived. **Short version: no scheduled task in this system exists or is running** — verified live 2026-08-25, including `daily-eod-sync`, which several docs claimed was active.
 
 ### **.claude/agents/** (root level — the current agent system)
-10 Claude Code specialist subagents in a front-office/back-office split, built Aug 13 replacing the earlier 5-agent ECO framework, plus the `chief-of-staff` added Aug 25 as Eikko's second-in-command and the front door to them. See **Agent System** below.
+13 Claude Code agents — a `chief-of-staff` front door, a `cmo`/`cfo`/`cto` C-suite, and 9 operators in a front-office/back-office split. Built Aug 13 replacing the earlier 5-agent ECO framework; C-suite added and roster reconciled Aug 25. See **Agent System** below.
 
 ### **Top Acquisitions/** (root level)
 Leftover sourcing file (`top-acquisitions-hvac-sourcing.md`) from the closed trial — candidate for archiving alongside the ECO cleanup.
 
 ---
 
-## 🤖 Agent System (current — 10 specialists built Aug 13, orchestrator added Aug 25)
+## 🤖 Agent System (current — 13 agents: 1 front door · 3 C-suite · 9 operators)
 
-Sessions in this folder open in **Chief of Staff mode**: describe the goal and the Chief of Staff either runs it (day-to-day admin and internal ops are its own job) or routes it to the right specialist, sequences the work, checks the result, and checkpoints what happened. Claude Code also auto-routes to a specialist when the match is obvious, and you can always call one directly ("Use the billing-auditor agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager`.
+Sessions in this folder open in **Chief of Staff mode**: describe the goal and the Chief of Staff either runs it (day-to-day admin and internal ops are its own job) or routes it to the right specialist, sequences the work, checks the result, and checkpoints what happened. Claude Code also auto-routes to a specialist when the match is obvious, and you can always call one directly ("Use the cfo agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager`.
 
-**Orchestrator (above the split, not one of the ten):**
+**Front door (above the split, not one of the nine):**
 `chief-of-staff` — Eikko's second-in-command. Runs internal administration and operations directly, routes client work to the specialists, owns multi-step outcomes, holds the authority rules and the session-memory protocol. `/chief-of-staff`
 
-**Front-office (client-facing — drafts only, nothing sends without your yes):**
+**C-suite (domain orchestrators):**
+`cmo` (marketing — Outbound / SEO / Brand modes) · `cfo` (cost, billing, subscriptions) · `cto` (tool verdicts, drift check)
+
+**Front-office operators (client-facing):**
 `inbox-triage` · `copywriter` · `lead-prospector` · `reply-handler` · `market-scout`
 
-**Back-office (internal ops):**
-`project-manager` · `billing-auditor` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
+**Back-office operators (internal ops):**
+`project-manager` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
+
+**Retired 2026-08-25:** `billing-auditor` (absorbed by `cfo`) · `seo-agent` / `brand-agent` / `outbound-agent` (folded into `cmo` as modes).
+
+**Authority, as of 2026-08-25:** `chief-of-staff` operates full-auto within a session — it acts without stopping to confirm, including client-facing and destructive actions, and reports after. That supersedes the draft-only guardrail on the four client-facing operators when it delegates to them. Credentials and the Notion Expenses migration stay gated.
 
 **Shared reference:** `.claude/agents/_shared/connector-status.md` — single source of truth every agent reads before claiming a tool is live. Twin copy in Notion: 🎛️ VA Command Center.
 
@@ -112,13 +119,11 @@ Every meeting you record in Fathom now gets pulled, matched to a client, and fil
 
 ---
 
-## 🏗️ Builder Pipeline (added Aug 15)
+## 🏗️ Build discipline
 
-Drop a signed-off PRD, wake up to a finished build — adapted from Tina Huang's "autonomous builder" pattern.
+Nontrivial builds (new agent, new automation, new client system, structural folder change) get a short PRD first — `TEMPLATES/PRD Template.md` — with sign-off before building. Quick fixes, single-file edits, and routine logging skip it.
 
-**How it works:** write a PRD using `TEMPLATES/PRD Template.md`, check the sign-off box, drop it in `PROJECTS/Pending/`. The scheduled task `project-builder-check` (every 3 hours) picks it up, moves it to `In-Progress/`, builds exactly what's scoped, and files it in `Done/` with a build log appended — or in `Failed/` with a clear blocker note if it hits something ambiguous, destructive, or missing.
-
-**Ground rules:** only approved PRDs get built. Nothing outside the PRD's stated scope gets touched. Destructive/irreversible steps always get flagged to `Failed/` for a real go-ahead rather than run unattended. Full detail: `PROJECTS/README - Builder Pipeline.md`.
+**There is no unattended builder.** A pipeline was documented from Aug 15 — drop an approved PRD in `PROJECTS/Pending/`, a `project-builder-check` task every 3 hours picks it up — but the scheduled task never existed, the folders were never created, and nothing was ever built by it. It was removed 2026-08-25 rather than rebuilt: Eikko builds interactively anyway, and an unattended builder that silently doesn't run is exactly the fragility pattern this system is trying to eliminate. Completed PRDs are kept in `PROJECTS/Done/` as a record.
 
 **Related:** `ABOUT ME/Operating Instructions.md` — paste into Claude Settings → Cowork → **Global instructions** for account-wide PRD-first / pushback / reversibility rules, and the session-bootstrap fix that stops new sessions from losing this folder's context.
 
@@ -178,7 +183,7 @@ Checked directly against the scheduled-tasks system, Aug 13:
 
 | Task | Status |
 |---|---|
-| `daily-eod-sync` | ✅ **Active** — the only one currently running |
+| `daily-eod-sync` | ❌ **Does not exist** — claimed active by several docs; verified absent 2026-08-25 |
 | `eco-morning-email-briefing` | ⏸ Disabled since ~Aug 6 |
 | `lemwarm-alex-daily-monitor` | ⏸ Disabled since ~Aug 6 |
 | `plusvibe-daily-mailbox-monitor` | ⏸ Disabled since ~Aug 6 |
@@ -220,7 +225,7 @@ Instantly (Satlas — deprecated, migrated off) · Zapmail (dead key) · InboxKi
 ### **Daily Workflow**
 1. **Morning:** Run `good morning` for a manual briefing, or check your calendar directly
 2. **Throughout day:** Log work in the app or edit end-of-day files — or let `/eod-sync` handle it per client
-3. **End of day:** Run `done for today`, or rely on `daily-eod-sync` (the one automation still live)
+3. **End of day:** Run `done for today` (or `/eod-sync <client>`). There is no automation — nothing runs unless you run it.
 
 ### **Weekly Tasks**
 - Monitor campaign health in Plusvibe / Starfix Instantly
@@ -239,7 +244,7 @@ Client-Management-System/
 ├── README.md (you are here)
 ├── CLAUDE.md (root — agent quick-reference, read by Claude Code each session)
 ├── .claude/
-│   ├── agents/ (chief-of-staff.md + 10 specialist definitions + README + _shared/connector-status.md)
+│   ├── agents/ (chief-of-staff.md + cmo/cfo/cto + 9 operator definitions + README + _shared/connector-status.md)
 │   └── commands/ (coo.md, agent-manager.md, eod-sync.md)
 ├── ABOUT ME/
 │   ├── CLAUDE.md
@@ -274,13 +279,13 @@ Client-Management-System/
 ## ✅ System Status
 
 - **Folder structure:** 🟢 Organized — client profiles consolidated, stale automation docs archived (not deleted) Aug 13
-- **Agent system:** 🟢 Rebuilt Aug 13 — 10 specialists in a front/back-office split replacing the 5-agent ECO framework, with a single connector-status source of truth. Aug 25: `chief-of-staff` added as second-in-command and front door; routing lives in that one file, everything else points at it
-- **Automation:** 🟡 Only `daily-eod-sync` is actually running; morning briefing, Lemwarm monitor, PlusVibe monitor are disabled (re-enable via the `schedule` skill if needed — check for staleness first)
+- **Agent system:** 🟢 Rebuilt Aug 13 — operators in a front/back-office split replacing the 5-agent ECO framework, with a single connector-status source of truth. Aug 25: reconciled to **13 agents** — `chief-of-staff` as front door, a `cmo`/`cfo`/`cto` C-suite, and 9 operators; `billing-auditor` retired into `cfo` and the three CMO track specialists folded into `cmo` as modes. Routing lives in `chief-of-staff.md`, everything else points at it
+- **Automation:** 🔴 **None.** Verified live 2026-08-25: this system has no scheduled tasks at all. `daily-eod-sync` and `project-builder-check` were both documented as running and neither has ever existed. Decision (Eikko, 2026-08-25): don't rebuild them — run everything interactively and delete the docs that claimed otherwise.
 - **Client profiles:** 🟢 One consolidated file per client/prospect, 9 total
 - **Connector status:** 🟡 Core lead-gen/CRM tools + Fathom connected; HubSpot, Slack, Fireflies, Porkbun need auth; several tools (Zapmail, Lemlist, LinkedIn, etc.) have no viable connector and stay manual
 - **Client roster:** 🟢 6 active, 1 signed (Penji), 1 trial (Cüneyt), 1 prospective (Edward Lehner), 1 closed (Top Acquisitions)
 - **Meeting sync:** 🟢 Fathom connected Aug 13 — 11 meetings backfilled into `OUTPUT/Meetings/`, new ones filed automatically going forward
-- **Build discipline:** 🟢 Added Aug 15 — Operating Instructions doc (paste into Cowork Settings), PRD-first habit for nontrivial builds, and an unattended builder pipeline (`PROJECTS/Pending/` → `project-builder-check` every 3h → `Done/`/`Failed/`)
+- **Build discipline:** 🟢 Operating Instructions doc (paste into Cowork Settings) and a PRD-first habit for nontrivial builds. The unattended builder pipeline was removed 2026-08-25 — it never existed as anything but documentation.
 
 ---
 

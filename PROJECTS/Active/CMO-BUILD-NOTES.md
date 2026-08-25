@@ -67,7 +67,7 @@ These were checked from a cloud container holding a fresh clone. **Eikko's local
 
 ---
 
-## 🟡 `PROJECTS/Pending/` doesn't exist
+## ✅ RESOLVED 2026-08-25 — `PROJECTS/Pending/` doesn't exist (and won't)
 
 Referenced by both root `CLAUDE.md` and `PROJECTS/README - Builder Pipeline.md` as the drop folder for approved PRDs, but the directory isn't in the repo. Not touched by this build — flagging because the builder pipeline can't work without it.
 
@@ -196,7 +196,7 @@ Also captured: **speed-to-lead is 10–15 minutes** on a positive reply (skill),
 | 1 | Add the routing line to `chief-of-staff`'s table | Whoever builds `chief-of-staff` | 2026-08-25 | `cmo` being reachable through the global router |
 | 2 | Diff the built files against the real CMO PRD | Eikko | 2026-08-25 | Sign-off on the build |
 | 3 | Confirm `claude-seo`, `ui-ux-pro-max`, `remotion`, `impeccable` commands are installed locally | Eikko | 2026-08-25 | `seo-agent` and `brand-agent` running as written |
-| 4 | Create `PROJECTS/Pending/` or drop the references to it | Eikko | 2026-08-25 | Builder pipeline |
+| 4 | ~~Create `PROJECTS/Pending/` or drop the references to it~~ **Done 2026-08-25** — references dropped, builder pipeline deleted | Eikko | 2026-08-25 | Builder pipeline |
 | 5 | ~~Give `reply-handler` Bash~~ ✅ **Done 2026-08-25** — with account-safety, write, and send guardrails | — | 2026-08-25 | Closed |
 | 6 | Align `copywriter.md`'s Day 0/3/7 to the skill's Day 1/4/8 | Eikko | 2026-08-25 | Nothing yet — same cadence, two notations |
 | 7 | Fix the `satlas-cold-email` skill's references path | Eikko | 2026-08-25 | Any agent following the declared pointer |

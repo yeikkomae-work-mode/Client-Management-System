@@ -335,7 +335,7 @@ follows.
 
 ## Still open — the other flagged item
 
-The builder pipeline (`project-builder-check` / `daily-eod-sync`) has **not** been touched.
+The builder pipeline (`project-builder-check` / `daily-eod-sync`) has **not** been touched. *(Update 2026-08-25: both were later verified never to have existed. The builder-pipeline docs were deleted and the automation docs corrected — see `RESOURCES/Tech Radar.md` → Evaluations.)*
 Neither scheduled task was found in the account's Routines, and `Pending/`, `In-Progress/`, and
 `Failed/` still do not exist as directories. That one is still waiting on Eikko — and the check
 is incomplete on its own terms: this session can only see the Routines/cron surface, not tasks

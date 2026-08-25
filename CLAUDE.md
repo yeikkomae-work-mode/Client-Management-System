@@ -23,34 +23,36 @@ dispatcher you hand off to and then wait on.
 
 Anything nontrivial (new agent, new automation, new client system, structural folder change) gets a short PRD first — `TEMPLATES/PRD Template.md` — with Eikko's sign-off before building. Quick fixes, single-file edits, and routine logging (EOD reports, meeting files) skip this. Full operating rules: `ABOUT ME/Operating Instructions.md`.
 
-Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building — see `PROJECTS/README - Builder Pipeline.md`.
+**There is no unattended builder.** The `PROJECTS/Pending/` drop-a-PRD pipeline was documented but never existed — the scheduled task it depended on was never created and those folders were never made. It was removed 2026-08-25. Everything is built interactively.
 
-## Orchestrator
+## The roster — 13 agents
+
+**Front door (1)**
 
 - **chief-of-staff** — Eikko's second-in-command. Runs day-to-day business administration and internal operations directly; routes client work to the specialists, sequences it, checks the result, and checkpoints session memory. `/chief-of-staff`
 
-## Front-office (Client-facing work)
+**C-suite (3)**
+
+- **cmo** — Marketing orchestrator. Intake, mode selection, phase gates, owns the client Marketing Brief. Runs Outbound / SEO / Brand as modes inside one file
+- **cfo** — Cost, billing, rates, billable hours, tool subscriptions, renewals, Notion finance data. Owns the Tools & Subscriptions register
+- **cto** — Tool adopt/trial/hold/kill verdicts and the drift check between what the docs claim and what actually exists. Owns `RESOURCES/Tech Radar.md`
+
+**Front-office operators (5) — client-facing**
 
 - **lead-prospector** — Apollo searches, campaign create/pause, list building
 - **copywriter** — Cold email sequences, LinkedIn posts, campaign copy
 - **reply-handler** — Inbound campaign replies, objection handling, Calendly bookings
 - **market-scout** — Competitor research, industry trends
-
-## Back-office (Operations & management)
-
 - **inbox-triage** — Email triaging, reply drafting across multiple accounts
+
+**Back-office operators (4) — internal ops**
+
 - **project-manager** — Task rollups, tracking, daily/weekly task management
-- **billing-auditor** — Time tracking, invoices, monthly P&L
 - **file-organizer** — Folder structure, deduplication, file hygiene
 - **onboarding-guide** — New client setup, folder structure, onboarding checklist
 - **meeting-summarizer** — Call transcripts → minutes & action items
 
-## Marketing (CMO layer)
-
-- **cmo** — Marketing orchestrator: intake, track selection, phase gates, owns the client Marketing Brief
-- **outbound-agent** — Cold outbound end to end: research → ICP → leads → verification → copy → campaign build → deliverability
-- **seo-agent** — SEO audits via the `claude-seo` plugin, zero-key mode by default
-- **brand-agent** — Positioning, verbal/visual identity, brand guidelines, website, content engine
+**Retired:** `billing-auditor` (absorbed by `cfo`, 2026-08-25) · `seo-agent` / `brand-agent` / `outbound-agent` (folded into `cmo` as modes, 2026-08-25)
 
 ## Specialized
 
