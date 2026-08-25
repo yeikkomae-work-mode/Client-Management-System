@@ -1,3 +1,5 @@
+> **⚠️ Retired 2026-08-26 — n8n is no longer the automation platform for Albert Scott.** Eikko pulled it before any of the credentials below were ever created, so neither workflow ever ran live. This doc, and the two workflow JSON files in this folder, stand as a record of what was built, not a live setup guide. Reply-triage across SmartLead and LinkedIn is currently manual — tracked in the Command Center's Automation Log (`dashboard/command-center.html`) — pending a decision on what replaces n8n, if anything.
+
 # Albert Scott — n8n Workflows (Smartlead / Pipedrive / Gmail / Calendly)
 
 Scope: reply triage → CRM sync, and Calendly bookings → CRM sync.

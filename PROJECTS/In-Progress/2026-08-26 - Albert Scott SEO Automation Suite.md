@@ -3,6 +3,8 @@
 **Date:** 2026-08-26
 **Requested by:** Eikko (task list pasted, scope drafted by Claude for review)
 
+> **⚠️ Needs re-scoping before sign-off — n8n retired 2026-08-26.** Everything below (Scope items 1–5, the Constraints section, and Plan steps 2–7) was written assuming "the existing Albert Scott n8n workflow" as the automation backbone. Eikko has since removed n8n as the automation platform for this client entirely — no replacement has been chosen yet. **Do not sign off on this PRD as written**; it needs a fresh pass once a platform decision exists, since right now every scheduled/automated piece of this plan has nowhere to run.
+
 ## Problem
 
 Albert Scott's SEO work is currently one-off and manual: the 2026-08-26 SEO Health Check (`SEO Audit - 2026-08-26.md`, same folder) was a point-in-time pull, not a running system. There's no standing process for:

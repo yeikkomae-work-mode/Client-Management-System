@@ -402,9 +402,6 @@
       </div>
       <span class="today">Wednesday, Aug 26 2026</span>
       <div class="fill"></div>
-      <a class="icon-btn" href="https://eikko.app.n8n.cloud/workflow/H5tFVaQm6MWayvv4" target="_blank" rel="noopener" title="Open n8n workflow">
-        <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M13 3 4 14h6l-1 7 9-11h-6z"/></svg>
-      </a>
       <button type="button" class="icon-btn" title="3 items need attention">
         <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M6 8a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
         <span class="dot"></span>
@@ -447,7 +444,7 @@
               <div class="kpi-badge"><svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><path d="M13 3 4 14h6l-1 7 9-11h-6z"/></svg></div>
             </div>
             <div class="kpi-value tabular">0</div>
-            <div class="kpi-foot"><span class="status-pill danger">Not live — no credentials</span></div>
+            <div class="kpi-foot"><span class="status-pill danger">No platform since n8n retired</span></div>
           </div>
           <div class="kpi-card">
             <div class="kpi-top">
@@ -472,9 +469,9 @@
           <button type="button" class="exc-card" data-goto="automation">
             <div class="badge danger"><svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px;"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>
             <div class="txt">
-              <div class="num tabular">4 missing</div>
-              <div class="title">n8n has zero credentials</div>
-              <div class="desc">Reply-triage workflow fails in 2s until Smartlead/Pipedrive/Anthropic/Sheets creds exist.</div>
+              <div class="num tabular">No platform</div>
+              <div class="title">n8n retired 2026-08-26</div>
+              <div class="desc">Reply-triage across SmartLead and LinkedIn is manual for now — no automation platform has replaced n8n yet.</div>
             </div>
           </button>
           <button type="button" class="exc-card" data-goto="smartlead">
@@ -676,12 +673,12 @@
         </div>
 
         <div class="subview" data-sub="inbox">
-          <div class="flag-note" style="margin: 0 0 18px;"><strong>Automation is not live yet</strong> — n8n has zero credentials configured, so nothing here classifies or syncs to Pipedrive automatically. The two rows below were <strong>manually run through the same triage logic by Claude on 2026-08-25</strong> to prove the categorization + Pipedrive-sync rules work correctly before go-live; everything else in the Master Inbox is still sitting unclassified.</div>
+          <div class="flag-note" style="margin: 0 0 18px;"><strong>No automation platform</strong> — n8n was retired as the automation platform for Albert Scott on 2026-08-26, so nothing here classifies or syncs to Pipedrive automatically. The two rows below were <strong>manually run through the same triage logic by Claude on 2026-08-25</strong> to prove the categorization + Pipedrive-sync rules work correctly, ahead of whatever platform ends up running this unattended; everything else in the Master Inbox is still sitting unclassified.</div>
 
           <div class="kpi-row">
             <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Unread in Master Inbox</div></div><div class="kpi-value tabular">21</div></div>
             <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Manually QA'd</div></div><div class="kpi-value tabular">2</div><div class="kpi-foot"><span class="status-pill success">Logic verified</span></div></div>
-            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Auto-classified by n8n</div></div><div class="kpi-value tabular">0</div><div class="kpi-foot"><span class="status-pill danger">Not live</span></div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Auto-classified</div></div><div class="kpi-value tabular">0</div><div class="kpi-foot"><span class="status-pill danger">No platform</span></div></div>
             <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Awaiting classification</div></div><div class="kpi-value tabular">19</div></div>
           </div>
 
@@ -729,7 +726,7 @@
               </table>
             </div>
             <p id="awaitingEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No replies match this filter.</p>
-            <div class="info-note">Only the oldest 5 of 19 still-unread replies are loaded into this build — owner here is inferred from which of the 16 active campaigns each belongs to (some, like "London Coffee Festival," aren't in that list and show as Unassigned rather than guessed at). These stay "not yet classified" until the n8n credentials are created and the workflow actually runs — showing them as "done" before that would misrepresent what's happened.</div>
+            <div class="info-note">Only the oldest 5 of 19 still-unread replies are loaded into this build — owner here is inferred from which of the 16 active campaigns each belongs to (some, like "London Coffee Festival," aren't in that list and show as Unassigned rather than guessed at). These stay "not yet classified" until an automation platform actually runs this — showing them as "done" before that would misrepresent what's happened.</div>
           </div>
         </div>
       </section>
@@ -784,26 +781,45 @@
       <section class="view" id="view-automation">
         <div class="page-head">
           <h1>Claude Activity / Automation Log</h1>
-          <p>Every lead Claude categorizes, updates, or moves — filterable by date, action type, lead and campaign. Reads the same Google Sheet the n8n workflow writes to.</p>
+          <p>Every lead Claude categorizes, updates, or moves — filterable by date, channel, and category. No automation runs unattended yet; this tracks Claude's manual review passes across SmartLead and LinkedIn until a platform does.</p>
         </div>
 
-        <div class="card">
+        <div class="card" style="margin-bottom: 18px;">
           <div class="card-head">
             <h2>Run history</h2>
-            <a class="ext" href="https://docs.google.com/spreadsheets/d/1cEXs1sX0_Zdy08xq2iBvYmziOLd68OI-yeygzBR1BaU/edit" target="_blank" rel="noopener" style="font-size:12px; color:var(--crimson); text-decoration:none; font-weight:700;">Open run log sheet ↗</a>
           </div>
           <div class="card-body" style="text-align:center; padding: 40px 20px;">
-            <p class="eyebrow" style="margin-bottom:10px;">No runs yet</p>
-            <p style="max-width: 52ch; margin: 0 auto; color: var(--text-secondary); font-size: 13.5px;">Test-run 2026-08-25 found the workflow is built but <strong>not yet live</strong> — n8n has zero credentials configured, so the Smartlead node fails immediately with "Credentials not found." Zero runs logged because it can't run yet, not because nothing happened. Credentials need to be created in n8n before this automates anything.</p>
+            <p class="eyebrow" style="margin-bottom:10px;">No automated runs — n8n retired 2026-08-26</p>
+            <p style="max-width: 56ch; margin: 0 auto; color: var(--text-secondary); font-size: 13.5px;">n8n was built out for this client (51 nodes, SmartLead reply-triage + Calendly→Pipedrive) but never went live — the workflow's test run 2026-08-25 failed on missing credentials, and Eikko retired n8n as the platform for Albert Scott the next day before those credentials were ever created. Zero runs were ever logged. No replacement platform has been chosen yet, so every action below is a manual review pass by Claude, not an automated one.</p>
             <div style="display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap;">
-              <a class="btn-action" style="background: var(--surface-alt); color: var(--text); border:1px solid var(--border);" href="https://eikko.app.n8n.cloud/workflow/H5tFVaQm6MWayvv4" target="_blank" rel="noopener">n8n workflow</a>
-              <a class="btn-action" style="background: var(--surface-alt); color: var(--text); border:1px solid var(--border);" href="https://claude.ai/code/artifact/53a35471-298c-4fe1-b944-c5ed2e319df3" target="_blank" rel="noopener">Automation handover</a>
+              <a class="btn-action" style="background: var(--surface-alt); color: var(--text); border:1px solid var(--border);" href="https://docs.google.com/spreadsheets/d/1cEXs1sX0_Zdy08xq2iBvYmziOLd68OI-yeygzBR1BaU/edit" target="_blank" rel="noopener">Run log sheet (unused)</a>
+              <a class="btn-action" style="background: var(--surface-alt); color: var(--text); border:1px solid var(--border);" href="https://claude.ai/code/artifact/53a35471-298c-4fe1-b944-c5ed2e319df3" target="_blank" rel="noopener">n8n feasibility writeup (superseded)</a>
             </div>
           </div>
           <div class="automations">
-            <div class="a"><div class="name">SmartLead reply triage</div><div class="desc">Hourly. Classifies new replies with Claude Opus 5, resolves/creates the Pipedrive person + org, logs a follow-up activity.</div></div>
-            <div class="a"><div class="name">Calendly → Pipedrive</div><div class="desc">Real-time on booking. Creates or updates the lead in Pipedrive and logs the meeting.</div></div>
+            <div class="a"><div class="name">SmartLead reply triage</div><div class="desc">Retired 2026-08-26 (was built in n8n, never went live). Manual reviews are logged in the table below instead.</div></div>
+            <div class="a"><div class="name">LinkedIn reply review (HeyReach)</div><div class="desc">No automation exists — every unread conversation is read and categorized by hand, logged below.</div></div>
+            <div class="a"><div class="name">Calendly → Pipedrive</div><div class="desc">Retired 2026-08-26 (was built in n8n, never went live). Bookings are currently handled manually.</div></div>
           </div>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-title-bar">
+            <h2>Recent manual reviews</h2>
+            <span class="count tabular" id="logCount">8</span>
+          </div>
+          <div class="chip-row" id="logChannelFilter">
+            <button type="button" class="chip active" data-channel="all">All <span class="tabular">8</span></button>
+            <button type="button" class="chip" data-channel="SmartLead">SmartLead <span class="tabular">2</span></button>
+            <button type="button" class="chip" data-channel="LinkedIn">LinkedIn <span class="tabular">6</span></button>
+          </div>
+          <div class="table-scroll">
+            <table class="data" style="min-width:760px;">
+              <thead><tr><th>Date</th><th>Channel</th><th>Lead</th><th>Category</th><th>Action taken</th></tr></thead>
+              <tbody id="logBody"></tbody>
+            </table>
+          </div>
+          <div class="info-note">All rows here are manual review passes by Claude, not automated runs — labeled by channel so this doubles as the LinkedIn reply log Yoni asked for, not just SmartLead's.</div>
         </div>
       </section>
 
@@ -951,17 +967,18 @@
           <p>What we're running and what we're paying for. Structure only — costs, seats and renewal dates need Yoni/Eikko to populate; nothing here was guessed. Passwords are never shown — every login links out to wherever the credential actually lives.</p>
         </div>
         <div class="card table-card">
-          <div class="table-title-bar"><h2>Stack inventory</h2><span class="count tabular">6 known</span></div>
+          <div class="table-title-bar"><h2>Stack inventory</h2><span class="count tabular">7 known</span></div>
           <div class="table-scroll">
             <table class="data" style="min-width:900px;">
               <thead><tr><th>Software</th><th>Purpose</th><th>Monthly cost</th><th>Seats / accounts</th><th>Login</th><th>Owner</th></tr></thead>
               <tbody>
                 <tr><td>Smartlead</td><td>Outbound email sending, 111 inboxes / 195 campaigns</td><td class="faint">Not recorded</td><td>1 workspace, 111 inboxes, ~51 domains</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
                 <tr><td>Pipedrive</td><td>CRM — pipeline, activities, follow-ups</td><td class="faint">Not recorded</td><td>2+ users (Yoni + 1 unmapped owner)</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
-                <tr><td>n8n (Eikko's cloud)</td><td>Reply-triage + Calendly→Pipedrive automation</td><td class="faint">Not recorded</td><td>1 workspace</td><td class="faint">1Password / Notion</td><td>Eikko</td></tr>
+                <tr><td>HeyReach</td><td>LinkedIn outreach — connections, messaging, inbox</td><td class="faint">Not recorded</td><td>2 LinkedIn senders (Yoni, Rachel), 1 workspace</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
+                <tr style="opacity:.6;"><td>n8n (Eikko's cloud)</td><td><span class="pill idle">Retired 2026-08-26</span> — was being built for reply-triage + Calendly→Pipedrive, never went live</td><td class="faint">Not recorded</td><td>1 workspace</td><td class="faint">1Password / Notion</td><td>Eikko</td></tr>
                 <tr><td>WordPress + AIOSEO Pro</td><td>albertscott.com hosting + on-page SEO engine</td><td class="faint">Not recorded</td><td>1 site, Administrator app password (sales)</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
-                <tr><td>Google Workspace</td><td>Sheets automation log, Drive, Site Kit</td><td class="faint">Not recorded</td><td class="faint">Not recorded</td><td class="faint">1Password / Notion</td><td>Yoni / Eikko</td></tr>
-                <tr><td>Calendly</td><td>Booking → Pipedrive sync</td><td class="faint">Not recorded</td><td class="faint">Not recorded</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
+                <tr><td>Google Workspace</td><td>Sheets automation log (unused), Drive, Site Kit</td><td class="faint">Not recorded</td><td class="faint">Not recorded</td><td class="faint">1Password / Notion</td><td>Yoni / Eikko</td></tr>
+                <tr><td>Calendly</td><td>Booking → Pipedrive sync (currently manual)</td><td class="faint">Not recorded</td><td class="faint">Not recorded</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
               </tbody>
             </table>
           </div>
@@ -1231,6 +1248,48 @@
       var btn = e.target.closest(".chip");
       if (!btn) return;
       state.owner = btn.getAttribute("data-owner");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    render();
+  })();
+
+  // ---- Automation Log: unified manual-review table (SmartLead + LinkedIn) ----
+  var LOG_ROWS = [
+    ["2026-08-25", "SmartLead", "alisa (Bella Cucina)", "Interested", "Org + person + activity created in Pipedrive · domain blocked"],
+    ["2026-08-25", "SmartLead", "Alexandra Moorfoot (The Next Fish)", "Not interested", "No Pipedrive record (correct per rule) · domain blocked"],
+    ["2026-08-25", "LinkedIn", "Claire Boggs (Tremendous)", "Vendor pitch", "Flagged, not a lead — no action taken"],
+    ["2026-08-25", "LinkedIn", "Thomas Klemenz (GEFU Küchenboss)", "Not interested", "No action — stale contact, left Aug 2018"],
+    ["2026-08-21", "LinkedIn", "Jaganath Reddy Bollapu (EPOS)", "Not interested", "No action — doesn't handle Amazon US"],
+    ["2026-08-18", "LinkedIn", "Wilson Yeung (Venchi)", "Not interested", "No action — wrong Amazon marketplace"],
+    ["2026-08-15", "LinkedIn", "Lukas Schlenz (Schöffel Sport)", "Not interested", "No action — no US market focus"],
+    ["2026-08-12", "LinkedIn", "Enrico Lomoro (NeoLife International)", "Not interested", "No action — direct-selling company, can't list on Amazon"]
+  ];
+  (function () {
+    var state = { channel: "all" };
+    var tbody = document.getElementById("logBody");
+    var countEl = document.getElementById("logCount");
+    var filterEl = document.getElementById("logChannelFilter");
+    if (!tbody || !filterEl) return;
+
+    function render() {
+      var rows = LOG_ROWS.filter(function (r) { return state.channel === "all" || r[1] === state.channel; });
+      countEl.textContent = rows.length;
+      tbody.innerHTML = rows.map(function (r) {
+        var catPill = r[3] === "Interested" ? "good" : (r[3] === "Vendor pitch" ? "warn" : "idle");
+        return "<tr><td class=\"num tabular\">" + r[0] + "</td>" +
+          "<td>" + esc(r[1]) + "</td>" +
+          "<td>" + esc(r[2]) + "</td>" +
+          '<td><span class="pill ' + catPill + '">' + esc(r[3]) + "</span></td>" +
+          '<td class="faint">' + esc(r[4]) + "</td></tr>";
+      }).join("");
+    }
+
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.channel = btn.getAttribute("data-channel");
       filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
       render();
     });

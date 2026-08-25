@@ -129,3 +129,13 @@ Pulled real data and replaced the LinkedIn placeholder in the Command Center wit
 - **Inbox** — 80 total conversations pulled, 6 unread, all on Yoni's account. None of the 6 are Interested — five are polite declines (wrong region/marketplace), and one (Claire Boggs, Tremendous) is an inbound vendor pitch, flagged as such rather than counted as real outreach backlog.
 
 No automation touches LinkedIn replies yet — this is a manual-read view, same read-only posture as the rest of Phase 1. Logged in `connector-status.md` and its Notion twin as ✅ Connected, with the org-vs-workspace-key distinction noted for next time.
+
+## n8n retired — 2026-08-26
+
+Eikko's explicit instruction: n8n is no longer the automation platform for Albert Scott — not paused, not blocked-on-credentials, removed from consideration entirely. It never actually ran (the 2026-08-25 test-run failed on missing credentials, and those credentials were never created before this decision).
+
+What this changes:
+- This PRD's Plan step 5 ("daily-refresh Routine that re-reads live data and republishes") and the Constraints section's dependency on "the existing Albert Scott n8n workflow and its credentials" are both moot — there is no automation runtime behind this dashboard, and there isn't one planned yet either.
+- Success criteria item ("A Claude Activity Log exists... populated from the same Google Sheet the n8n workflow already writes to") can't be met as written — the Sheet is unused since nothing ever wrote to it. The Command Center's Automation Log now tracks **manual review passes by Claude** instead (SmartLead +, as of today, LinkedIn/HeyReach), which is a real substitute for visibility but not the unattended automation the PRD originally scoped.
+- `README - n8n Setup.md` and the two workflow JSON files in this folder are marked retired/historical, not deleted — they're an accurate record of what got built (51 nodes, both branches) in case a future automation platform decision wants to reuse the logic.
+- Not addressed by this update: what (if anything) replaces n8n. No alternative platform has been chosen. Reply-triage for SmartLead and LinkedIn stays manual until that's decided.
