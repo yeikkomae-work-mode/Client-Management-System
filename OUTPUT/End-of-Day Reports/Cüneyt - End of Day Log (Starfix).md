@@ -4,6 +4,43 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-25
+
+**Source:** Eikko — "move the campaign amazon seller we drafted on instantly to plusvibe."
+
+**Built the drafted UK/USA Amazon Seller campaign into PlusVibe via API** — campaign
+`Amazon Seller UK/USA [MIGRATED]` (`6a8cf6f27e5c6119d8830749`) in Cüneyt's Workspace. Created
+**PAUSED**; nothing sends until it's activated by hand. 3-email Sequence B (Day 0/3/7), **107 leads**
+uploaded (0 invalid, 0 duplicate), 9 mailboxes attached (all 4 starfix.online + all 5 sellervate.net).
+Start date set to Sep 7 to clear the 14-day warmup window that began Aug 24. Verified live against the
+API: status PAUSED, 9 accounts attached, leads carrying `custom_product_category`.
+
+Dropped the 2 cross-file duplicates (`philip@palladiobeauty.com`, `prudence@beautybyearth.com`) on
+upload — 109 in the cleaned file, 107 uploaded. Clears that open item from Aug 21.
+
+**Two PlusVibe rules broke the drafted Instantly copy — both fixed before upload:**
+- Custom variables carry a `custom_` prefix: `{{product_category}}` → `{{custom_product_category}}`
+- **Only one variable per spintax section.** The draft nested `{{company_name}}` *and*
+  `{{product_category}}` inside single RANDOM blocks, which PlusVibe rejects. Moved every merge field
+  outside the RANDOM blocks, keeping all 3 wording variations per sentence. Meaning unchanged.
+
+**Flag for Chris Drew/Satlas:** the `satlas-cold-email` skill says PlusVibe uses camelCase
+(`{{firstName}}`, `{{companyName}}`). PlusVibe's own docs and the live API both use **snake_case** —
+copy written on the skill's guidance may be rendering blank names. Worth a spot-check.
+
+Build script + the API gotchas (Cloudflare blocks urllib; `schedules` is an array; `days` only accepts
+enabled keys; `wait_time` must be ≥1 on every step) saved to `scripts/plusvibe-migration/`.
+
+**Next Steps:**
+- Test-send from PlusVibe and confirm `{{custom_product_category}}` renders before activating
+- Confirm `{{sender_signature}}` is set per inbox — signatures don't carry over from Instantly
+- Decide: open tracking is ON (per the Aug 13 audit rec) and the list runs on a single
+  America/New_York schedule despite being 63 US / 45 UK — both are easy to change
+- Build the two star-rating lists (Product Review 2nd SMB 613, MAIN List 714) the same way
+- Retire the equivalent paused Instantly campaigns once this is live and confirmed
+
+---
+
 ## 2026-08-21
 
 **Source:** Eikko uploaded 3 raw lead CSVs — "can you fix this lead database clean it organize it then revise email sequence based from the cleaned database."

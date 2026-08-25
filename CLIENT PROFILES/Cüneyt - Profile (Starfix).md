@@ -27,8 +27,24 @@ Contingency plan from the original Aug 13 audit ("if Instantly deliverability do
 
 **API detail for future reference:** PlusVibe's bulk-add endpoint is `POST https://api.plusvibe.ai/api/v1/account/bulk-add-regular-accounts` (not the `partner-upload-regular-accounts` variant, which needs an unrelated `provider_id`). Takes `workspace_id` + an `accounts` array with IMAP/SMTP creds; `enable_warmup: "yes"` starts warmup in the same call. Account list: `GET /api/v1/account/list?workspace_id=...`.
 
+## Update (Aug 25, 2026) — first campaign built in PlusVibe
+
+**Amazon Seller UK/USA is now built in PlusVibe** (`6a8cf6f27e5c6119d8830749`), **PAUSED**, 107 leads,
+3-email Sequence B, 9 mailboxes (starfix.online + sellervate.net). Start date set to Sep 7 to clear
+warmup. Full record: `OUTPUT/Campaign Tracking/Cüneyt - Amazon Seller PlusVibe Migration (2026-08-25).md`.
+
+Two PlusVibe rules broke the drafted Instantly copy and were corrected: custom variables need a
+`custom_` prefix (`{{custom_product_category}}`), and **only one variable is allowed per spintax
+section** — the draft nested two merge fields inside single RANDOM blocks, so all merge fields were
+moved outside the spintax. Also confirmed PlusVibe uses snake_case `{{first_name}}` / `{{company_name}}`,
+**contradicting the `satlas-cold-email` skill's camelCase guidance — worth spot-checking Chris Drew's
+PlusVibe copy for blank names.**
+
+Reusable build script + API gotchas: `scripts/plusvibe-migration/`.
+
 **Not yet done — needs a decision:**
-- [ ] Rebuild/launch actual campaigns in PlusVibe (mailboxes are connected and warming, but no campaigns exist there yet — this was purely the infrastructure migration)
+- [ ] Test-send Amazon Seller UK/USA and confirm `{{custom_product_category}}` renders, then activate after ~Sep 7
+- [ ] Build the two star-rating lists into PlusVibe (Product Review 2nd SMB 613, MAIN List 714 — Sequence A)
 - [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
 - [ ] Formally retire/archive the paused Instantly campaigns once PlusVibe campaigns are live and confirmed working
 - [ ] sellervate.net renewal still due Sep 28, 2026 — not yet renewed
