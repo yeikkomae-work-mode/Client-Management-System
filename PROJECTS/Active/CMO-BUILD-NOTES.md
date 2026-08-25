@@ -172,6 +172,23 @@ Scope was widened by explicit request to cover two changes in `copywriter.md` �
 
 **Deliberately not done:** the signature spec was *not* resolved. The profile says "name + phone + RANDOM close," the skill says "real name, company, phone," and no RANDOM close appears in any launched email. That's a decision for Eikko and Chris (thread #14), not an edit — picking one silently is exactly what the conflict rule exists to prevent. Frontmatter untouched; `copywriter` still has `Write` and no read-only mode (thread unchanged).
 
+---
+
+## reply-handler.md updated (2026-08-25, authorized by Eikko)
+
+`Bash` added, closing thread #5 — Satlas's PlusVibe inbox is raw-key-only, so without it this agent returned nothing or, via the MCP connector, another client's replies.
+
+Bash on an agent that touches live client systems is a real capability increase, so it came with boundaries rather than on its own:
+
+- **Account confirmation before every call**, with the specific traps named: PlusVibe MCP → Yoni's account, Smartlead MCP → Yoni only, Instantly's two unrelated accounts. Wrong account is worse than no data.
+- **Reads free, writes governed, sends never.** Fetching and categorizing needs no approval; state-changing calls follow the client's documented rule; no send endpoint under any circumstances. Explicitly stated that Bash does *not* widen the existing approval permissions.
+- **No raw keys in any output.**
+- **Standing client-skill check**, same shape as the one added to `copywriter.md`.
+
+**The most important addition came out of the skill, and it contradicts this agent's own general rule.** Per `references/launch-monitor.md`: **do not use PlusVibe's "add to blocklist" button or endpoint for Satlas — it blocks the single email address, not the company domain.** Satlas blocks by adding the domain to a Google Sheet named "Satlas blocklist," and **Tremayne owns that sheet and does it himself.** So on a positive reply this agent surfaces and flags; it does not call a block endpoint. Handing it Bash *without* that rule would have let it call PlusVibe's blocklist API confidently — the call would appear to succeed while the rest of the company kept getting emailed. The general "block the domain" rule now points at the per-client procedure first.
+
+Also captured: **speed-to-lead is 10–15 minutes** on a positive reply (skill), and the Satlas section now says the reply→categorize→sync pipeline is *buildable* with Bash but that only `campaign/list` has ever been verified — probe the replies endpoints and report what actually returns, rather than assuming they exist.
+
 ## Open threads
 
 | # | Thread | Owner | Raised | Blocking |
@@ -180,7 +197,7 @@ Scope was widened by explicit request to cover two changes in `copywriter.md` �
 | 2 | Diff the built files against the real CMO PRD | Eikko | 2026-08-25 | Sign-off on the build |
 | 3 | Confirm `claude-seo`, `ui-ux-pro-max`, `remotion`, `impeccable` commands are installed locally | Eikko | 2026-08-25 | `seo-agent` and `brand-agent` running as written |
 | 4 | Create `PROJECTS/Pending/` or drop the references to it | Eikko | 2026-08-25 | Builder pipeline |
-| 5 | Give `reply-handler` Bash, or permanently route raw-key-only inboxes to `outbound-agent` | Eikko | 2026-08-25 | Phase 8 on Satlas — live cross-client data risk |
+| 5 | ~~Give `reply-handler` Bash~~ ✅ **Done 2026-08-25** — with account-safety, write, and send guardrails | — | 2026-08-25 | Closed |
 | 6 | Align `copywriter.md`'s Day 0/3/7 to the skill's Day 1/4/8 | Eikko | 2026-08-25 | Nothing yet — same cadence, two notations |
 | 7 | Fix the `satlas-cold-email` skill's references path | Eikko | 2026-08-25 | Any agent following the declared pointer |
 | 8 | Confirm `copywriter` delegation fires end-to-end on the first real `@cmo` run | Eikko | 2026-08-25 | Untested — registry needed a restart |
