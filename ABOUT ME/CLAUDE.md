@@ -111,7 +111,7 @@ Client-Management-System/
 - **Notion VA Command Center is the source of truth Eikko actually looks at — keep it current, not just the local files:** https://app.notion.com/p/3ba811e21c7f8000b6a5f7952cb0c76b (workspace: "eikko mae ybanez's Space"). It has four parts: Front-Office Agents log, Back-Office Agents log, a Clients database (status/tools/next action per client), and a Connector Status page. Whenever any of these change, update the Notion page in the same turn, don't just update the local markdown and stop:
   - A client's status, rate, or next action changes → update their row in the Clients database.
   - A connector gets authorized, breaks, or gets fixed → update both the Notion Connector Status page AND `.claude/agents/_shared/connector-status.md` (they must always match — the local file is what agents actually read at runtime, the Notion page is what Eikko checks by eye).
-  - Any of the 10 agents (`.claude/agents/`) actually completes real work (not a dry run) → log it under the relevant Front-Office or Back-Office section.
+  - Any of the agents (`.claude/agents/`) actually completes real work (not a dry run) → log it under the relevant Front-Office or Back-Office section.
   - A prospective client closes (signed or rejected) → update their Clients database row: signed clients get Status "Active", rejected ones get Status "Closed" (schema option renamed from "Paused" to "Closed" — check current options before assuming, in case it changes again) with the outcome noted in Next Action.
   - Treat "the Notion page is stale" as a bug to fix immediately when noticed, not a backlog item.
 

@@ -1,6 +1,6 @@
 # Connector Status — Single Source of Truth
 
-**All 10 agents read this before claiming any tool is live.** Update this ONE file when you fix/authorize a connector — don't hand-edit the status inside individual agent files.
+**Every agent — the 10 specialists and `chief-of-staff` — reads this at runtime before claiming any tool is live.** Update this ONE file when you fix/authorize a connector — don't hand-edit the status inside individual agent files.
 
 **Twin copy in Notion:** [🔌 Connector Status](https://app.notion.com/p/3ba811e21c7f8193a87fd0e68c38987a), inside the [🎛️ VA Command Center](https://app.notion.com/p/3ba811e21c7f8000b6a5f7952cb0c76b). Update both when something changes — this file is the one agents actually read at runtime; the Notion copy is for Eikko to check without opening Claude Code.
 
