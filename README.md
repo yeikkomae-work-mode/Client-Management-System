@@ -34,7 +34,8 @@ Your skills documentation and competencies (empty — ready for expansion).
 ### **PROJECTS**
 Active and prospective projects organized by status.
 - **Active/** — Live task lists:
-  - `MASTER-TASK-LIST-ACTIVE.md` — Albert Scott operations task list
+  - `MASTER-TASK-LIST-CROSS-CLIENT.md` — the genuine cross-client rollup: every client's open items in one place, each citing its source file
+  - `YONI-TASK-LIST-ACTIVE.md` — Yoni / Albert Scott operations task list (renamed from `MASTER-TASK-LIST-ACTIVE.md` on 2026-08-25 — it was never cross-client)
   - `CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG10.md` — Chris Caffera's weekly task list
   - `ACTION-PLAN-UNCATEGORIZED-MESSAGES.md` / `YONI-FEEDBACK-UNCATEGORIZED-MESSAGES.md` — Message triage tracking
   - `LATEST-COMPLETED-WORK.md` — Most recent completed work summary
@@ -138,7 +139,8 @@ Drop a signed-off PRD, wake up to a finished build — adapted from Tina Huang's
 - Monitor: `OUTPUT/Campaign Tracking/Plusvibe Mailbox Health - Daily Monitor.md`
 
 ### **Checking Active Tasks**
-- Open: `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`
+- Everything, all clients: `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md`
+- Yoni / Albert Scott only: `PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md`
 
 ### **Monthly Financial Review**
 - Open: `OUTPUT/Monthly Reports/Monthly Income & Expense Review.md`
@@ -285,7 +287,8 @@ Client-Management-System/
 - Which agent handles X? → `/agent-manager` or `.claude/agents/README.md`
 - Is a tool actually connected? → `.claude/agents/_shared/connector-status.md`
 - Campaign health? → `OUTPUT/Campaign Tracking/Plusvibe Mailbox Health - Daily Monitor.md`
-- Active tasks? → `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`
+- Active tasks, all clients? → `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md`
+- Active tasks, Yoni only? → `PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md`
 - Monthly finances? → `OUTPUT/Monthly Reports/Monthly Income & Expense Review.md`
 - Which automations are actually live? → `ARCHIVE - Inactive Automations/README.md`
 

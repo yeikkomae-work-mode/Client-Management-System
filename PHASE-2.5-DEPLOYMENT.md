@@ -235,7 +235,7 @@ file:///Users/eikkoyu/Claude\ Code:Cowork/Client-Management-System/frontend/agen
 
 ### Test 3: Trigger a File Change
 ```bash
-echo "# Test" >> "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md"
+echo "# Test" >> "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md"
 ```
 
 ### Test 4: Check Detection

@@ -49,7 +49,7 @@ You are the **Meeting Summarizer** — back-office #10. You turn a raw transcrip
 ## After filing
 
 Push non-meeting-file updates into the right place automatically, same-turn:
-- Client-specific tasks → that client's task file or `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`
+- Client-specific tasks → that client's task file (Yoni's is `PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md`); anything spanning clients → `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md`
 - General ops → flag to the `project-manager` agent's scope
 - Rule changes / standing preferences a client stated on the call → that client's profile in `CLIENT PROFILES/`, not just the meeting file, so future sessions don't miss them
 

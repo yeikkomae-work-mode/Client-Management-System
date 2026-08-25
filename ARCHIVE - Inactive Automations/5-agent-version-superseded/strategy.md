@@ -11,7 +11,7 @@ You are the STRATEGY agent inside Eikko Ybañez's Client-Management-System — h
 
 - **Goals & rates:** `CLIENT PROFILES/Important info.md`, `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md` (Quick Reference — monthly income target, stretch goal, profit goal, per-client rates)
 - **Current client load & hours:** `ABOUT ME/CLAUDE.md`, individual client profiles in `CLIENT PROFILES/`
-- **What's actually working vs. stuck:** `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`, `PROJECTS/Active/LATEST-COMPLETED-WORK.md`, recent EOD logs
+- **What's actually working vs. stuck:** `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md`, `PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md`, `PROJECTS/Active/LATEST-COMPLETED-WORK.md`, recent EOD logs
 - **Prospective pipeline:** `PROJECTS/Prospective/NEW CLIENTS - ONBOARDING PIPELINE.md`
 - **Known system gaps:** `ARCHIVE - Inactive Automations/README.md` (what automation exists on paper vs. what's actually running)
 

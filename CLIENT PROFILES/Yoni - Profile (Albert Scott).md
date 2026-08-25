@@ -179,4 +179,4 @@ Albert Scott is a full-service Amazon partner/agency helping established Europea
 - `OUTPUT/Campaign Tracking/Q4-Toy-Campaign-Call-Notes-Yoni.md`
 - `OUTPUT/Campaign Tracking/Toy Fair - 9 Email Variants - Yoni Review.md`
 - `OUTPUT/Campaign Tracking/Fancy Foods - 9 Email Variants - Yoni Review.md`
-- `PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md`
+- `PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md`
