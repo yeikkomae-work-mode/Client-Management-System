@@ -9,14 +9,17 @@
 >   replaced on 2026-08-13 by the 10-agent front-office/back-office team in `.claude/agents/`.
 >   Those five agent files are archived alongside this one in this same folder.
 > - The **"chief of staff" role** it describes was rebuilt on 2026-08-25 as a real Claude Code
->   agent: **`.claude/agents/chief-of-staff.md`**, with `/cos` as its slash command. That file —
+>   agent — and **renamed**. The current role is the **Chief Operating Officer**:
+>   **`.claude/agents/chief-operating-officer.md`**, with `/coo` as its slash command. That file —
 >   not this one — is the current source of truth for routing, authority rules, the connector
 >   rule, and the session-memory protocol.
 >
-> **Name collision, read this:** this document and the current agent are both called "chief of
-> staff" and they are *not* the same thing. This one coordinates five agents that no longer
-> exist. If you arrived here looking for how routing works today, you want
-> `.claude/agents/chief-of-staff.md`.
+> **On the name:** the current agent was briefly called `chief-of-staff` when first built on
+> 2026-08-25 and was renamed to `chief-operating-officer` the same day. The rename is why this
+> document's title no longer collides with anything live. Note there is still a *third*,
+> unrelated "Chief of Staff" in this system: a **client deliverable Yoni asked for**
+> (`PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md` §13f) — an agent giving Yoni an overview of his own
+> projects. Three different things, one phrase; only Yoni's is still called that.
 >
 > **What in here is still accurate, and where it actually lives now:**
 >
@@ -34,7 +37,7 @@
 >    eight: those three plus **Penji, Cüneyt (Starfix), Krishna, Chris Soriano, and Edward
 >    Lehner**. Working hours, rates, and tool mappings here are all missing the later five.
 > 2. **The `/clients`, `/comms`, `/ops`, `/metrics`, `/strategy` commands don't exist.** Nor do
->    `@eco status`, `/focus`, or `/now`. The current commands are `/cos`, `/agent-manager`, and
+>    `@eco status`, `/focus`, or `/now`. The current commands are `/coo`, `/agent-manager`, and
 >    `/eod-sync`.
 >
 > **Reuse, don't reactivate.** The house-style spec, the operating rules (show the plan before
@@ -214,4 +217,4 @@ help [command]       → explains that command
 
 ---
 
-**Status:** ⚠️ HISTORICAL — archived 2026-08-25, superseded by `.claude/agents/chief-of-staff.md` (see the banner at the top of this file). Originally filed as: Reference guide (not a live-status claim) | **Owner:** Eikko Ybañez (yeikkomae@gmail.com) | **Originally created:** August 5, 2026
+**Status:** ⚠️ HISTORICAL — archived 2026-08-25, superseded by `.claude/agents/chief-operating-officer.md` (see the banner at the top of this file). Originally filed as: Reference guide (not a live-status claim) | **Owner:** Eikko Ybañez (yeikkomae@gmail.com) | **Originally created:** August 5, 2026

@@ -4,6 +4,14 @@
 **Requested by:** Eikko
 **Status:** ✅ Built 2026-08-25 — build log appended below, filed to `PROJECTS/Done/`
 
+> **⚠️ Renamed after this document was written.** The orchestrator was built as
+> **`chief-of-staff`** with the command `/cos`, and renamed the same day (2026-08-25) to
+> **`chief-operating-officer`** / `/coo` on Eikko's instruction, with the role redefined as
+> *"the second-in-command who manages day-to-day business administration and internal
+> operations."* **Everything below keeps the original names**, because it's the record of what
+> was built at the time — it is not a live pointer. For the current role, read
+> `.claude/agents/chief-operating-officer.md`. Details in the second follow-up at the end.
+
 > **⚠️ Provenance note, read this first.** The build prompt referenced this file at
 > `PROJECTS/DRAFT PRD - 2026-08-25 - Chief of Staff Orchestrator.md` and said to read it, then
 > append a build log and move it to `PROJECTS/Done/`. **That file did not exist** — `PROJECTS/`
@@ -332,3 +340,86 @@ Neither scheduled task was found in the account's Routines, and `Pending/`, `In-
 `Failed/` still do not exist as directories. That one is still waiting on Eikko — and the check
 is incomplete on its own terms: this session can only see the Routines/cron surface, not tasks
 stored locally by the Cowork desktop app.
+
+
+---
+
+# Follow-up 2 — 2026-08-25, same day
+
+## Renamed: Chief of Staff → Chief Operating Officer (COO)
+
+Eikko's instruction: *"instead of Chief of Staff change it to Chief Operating Officer (COO): The
+second-in-command who manages day-to-day business administration and internal operations."*
+
+Treated as a **role revision, not a find-and-replace.** The label changed and so did the job
+definition, so the agent file was rewritten around the new one rather than relabelled.
+
+**Renamed via `git mv`** (history follows):
+- `.claude/agents/chief-of-staff.md` → `.claude/agents/chief-operating-officer.md`
+- `.claude/commands/cos.md` → `.claude/commands/coo.md`
+
+Naming follows the pattern already set: the agent gets the full descriptive name matching its
+peers (`project-manager`, `billing-auditor`, `meeting-summarizer`), the command gets the
+acronym — exactly as `chief-of-staff` paired with `/cos`.
+
+**What actually changed in the role, beyond the name.** The original framing was "the front door
+for the 10-agent team — it routes and remembers; it does not do client work itself." That is a
+router. A COO is a *second-in-command who runs day-to-day administration and internal
+operations*, which is a broader and better-motivated job, so the file now leads with an explicit
+split:
+
+- **Runs directly** — internal administration and operations. Keeping trackers honest, the record
+  straight, and the system's own documentation true. Plus a standing instruction to notice and
+  raise what's rotting unprompted (a tracker nobody's touched in weeks, a client with no
+  coverage, a connector everyone's routing around, a doc that contradicts the system) — because
+  nobody else is looking.
+- **Delegates** — all client-facing and specialist work, unchanged.
+
+Two further consequences of "second-in-command" were written in:
+1. The authority table is now framed as *where your authority ends and Eikko's begins* — the COO
+   has real standing authority over internal operations and none over what leaves the building.
+   The table's rows are unchanged; only the framing is.
+2. An explicit instruction to **disagree** — stale automations, risky irreversible steps, plans
+   that don't match how the system is organized, client commitments that collide. This mirrors
+   the "Pushback" section of `ABOUT ME/Operating Instructions.md`, which a deputy role should
+   carry and a pure router had no reason to.
+
+A **"Not to be confused with"** section was added, because "Chief of Staff" now names three
+distinct things in this repo and only one of them is live:
+
+| Thing | What it is | Status |
+|---|---|---|
+| ECO "Chief of Staff" | The superseded 5-agent framework from Aug 5 | Archived, historical |
+| `chief-operating-officer` | This role — Eikko's second-in-command | **Live** |
+| Yoni's "Chief of Staff" agent | A **client deliverable** Yoni asked for on 2026-08-13 (`YONI-TASK-LIST-ACTIVE.md` §13f) — an agent giving *Yoni* an overview of *his own* projects | Open client task, unbuilt |
+
+**Explicitly not renamed:** the third one. Yoni's request is a client-side deliverable recorded
+in his task list, EOD log, and the Aug 12 meeting file. Renaming a client's requested deliverable
+to match an internal refactor would falsify a client record. Left exactly as written.
+
+**Pointers updated — 9 files:** root `CLAUDE.md` (routing section, roster, slash commands),
+`.claude/agents/README.md` (orchestrator row + 4 mentions), `.claude/commands/agent-manager.md`,
+`.claude/agents/_shared/connector-status.md` (header sentence only — tool rows untouched),
+`README.md` (10 mentions), `ABOUT ME/Operating Instructions.md`, plus the archive/ECO pointers in
+`ARCHIVE - Inactive Automations/README.md`, `.../5-agent-version-superseded/README.md`,
+`.../ECO - Chief of Staff Guide.md`, `RESOURCES/ECO System/ECO_README.md`, and
+`RESOURCES/ECO System/ECO - COWORK QUICK START.md`.
+
+**A side effect worth recording: the name collision dissolved.** Yesterday's archival of the ECO
+guide was justified partly by "two 'chief of staff' documents describing different systems." The
+rename removes that collision, so those warnings would now be false if left as written. They were
+rewritten rather than deleted — the guide stays archived on its own merits (it documents a
+5-agent system that no longer exists), and the banner now explains the rename and names all three
+"Chief of Staff" things so a future reader can tell them apart.
+
+**Deliberately left alone — historical records, not live pointers:**
+- Everything in the body of this document above. It records what was built under the original
+  name; the banner at the top says so.
+- The 2026-08-25 entry in `OUTPUT/End-of-Day Reports/Chris Drew - End of Day Log.md`, which says
+  the entry was logged "during the chief-of-staff build verification." That was true when
+  written. EOD logs are append-only dated records — editing a past entry's factual content is
+  precisely the anti-pattern this system's session-memory protocol forbids.
+
+**Verified:** zero live references to `chief-of-staff`, `chief-of-staff.md`, `cos.md`, or `/cos`
+remain. Every surviving mention is either a dated historical record or a deliberate
+"was briefly called / renamed the same day" annotation.
