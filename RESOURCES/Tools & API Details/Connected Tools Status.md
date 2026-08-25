@@ -26,6 +26,7 @@
 
 | Tool | Client(s) | Status | Notes |
 |------|-----------|--------|-------|
+| Gojiberry | Penji | ✓ Connected (key) | Hosted MCP at `https://mcp.gojiberry.ai/mcp`, wired in `.mcp.json` as `gojiberry` via `Authorization: Bearer ${GOJIBERRY_API_KEY}`. Verified working 2026-08-25 from the cloud container — handshake succeeded, **25 tools** exposed. Server also supports OAuth (PKCE, dynamic registration) as an alternative. ⚠️ The issued key is an **org-level** credential for `business@penji.co` (not Eikko's personal login), valid until **2036-08-24**, and includes write/send tools: `impersonate_user`, `send_unibox_linkedin_message`, `update_campaign`, `create_contact`. Treat as production access. |
 | AdsPower | Penji | ⚠️ Local-only | API key held (stored in `tools_api_details.md`, gitignored). The AdsPower API is served by the desktop app on `localhost:50325` — `local.adspower.net` resolves to loopback by design, so a remote/web Claude session cannot reach it. Verified 2026-08-25: connection refused from the cloud container. Wired up in `.mcp.json` (`adspower-local-api`) + the `adspower-browser` skill; both only function in a **local** Claude Code session with AdsPower running. |
 
 ### ❓ TO BE TESTED (Report Back After Testing)
@@ -117,4 +118,4 @@ I'll update this file and the automation workflows:
 
 Keep this file updated as tools are tested. It's your source of truth for what gets auto-pulled vs. manually logged.
 
-**Last updated:** 2026-08-25 — Added AdsPower (Penji): API key received, MCP server + skill wired up, confirmed local-only.
+**Last updated:** 2026-08-25 — Added AdsPower (Penji, local-only) and Gojiberry (Penji, hosted MCP, org key verified working — 25 tools).
