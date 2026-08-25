@@ -1,6 +1,6 @@
 # Claude Code Subagents — Client-Management-System
 
-**10-agent team**, split front-office (client-facing) / back-office (internal ops), adapted from Eikko's research into this actual system. Built 2026-08-13, replacing the earlier 5-agent functional version (kept in `_archived-5-agent-version/` for reference, not deleted).
+**11 agents currently on disk** (the original 10-agent team plus `cfo`, which supersedes `billing-auditor` — see below), split front-office (client-facing) / back-office (internal ops), adapted from Eikko's research into this actual system. Built 2026-08-13, replacing the earlier 5-agent functional version (kept in `_archived-5-agent-version/` for reference, not deleted).
 
 ## Front-office (client-facing)
 
@@ -17,7 +17,8 @@
 | Agent | Scope |
 |---|---|
 | `project-manager` | Daily task rollup across clients, morning briefing, EOD wrap-up, quick task capture |
-| `billing-auditor` | Time tracking vs. rates, monthly income/expense review, invoice prep |
+| `cfo` | **Money.** Monthly close (P&L), cash-flow + 60-day runway, debt payoff modelling, tool/subscription cost register, per-client profitability, invoice prep. Notion `Finance Tracker and Bills` is its source of truth. Read-only Notion tools by design — every write is confirmed with Eikko first. |
+| `billing-auditor` | Time tracking vs. rates, monthly income/expense review, invoice prep — *superseded by `cfo` (2026-08-25); removal pending Eikko's go-ahead* |
 | `onboarding-guide` | New client setup — folders, profile doc, welcome/questionnaire draft |
 | `file-organizer` | Keeps this whole system clean — dedup, archive stale docs, fix naming, fix broken references |
 | `meeting-summarizer` | Transcript → minutes + action items, pushed to task files |

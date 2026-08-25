@@ -6,6 +6,20 @@ This file stores client contact info, rates, key details, and project names. Upd
 
 ---
 
+## FX Rate (set monthly by Eikko)
+
+**Applies to month:** 
+**USD → PHP:** 
+**AUD → PHP:** 
+
+> Set by Eikko at the start of each month. `cfo` **reads this block and never looks a rate up live** — two runs of the same monthly close must produce identical numbers, so a live rate is not acceptable.
+>
+> Leave blank rather than guessing. If these are empty, `cfo` reports "FX rate not set for [month] — business-to-personal bridge not computed" and skips the conversion. It will not substitute a rate implied by a payment amount, and it will not silently carry forward last month's figure.
+>
+> Added 2026-08-25 (CFO agent build). Values intentionally left empty for Eikko to fill.
+
+---
+
 ## Client Details
 
 ### Full-Time
