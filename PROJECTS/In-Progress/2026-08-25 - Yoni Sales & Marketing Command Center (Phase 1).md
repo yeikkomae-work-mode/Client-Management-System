@@ -90,4 +90,16 @@ Known gaps vs. the original success criteria, flagged rather than glossed over:
 - "Yesterday's sends" (as literally specified in Success Criteria) was built as "last 7 days" instead — Smartlead's own stats endpoint is easier to query as a range; a same-day-only cut can be added if Yoni specifically wants yesterday isolated.
 - Domain-level "plain-English flag reasons" (deliverability watch list) — not built this pass; no flagged-domain data was pulled. Needs scoping with Yoni (what "flagged" should mean) before building blind.
 
-Not yet done: the daily-refresh Routine (PRD Plan step 5) and final review with Eikko before the link goes to Yoni (PRD Plan step 6).
+Not yet done: final review with Eikko before the link goes to Yoni (PRD Plan step 6). Daily-refresh Routine created same day (`trig_01AfWdynB3iYJpNwfRMGM6cs`, ~noon UTC).
+
+## Test run — 2026-08-25 (later same day)
+
+**n8n automation: does not actually run yet.** Executed the live workflow (`execute_workflow`, manual mode) to show it working — it failed in 2 seconds. Root cause: `list_credentials` on the n8n instance returns zero credentials, so the "Fetch Replies" HTTP node throws `NodeOperationError: Credentials not found`. This directly contradicts the build log above ("went live... with real credentials wired in") — that was wrong, corrected on the dashboard now. **The workflow needs actual Smartlead/Pipedrive/Anthropic/Google Sheets credentials created in n8n before any of this runs unattended.**
+
+**Manual test of the reply-triage logic** (since the automation itself can't run): Eikko flagged two Master Inbox replies under Eikko's own campaigns — one interested, one not. Identified from the freshest unread Eikko-campaign replies and confirmed by reading the actual thread content:
+- **Interested** — alisa @ Bella Cucina (`alisa@bellacucina.com`, campaign "Eikko - Fancy Foods Q4"), replied "Love to chat." Created in Pipedrive: organization **Bella Cucina** (id 1020), person **alisa** (id 1746, label "SmartLead" — confirmed label id 97 by reading back a known record), activity **Interested** (call, id 1252, owner Yoni, due today, note = the email thread). Domain `bellacucina.com` blocked in Smartlead.
+- **Not Interested** — Alexandra Moorfoot / The Next Fish (`hello@thenextfish.com`, campaign "Eikko - ICAST 2026"), replied "We are not looking to go down this avenue at this time." Per the existing documented rule (`CLIENT PROFILES/Yoni - Profile (Albert Scott).md`: Not Interested → block domain only, no Pipedrive sync), did **not** create a Pipedrive record — only blocked domain `thenextfish.com` in Smartlead. Flagged this deviation from the literal "add to pipedrive" instruction to Eikko rather than silently guessing either way.
+
+**Open item surfaced by this test:** asked to set the new person's "owner" to Eikko — there is no separate Eikko user in this Pipedrive account. Every owner_id default (organization and person alike) came back as Yoni's (26939288) automatically, meaning the Pipedrive API access here operates as Yoni, not as a distinct Eikko login. Needs Eikko/Yoni to confirm whether that's expected (VA operates under the principal's own account) or whether a separate Eikko user should exist in Pipedrive.
+
+**Also confirmed:** `get_lead_categories` (Smartlead tool) is broken server-side (`Cannot read properties of undefined`) — couldn't set/read Smartlead's own category tags on these two leads, only Pipedrive-side.
