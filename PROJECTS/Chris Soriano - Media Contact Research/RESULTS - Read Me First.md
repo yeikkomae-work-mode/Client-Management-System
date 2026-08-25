@@ -7,8 +7,17 @@
 
 ## What Chris gets
 
-`Media Contacts - WORKING.csv` — 74 rows. Every row carries the **source URL** the
-address was read from, so any entry can be spot-checked in seconds.
+**`MASTER - All 116 Companies + Contacts.csv`** — one file, all 116 companies.
+
+- **74 rows** marked `RESEARCHED`, with contact, type, source URL and confidence
+- **42 rows** marked `NOT RESEARCHED - Tier 3, outside Option C`, ready to fill if he buys the add-on
+- **43 rows** carry an actual email address
+
+Every researched row carries the **source URL** the address was read from, so any
+entry can be spot-checked in seconds. Sorted by country and category, matching the
+order of the lists Chris originally sent.
+
+Earlier split files are archived in `working files/` — ignore them, this is the sheet.
 
 ---
 
