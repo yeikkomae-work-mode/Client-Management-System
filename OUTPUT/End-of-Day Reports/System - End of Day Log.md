@@ -47,3 +47,57 @@ It has no Bash. Satlas's PlusVibe inbox is raw-key-only, and the native PlusVibe
 - `cmo` isn't in the agent registry until Claude Code restarts — the dry run went through a `general-purpose` stand-in executing `cmo.md` verbatim. The `copywriter` delegation is therefore structurally correct but **untested end-to-end**; confirm on the first real `@cmo` run
 - No client profile, campaign file, or existing agent was modified
 - Full open-thread list: `PROJECTS/Active/CMO-BUILD-NOTES.md` (9 threads)
+
+---
+
+## 2026-08-25 — C-Suite reconciliation build
+
+**Branch:** `claude/csuite-reconciliation-build-zl625a` · **PR:** #10 (draft) · **Supersedes:** PR #4, PR #5
+
+### What was verified before acting (and what turned out false)
+
+The brief asserted five things. Three were wrong:
+
+- **Branch `claude/cto-agent-and-csuite-reconciliation` @ `eb89532` does not exist.** Not local, not remote, not in the reflog; the commit is not a valid git object. It was described as built-but-unpushed; it is simply absent. Nothing to push.
+- **`PROJECTS/RECONCILIATION - 2026-08-25 - C-Suite Agent Layer.md` — the stated authority for the whole build — does not exist** anywhere in the repo or on any branch. Neither do the two CFO source docs. The task text was used as the spec instead.
+- **`.git/index.lock.stale-2026-08-25` does not exist.**
+
+Recovered: the **Tech Radar survived in Notion**, self-described as the twin of `RESOURCES/Tech Radar.md`. The lost CTO session's Notion writes landed even though its git push didn't, so the local radar is a faithful rebuild rather than an invention.
+
+### Scheduled tasks — the finding that drove Step 6
+
+Checked live, not read from a doc: **this system has no scheduled tasks at all.** `daily-eod-sync` does not exist and never did, despite `ARCHIVE - Inactive Automations/README.md` calling it "the only one actually running." `project-builder-check` does not exist; `PROJECTS/Pending|In-Progress|Failed` were never even created. Both doc sets deleted or corrected per Eikko's decision (c) — run everything interactively.
+
+### Roster: 13 agents
+
+`chief-of-staff` · `cmo` · `cfo` · `cto` · `inbox-triage` · `copywriter` · `lead-prospector` · `reply-handler` · `market-scout` · `project-manager` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
+
+Retired: `billing-auditor` → `cfo`. Folded into `cmo` as modes: `seo-agent`, `brand-agent`, `outbound-agent`.
+
+### Decisions Eikko made
+
+| Gate | Chosen | Note |
+|---|---|---|
+| CoS authority | **(a) literal full-auto in-session** | Overrides his own standing rule and the draft-only guardrail on four operators. Flagged before he chose; recorded in `chief-of-staff.md`. |
+| CoS model | `opus` | |
+| CFO model | `sonnet` | |
+| Automations | **(c) delete both doc sets** | |
+| Amendment C2 | `cfo` may write its own cost rows | Status values stay human-only. Flagged that this weakens the human-verified guarantee; chosen anyway. |
+| Missing CTO/CFO work | Build from scratch | Later partly moot — see collisions. |
+
+### Verified rather than assumed
+
+- Master-list fix is genuine: 8/8 clients covered, gaps named honestly.
+- Debt data: **19 rows, `Total Amount Paid` populated on exactly 1** (Sloan, ₱3,800). The payoff plan therefore ships PROVISIONAL — balances understate progress on 18 of 19.
+- `billing-auditor`'s findings preserved verbatim in `cfo.md`, checked line by line.
+- No "Albert Scott" strings in the CMO layer. Remaining ones repo-wide are **real client data** (Yoni's company), including connector scoping that prevents cross-client leakage — deliberately left intact.
+
+### Not done
+
+- **Notion Expenses migration not run.** Backup taken; parse awaiting explicit approval per its own gate.
+- No scheduled tasks created.
+- PRs #1–#3 untouched. `CLIENT PROFILES/`, `OUTPUT/Campaign Tracking/`, credentials untouched.
+
+### Collisions discovered mid-run
+
+Parallel sessions opened PRs #6–#9 *during* this build. **PR #6 ships its own `cfo.md`** with real monthly-close, cash-flow and debt-payoff output plus a `Darius` client profile; **PR #8 adds a 14th agent, `cio`**, which this 13-agent roster does not include. Both need a merge decision, not a winner.
