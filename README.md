@@ -86,6 +86,9 @@ Claude Code auto-routes to the right subagent based on the task, or you can call
 **Back-office (internal ops):**
 `project-manager` · `billing-auditor` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
 
+**Strategy:**
+`cio` — access, credentials & scopes, information routing, pasted Slack/WhatsApp intake
+
 **Shared reference:** `.claude/agents/_shared/connector-status.md` — single source of truth every agent reads before claiming a tool is live. Twin copy in Notion: 🎛️ VA Command Center.
 
 **Slash commands:** `/agent-manager` (list/inspect agents) · `/eod-sync <client>` (set up a recurring per-client EOD automation with Notion sync)
