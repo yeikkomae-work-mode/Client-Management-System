@@ -527,6 +527,109 @@
     .waves{animation:none;}
     .chart-bar{transition:none;}
   }
+
+  /* ==================== Campaigns & Projects view ==================== */
+  .camp-header{align-items:center;}
+  .camp-header-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .camp-source-chips{display:flex;gap:6px;flex-wrap:wrap;}
+  .camp-chip{
+    display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;
+    padding:4px 9px 4px 7px;border-radius:20px;border:1px solid var(--panel-border);
+    background:var(--card-bg);color:var(--text-1);white-space:nowrap;
+  }
+  .camp-chip .dot2{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .camp-chip.on .dot2{background:var(--green);box-shadow:0 0 6px rgba(15,157,104,0.6);}
+  .camp-chip.off .dot2{background:var(--text-2);}
+
+  .camp-sync-btn{
+    display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;
+    font-family:var(--mono);
+  }
+  .camp-sync-btn:disabled{opacity:0.65;cursor:progress;transform:none;}
+  .camp-sync-ico{display:inline-block;transition:transform .5s ease;}
+  .camp-sync-btn.syncing .camp-sync-ico{animation:campspin 0.9s linear infinite;}
+  @keyframes campspin{to{transform:rotate(360deg);}}
+
+  .camp-grid{
+    display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:start;
+  }
+  @media (max-width:980px){.camp-grid{grid-template-columns:1fr;}}
+  .camp-panel{margin-top:0 !important;min-width:0;}
+  .camp-panel--wide{grid-column:1 / 2;}
+  @media (max-width:980px){.camp-panel--wide{grid-column:1;}}
+  .camp-panel-title{
+    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-bright);
+    font-weight:700;margin-bottom:14px;
+  }
+
+  /* campaign performance cards */
+  .camp-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}
+  .camp-card{
+    border-radius:13px;padding:15px 16px;position:relative;overflow:hidden;
+    border:1px solid var(--panel-border);background:var(--card-bg);
+  }
+  .camp-card::before{
+    content:'';position:absolute;inset:0;opacity:0.10;background:var(--camp-grad);
+  }
+  .camp-card > *{position:relative;}
+  .camp-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+  .camp-card-name{font-size:12.5px;font-weight:700;color:var(--text-0);line-height:1.35;}
+  .camp-card-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0;margin-top:3px;background:var(--camp-grad);}
+  .camp-card-src{font-family:var(--mono);font-size:9.5px;color:var(--text-2);margin-top:2px;text-transform:uppercase;letter-spacing:0.04em;}
+  .camp-card-stats{display:flex;flex-direction:column;gap:7px;margin-top:12px;}
+  .camp-stat-row{display:flex;align-items:center;gap:8px;}
+  .camp-stat-row .k{font-size:10px;color:var(--text-2);width:52px;flex-shrink:0;text-transform:uppercase;letter-spacing:0.03em;font-family:var(--mono);}
+  .camp-stat-row .bar-track{flex:1;height:6px;border-radius:4px;background:rgba(128,128,128,0.14);overflow:hidden;}
+  .camp-stat-row .bar-fill{height:100%;border-radius:4px;background:var(--camp-grad);}
+  .camp-stat-row .v{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text-0);width:38px;text-align:right;flex-shrink:0;}
+  .camp-card-empty{
+    grid-column:1/-1;font-size:12.5px;color:var(--text-2);padding:20px 6px;text-align:center;
+    border:1px dashed var(--panel-border);border-radius:11px;
+  }
+  .camp-card.not-connected{opacity:0.72;}
+  .camp-card-reason{font-size:11px;color:var(--text-2);margin-top:10px;line-height:1.5;font-style:italic;}
+
+  /* kanban */
+  .camp-kanban{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;}
+  .camp-kcol{flex:0 0 148px;display:flex;flex-direction:column;gap:8px;}
+  .camp-kcol-head{
+    font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.05em;
+    color:var(--text-2);display:flex;justify-content:space-between;padding:0 2px;
+  }
+  .camp-kcard{
+    font-size:11px;color:var(--text-1);padding:8px 9px;border-radius:8px;
+    background:rgba(47,111,237,0.045);border:1px solid var(--panel-border);border-left:3px solid var(--camp-grad-solid,var(--blue-bright));
+    line-height:1.35;
+  }
+  :root[data-appearance="dark"] .camp-kcard{background:rgba(255,255,255,0.02);}
+
+  /* client health grid */
+  .camp-health-grid{display:flex;flex-direction:column;gap:8px;}
+  .camp-health-row{
+    display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;
+    border:1px solid var(--panel-border);background:var(--card-bg);
+  }
+  .camp-health-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .camp-health-dot.g{background:var(--green);box-shadow:0 0 6px rgba(15,157,104,0.5);}
+  .camp-health-dot.a{background:var(--amber);box-shadow:0 0 6px rgba(180,116,14,0.5);}
+  .camp-health-dot.r{background:var(--red);box-shadow:0 0 6px rgba(209,55,74,0.5);}
+  .camp-health-name{font-size:12px;font-weight:700;color:var(--text-0);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .camp-health-meta{font-family:var(--mono);font-size:10px;color:var(--text-2);white-space:nowrap;}
+
+  /* activity + tasks */
+  .camp-activity-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:640px){.camp-activity-wrap{grid-template-columns:1fr;}}
+  .camp-activity-chart{display:flex;align-items:flex-end;gap:6px;height:100px;}
+  .camp-abar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;}
+  .camp-abar{width:100%;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--cyan),var(--blue-mid));min-height:3px;}
+  .camp-abar.today{background:linear-gradient(180deg,#a78bfa,#6366f1);}
+  .camp-abar-lbl{font-family:var(--mono);font-size:9px;color:var(--text-2);}
+  .camp-activity-tasks{display:flex;flex-direction:column;gap:6px;max-height:140px;overflow-y:auto;}
+  .camp-task-row{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--text-1);}
+  .camp-task-row .tag{
+    font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:10px;color:#fff;flex-shrink:0;
+  }
+  .camp-task-row .txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -551,6 +654,7 @@
       <div class="navitem" data-view="agents"><span class="ico">◇</span>Agents</div>
       <div class="navitem" data-view="skills"><span class="ico">✦</span>Skills</div>
       <div class="navitem" data-view="pipeline"><span class="ico">▥</span>Pipeline</div>
+      <div class="navitem" data-view="campaigns"><span class="ico">◈</span>Campaigns</div>
       <div class="navdivider"></div>
       <a class="navitem" id="notionNav" target="_blank" rel="noopener"><span class="ico">⌘</span>Notion</a>
     </nav>
@@ -707,6 +811,46 @@
         <div id="bucketDetails"></div>
       </div>
     </section>
+
+    <section class="view" id="view-campaigns">
+      <div class="view-header camp-header">
+        <div>
+          <h1>Campaigns &amp; Projects</h1>
+          <div class="view-sub" id="campLastSync">no live sync yet</div>
+        </div>
+        <div class="camp-header-actions">
+          <div class="camp-source-chips" id="campSourceChips"></div>
+          <button class="hero-btn camp-sync-btn" id="campSyncBtn">
+            <span class="camp-sync-ico">⟳</span><span id="campSyncLabel">Sync Now</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="camp-grid">
+        <div class="panel camp-panel camp-panel--wide">
+          <div class="camp-panel-title">Campaign Performance</div>
+          <div class="camp-cards" id="campCards"></div>
+        </div>
+
+        <div class="panel camp-panel">
+          <div class="camp-panel-title">Project Pipeline</div>
+          <div class="camp-kanban" id="campKanban"></div>
+        </div>
+
+        <div class="panel camp-panel">
+          <div class="camp-panel-title">Client Health</div>
+          <div class="camp-health-grid" id="campHealthGrid"></div>
+        </div>
+
+        <div class="panel camp-panel camp-panel--wide">
+          <div class="camp-panel-title">Activity &amp; Task Rollup</div>
+          <div class="camp-activity-wrap">
+            <div class="camp-activity-chart" id="campActivityChart"></div>
+            <div class="camp-activity-tasks" id="campActivityTasks"></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -797,6 +941,23 @@ function avatarGradient(name){
   return `linear-gradient(135deg, ${a}, ${b})`;
 }
 
+/* wider, more saturated hue spread than AVATAR_PALETTE on purpose — this is
+   the "colorful and graphic" surface of the dashboard, the Campaigns view */
+const CAMP_PALETTE = [
+  ['#7c3aed','#c084fc'], ['#db2777','#f472b6'], ['#ea580c','#fb923c'],
+  ['#0f9d68','#4ade80'], ['#0891b2','#22d3ee'], ['#2563eb','#60a5fa'],
+  ['#ca8a04','#facc15'], ['#dc2626','#f87171'],
+];
+function campHash(name){
+  let hash = 0;
+  for (let i=0;i<(name||'').length;i++) hash = (hash*31 + name.charCodeAt(i)) >>> 0;
+  return hash;
+}
+function campColor(name){
+  const [a,b] = CAMP_PALETTE[campHash(name) % CAMP_PALETTE.length];
+  return { solid: a, grad: `linear-gradient(135deg, ${a}, ${b})` };
+}
+
 /* ---------- search ---------- */
 let searchQuery = '';
 function matchesQuery(...fields){
@@ -861,6 +1022,29 @@ function loadData(){
       else reject(new Error('dashboard-data.js loaded but contained no data'));
     };
     s.onerror = ()=> reject(new Error('Could not load dashboard-data.js — run scan.py once to generate it'));
+    document.head.appendChild(s);
+  });
+}
+
+const BACKEND_URL = 'http://localhost:3001';
+
+function loadCampaignsData(){
+  return new Promise((resolve, reject)=>{
+    if (window.__MODE__ === 'hosted'){
+      reject(new Error('Campaign sync is local-only, not part of the shared/hosted snapshot.'));
+      return;
+    }
+    const prev = document.getElementById('campDataScript');
+    if (prev) prev.remove();
+    window.__CAMPAIGNS_DATA__ = undefined;
+    const s = document.createElement('script');
+    s.id = 'campDataScript';
+    s.src = 'campaigns-data.js?t=' + Date.now();
+    s.onload = ()=>{
+      if (window.__CAMPAIGNS_DATA__) resolve(window.__CAMPAIGNS_DATA__);
+      else reject(new Error('campaigns-data.js loaded but contained no data'));
+    };
+    s.onerror = ()=> reject(new Error('No campaigns-data.js on disk yet — click Sync Now once the backend is running.'));
     document.head.appendChild(s);
   });
 }
@@ -1271,6 +1455,210 @@ function renderGlobalTasks(data){
     </div>`).join('');
 }
 
+/* ---------- campaigns & projects view ---------- */
+let lastCampaignsData = null;
+
+function pct(n, d){ return d ? Math.round((n/d)*100) : 0; }
+
+function campBarRow(k, value, max, suffix){
+  const w = max > 0 ? Math.min(100, Math.round((value/max)*100)) : 0;
+  return `<div class="camp-stat-row">
+    <span class="k">${k}</span>
+    <span class="bar-track"><span class="bar-fill" style="width:${w}%"></span></span>
+    <span class="v">${value}${suffix||''}</span>
+  </div>`;
+}
+
+function sourceChipHTML(src){
+  const on = !!src.connected;
+  return `<span class="camp-chip ${on?'on':'off'}"><span class="dot2"></span>${src.label}</span>`;
+}
+
+function campaignSourceCardHTML(key, src){
+  const color = campColor(src.label || key);
+  if (!src.connected){
+    return `<div class="camp-card not-connected" style="--camp-grad:${color.grad}">
+      <div class="camp-card-top">
+        <div><div class="camp-card-name">${src.label}</div><div class="camp-card-src">${src.client||''} · not connected</div></div>
+        <span class="camp-card-dot"></span>
+      </div>
+      <div class="camp-card-reason">${src.reason || 'Not synced yet.'}</div>
+    </div>`;
+  }
+
+  if (key === 'zapmail_domains'){
+    const avgHealth = src.domains && src.domains.length
+      ? Math.round(src.domains.reduce((s,d)=>s+(d.healthScore||0),0) / src.domains.length) : 0;
+    const warmed = (src.domains||[]).filter(d=>d.isWarmedUp).length;
+    return `<div class="camp-card" style="--camp-grad:${color.grad}">
+      <div class="camp-card-top">
+        <div><div class="camp-card-name">${src.label}</div><div class="camp-card-src">${src.client||''} · domains &amp; mailboxes</div></div>
+        <span class="camp-card-dot"></span>
+      </div>
+      <div class="camp-card-stats">
+        ${campBarRow('Domains', src.totalDomains||0, Math.max(src.totalDomains||1,10), '')}
+        ${campBarRow('Mboxes', src.totalMailboxes||0, Math.max(src.totalMailboxes||1,30), '')}
+        ${campBarRow('Health', avgHealth, 100, '/100')}
+        ${campBarRow('Warmed', warmed, src.totalDomains||1, ' of '+(src.totalDomains||0))}
+      </div>
+    </div>`;
+  }
+
+  // Smartlead / PlusVibe campaign-style sources
+  const t = src.totals || {};
+  const sent = t.sent ?? t.contacted ?? 0;
+  const opened = t.opened ?? 0;
+  const replied = t.replied ?? t.positive ?? 0;
+  const bounced = t.bounced ?? 0;
+  const activeCount = (src.campaignCounts && src.campaignCounts.active) ?? (src.campaigns||[]).length;
+  return `<div class="camp-card" style="--camp-grad:${color.grad}">
+    <div class="camp-card-top">
+      <div><div class="camp-card-name">${src.label}</div><div class="camp-card-src">${src.client||''} · ${activeCount} active campaign${activeCount===1?'':'s'}</div></div>
+      <span class="camp-card-dot"></span>
+    </div>
+    <div class="camp-card-stats">
+      ${sent ? `
+        ${campBarRow('Open', pct(opened,sent), 100, '%')}
+        ${campBarRow('Reply', pct(replied,sent), 100, '%')}
+        ${campBarRow('Bounce', pct(bounced,sent), 100, '%')}
+        ${campBarRow('Sent', sent, sent, '')}
+      ` : `<div class="empty-note">No send volume in range yet.</div>`}
+    </div>
+  </div>`;
+}
+
+function renderCampaignCards(campaignsData){
+  const wrap = document.getElementById('campCards');
+  if (!campaignsData || !campaignsData.sources){
+    wrap.innerHTML = '<div class="camp-card-empty">No campaign snapshot yet — start the backend (cd backend && npm start) and click Sync Now, or wait for the bundled seed data to load.</div>';
+    return;
+  }
+  const sources = campaignsData.sources;
+  wrap.innerHTML = Object.keys(sources).map(k => campaignSourceCardHTML(k, sources[k])).join('');
+
+  const chipsWrap = document.getElementById('campSourceChips');
+  chipsWrap.innerHTML = Object.values(sources).map(sourceChipHTML).join('');
+}
+
+function campaignsLastSyncLabel(campaignsData){
+  if (!campaignsData) return 'no live sync yet — showing bundled seed data if available';
+  const mode = campaignsData.syncMode === 'live' ? 'live sync' : 'seed snapshot';
+  return `${mode} · ${fmtRelTime(campaignsData.generatedAt)}`;
+}
+
+function renderCampKanban(pipeline){
+  const wrap = document.getElementById('campKanban');
+  wrap.innerHTML = BUCKET_ORDER.map(bucket=>{
+    const items = (pipeline[bucket]||[]);
+    const color = campColor(bucket);
+    const shown = items.slice(0,6);
+    const cards = shown.map(i=>`<div class="camp-kcard" style="--camp-grad-solid:${color.solid}">${i.name}</div>`).join('')
+      || `<div class="empty-note" style="padding:4px 2px;">empty</div>`;
+    const more = items.length > shown.length ? `<div class="empty-note" style="padding:0 2px;">+${items.length-shown.length} more</div>` : '';
+    return `<div class="camp-kcol">
+      <div class="camp-kcol-head"><span>${bucket}</span><span>${items.length}</span></div>
+      ${cards}${more}
+    </div>`;
+  }).join('');
+}
+
+function renderCampHealth(clients){
+  const wrap = document.getElementById('campHealthGrid');
+  if (!clients.length){
+    wrap.innerHTML = '<div class="empty-note">No client profiles found.</div>';
+    return;
+  }
+  const now = Date.now();
+  wrap.innerHTML = clients.map(c=>{
+    const openTasks = (c.tasks||[]).filter(t=>t.status==='todo').length;
+    let daysAgo = null;
+    if (c.lastEOD){
+      daysAgo = Math.floor((now - new Date(c.lastEOD+'T00:00:00Z').getTime()) / 86400000);
+    }
+    let dotClass = 'a';
+    if (daysAgo === null) dotClass = 'a';
+    else if (daysAgo <= 2) dotClass = 'g';
+    else if (daysAgo <= 6) dotClass = 'a';
+    else dotClass = 'r';
+    const meta = daysAgo === null ? 'no EOD log yet' : `${daysAgo===0?'today':daysAgo+'d ago'} · ${openTasks} open`;
+    return `<div class="camp-health-row">
+      <span class="camp-health-dot ${dotClass}"></span>
+      <span class="camp-health-name">${c.name}</span>
+      <span class="camp-health-meta">${meta}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderCampActivity(data){
+  const chartWrap = document.getElementById('campActivityChart');
+  const week = (data.activity && data.activity.week) || [];
+  const today = new Date().toISOString().slice(0,10);
+  const max = Math.max(1, ...week.map(a=>a.count));
+  chartWrap.innerHTML = week.length ? week.map(a=>{
+    const isToday = a.date === today;
+    const h = a.count ? Math.max(6, Math.round((a.count/max)*84)) : 3;
+    return `<div class="camp-abar-col">
+      <div class="camp-abar ${isToday?'today':''}" style="height:${h}px" title="${a.date}: ${a.count}"></div>
+      <div class="camp-abar-lbl">${dayLabel(a.date)}</div>
+    </div>`;
+  }).join('') : '<div class="empty-note">No activity logged yet.</div>';
+
+  const tasksWrap = document.getElementById('campActivityTasks');
+  // Round-robin across clients rather than a flat slice, so one client's
+  // large backlog (e.g. 60+ open tasks) doesn't crowd out every other
+  // client from this at-a-glance widget.
+  const byClient = data.clients
+    .map(c => ({ name: c.name, queue: (c.tasks||[]).filter(t=>t.status==='todo') }))
+    .filter(c => c.queue.length);
+  let openTasks = [];
+  let round = 0;
+  while (openTasks.length < 14 && byClient.some(c => c.queue.length > round)){
+    byClient.forEach(c => { if (c.queue[round]) openTasks.push({...c.queue[round], clientName:c.name}); });
+    round++;
+  }
+  tasksWrap.innerHTML = openTasks.length
+    ? openTasks.slice(0,14).map(t=>{
+        const color = campColor(t.clientName);
+        return `<div class="camp-task-row">
+          <span class="tag" style="background:${color.solid}">${t.clientName}</span>
+          <span class="txt">${t.text}</span>
+        </div>`;
+      }).join('')
+    : '<div class="empty-note">No open tasks tracked yet.</div>';
+}
+
+function renderCampaigns(data, campaignsData){
+  lastCampaignsData = campaignsData;
+  document.getElementById('campLastSync').textContent = campaignsLastSyncLabel(campaignsData);
+  renderCampaignCards(campaignsData);
+  renderCampKanban(data.pipeline);
+  renderCampHealth(data.clients);
+  renderCampActivity(data);
+}
+
+let campSyncing = false;
+document.getElementById('campSyncBtn').addEventListener('click', async ()=>{
+  if (campSyncing || !lastData) return;
+  campSyncing = true;
+  const btn = document.getElementById('campSyncBtn');
+  btn.classList.add('syncing'); btn.disabled = true;
+  document.getElementById('campSyncLabel').textContent = 'Syncing…';
+  try{
+    const res = await fetch(BACKEND_URL + '/api/campaigns/sync', { method:'POST' });
+    if (!res.ok) throw new Error(`backend returned ${res.status}`);
+    const json = await res.json();
+    if (!json.success) throw new Error(json.error || 'sync failed');
+    renderCampaigns(lastData, json.data);
+  }catch(err){
+    document.getElementById('campLastSync').textContent =
+      `sync failed (${err.message}) — is the backend running? cd backend && npm start`;
+  }finally{
+    campSyncing = false;
+    btn.classList.remove('syncing'); btn.disabled = false;
+    document.getElementById('campSyncLabel').textContent = 'Sync Now';
+  }
+});
+
 /* ---------- master render ---------- */
 function render(data){
   lastData = data;
@@ -1300,6 +1688,7 @@ function render(data){
     : `<div class="empty-note">No skills match "${searchQuery}".</div>`;
 
   renderPipeline(data);
+  renderCampaigns(data, lastCampaignsData);
 }
 
 /* ---------- live refresh countdown ---------- */
@@ -1314,6 +1703,7 @@ function tickCountdown(){
 }
 document.getElementById('manualRefreshBtn').addEventListener('click', ()=>{ refresh(); });
 
+let campaignsDataLoaded = false;
 async function refresh(){
   try{
     const data = await loadData();
@@ -1322,6 +1712,12 @@ async function refresh(){
   }catch(err){
     setStatus('error','load failed');
     showError(err.message + ' — make sure dashboard-data.js sits next to central-command.html in the same folder.');
+  }
+  if (!campaignsDataLoaded){
+    campaignsDataLoaded = true;
+    loadCampaignsData()
+      .then(cd => { if (lastData) renderCampaigns(lastData, cd); })
+      .catch(()=>{ /* no seed/sync yet — camp panel already shows its own empty state */ });
   }
   nextRefreshAt = Date.now() + REFRESH_MS;
 }

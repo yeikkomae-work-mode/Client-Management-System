@@ -142,6 +142,21 @@ def find_eod_earliest_date(client_key: str) -> str:
     return ""
 
 
+def find_eod_latest_date(client_key: str) -> str:
+    """Same matching as find_eod_earliest_date, but the most recent entry —
+    powers 'days since last log' on the Client Health widget. Never guessed:
+    empty string if no EOD log matches this client at all."""
+    eod_dir = ROOT / "OUTPUT" / "End-of-Day Reports"
+    if not eod_dir.exists():
+        return ""
+    for f in eod_dir.glob("*.md"):
+        if client_key in f.stem.lower():
+            dates = re.findall(r"^## (\d{4}-\d{2}-\d{2})", f.read_text(encoding="utf-8"), re.MULTILINE)
+            if dates:
+                return max(dates)
+    return ""
+
+
 def clean_task_text(text: str) -> str:
     text = re.sub(r"\*\*(.*?)\*\*", r"\1", text)
     text = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", text)
@@ -239,6 +254,9 @@ def scan_client(f: Path, match_tokens: list) -> dict:
 
     tasks = scan_tasks_for_client(match_tokens)
 
+    client_key = re.split(r"[\s\-(]", f.stem)[0].lower()
+    last_eod = find_eod_latest_date(client_key)
+
     return {
         "name": display_name,
         "fileName": f.name,
@@ -250,6 +268,7 @@ def scan_client(f: Path, match_tokens: list) -> dict:
         "hours": hours,
         "meeting": meeting,
         "tasks": tasks,
+        "lastEOD": last_eod or None,
         "since": {
             "label": since_label or None,
             "source": since_source,
