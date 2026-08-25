@@ -6,11 +6,11 @@
 
 > **⚠️ Renamed after this document was written.** The orchestrator was built as
 > **`chief-of-staff`** with the command `/cos`, and renamed the same day (2026-08-25) to
-> **`chief-operating-officer`** / `/coo` on Eikko's instruction, with the role redefined as
+> **`chief-of-staff`** / `/chief-of-staff` on Eikko's instruction, with the role redefined as
 > *"the second-in-command who manages day-to-day business administration and internal
 > operations."* **Everything below keeps the original names**, because it's the record of what
 > was built at the time — it is not a live pointer. For the current role, read
-> `.claude/agents/chief-operating-officer.md`. Details in the second follow-up at the end.
+> `.claude/agents/chief-of-staff.md`. Details in the second follow-up at the end.
 
 > **⚠️ Provenance note, read this first.** The build prompt referenced this file at
 > `PROJECTS/DRAFT PRD - 2026-08-25 - Chief of Staff Orchestrator.md` and said to read it, then
@@ -346,17 +346,17 @@ stored locally by the Cowork desktop app.
 
 # Follow-up 2 — 2026-08-25, same day
 
-## Renamed: Chief of Staff → Chief Operating Officer (COO)
+## Renamed: Chief of Staff → Chief of Staff
 
-Eikko's instruction: *"instead of Chief of Staff change it to Chief Operating Officer (COO): The
+Eikko's instruction: *"instead of Chief of Staff change it to Chief of Staff: The
 second-in-command who manages day-to-day business administration and internal operations."*
 
 Treated as a **role revision, not a find-and-replace.** The label changed and so did the job
 definition, so the agent file was rewritten around the new one rather than relabelled.
 
 **Renamed via `git mv`** (history follows):
-- `.claude/agents/chief-of-staff.md` → `.claude/agents/chief-operating-officer.md`
-- `.claude/commands/cos.md` → `.claude/commands/coo.md`
+- `.claude/agents/chief-of-staff.md` → `.claude/agents/chief-of-staff.md`
+- `.claude/commands/cos.md` → `.claude/commands/chief-of-staff.md`
 
 Naming follows the pattern already set: the agent gets the full descriptive name matching its
 peers (`project-manager`, `billing-auditor`, `meeting-summarizer`), the command gets the
@@ -390,7 +390,7 @@ distinct things in this repo and only one of them is live:
 | Thing | What it is | Status |
 |---|---|---|
 | ECO "Chief of Staff" | The superseded 5-agent framework from Aug 5 | Archived, historical |
-| `chief-operating-officer` | This role — Eikko's second-in-command | **Live** |
+| `chief-of-staff` | This role — Eikko's second-in-command | **Live** |
 | Yoni's "Chief of Staff" agent | A **client deliverable** Yoni asked for on 2026-08-13 (`YONI-TASK-LIST-ACTIVE.md` §13f) — an agent giving *Yoni* an overview of *his own* projects | Open client task, unbuilt |
 
 **Explicitly not renamed:** the third one. Yoni's request is a client-side deliverable recorded

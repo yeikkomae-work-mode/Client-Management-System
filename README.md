@@ -1,6 +1,6 @@
 # Eikko's Client Management System
 
-**Organized workspace for managing active, trial, and prospective clients, a Claude Code agent system (10 specialists behind a COO orchestrator), automation, campaigns, and personal business operations.**
+**Organized workspace for managing active, trial, and prospective clients, a Claude Code agent system (10 specialists behind a Chief of Staff orchestrator), automation, campaigns, and personal business operations.**
 
 Last updated: Aug 15, 2026 | Status: 🟢 Organized — agent system rebuilt, Fathom meeting sync live, PRD-first build discipline + unattended builder pipeline added
 
@@ -60,7 +60,7 @@ Reports, data, metrics, and end-of-day summaries from your work.
 
 ### **RESOURCES**
 System files, tool documentation, and reference materials.
-- **ECO System/** — Legacy ECO "Chief of Staff" config, session logs & sync verification (11 files, several superseded — the current equivalent is the `chief-operating-officer` agent; see **Agent System** below)
+- **ECO System/** — Legacy ECO "Chief of Staff" config, session logs & sync verification (11 files, several superseded — the current equivalent is the `chief-of-staff` agent; see **Agent System** below)
 - **Tools & API Details/** — `Connected Tools Status.md`, `tools_api_details.md`, `google_accounts_details.md`, plus a Gmail multi-account client (custom OAuth script for the 3 non-primary Gmail accounts)
   - **OAuth Credentials/** — Google OAuth client secrets + tokens (Albert Scott, Fractio, Personal, Satlas) — ⚠️ sensitive, do not share
 - **Workflows/** — Sync system guide, Smartlead↔Pipedrive automation docs (current + archived Python build), Yoni's live automation runbook, `automation_logs/`
@@ -70,7 +70,7 @@ System files, tool documentation, and reference materials.
 Stale automation/status docs kept for reference, not deleted. See its own `README.md` for exactly what's disabled and why — short version: only `daily-eod-sync` is still running; the original morning-briefing, Lemwarm monitor, and PlusVibe monitor tasks have been off since ~Aug 6.
 
 ### **.claude/agents/** (root level — the current agent system)
-10 Claude Code specialist subagents in a front-office/back-office split, built Aug 13 replacing the earlier 5-agent ECO framework, plus the `chief-operating-officer` (COO) added Aug 25 as Eikko's second-in-command and the front door to them. See **Agent System** below.
+10 Claude Code specialist subagents in a front-office/back-office split, built Aug 13 replacing the earlier 5-agent ECO framework, plus the `chief-of-staff` added Aug 25 as Eikko's second-in-command and the front door to them. See **Agent System** below.
 
 ### **Top Acquisitions/** (root level)
 Leftover sourcing file (`top-acquisitions-hvac-sourcing.md`) from the closed trial — candidate for archiving alongside the ECO cleanup.
@@ -79,10 +79,10 @@ Leftover sourcing file (`top-acquisitions-hvac-sourcing.md`) from the closed tri
 
 ## 🤖 Agent System (current — 10 specialists built Aug 13, orchestrator added Aug 25)
 
-Sessions in this folder open in **COO mode**: describe the goal and the Chief Operating Officer either runs it (day-to-day admin and internal ops are its own job) or routes it to the right specialist, sequences the work, checks the result, and checkpoints what happened. Claude Code also auto-routes to a specialist when the match is obvious, and you can always call one directly ("Use the billing-auditor agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager`.
+Sessions in this folder open in **Chief of Staff mode**: describe the goal and the Chief of Staff either runs it (day-to-day admin and internal ops are its own job) or routes it to the right specialist, sequences the work, checks the result, and checkpoints what happened. Claude Code also auto-routes to a specialist when the match is obvious, and you can always call one directly ("Use the billing-auditor agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager`.
 
 **Orchestrator (above the split, not one of the ten):**
-`chief-operating-officer` — Eikko's second-in-command. Runs internal administration and operations directly, routes client work to the specialists, owns multi-step outcomes, holds the authority rules and the session-memory protocol. `/coo`
+`chief-of-staff` — Eikko's second-in-command. Runs internal administration and operations directly, routes client work to the specialists, owns multi-step outcomes, holds the authority rules and the session-memory protocol. `/chief-of-staff`
 
 **Front-office (client-facing — drafts only, nothing sends without your yes):**
 `inbox-triage` · `copywriter` · `lead-prospector` · `reply-handler` · `market-scout`
@@ -92,7 +92,7 @@ Sessions in this folder open in **COO mode**: describe the goal and the Chief Op
 
 **Shared reference:** `.claude/agents/_shared/connector-status.md` — single source of truth every agent reads before claiming a tool is live. Twin copy in Notion: 🎛️ VA Command Center.
 
-**Slash commands:** `/coo` (COO — what's open across clients, or a routing plan for a goal) · `/agent-manager` (list/inspect agents) · `/eod-sync <client>` (set up a recurring per-client EOD automation with Notion sync)
+**Slash commands:** `/chief-of-staff` (what's open across clients, or a routing plan for a goal) · `/agent-manager` (list/inspect agents) · `/eod-sync <client>` (set up a recurring per-client EOD automation with Notion sync)
 
 ---
 
@@ -194,7 +194,7 @@ Full detail and reactivation notes: `ARCHIVE - Inactive Automations/README.md`
 - `good morning` — Manual-trigger morning briefing
 - `done for today` — Evening wrap-up with pending items
 - `monthly income & expense review` — Full financial summary
-- `/coo` — COO: what's open across clients, or the routing plan for a goal you name
+- `/chief-of-staff` — what's open across clients, or the routing plan for a goal you name
 - `/agent-manager` — List/inspect the agents
 - `/eod-sync <client>` — Set up recurring automated EOD sync for a client
 
@@ -239,7 +239,7 @@ Client-Management-System/
 ├── README.md (you are here)
 ├── CLAUDE.md (root — agent quick-reference, read by Claude Code each session)
 ├── .claude/
-│   ├── agents/ (chief-operating-officer.md + 10 specialist definitions + README + _shared/connector-status.md)
+│   ├── agents/ (chief-of-staff.md + 10 specialist definitions + README + _shared/connector-status.md)
 │   └── commands/ (coo.md, agent-manager.md, eod-sync.md)
 ├── ABOUT ME/
 │   ├── CLAUDE.md
@@ -274,7 +274,7 @@ Client-Management-System/
 ## ✅ System Status
 
 - **Folder structure:** 🟢 Organized — client profiles consolidated, stale automation docs archived (not deleted) Aug 13
-- **Agent system:** 🟢 Rebuilt Aug 13 — 10 specialists in a front/back-office split replacing the 5-agent ECO framework, with a single connector-status source of truth. Aug 25: `chief-operating-officer` (COO) added as second-in-command and front door; routing lives in that one file, everything else points at it
+- **Agent system:** 🟢 Rebuilt Aug 13 — 10 specialists in a front/back-office split replacing the 5-agent ECO framework, with a single connector-status source of truth. Aug 25: `chief-of-staff` added as second-in-command and front door; routing lives in that one file, everything else points at it
 - **Automation:** 🟡 Only `daily-eod-sync` is actually running; morning briefing, Lemwarm monitor, PlusVibe monitor are disabled (re-enable via the `schedule` skill if needed — check for staleness first)
 - **Client profiles:** 🟢 One consolidated file per client/prospect, 9 total
 - **Connector status:** 🟡 Core lead-gen/CRM tools + Fathom connected; HubSpot, Slack, Fireflies, Porkbun need auth; several tools (Zapmail, Lemlist, LinkedIn, etc.) have no viable connector and stay manual

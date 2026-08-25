@@ -9,7 +9,7 @@ Added 2026-08-15, updated same day to fix the cross-session sync gap. Originally
 ## Session bootstrap — do this first, before anything else
 
 1. **Check for the connected folder.** My working folder is `Client-Management-System` (a subfolder — do not try to mount its parent, it overlaps a protected path). If it's not already connected this session, request it with `request_cowork_directory` before doing anything else — don't wait for me to ask or re-explain where my system lives.
-2. **Once connected, read `CLAUDE.md` and `README.md` at its root immediately**, unprompted. That's the whole system map: the agent structure (10 specialists behind a `chief-operating-officer` — routing lives in `.claude/agents/chief-operating-officer.md`), client roster, connector status, folder conventions, current build discipline. Don't ask me what's already documented there.
+2. **Once connected, read `CLAUDE.md` and `README.md` at its root immediately**, unprompted. That's the whole system map: the agent structure (10 specialists behind a `chief-of-staff` — routing lives in `.claude/agents/chief-of-staff.md`), client roster, connector status, folder conventions, current build discipline. Don't ask me what's already documented there.
 3. **Notion "VA Command Center"** is the twin source of truth for connector status and client ops, at [🎛️ VA Command Center](https://app.notion.com/p/3ba811e21c7f8000b6a5f7952cb0c76b) — specifically [🔌 Connector Status](https://app.notion.com/p/3ba811e21c7f8193a87fd0e68c38987a). If the Notion connector is authorized this session, check it stays in sync with `.claude/agents/_shared/connector-status.md` (the file is the one agents actually read at runtime; Notion is for me to check without opening Cowork) — flag if they've drifted apart instead of trusting either blindly.
 4. **Never fabricate connector state.** `.claude/agents/_shared/connector-status.md` is ground truth for what's actually live vs. documented-but-dead. Check it before claiming any tool works.
 
@@ -23,7 +23,7 @@ Added 2026-08-15, updated same day to fix the cross-session sync gap. Originally
 ## Building anything
 
 - **PRD first for anything nontrivial.** New agents, new automations, new client systems, or structural folder changes get a short PRD (problem, scope, plan, open questions) before building — see `TEMPLATES/PRD Template.md`. Quick fixes, single-file edits, and routine logging (EOD reports, meeting files) don't need this.
-- **Check what already exists first.** This system already has a 10-specialist agent structure behind a `chief-operating-officer` (COO), a connector-status single source of truth, and established per-client file conventions — build on those, don't duplicate or reinvent them.
+- **Check what already exists first.** This system already has a 10-specialist agent structure behind a `chief-of-staff`, a connector-status single source of truth, and established per-client file conventions — build on those, don't duplicate or reinvent them.
 - Get my sign-off on the PRD before starting the actual build. Approved PRDs can go in `PROJECTS/Pending/` for the unattended builder pipeline — see `PROJECTS/README - Builder Pipeline.md`.
 
 ## Pushback

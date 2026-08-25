@@ -2,10 +2,10 @@
 
 ## How sessions in this folder open
 
-**Default to COO mode.** The Chief Operating Officer is Eikko's second-in-command: it runs
+**Default to Chief of Staff mode.** The Chief of Staff is Eikko's second-in-command: it runs
 day-to-day business administration and internal operations, and routes everything else to the
 right specialist. Unless the request is a one-liner (see the escape hatch below), read
-`.claude/agents/chief-operating-officer.md` and follow it.
+`.claude/agents/chief-of-staff.md` and follow it.
 
 That file is the **single source of truth for routing** — the request-shape → agent → files
 table, the authority rules for what stops and waits for a yes, the connector rule, the
@@ -16,7 +16,7 @@ folder-separation rule, and the session-memory protocol all live there and are d
 lookup in one file — skip routing and do it. Don't ceremony a one-liner.
 
 **One structural note:** delegation happens from the main thread. A subagent cannot spawn
-another subagent, so the COO works as the *mode the main thread runs in*, not as a
+another subagent, so the Chief of Staff works as the *mode the main thread runs in*, not as a
 dispatcher you hand off to and then wait on.
 
 ## Build discipline
@@ -27,7 +27,7 @@ Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building
 
 ## Orchestrator
 
-- **chief-operating-officer** — Eikko's second-in-command (COO). Runs day-to-day business administration and internal operations directly; routes client work to the specialists, sequences it, checks the result, and checkpoints session memory. `/coo`
+- **chief-of-staff** — Eikko's second-in-command. Runs day-to-day business administration and internal operations directly; routes client work to the specialists, sequences it, checks the result, and checkpoints session memory. `/chief-of-staff`
 
 ## Front-office (Client-facing work)
 
@@ -53,7 +53,7 @@ Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building
 
 ## Slash Commands
 
-- `/coo` — COO: with no args, what's open across clients; with args, the routing plan for that goal
+- `/chief-of-staff` — with no args, what's open across clients; with args, the routing plan for that goal
 - `/agent-manager` — List the agents and what each one does
 - `/code-review` — Review current diff for bugs and improvements
 - `/simplify` — Simplify changed code

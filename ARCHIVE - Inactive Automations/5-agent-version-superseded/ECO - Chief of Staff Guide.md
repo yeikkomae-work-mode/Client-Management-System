@@ -9,13 +9,13 @@
 >   replaced on 2026-08-13 by the 10-agent front-office/back-office team in `.claude/agents/`.
 >   Those five agent files are archived alongside this one in this same folder.
 > - The **"chief of staff" role** it describes was rebuilt on 2026-08-25 as a real Claude Code
->   agent — and **renamed**. The current role is the **Chief Operating Officer**:
->   **`.claude/agents/chief-operating-officer.md`**, with `/coo` as its slash command. That file —
+>   agent — and **renamed**. The current role is the **Chief of Staff**:
+>   **`.claude/agents/chief-of-staff.md`**, with `/coo` as its slash command. That file —
 >   not this one — is the current source of truth for routing, authority rules, the connector
 >   rule, and the session-memory protocol.
 >
 > **On the name:** the current agent was briefly called `chief-of-staff` when first built on
-> 2026-08-25 and was renamed to `chief-operating-officer` the same day. The rename is why this
+> 2026-08-25 and was renamed to `chief-of-staff` the same day. The rename is why this
 > document's title no longer collides with anything live. Note there is still a *third*,
 > unrelated "Chief of Staff" in this system: a **client deliverable Yoni asked for**
 > (`PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md` §13f) — an agent giving Yoni an overview of his own
@@ -217,4 +217,4 @@ help [command]       → explains that command
 
 ---
 
-**Status:** ⚠️ HISTORICAL — archived 2026-08-25, superseded by `.claude/agents/chief-operating-officer.md` (see the banner at the top of this file). Originally filed as: Reference guide (not a live-status claim) | **Owner:** Eikko Ybañez (yeikkomae@gmail.com) | **Originally created:** August 5, 2026
+**Status:** ⚠️ HISTORICAL — archived 2026-08-25, superseded by `.claude/agents/chief-of-staff.md` (see the banner at the top of this file). Originally filed as: Reference guide (not a live-status claim) | **Owner:** Eikko Ybañez (yeikkomae@gmail.com) | **Originally created:** August 5, 2026

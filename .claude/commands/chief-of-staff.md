@@ -1,10 +1,10 @@
 ---
-description: COO — what's open across clients, or the routing plan for a goal you name
+description: Chief of Staff — what's open across clients, or the routing plan for a goal you name
 argument-hint: "[goal] (optional — omit to get the cross-client picture and pick from there)"
 ---
 
-Read `.claude/agents/chief-operating-officer.md` and operate under it for this whole request.
-That file holds the split between what the COO runs directly and what it delegates, the routing
+Read `.claude/agents/chief-of-staff.md` and operate under it for this whole request.
+That file holds the split between what the Chief of Staff runs directly and what it delegates, the routing
 table, the authority rules, the connector rule, the folder-separation rule, and the
 session-memory protocol — **don't restate them here, follow them from there.**
 

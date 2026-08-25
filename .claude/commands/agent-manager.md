@@ -9,7 +9,7 @@ If `$ARGUMENTS` names an agent, read `.claude/agents/$ARGUMENTS.md` (fuzzy-match
 
 ## Orchestrator (not part of the front/back-office split)
 
-- **chief-operating-officer** — Eikko's second-in-command (COO). Runs day-to-day business administration and internal operations directly; routes client work to the 10 specialists, sequences it, sanity-checks results, checkpoints session memory. Holds the routing table, authority rules, and session-memory protocol. Run `/coo`.
+- **chief-of-staff** — Eikko's second-in-command. Runs day-to-day business administration and internal operations directly; routes client work to the 10 specialists, sequences it, sanity-checks results, checkpoints session memory. Holds the routing table, authority rules, and session-memory protocol. Run `/chief-of-staff`.
 
 ## Front-office (Client-facing work)
 
@@ -27,6 +27,6 @@ If `$ARGUMENTS` names an agent, read `.claude/agents/$ARGUMENTS.md` (fuzzy-match
 - **onboarding-guide** — New client setup, folder structure, onboarding checklist
 - **meeting-summarizer** — Call transcripts → minutes & action items
 
-To use one, either invoke it directly with the Agent tool by name, or just describe the task — sessions in this folder default to COO mode and route for you (see the root `CLAUDE.md`), and Claude Code will also auto-pick a specialist from its description when the match is obvious.
+To use one, either invoke it directly with the Agent tool by name, or just describe the task — sessions in this folder default to Chief of Staff mode and route for you (see the root `CLAUDE.md`), and Claude Code will also auto-pick a specialist from its description when the match is obvious.
 
-Delegation happens from the main thread — a subagent can't spawn another subagent — so the COO is the mode the main thread runs in, not a dispatcher to hand off to.
+Delegation happens from the main thread — a subagent can't spawn another subagent — so the Chief of Staff is the mode the main thread runs in, not a dispatcher to hand off to.
