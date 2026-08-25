@@ -18,8 +18,7 @@ If `$ARGUMENTS` names an agent, read `.claude/agents/$ARGUMENTS.md` (fuzzy-match
 
 - **inbox-triage** — Email triaging, reply drafting across multiple accounts
 - **project-manager** — Task rollups, tracking, daily/weekly task management
-- **cfo** — Money: monthly close, cash-flow & runway, debt payoff, tool/subscription cost, invoice prep
-- **billing-auditor** — Time tracking, invoices, monthly P&L *(superseded by `cfo`; removal pending Eikko's go-ahead)*
+- **cfo** — Money: monthly close, cash-flow & runway, debt payoff, tool/subscription cost, invoice prep, per-client profitability
 - **file-organizer** — Folder structure, deduplication, file hygiene
 - **onboarding-guide** — New client setup, folder structure, onboarding checklist
 - **meeting-summarizer** — Call transcripts → minutes & action items

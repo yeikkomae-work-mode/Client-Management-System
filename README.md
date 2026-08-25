@@ -79,13 +79,13 @@ Leftover sourcing file (`top-acquisitions-hvac-sourcing.md`) from the closed tri
 
 ## 🤖 Agent System (current, built Aug 13)
 
-Claude Code auto-routes to the right subagent based on the task, or you can call one directly ("Use the billing-auditor agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager` slash command.
+Claude Code auto-routes to the right subagent based on the task, or you can call one directly ("Use the cfo agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager` slash command.
 
 **Front-office (client-facing — drafts only, nothing sends without your yes):**
 `inbox-triage` · `copywriter` · `lead-prospector` · `reply-handler` · `market-scout`
 
 **Back-office (internal ops):**
-`project-manager` · `billing-auditor` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
+`project-manager` · `cfo` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
 
 **Shared reference:** `.claude/agents/_shared/connector-status.md` — single source of truth every agent reads before claiming a tool is live. Twin copy in Notion: 🎛️ VA Command Center.
 

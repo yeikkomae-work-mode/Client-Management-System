@@ -17,7 +17,7 @@ Set up a daily end-of-day automation for client: **$ARGUMENTS**
 Ask only what's missing:
 - What time should this run each day (default suggestion: 6:00 PM local)?
 - Confirm the Notion command center page/database to sync.
-- Confirm which agents should run as part of this (default: **project-manager** for the daily rollup, **billing-auditor** for time logged today; add **file-organizer** if the client's folder tends to accumulate loose files, add **inbox-triage** if this client has a dedicated inbox).
+- Confirm which agents should run as part of this (default: **project-manager** for the daily rollup, **cfo** for anything money-related on this client; add **file-organizer** if the client's folder tends to accumulate loose files, add **inbox-triage** if this client has a dedicated inbox).
 
 ## 3. Create the recurring schedule
 
@@ -27,7 +27,7 @@ Use the `schedule` skill to create a daily cron routine named `eod-sync-<client-
 2. Compare against the local client folder(s) identified in step 1 — flag drift (local files/edits not reflected in Notion, or Notion changes not reflected locally). Do not silently overwrite either side; surface conflicts.
 3. Reconcile what's safe to reconcile automatically (e.g. append new local file references to the Notion tracker); leave ambiguous conflicts as a flagged list for me to resolve.
 4. Run **project-manager** to produce an end-of-day rollup for this client (completed today, open items, blockers).
-5. Run **billing-auditor** to log/update today's time and activity for this client.
+5. Run **cfo** if there's anything money-related to record for this client (payment received, invoice prep). Note `cfo` never reports an hours figure — no EOD log records one.
 6. Run any additional agents confirmed in step 2 (e.g. file-organizer, inbox-triage).
 7. Write the EOD summary back to the client's Notion command center as a dated entry (or to `OUTPUT/<client>/EOD Logs/` locally if Notion write access isn't available), and end with a short summary message to me.
 

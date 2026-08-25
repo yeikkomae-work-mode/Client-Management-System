@@ -94,7 +94,7 @@ This is inherited from `billing-auditor`'s 2026-08-13 setup pass and is the reas
 > - **Chris Soriano** — $7/hr, project-based/as-needed, confirmed in profile.
 > - **Krishna** — free, 3 hrs/wk, not billable.
 > - **Penji** — rate/hours still **TBD** in `CLIENT PROFILES/Penji - Profile.md` (signed Aug 10, 2026); cannot be audited or invoiced yet.
-> - **Edward Lehner** — $5/hr billed / $4.25/hr net (Upwork, 15% fee), 5 hrs/week limit — but the **Upwork offer is still pending acceptance** (expires Aug 19, 2026), so this isn't a confirmed billable engagement yet, just a rate on file.
+> - **Edward Lehner** — $5/hr billed / $4.25/hr net (Upwork, 15% fee), 5 hrs/wk limit — but the **Upwork offer is still pending acceptance** (expires Aug 19, 2026), so this isn't a confirmed billable engagement yet, just a rate on file.
 >
 > **EOD log audit (`OUTPUT/End-of-Day Reports/`):** Checked all 8 logs. **None of them record an actual hours figure per session** — entries are task/metrics/notes narratives, not "Hours: X" fields. Specifically:
 > - Chris Caffera, Chris Drew, Krishna, Penji: detailed task logs, no hours field anywhere.
