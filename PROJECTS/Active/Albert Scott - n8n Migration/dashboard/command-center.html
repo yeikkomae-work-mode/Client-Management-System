@@ -688,9 +688,14 @@
           <div class="card table-card">
             <div class="table-title-bar">
               <h2>Reply → category → Pipedrive sync</h2>
-              <span class="count tabular">2 verified</span>
+              <span class="count tabular" id="qaCount">2</span>
               <div class="fill"></div>
               <a class="btn-action" href="https://app.pipedrive.com" target="_blank" rel="noopener">Open Pipedrive ↗</a>
+            </div>
+            <div class="chip-row" id="qaCategoryFilter">
+              <button type="button" class="chip active" data-cat="all">All <span class="tabular">2</span></button>
+              <button type="button" class="chip" data-cat="Interested">Interested <span class="tabular">1</span></button>
+              <button type="button" class="chip" data-cat="Not interested">Not interested <span class="tabular">1</span></button>
             </div>
             <div class="legend-key">
               <span class="row"><span class="swatch" style="background:var(--success);"></span>Interested</span>
@@ -699,45 +704,32 @@
             <div class="table-scroll">
               <table class="data" style="min-width:760px;">
                 <thead><tr><th>Lead</th><th>Campaign</th><th>Category assigned</th><th>Pipedrive action</th><th>Verified</th></tr></thead>
-                <tbody>
-                  <tr>
-                    <td>alisa <span class="faint">bellacucina.com</span></td>
-                    <td>Eikko — Fancy Foods Q4</td>
-                    <td><span class="pill good">Interested</span></td>
-                    <td>Org + person + activity created (Bella Cucina, id 1020) · domain blocked in Smartlead</td>
-                    <td class="faint">Manual QA, 2026-08-25</td>
-                  </tr>
-                  <tr>
-                    <td>Alexandra Moorfoot <span class="faint">thenextfish.com</span></td>
-                    <td>Eikko — ICAST 2026</td>
-                    <td><span class="pill idle">Not interested</span></td>
-                    <td>No Pipedrive record (correct per rule) · domain blocked in Smartlead</td>
-                    <td class="faint">Manual QA, 2026-08-25</td>
-                  </tr>
-                </tbody>
+                <tbody id="qaBody"></tbody>
               </table>
             </div>
+            <p id="qaEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No replies match this filter.</p>
             <div class="info-note">Rule confirmed working: "Not interested" replies block the domain only and skip Pipedrive, per <code>CLIENT PROFILES/Yoni - Profile (Albert Scott).md</code> — this deviates from a literal "add every reply to Pipedrive" reading, flagged to Eikko rather than guessed at silently.</div>
           </div>
 
           <div class="card table-card">
             <div class="table-title-bar">
               <h2>Unread — awaiting classification</h2>
-              <span class="count tabular">oldest 5 of 19</span>
+              <span class="count tabular" id="awaitingCount">5</span>
+              <span class="meta" style="margin-left:2px;">of 19</span>
+            </div>
+            <div class="chip-row" id="awaitingOwnerFilter">
+              <button type="button" class="chip active" data-owner="all">All <span class="tabular">5</span></button>
+              <button type="button" class="chip" data-owner="Rachel">Rachel <span class="tabular">2</span></button>
+              <button type="button" class="chip" data-owner="Unassigned">Unassigned <span class="tabular">3</span></button>
             </div>
             <div class="table-scroll">
               <table class="data" style="min-width:640px;">
                 <thead><tr><th>Lead</th><th>Campaign</th><th>Waiting</th><th>Status</th></tr></thead>
-                <tbody>
-                  <tr><td>CHRISTOPHER BROWN <span class="faint">nomorelids.com</span></td><td>London Coffee Festival</td><td class="num tabular">94d</td><td><span class="pill idle">Not yet classified</span></td></tr>
-                  <tr><td>Marcus Bomsdorff <span class="faint">bomsdorff.de</span></td><td>Nordstil</td><td class="num tabular">11d</td><td><span class="pill idle">Not yet classified</span></td></tr>
-                  <tr><td>Weronika Wróbel <span class="faint">jkoptrade.com</span></td><td>Tones of Beauty 2026</td><td class="num tabular">48d</td><td><span class="pill idle">Not yet classified</span></td></tr>
-                  <tr><td>Nicole <span class="faint">hormbles.com — BLOCKED</span></td><td>Sweets &amp; Snacks 2026 Cards</td><td class="num tabular">1d</td><td><span class="pill idle">Not yet classified</span></td></tr>
-                  <tr><td>7 more from ISM Cologne / Pitti Immagine Uomo</td><td>Rachel — Europe</td><td class="num tabular">7d</td><td><span class="pill idle">Not yet classified</span></td></tr>
-                </tbody>
+                <tbody id="awaitingBody"></tbody>
               </table>
             </div>
-            <div class="info-note">These stay unclassified until the n8n credentials are created and the workflow actually runs — showing them as "done" before that would misrepresent what's actually happened.</div>
+            <p id="awaitingEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No replies match this filter.</p>
+            <div class="info-note">Only the oldest 5 of 19 still-unread replies are loaded into this build — owner here is inferred from which of the 16 active campaigns each belongs to (some, like "London Coffee Festival," aren't in that list and show as Unassigned rather than guessed at). These stay "not yet classified" until the n8n credentials are created and the workflow actually runs — showing them as "done" before that would misrepresent what's happened.</div>
           </div>
         </div>
       </section>
@@ -1050,6 +1042,84 @@
       el.classList.toggle("show");
     });
   });
+
+  // ---- SmartLead Inbox monitor: QA table (reply -> category -> Pipedrive) ----
+  var QA_ROWS = [
+    ["alisa", "bellacucina.com", "Eikko — Fancy Foods Q4", "Interested", "Org + person + activity created (Bella Cucina, id 1020) · domain blocked in Smartlead", "Manual QA, 2026-08-25"],
+    ["Alexandra Moorfoot", "thenextfish.com", "Eikko — ICAST 2026", "Not interested", "No Pipedrive record (correct per rule) · domain blocked in Smartlead", "Manual QA, 2026-08-25"]
+  ];
+  (function () {
+    var state = { cat: "all" };
+    var tbody = document.getElementById("qaBody");
+    var emptyEl = document.getElementById("qaEmpty");
+    var countEl = document.getElementById("qaCount");
+    var filterEl = document.getElementById("qaCategoryFilter");
+    if (!tbody || !filterEl) return;
+
+    function render() {
+      var rows = QA_ROWS.filter(function (r) { return state.cat === "all" || r[3] === state.cat; });
+      countEl.textContent = rows.length;
+      tbody.innerHTML = rows.map(function (r) {
+        var pill = r[3] === "Interested" ? "good" : "idle";
+        return "<tr><td>" + esc(r[0]) + ' <span class="faint">' + esc(r[1]) + "</span></td>" +
+          "<td>" + esc(r[2]) + "</td>" +
+          '<td><span class="pill ' + pill + '">' + esc(r[3]) + "</span></td>" +
+          "<td>" + esc(r[4]) + "</td>" +
+          '<td class="faint">' + esc(r[5]) + "</td></tr>";
+      }).join("");
+      emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.cat = btn.getAttribute("data-cat");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    render();
+  })();
+
+  // ---- SmartLead Inbox monitor: awaiting-classification table ----
+  var AWAITING_ROWS = [
+    ["CHRISTOPHER BROWN", "nomorelids.com", "London Coffee Festival", 94, "Unassigned"],
+    ["Marcus Bomsdorff", "bomsdorff.de", "Nordstil", 11, "Rachel"],
+    ["Weronika Wróbel", "jkoptrade.com", "Tones of Beauty 2026", 48, "Unassigned"],
+    ["Nicole", "hormbles.com — BLOCKED", "Sweets & Snacks 2026 Cards", 1, "Unassigned"],
+    ["7 more from ISM Cologne / Pitti Immagine Uomo", "", "Rachel — Europe", 7, "Rachel"]
+  ];
+  (function () {
+    var state = { owner: "all" };
+    var tbody = document.getElementById("awaitingBody");
+    var emptyEl = document.getElementById("awaitingEmpty");
+    var countEl = document.getElementById("awaitingCount");
+    var filterEl = document.getElementById("awaitingOwnerFilter");
+    if (!tbody || !filterEl) return;
+
+    function render() {
+      var rows = AWAITING_ROWS.filter(function (r) { return state.owner === "all" || r[4] === state.owner; });
+      countEl.textContent = rows.length;
+      tbody.innerHTML = rows.map(function (r) {
+        var lead = r[1] ? esc(r[0]) + ' <span class="faint">' + esc(r[1]) + "</span>" : esc(r[0]);
+        return "<tr><td>" + lead + "</td>" +
+          "<td>" + esc(r[2]) + "</td>" +
+          '<td class="num tabular">' + r[3] + "d</td>" +
+          '<td><span class="pill idle">Not yet classified</span></td></tr>';
+      }).join("");
+      emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.owner = btn.getAttribute("data-owner");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    render();
+  })();
 
   // ---- SmartLead subnav (Campaigns / Inbox monitor) ----
   var smartleadSubnav = document.getElementById("smartleadSubnav");
