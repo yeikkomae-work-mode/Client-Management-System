@@ -2,7 +2,7 @@
 
 **Trigger:** 2026-08-25 call. Yoni reviewed the drafted sequences and rejected them. [Recording](https://fathom.video/share/yqayx2MHShJM5sx-62Swc5H2tzY-mi9g)
 **Campaigns (Smartlead, status DRAFTED):** `Eikko- Cosmoprof` (id 3838869), `Eikko - Global Pet` (id 3838867), `Eikko - AAPEX` (id 3838866)
-**Status:** Draft for Yoni's review. **Not pushed to Smartlead yet:** per his client profile, all campaigns go through Yoni or Rachel before launch.
+**Status:** Pushed to Smartlead (2026-08-25) — all three campaigns updated in place, same sequence IDs, no duplicates. Still `DRAFTED` in Smartlead, so nothing is sending. Per Yoni's client profile, activating/launching still requires his or Rachel's sign-off; this doc is what to send him for that review.
 
 ---
 
@@ -217,7 +217,6 @@ yoni@albertscott.com | 347-388-9725
 
 ## Next steps
 
-1. Send this doc to Yoni for review (per his non-negotiable approval rule: no autonomous launching).
-2. Resolve the attendance-framing question above before anything goes live.
-3. Once approved, push via `save_campaign_sequences` to campaigns 3838869 (Cosmoprof), 3838867 (Global Pet), 3838866 (AAPEX), currently still DRAFTED and untouched.
-4. No other Albert Scott campaigns showed Q4 or dash issues on a first pass of the campaign list, but a full audit of active/paused campaigns hasn't been done yet. That's a worthwhile follow-up pass per Yoni's "review all campaigns, not just this one" ask.
+1. Revised copy is live in Smartlead's drafts (campaigns 3838869, 3838867, 3838866), still `DRAFTED`. Nothing sends until Yoni or Rachel approves activation, per his non-negotiable launch rule.
+2. Send this doc to Yoni for review, and resolve the attendance-framing question above before he approves activation.
+3. No other Albert Scott campaigns showed Q4 or dash issues on a first pass of the campaign list, but a full audit of active/paused campaigns hasn't been done yet. That's a worthwhile follow-up pass per Yoni's "review all campaigns, not just this one" ask.
