@@ -8,6 +8,10 @@
    were current. document.write keeps the load synchronous (the main script
    below expects the global to exist) and works over file:// as well as http. */
 document.write('<script src="dashboard-data.js?t=' + Date.now() + '"><\/script>');
+/* The live-platform bundle (Smartlead / PlusVibe / Zapmail, written by the
+   backend sync). Optional: absent until a sync has run, and the dashboard
+   degrades to the documented record alone. */
+document.write('<script src="campaigns-data.js?t=' + Date.now() + '" onerror="window.__CAMPAIGNS_MISSING__=1"><\/script>');
 </script>
 
 <style>
@@ -483,6 +487,113 @@ const clientOf = f => f.clientCanonical || f.client || '—';
 const flatCamps = measured.flatMap(f => f.campaigns.map(c => ({...c, file:f.fileName, client:clientOf(f), tool:f.tool||'—'})));
 const activeClients = clients.filter(c => /active/i.test(c.status||''));
 
+/* ══════════════════════════════════════════════════════════════════
+   MERGING THE TWO CAMPAIGN SOURCES
+
+   Two independent things report on campaigns and they measure different
+   facts, so they are kept distinct rather than blended:
+
+     documented — parsed from OUTPUT/Campaign Tracking/*.md. Per-campaign
+                  metrics, but only for what has been written down.
+     live       — pulled from the sending platforms by the backend sync.
+                  Account-wide totals (and campaign names/status), but only
+                  for workspaces that are actually connected.
+
+   The danger is double counting. Today the two happen to cover disjoint
+   clients, but two PlusVibe workspaces sit disconnected against clients who
+   ALREADY have documented data — the moment they connect, naive addition
+   would inflate every headline number. So totals are rolled up per client
+   with one source elected per client, and any client carrying both is
+   surfaced explicitly instead of silently summed.
+   ══════════════════════════════════════════════════════════════════ */
+const CD = window.__CAMPAIGNS_DATA__ || null;
+
+const docSources = measured.map(f => ({
+  kind: 'documented',
+  key: f.relPath,
+  label: f.title,
+  client: clientOf(f),
+  connected: true,
+  totals: f.metrics || {},
+  campaigns: (f.campaigns || []).map(c => ({...c, source:'documented', sourceLabel:f.fileName})),
+  detail: f.fileName,
+}));
+
+const liveSources = Object.entries(CD?.sources || {}).map(([key, s]) => ({
+  kind: 'live',
+  key,
+  label: s.label || key,
+  client: s.client || '—',
+  connected: !!s.connected,
+  totals: s.totals || {},
+  campaigns: (s.campaigns || []).map(c => ({
+    name: c.name, status: c.status, source:'live', sourceLabel:s.label || key,
+  })),
+  detail: s.note || '',
+  counts: s.campaignCounts || {},
+}));
+
+const allSources = [...liveSources, ...docSources];
+const hasData = s => Object.keys(s.totals || {}).some(k =>
+  ['sent','leads','replies','replied','opens','opened'].includes(k) && s.totals[k]);
+
+/* Normalise the two vocabularies onto one set of keys. */
+const normalise = t => ({
+  sent:    t.sent ?? 0,
+  leads:   t.leads ?? 0,
+  replies: t.replies ?? t.replied ?? 0,
+  opens:   t.opens ?? t.opened ?? 0,
+  bounces: t.bounces ?? t.bounced ?? 0,
+  opportunities: t.opportunities ?? 0,
+});
+
+/* One bucket per client, holding whatever reports on them. */
+const coverage = {};
+for (const s of allSources) {
+  (coverage[s.client] ||= {client:s.client, live:[], documented:[]})[s.kind].push(s);
+}
+const coverageRows = Object.values(coverage).sort((a,b) => a.client.localeCompare(b.client));
+
+/* Elect ONE source per client for the headline rollup. Live wins when it is
+   connected and carrying numbers — it is the platform's own account of what
+   was sent. Otherwise the documented record stands in. */
+/* Rank every source that carries numbers and elect exactly ONE per client.
+   Electing a set rather than a single source was the original bug: Chris Drew
+   has two documented files that describe the SAME seven campaigns — one by
+   leads, one by sends — so adding them inflated his lead count. The rule is
+   therefore one source per client, full stop, at every level:
+       3  live and connected      — the platform's own account
+       2  documented with sends   — the richer written record
+       1  documented, leads only  — better than nothing
+   Everything not elected is shadowed: still shown, never added. */
+const sourceRank = s => {
+  if (!hasData(s)) return 0;
+  if (s.kind === 'live') return s.connected ? 3 : 0;
+  return s.totals.sent ? 2 : 1;
+};
+for (const row of coverageRows) {
+  const ranked = [...row.live, ...row.documented]
+    .filter(s => sourceRank(s) > 0)
+    .sort((a,b) => sourceRank(b) - sourceRank(a));
+  row.elected     = ranked.slice(0,1);
+  row.shadowed    = ranked.slice(1);
+  row.electedKind = row.elected[0]?.kind || null;
+  row.pending     = row.live.filter(s => !s.connected);
+  row.totals      = normalise(row.elected[0]?.totals || {});
+}
+
+const unified = coverageRows.reduce((acc, r) => {
+  for (const [k,v] of Object.entries(r.totals)) acc[k] = (acc[k]||0) + v;
+  return acc;
+}, {});
+unified.replyRate  = unified.sent ? +(100*unified.replies/unified.sent).toFixed(2) : 0;
+unified.bounceRate = unified.sent ? +(100*unified.bounces/unified.sent).toFixed(2) : 0;
+
+const overlaps = coverageRows.filter(r => r.shadowed.length);
+const pendingSources = liveSources.filter(s => !s.connected);
+const allCampaignRows = allSources.flatMap(s =>
+  s.campaigns.map(c => ({...c, client:s.client, sourceKind:s.kind})));
+
 function deltaOf(key) {
   if (history.length < 2) return null;
   const now = history.at(-1)[key], then = history[0][key];
@@ -501,7 +612,7 @@ function deltaEl(key) {
 /* ── Views ─────────────────────────────────────────────────────── */
 const VIEWS = [
   {id:'overview',  label:'Overview',  ico:'◈', group:'Command'},
-  {id:'campaigns', label:'Campaigns', ico:'◎', group:'Command', count:()=>flatCamps.length},
+  {id:'campaigns', label:'Campaigns', ico:'◎', group:'Command', count:()=>allCampaignRows.length},
   {id:'clients',   label:'Clients',   ico:'◐', group:'Command', count:()=>clients.length},
   {id:'tasks',     label:'Tasks',     ico:'✓', group:'Command', count:()=>openTasks.length},
   {id:'pipeline',  label:'Pipeline',  ico:'▤', group:'Command', count:()=>(pipeline.Active||[]).length},
@@ -522,21 +633,21 @@ function viewOverview() {
     el('div',{class:'page-head'},
       el('h1',{class:'page-title'}, `${greet}, ${(D.me?.name||'').split(' ')[0]}`),
       el('div',{class:'page-sub'},
-        `${activeClients.length} active of ${clients.length} clients · ${openTasks.length} open tasks · ${flatCamps.length} campaigns tracked`)),
+        `${activeClients.length} active of ${clients.length} clients · ${openTasks.length} open tasks · ${allCampaignRows.length} campaigns tracked`)),
 
     el('div',{class:'grid g-kpi',style:'margin-bottom:14px'},
       el('div',{class:'card stat'},
         el('div',{class:'stat-label'},'Emails sent'),
-        el('div',{class:'stat-val'}, num(ctot.sent)),
-        el('div',{class:'stat-meta'}, `across ${ctot.campaignCount||0} campaigns`)),
+        el('div',{class:'stat-val'}, num(unified.sent)),
+        el('div',{class:'stat-meta'}, `${allCampaignRows.length} campaigns · live + documented`)),
       el('div',{class:'card stat'},
         el('div',{class:'stat-label'},'Replies'),
-        el('div',{class:'stat-val'}, num(ctot.replies)),
-        el('div',{class:'stat-meta'}, `${pct(ctot.replyRate)} reply rate`)),
+        el('div',{class:'stat-val'}, num(unified.replies)),
+        el('div',{class:'stat-meta'}, `${pct(unified.replyRate)} reply rate`)),
       el('div',{class:'card stat'},
         el('div',{class:'stat-label'},'Opportunities'),
-        el('div',{class:'stat-val'}, num(ctot.opportunities)),
-        el('div',{class:'stat-meta'}, 'from measured campaigns')),
+        el('div',{class:'stat-val'}, num(unified.opportunities)),
+        el('div',{class:'stat-meta'}, 'documented record only')),
       el('div',{class:'card stat'},
         el('div',{class:'stat-label'},'Active pipeline'),
         el('div',{class:'stat-val'}, String((pipeline.Active||[]).length)),
@@ -547,19 +658,20 @@ function viewOverview() {
       el('section',{class:'card'},
         el('div',{class:'card-head'},
           el('span',{class:'card-title'},'Outbound funnel'),
-          el('span',{class:'card-note'}, `${ctot.filesMeasured||0} of ${ctot.filesTotal||0} files measured`)),
+          el('span',{class:'card-note'},
+            `${coverageRows.filter(r=>r.electedKind).length} clients reporting`)),
         /* Only genuinely nested stages belong here: replies come out of sent,
            opportunities out of replies. "Leads contacted" is NOT a parent of
            "sent" — the two come from different files, some of which report one
            and not the other, so stacking them produced a >100% step. It is
            reported separately below instead of faking a funnel stage. */
         funnel([
-          {label:'Emails sent',   value:ctot.sent},
-          {label:'Replies',       value:ctot.replies},
-          {label:'Opportunities', value:ctot.opportunities},
+          {label:'Emails sent',   value:unified.sent},
+          {label:'Replies',       value:unified.replies},
+          {label:'Opportunities', value:unified.opportunities},
         ]),
         el('div',{class:'note',style:'margin-top:4px'},
-          `${num(ctot.leads)} leads contacted across all measured files. Not shown as a funnel stage — leads and sends are reported by different files, so one is not a subset of the other.`)),
+          `${num(unified.leads)} leads contacted. Not shown as a funnel stage — leads and sends come from different sources, so one is not a subset of the other. Opportunities are only tracked in the documented record, never by the live sync.`)),
 
       el('section',{class:'card'},
         el('div',{class:'card-head'},
@@ -590,50 +702,94 @@ function viewOverview() {
 function viewCampaigns() {
   let mode = 'all';
   const wrap = el('div',{class:'view'});
+
+  const sourceChip = kind => el('span',{class:`pill ${kind==='live'?'good':'neutral'}`},
+    el('i',{class:'dot'}), kind === 'live' ? 'Live' : 'Documented');
+
   const render = () => {
     wrap.replaceChildren();
-    let rows = flatCamps.slice();
-    if (mode === 'active') rows = rows.filter(r => statusTone(r.status) === 'good');
-    if (mode === 'draft')  rows = rows.filter(r => statusTone(r.status) === 'warn');
+
+    let rows = allCampaignRows.slice();
+    if (mode === 'live')       rows = rows.filter(r => r.sourceKind === 'live');
+    if (mode === 'documented') rows = rows.filter(r => r.sourceKind === 'documented');
+    if (mode === 'active')     rows = rows.filter(r => statusTone(r.status) === 'good');
     rows.sort((a,b) => (b.sent ?? b.leads ?? 0) - (a.sent ?? a.leads ?? 0));
 
-    const bySent = flatCamps.filter(c => c.sent > 0)
-      .sort((a,b)=>b.sent-a.sent).slice(0,8)
-      .map(c => ({label:c.name, value:c.sent}));
-    const byClient = Object.entries(
-      measured.reduce((acc,f) => {
-        const k = clientOf(f);
-        acc[k] = (acc[k]||0) + (f.metrics.sent || f.metrics.leads || 0);
-        return acc;
-      },{})).map(([label,value]) => ({label, value, fill:slotFor(label)}))
+    const byClient = coverageRows
+      .filter(r => r.totals.sent || r.totals.leads)
+      .map(r => ({label:r.client, value:r.totals.sent || r.totals.leads, fill:slotFor(r.client)}))
       .sort((a,b)=>b.value-a.value);
 
     wrap.append(
       el('div',{class:'page-head'},
         el('h1',{class:'page-title'},'Campaigns'),
         el('div',{class:'page-sub'},
-          `${flatCamps.length} campaigns across ${ctot.filesMeasured||0} measured files · ${num(ctot.sent)} sent · ${num(ctot.replies)} replies`)),
+          `${num(unified.sent)} sent · ${num(unified.replies)} replies · ` +
+          `${allCampaignRows.length} campaigns from ${allSources.filter(hasData).length} reporting sources`)),
 
       el('div',{class:'grid g-kpi',style:'margin-bottom:14px'},
-        statCard('Sent', num(ctot.sent), `${ctot.campaignCount||0} campaigns`),
-        statCard('Reply rate', pct(ctot.replyRate), `${num(ctot.replies)} replies`),
-        statCard('Bounce rate', pct(ctot.bounceRate), `${num(ctot.bounces)} bounces`),
-        statCard('Opportunities', num(ctot.opportunities), 'measured only')),
+        statCard('Sent', num(unified.sent), `${coverageRows.filter(r=>r.electedKind).length} clients reporting`),
+        statCard('Reply rate', pct(unified.replyRate), `${num(unified.replies)} replies`),
+        statCard('Bounce rate', pct(unified.bounceRate), `${num(unified.bounces)} bounces`),
+        statCard('Opportunities', num(unified.opportunities), 'documented record only')),
+
+      /* Coverage is the honest map: who reports on whom, and how. */
+      el('section',{class:'card',style:'margin-bottom:14px'},
+        el('div',{class:'card-head'},
+          el('span',{class:'card-title'},'Source coverage'),
+          el('span',{class:'card-note'},
+            `${liveSources.filter(s=>s.connected).length} of ${liveSources.length} live connections up`)),
+        el('div',{class:'tw'},
+          el('table',{},
+            el('thead',{}, el('tr',{},
+              el('th',{},'Client'), el('th',{},'Counted from'),
+              el('th',{class:'num'},'Sent'), el('th',{class:'num'},'Replies'),
+              el('th',{},'Also on file'), el('th',{},'Awaiting connection'))),
+            el('tbody',{}, ...coverageRows.map(r => el('tr',{},
+              el('td',{style:'font-weight:550'}, r.client),
+              el('td',{}, r.electedKind
+                ? el('span',{style:'display:inline-flex;gap:6px;align-items:center'},
+                    sourceChip(r.electedKind),
+                    el('span',{class:'stat-meta'}, r.elected.map(s=>s.label).join(', ').slice(0,46)))
+                : el('span',{class:'stat-meta'},'nothing reporting')),
+              el('td',{class:'num'}, r.totals.sent ? num(r.totals.sent) : '—'),
+              el('td',{class:'num'}, r.totals.replies ? num(r.totals.replies) : '—'),
+              el('td',{}, r.shadowed.length
+                ? el('span',{class:'pill warn'}, el('i',{class:'dot'}),
+                    `${r.shadowed.length} documented, not added`)
+                : el('span',{class:'stat-meta'},'—')),
+              el('td',{}, r.pending.length
+                ? el('span',{class:'stat-meta'}, r.pending.map(s=>s.label.split('—')[0].trim()).join(', '))
+                : el('span',{class:'stat-meta'},'—')))))))),
+
+      overlaps.length ? el('div',{class:'note',style:'margin-bottom:14px'},
+        el('strong',{},'More than one source covers the same client. '),
+        overlaps.map(r => `${r.client} (counted from ${r.elected[0].label.slice(0,40)}; ${r.shadowed.length} other held back)`).join('; '),
+        '. Only the elected source is added to the totals above. The others describe overlapping campaigns — Chris Drew\u2019s two files share seven campaign names between them — so summing them would inflate the figures. Every source is still listed in the table below, tagged.') : null,
+
+      pendingSources.length ? el('div',{class:'note',style:'margin-bottom:14px'},
+        el('strong',{},'Not yet connected: '),
+        pendingSources.map(s=>s.label).join(' · '),
+        '. Those clients are counted from their documented files until the sync is wired up — see backend/.env.example.') : null,
 
       el('div',{class:'grid g-2',style:'margin-bottom:14px'},
         el('section',{class:'card'},
           el('div',{class:'card-head'},
-            el('span',{class:'card-title'},'Largest campaigns by volume sent'),
-            el('span',{class:'card-note'},'top 8')),
-          hBar(bySent)),
+            el('span',{class:'card-title'},'Volume by client'),
+            el('span',{class:'card-note'},'one source per client')),
+          hBar(byClient, {labelW:150})),
         el('section',{class:'card'},
           el('div',{class:'card-head'},
-            el('span',{class:'card-title'},'Volume by client'),
-            el('span',{class:'card-note'},'sent, or leads where sent is not recorded')),
-          hBar(byClient, {labelW:150}))),
+            el('span',{class:'card-title'},'Largest documented campaigns'),
+            el('span',{class:'card-note'},'per-campaign figures exist only on file')),
+          hBar(allCampaignRows.filter(c=>c.sent>0).sort((a,b)=>b.sent-a.sent).slice(0,8)
+            .map(c=>({label:c.name, value:c.sent}))))),
 
       el('div',{class:'tabs'},
-        ...[['all',`All ${flatCamps.length}`],['active','Active'],['draft','Draft / pending']].map(([k,lab]) =>
+        ...[['all',`All ${allCampaignRows.length}`],
+            ['live',`Live ${allCampaignRows.filter(r=>r.sourceKind==='live').length}`],
+            ['documented',`Documented ${allCampaignRows.filter(r=>r.sourceKind==='documented').length}`],
+            ['active','Active']].map(([k,lab]) =>
           el('button',{class:'tab','aria-selected':String(mode===k),
             onclick:()=>{mode=k; render();}}, lab))),
 
@@ -641,7 +797,7 @@ function viewCampaigns() {
         el('div',{class:'tw'},
           el('table',{},
             el('thead',{}, el('tr',{},
-              el('th',{},'Campaign'), el('th',{},'Client'), el('th',{},'Tool'),
+              el('th',{},'Campaign'), el('th',{},'Client'), el('th',{},'Source'),
               el('th',{class:'num'},'Sent'), el('th',{class:'num'},'Leads'),
               el('th',{class:'num'},'Replies'), el('th',{},'Reply rate'), el('th',{},'Status'))),
             el('tbody',{}, ...(rows.length ? rows.map(r => {
@@ -649,7 +805,7 @@ function viewCampaigns() {
               return el('tr',{},
                 el('td',{style:'font-weight:550'}, r.name),
                 el('td',{}, r.client),
-                el('td',{}, r.tool),
+                el('td',{}, sourceChip(r.sourceKind)),
                 el('td',{class:'num'}, r.sent!=null?num(r.sent):'—'),
                 el('td',{class:'num'}, r.leads!=null?num(r.leads):'—'),
                 el('td',{class:'num'}, r.replies!=null?num(r.replies):'—'),
@@ -659,7 +815,10 @@ function viewCampaigns() {
                     el('div',{class:'minibar'}, el('i',{style:`width:${Math.min(rate*12,100)}%;background:var(--seq-400)`})))),
                 el('td',{}, el('span',{class:`pill ${toneClass(statusTone(r.status))}`},
                   el('i',{class:'dot'}), cleanStatus(r.status))));
-            }) : [el('tr',{}, el('td',{colspan:'8'}, el('div',{class:'empty'},'No campaigns match this filter')))])))))
+            }) : [el('tr',{}, el('td',{colspan:'8'}, el('div',{class:'empty'},'No campaigns match this filter')))]))))),
+
+      el('div',{class:'note',style:'margin-top:14px'},
+        'Live rows carry a name and status but no per-campaign figures — the platform sync returns account-wide totals only, so their volume sits in the client rollup rather than on the row. Documented rows carry full per-campaign metrics.')
     );
 
     if (unmeasured.length) {
@@ -853,7 +1012,7 @@ function buildNav(){
 const INDEX = [
   ...VIEWS.map(v => ({label:v.label, kind:'view', run:()=>go(v.id)})),
   ...clients.map(c => ({label:c.name, kind:'client', run:()=>{go('clients'); selectClient(c.name);}})),
-  ...flatCamps.map(c => ({label:c.name, kind:'campaign', run:()=>go('campaigns')})),
+  ...allCampaignRows.map(c => ({label:c.name, kind:`campaign · ${c.sourceKind}`, run:()=>go('campaigns')})),
   ...agents.map(a => ({label:a.name, kind:'agent', run:()=>go('system')})),
   ...skills.map(s => ({label:s.name, kind:'skill', run:()=>go('system')})),
   ...openTasks.slice(0,220).map(t => ({label:t.text, kind:`task · ${t.client.split(' ')[0]}`,

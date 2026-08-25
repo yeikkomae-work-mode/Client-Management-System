@@ -29,6 +29,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 SRC = HERE / "command-center.html"
 DATA = HERE / "dashboard-data.json"
+LIVE = HERE / "campaigns-data.json"   # optional; absent until a sync has run
 OUT = HERE / "command-center-hosted.html"
 
 FONTS = (
@@ -101,10 +102,20 @@ def main() -> None:
                       .replace(" ", "\\u2028")
                       .replace(" ", "\\u2029"))
 
+    # The live-platform bundle rides along so the hosted copy shows the same
+    # merged picture. It carries no rates or task text, so it needs no redaction.
+    live_js = ""
+    if LIVE.exists():
+        live = json.loads(LIVE.read_text(encoding="utf-8"))
+        lp = json.dumps(live, ensure_ascii=False, separators=(",", ":"))
+        lp = (lp.replace("</", "<\\/")
+                .replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
+        live_js = f"window.__CAMPAIGNS_DATA__ = {lp};"
+
     # 1. Swap the cache-busting loader for the inlined data.
     html = re.sub(
         r"<script>\n/\* Cache-bust.*?</script>",
-        f"<script>window.__DASHBOARD_DATA__ = {payload};</script>",
+        f"<script>window.__DASHBOARD_DATA__ = {payload};{live_js}</script>",
         html, count=1, flags=re.S,
     )
     if "__DASHBOARD_DATA__ =" not in html.split("<style>")[0]:
@@ -132,7 +143,8 @@ def main() -> None:
     kb = len(html.encode("utf-8")) / 1024
     print(f"wrote {OUT.name} ({kb:.0f} KB, self-contained) "
           f"— {len(data.get('clients', []))} clients, "
-          f"{sum(len(c['campaigns']) for c in data.get('campaigns', []))} campaigns, "
+          f"{sum(len(c['campaigns']) for c in data.get('campaigns', []))} documented campaigns, "
+          f"live bundle {'inlined' if LIVE.exists() else 'ABSENT'}, "
           f"rates and task text redacted")
 
 

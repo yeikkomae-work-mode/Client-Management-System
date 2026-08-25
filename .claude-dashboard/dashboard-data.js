@@ -1,5 +1,5 @@
 window.__DASHBOARD_DATA__ = {
-  "generatedAt": "2026-08-25T19:05:53.129142+00:00",
+  "generatedAt": "2026-08-25T19:18:40.974088+00:00",
   "systemRoot": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System",
   "me": {
     "name": "Eikko Ybanez",
@@ -541,6 +541,7 @@ window.__DASHBOARD_DATA__ = {
           "bucket": "Active"
         }
       ],
+      "lastEOD": "2026-08-22",
       "since": {
         "label": "2026-08-05",
         "source": "first_logged",
@@ -564,6 +565,7 @@ window.__DASHBOARD_DATA__ = {
       "hours": "Variable (1pm-4pm PHT)",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-22",
       "since": {
         "label": "February 2026",
         "source": "coverage_period",
@@ -587,6 +589,7 @@ window.__DASHBOARD_DATA__ = {
       "hours": "As-needed",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-22",
       "since": {
         "label": "2026-08-05",
         "source": "first_logged",
@@ -610,6 +613,7 @@ window.__DASHBOARD_DATA__ = {
       "hours": "",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-21",
       "since": {
         "label": "Aug 13, 2026",
         "source": "coverage_period",
@@ -633,6 +637,7 @@ window.__DASHBOARD_DATA__ = {
       "hours": "5h/week (potential for more)",
       "meeting": "First session Aug 12, 2026 at 9:00 AM (60\u201375 min) \u2014 recurring schedule TBD",
       "tasks": [],
+      "lastEOD": "2026-08-12",
       "since": {
         "label": "Aug 12, 2026",
         "source": "start_date_field",
@@ -656,6 +661,7 @@ window.__DASHBOARD_DATA__ = {
       "hours": "3h/week",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-10",
       "since": {
         "label": "2026-08-07",
         "source": "first_logged",
@@ -679,6 +685,7 @@ window.__DASHBOARD_DATA__ = {
       "hours": "Full-time, 8am\u20135pm (1hr break 12\u20131pm)",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-24",
       "since": {
         "label": "Aug 10, 2026",
         "source": "status_date",
@@ -702,6 +709,7 @@ window.__DASHBOARD_DATA__ = {
       "hours": "",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-24",
       "since": {
         "label": "2026-08-10",
         "source": "first_logged",
@@ -725,6 +733,7 @@ window.__DASHBOARD_DATA__ = {
       "hours": "",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-24",
       "since": {
         "label": "2026-08-10",
         "source": "first_logged",
@@ -1619,6 +1628,7 @@ window.__DASHBOARD_DATA__ = {
           "bucket": "Active"
         }
       ],
+      "lastEOD": "2026-08-19",
       "since": {
         "label": "2026-08-07",
         "source": "first_logged",
