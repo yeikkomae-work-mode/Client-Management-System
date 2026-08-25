@@ -4,6 +4,28 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-25
+
+**Tasks Completed:**
+- Connected AdsPower (local MCP + skill, local-only) and Gojiberry (hosted MCP, org API key, 25 tools — verified working from a cloud session) to the Client-Management-System. See `RESOURCES/Tools & API Details/Connected Tools Status.md`.
+- Exported the 85 leads sourced by the "Agency - Eikko" Gojiberry signal, cross-checked them against the team's "Agency Master List" Google Sheet — 0 emails enriched yet, 1 likely cross-tab duplicate flagged (Colby Flood, sourced separately by Kim).
+- Set up Google Sheets **write** access via a service account (`claude@noted-minutia-506607-j3.iam.gserviceaccount.com`) — the Drive MCP connector is read/download only. Verified working; appended all 85 new leads directly into the "Gojiberry Listing" tab (gid 1776270089), matching Eikko's own existing row convention (blank Campaign Name, Name Sender "Eikko") rather than the "Gojiberry Signals" value Evi/Kim's imports use.
+- Per Kristine's Slack guidance (review current signals, replace ones sourcing zero leads) and modeled on Kim's higher-yield signal mix (heavy use of `INFLUENCER_PAGE_URL`, which Eikko's agent had none of): replaced 6 dead signals on the "Agency - Eikko" agent (id 29267) — `"unlimited design"`, `"freelance designer"`, `"design subscription"`, `"in-house design team"`, `"client renewals"` (all 0 leads), and the Fiverr competitor page (0 leads) — with 2 `INFLUENCER_PAGE_URL` signals (Chris Do, Daniel Murray — reused from Kim's already-verified agent config), 1 new `COMPETITOR_PAGE_URL` (99designs), and 3 natural-language `SEARCH_KEYWORD` phrases ("creative bandwidth", "white label design", "overflow design work") replacing product-jargon phrasing that likely explains why the old keywords never matched real posts.
+
+**⚠️ Incident — flagged, not silently smoothed over:**
+While bisecting a 400 error from Gojiberry's `update_agent` endpoint (it silently requires `strength`/`nbResultsLastLaunch`/`last_usage` back on every variable object, not just `type`/`value`/`premium`), one exploratory call briefly left the live "Agency - Eikko" signal with only 4 of its 9 working variables — "hired a designer," "creative as a service," Upwork, and "creative team capacity" were temporarily dropped. Caught immediately and restored in full within the same session; final verified state has all 9 kept signals plus the 6 replacements (15 total, confirmed via a fresh read after write). No leads or campaign data were affected — this was agent *configuration* only.
+
+**Notes:**
+- The `mcp__gojiberry__*` tools 401 in this session — the MCP server process doesn't have `GOJIBERRY_API_KEY` in its own environment. All Gojiberry API calls this session went through a raw script with the key exported in Bash instead. Worth fixing properly (or documenting as expected) so future sessions don't rediscover this.
+- Confirmed via live API: the "Agency Master List" spreadsheet's `gid=1776270089` is titled "Gojiberry Listing" — resolves the tab-identification ambiguity from earlier in the day.
+
+**Next Steps:**
+- Monitor whether the new signals (especially the two influencer-engagement ones) start sourcing leads; if a signal is still dead after ~1 week, swap again.
+- Enrich the 85 already-loaded leads (0 emails currently) before they're eligible for outreach, per the hard "no contact without verified email" rule.
+- Consider fixing `GOJIBERRY_API_KEY` in the MCP server's own environment so future sessions don't need the Bash workaround.
+
+---
+
 ## 2026-08-24
 
 **Tasks Completed:**
