@@ -1,0 +1,73 @@
+{
+  "generatedAt": "2026-08-26T00:00:00.000000+00:00",
+  "syncMode": "seed",
+  "sources": {
+    "smartlead_albertscott": {
+      "label": "Smartlead — Albert Scott (Yoni)",
+      "client": "Yoni (Albert Scott)",
+      "connected": true,
+      "lastSynced": "2026-08-26T00:00:00.000000+00:00",
+      "range": { "start": "2026-07-27", "end": "2026-08-26" },
+      "totals": { "sent": 26213, "opened": 5150, "replied": 322, "bounced": 1915 },
+      "campaignCounts": { "active": 16, "paused": 21, "completed": 142, "drafted": 8, "stopped": 8, "total": 195 },
+      "campaigns": [
+        { "id": 3845170, "name": "Rachel - IFA (intro before the show)", "status": "ACTIVE" },
+        { "id": 3804440, "name": "Eikko - Expo West Q4", "status": "ACTIVE" },
+        { "id": 3804439, "name": "Eikko - Sweets and Snacks Q4", "status": "ACTIVE" },
+        { "id": 3804435, "name": "Eikko - Winter Fancy Fair Q4", "status": "ACTIVE" },
+        { "id": 3792273, "name": "Eikko - Fancy Foods Q4", "status": "ACTIVE" },
+        { "id": 3771090, "name": "Eikko - Toy Fair Q4", "status": "ACTIVE" },
+        { "id": 3756194, "name": "Eikko - Tea Expo", "status": "ACTIVE" },
+        { "id": 3755309, "name": "Rachel - Pitti Immagine Uomo", "status": "ACTIVE" },
+        { "id": 3738533, "name": "Rachel - Spoga+gafa", "status": "ACTIVE" },
+        { "id": 3738501, "name": "Rachel - ISM Cologne", "status": "ACTIVE" },
+        { "id": 3732474, "name": "Eikko - ICAST 2026", "status": "ACTIVE" },
+        { "id": 3731861, "name": "Rachel - Nordstil", "status": "ACTIVE" },
+        { "id": 3730127, "name": "Eikko - Cosmoprof 2026", "status": "ACTIVE" },
+        { "id": 3617251, "name": "John - IHS", "status": "ACTIVE" },
+        { "id": 3513381, "name": "Rachel - Global Brands 3", "status": "ACTIVE" }
+      ],
+      "note": "Per-campaign sent/open/reply granularity needs the Smartlead API key wired into the backend (see backend/.env.example) — this seed only carries account-wide totals + campaign names/status pulled live via the connected Smartlead tool."
+    },
+    "plusvibe_satlas": {
+      "label": "PlusVibe — Satlas",
+      "client": "Chris Drew (Satlas)",
+      "connected": false,
+      "lastSynced": null,
+      "reason": "No PlusVibe Satlas API key configured yet. Add PLUSVIBE_SATLAS_API_KEY (and base URL) to backend/.env, then click Sync Now.",
+      "totals": null,
+      "campaigns": []
+    },
+    "plusvibe_sellervate": {
+      "label": "PlusVibe — Sellervate",
+      "client": "Cüneyt (Starfix)",
+      "connected": false,
+      "lastSynced": null,
+      "reason": "No PlusVibe Sellervate API key configured yet. Add PLUSVIBE_SELLERVATE_API_KEY (and base URL) to backend/.env, then click Sync Now.",
+      "totals": null,
+      "campaigns": []
+    },
+    "zapmail_domains": {
+      "label": "Zapmail — Domains & Mailboxes (Satlas)",
+      "client": "Chris Drew (Satlas)",
+      "connected": true,
+      "lastSynced": "2026-08-26T00:00:00.000000+00:00",
+      "workspace": "Satlas",
+      "totalDomains": 10,
+      "totalMailboxes": 30,
+      "domains": [
+        { "domain": "satlasdiscover.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "gosatlas.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "satlasgo.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "satlastry.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "discoversatlas.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "satlaspartner.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "satlaswork.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "satlasworks.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "trysatlas.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false },
+        { "domain": "partnersatlas.com", "healthScore": 87, "healthLabel": "good", "status": "ACTIVE", "mailboxCount": 3, "isWarmedUp": false }
+      ],
+      "note": "Pulled live via the connected Zapmail tool during setup. Click Sync Now to refresh once the backend has a stored Zapmail API key (see backend/.env.example) — until then Sync Now will re-serve this snapshot."
+    }
+  }
+}
