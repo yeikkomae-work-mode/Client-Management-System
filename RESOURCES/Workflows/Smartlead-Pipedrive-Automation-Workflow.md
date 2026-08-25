@@ -70,10 +70,13 @@ For each new reply, read the content and assign exactly one category:
 | **Do Not Contact** | Reply says no / stop / unsubscribe / any clear opt-out |
 | **Not Interested** | Explicit rejection, "not for now," or similar |
 | **Out of Office** | Autoresponder / OOO message |
+| **Wrong Person** | Reply says this isn't the right contact at the company |
 | **Ignore** | Auto-generated response with no human signal either way |
 
 ### Step 3 — Take the category-specific action
-See the reference table in Section 5. In general: qualifying replies (Interested / Follow Up / Meeting Request) get synced to Pipedrive and the domain gets blocked; disqualifying replies (Do Not Contact / Not Interested / Ignore) just get blocked; Out of Office gets "Ignore Reply" (not a block) unless it's clearly a dead end with no other contacts listed.
+See the reference table in Section 5. In general: qualifying replies (Interested / Follow Up / Meeting Request) get synced to Pipedrive and the domain gets blocked; disqualifying replies (Do Not Contact / Not Interested / Ignore) just get blocked.
+
+**Updated Aug 14 (per Yoni's Claude-account activity, `claude/smartlead-pipedrive-automation-twtw2k`): Out of Office and Wrong Person replies are never domain-blocked, full stop** — regardless of whether an alternate/colleague contact was named in the reply. Applying the category via SmartLead's lead-category endpoint is sufficient; no separate "Ignore Reply" or unread-marking step is needed on top of it. This replaces the earlier, narrower rule that only exempted OOO replies naming a specific colleague.
 
 ### Step 4 — Sync qualifying leads to Pipedrive
 1. `searchOrganization` by company name — if found, use that `org_id`; if not, `addOrganization`.
@@ -86,7 +89,7 @@ See the reference table in Section 5. In general: qualifying replies (Interested
    - `owner_id`: 26939288 (Yoni)
 
 ### Step 5 — Block in SmartLead
-Categorize the lead in SmartLead's Master Inbox, then block email + domain (with the "block entire domain" checkbox) unless the lead falls under the Out of Office exception in rule 3.
+Categorize the lead in SmartLead's Master Inbox, then block email + domain (with the "block entire domain" checkbox) — except Out of Office and Wrong Person, which are never blocked (see Step 3).
 
 ### Step 6 — Weekly backlog scan
 At least once a week, scan back through Unread Replies to the last confirmed checkpoint to make sure nothing was missed — trade-show reply volume can spike and outrun the hourly check.
@@ -103,8 +106,8 @@ At least once a week, scan back through Unread Replies to the last confirmed che
 | Do Not Contact | ✓ | ✗ | ✓ (email + domain) |
 | Not Interested | ✓ | ✗ | ✓ (email + domain) |
 | Ignore | ✓ | ✗ | ✓ (email + domain) |
-| Out of Office (no other contacts) | ✓ | ✗ | ✓ |
-| Out of Office (colleague contacts listed) | Ignore Reply | ✗ | ✗ — do not block |
+| Out of Office | ✓ (category only, no unread-toggle needed) | ✗ | ✗ — never block |
+| Wrong Person | ✓ | ✗ | ✗ — never block (still-reachable contact) |
 
 ---
 

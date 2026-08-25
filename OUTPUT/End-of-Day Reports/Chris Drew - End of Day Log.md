@@ -4,6 +4,30 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-22 — Full Infra Audit: PlusVibe, InboxKit, Zapmail (reconnected), Porkbun
+
+**Tasks Completed:**
+- ✅ Pulled live PlusVibe campaign stats (17 campaigns) and mailbox health (60 accounts) directly via API
+- ✅ Pulled live InboxKit domain/mailbox data (15 domains, 30 mailboxes) via API
+- ✅ Verified production Porkbun key ("claudeee" pair) and pulled real domain inventory — 25 domains total
+- ✅ Reconnected Zapmail via MCP connector and pulled live domain health + mailbox warmup status
+- ✅ Built and then corrected the infra dashboard artifact with verified data
+- ✅ Corrected several stale/wrong figures in the Chris Drew Infrastructure & Campaigns doc (see below)
+
+**Key correction — Zapmail is not idle spare capacity:**
+Earlier today I'd assumed the 10 non-InboxKit domains registered on Porkbun (trysatlas.com, satlastry.com, gosatlas.com, satlasgo.com, satlaswork.com, partnersatlas.com, satlaspartner.com, discoversatlas.com, satlasdiscover.com, satlasworks.com) were unused. They're not — they're the Zapmail workspace: 30 mailboxes, all `ACTIVE` status, but **`isWarmedUp: false` on every single one**, and domain health score **22.65/100** (sampled 3 domains, identical, all on CloudNS — matches the original SURBL blacklist issue). This also contradicts the 2026-08-13 log entry below, which described these as "warmed/active but unassigned" — that was based on a PlusVibe tag label, not Zapmail's own data, and the tag was wrong.
+
+**Also corrected in the tracking doc:** the InboxKit "active vs. backup" domain lists were swapped — hellosatlas.com, satlashub.com, usesatlas.com, satlasway.com, and satlascore.com actually have **zero** mailboxes assigned (not "active" as previously listed); satlasmail.com, satlaslink.com, satlasrise.com, and satlaszone.com actually **do** have mailboxes (not "backup" as previously listed).
+
+**Alerts surfaced (PlusVibe):**
+- 6 mailboxes with bounce rate >5% (worst: tremaynec@satlasmail.com at 20%)
+- 2 mailboxes with 7-day warmup health <90% (tremayne.c@satlaszone.com 83.3%, tremayne.c@satlasplus.com 89.3%)
+- 30-day reply rate 0.66% (2,588 sent / 17 replied) — below the 2% target threshold
+
+**Open decision for Chris/Eikko:** cancel or attempt recovery on the 10 Zapmail domains — as-is they're not sending-safe.
+
+---
+
 ## 2026-08-13 — Ally's Two New Audience Builds (Apollo TAM) & Capacity Reality Check
 
 **Tasks Completed:**

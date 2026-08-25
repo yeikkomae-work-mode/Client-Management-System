@@ -1,5 +1,5 @@
 # Master Task List - Albert Scott Operations
-**Last Updated:** August 13, 2026 (Claude-SmartLead-Pipedrive integration confirmed live & tested; new workflows scoped: meeting recap automation, overdue-activity triage, campaign template, Apify/SmartScout lead-gen pipeline) | **Owner:** Yoni & Aiko
+**Last Updated:** August 18, 2026 (GitHub repo audit cross-referenced against tracker — campaign analytics reporting agent confirmed DONE; lead-list/export tooling built out extensively, likely resolves the "paused" master-list item; domain-block standing rule updated for OOO/Wrong Person; Apify integration barely started; LinkedIn targeting flow and blacklist verification both still fully open) | **Owner:** Yoni & Aiko
 
 ---
 
@@ -298,7 +298,7 @@
 ---
 
 ### 10. FOUR NEW LEAD CAMPAIGNS (Aug 11 meeting — approved)
-**Status:** Fancy Foods copy built (Aug 11) — 3-step/9-variant sequence live in Smartlead (campaign 3792273), awaiting Yoni's review. Other 3 not started.
+**Status:** Fancy Foods copy built (Aug 11) — 3-step/9-variant sequence live in Smartlead (campaign 3792273), awaiting Yoni's review. Build prep done for the other 3 (Aug 14 — mailboxes, settings, tone reference, case studies), but actual creation moved to Yoni's own Claude account rather than run here.
 **Priority:** High
 
 #### Campaigns & search terms:
@@ -317,6 +317,14 @@
 - [ ] Verify emails (QuickEmailVerification, same as Toy Fair)
 - [ ] Create a new master "lead-lists" Drive folder, move the Toy Fair list into it, grant Claude access
 - [ ] Build order: Fancy Foods (copy + leads done, awaiting Yoni review) → Winter Fancy Fair → Sweets & Snacks → Expo West
+
+#### Aug 14 — Build prep for Winter Fancy Fair / Sweets & Snacks / Expo West (execution moved to Yoni's Claude account)
+- [x] Confirmed all 7 requested mailbox domains already provisioned on Toy Fair Q4 (21 accounts: albertscottexperts.com, albertscottcommerce.com, albertscottoutreach.com, albertscottsolution.com, albertscottservices.com, albertscottfirm.com, albertscottny.com) — same set can be reused for all 4 campaigns
+- [x] Pulled Toy Fair Q4 settings as the template (tracking on, HTML on, Mon-Fri 9am-6pm ET, stop-on-reply, 70% follow-up)
+- [x] Pulled tone reference from historical campaigns: Winter Fancy Fair (id 2873879), Sweets and Snacks q4 strategy (id 2764360), Expo West intro (id 2971319)
+- [x] Drafted case study assignments: Winter Fancy Fair → Atlas Olive Oils, Sweets & Snacks → Human Beanz, Expo West → Nora Seaweed Snacks
+- [ ] **Not yet created** — no campaigns exist in SmartLead for these 3 yet. Yoni to build on his own Claude account using the prep above (see EOD log Aug 14 entry for full detail)
+- [ ] Fancy Foods (3792273) still needs Toy Fair Q4 settings + 7-domain mailboxes applied — not yet done, also queued for Yoni's account
 
 ---
 
@@ -388,9 +396,100 @@
 
 ---
 
+### 14. URGENT: ~54 BLACKLISTED SMARTLEAD MAILBOXES (Aug 14 meeting)
+**Status:** Not started
+**Priority:** Critical — separate issue from the Aug 10 deliverability crisis (Section 0), compounds it
+
+**Problem:** ~54 SmartLead email accounts are blacklisted due to improper DNS setup by a previous hire. Unusable for outreach as-is.
+
+- [ ] Remove all blacklisted accounts from every active SmartLead campaign
+- [ ] Cancel the blacklisted accounts
+- [ ] Purchase replacement mailboxes
+- [ ] Update Toy Fair Q4X specifically to use only non-blacklisted inboxes
+- [ ] Audit SmartLead provider-matching; confirm all (non-blacklisted) mailboxes are actually in use
+- [ ] Coordinate cancellation/reprovisioning timeline
+
+#### 14a. SmartLead Campaign Automation (Claude-built)
+- [ ] Claude learns tone/style from existing email sequences
+- [ ] Create a general email guideline doc for Claude to reference
+- [ ] Claude creates campaigns end-to-end: writes copy for Yoni's approval, configures settings (timezone, schedule)
+- [ ] Inbox strategy: use all available non-blacklisted inboxes on every campaign to maximize send volume
+- [ ] Define SmartLead best-practice settings and apply to new campaigns
+
+#### 14b. Lead-Gen Pipeline — SmartScout Brand → Domain Mapping
+- [ ] Build Claude flow to find company domain + parent company for a 100-brand sample (rows 1001-1100 of the 6k-item SmartScout list — mid-tier sample, not top brands)
+- [ ] Use SmartScout cols C, D, Z
+- [ ] Add 2 Natural Products Expo West lists to the master list; dedupe
+
+#### 14c. Lead-Gen Pipeline — Apify Amazon Seller Scraping
+- [ ] Test 4 Apify scrapers against a 100-seller sample (from an 8,374-item list) to find one accepting Seller ID/Seller Name as input, returning emails
+- [ ] Report findings to Yoni
+- [ ] Future: use Amazon seller business names (SmartScout col L) with Apollo to find emails
+
+#### 14d. Meeting Automation
+- [ ] Build a Claude agent to auto-extract tasks/action items from meeting transcripts (reduces manual EOD-log/tracker processing)
+- [ ] Send Yoni the meeting transcript summary from this meeting
+
+---
+
+### 15. LEAD-GEN TARGETING REFINED + NEW BLACKLIST ALERT + REPORTING (Aug 15 meeting)
+**Status:** In progress — plan defined, needs verification/build before Monday review
+**Priority:** High
+
+#### 15a. Lead-Gen Targeting — Brand Contact, Not Seller (supersedes/refines Section 14b)
+**Clarification:** Target the brand's own decision-maker, not the Amazon seller of the brand's product.
+- [ ] Claude: find each SmartScout brand's + parent company's official LinkedIn profile (rows 1001-1100 sample)
+- [ ] Claude: identify the right decision-maker per brand (e-commerce director, VP, etc., based on company size)
+- [ ] Produce a target-contact list with LinkedIn URLs
+- [ ] Scrape emails from that list via external tool (LinkedIn scraper or Fiverr freelancer) — Apollo subscription not approved, so no direct Apollo email lookup
+- [ ] Prepare a detailed written plan for Monday's review with Yoni
+
+#### 15b. NEW: Second Domain-Blacklist Alert (90% of 111 mailboxes) — separate from Section 14's ~54-account DNS issue
+**Problem:** SmartLead notification claims 90% of all 111 mailboxes are blacklisted. Conflicts with SmartLead's own inbox health check (NS records show correct). Open SmartLead support ticket exists.
+- [ ] Verify independently using external blacklist-checker tools before treating the 90% figure as real — **confirmed still open as of Aug 18 GitHub audit: no diagnosis doc/script/finding exists anywhere in the repo**
+- [ ] Report findings to Yoni
+
+#### 15c. SmartLead Campaign Automation — CONFIRMED LIVE
+- [x] "Create Campaigns" Claude agent operational — automates campaign setup, generates spintax-ready sequences for review (this is Section 14a, now live). Note: doesn't appear in the `smartlead-api-client` repo's commit history, so it likely runs via the SmartLead MCP connector rather than the custom CLI.
+
+#### 15d. Campaign Analytics Reporting System — ✅ DONE (confirmed via GitHub audit, Aug 18)
+- [x] Claude agent for interactive SmartLead analytics dashboard built on branch `claude/campaign-analytics-reporting-ui39uf`: core computation module, CLI, self-contained HTML dashboard (KPI tiles, flagged-campaign table, bounce/open bar charts, targeting-refinement lead tables, inbox health), synthetic fixtures for offline testing, scheduled-run prompt (Aug 14)
+- [x] Scope: all campaigns created after July 1, 2026 — implemented
+- [x] Cadence: on-demand + weekly — implemented
+- [x] Alert threshold: bounce rate above average — implemented, plus a fix (Aug 14) so tracking-disabled campaigns don't get false-flagged for "0 opens"
+- [x] Reorganized for presentation (exec summary, anchor nav, print styles) — Aug 17
+
+#### 15e. Side Project (optional, weekend-only, does not affect core work)
+- [ ] Research Arc Ads (AI UGC video creator) + Yoni's in-progress "Arc Ads specialist" Claude agent
+
+**Next meeting:** Monday — finalize the lead-generation plan with Yoni
+
+---
+
+### 16. GITHUB REPO AUDIT FINDINGS (Aug 18) — new completed work + gaps not previously tracked
+**Source:** Full commit history review of `salesmanager-crypto/smartlead-api-client`, all 10 branches, Aug 13-17 activity.
+
+#### Newly confirmed DONE (not previously in this tracker):
+- [x] **Lead-list/export tooling built out extensively** (branch `claude/smartlead-export-leads-csv-30x469`, Aug 13-17): Google Drive integration, Google Sheets client, end-to-end "new campaign sheet" pipeline (SmartLead export by name filter → merge Drive source tab → dedupe into named master tab), and an account-wide "export every lead, dedupe by lead ID not email" script landing within 27 of SmartLead's reported total. **This directly covers Section 10's lead-consolidation step for Winter Fancy Fair/Sweets & Snacks/Expo West — ready to use, not still-to-build. Also means the "Master lead list organization (paused)" item in the Priority Order below is likely resolved — confirm with Yoni.**
+- [x] Bug fix: SmartLead's `/campaigns/{id}/status` endpoint requires POST not PATCH (was 404ing) — fixed Aug 14, affects start/pause/stop campaign calls.
+- [x] Domain-block standing rule updated — synced into `Smartlead-Pipedrive-Automation-Workflow.md` (see Section 3/5 of that doc): OOO and Wrong Person replies are never domain-blocked, full stop.
+- [x] New reference doc: "Email deliverability roles/responsibilities" (Aug 13).
+
+#### Confirmed still PENDING (no repo evidence):
+- [ ] Apify integration — only an `APIFY_TOKEN` placeholder added (Aug 17). No scraper script, no seller-sample test run yet.
+- [ ] LinkedIn brand-contact targeting flow (Section 15a) — zero repo evidence. Needs to be built before Monday's review.
+- [ ] ~54 blacklisted mailbox removal/replacement (Section 14) — can't be confirmed or denied via repo (SmartLead-dashboard action, not a code change). Confirm directly with Yoni.
+
+---
+
+---
+
 ## PRIORITY ORDER (Recommended)
 
 0. **CRITICAL (Immediate):**
+   - [ ] Verify the Aug 15 alert claiming 90% of 111 mailboxes are blacklisted (conflicts with SmartLead's own health check — needs independent verification before acting on it)
+   - [ ] Remove ~54 blacklisted SmartLead mailboxes from all campaigns, cancel, purchase replacements (Aug 14 — separate issue from the 90%/111 alert above)
+   - [ ] Update Toy Fair Q4X to use only non-blacklisted inboxes
    - [ ] Resolve remaining SmartLead warm-up blocks (20 mailboxes)
    - [ ] Plain-text vs. HTML research + findings shared with Yoni
    - [x] Fix Time Doctor screencast settings — done Aug 11
@@ -407,7 +506,7 @@
    - [ ] Create master lead-lists Drive folder, move Toy Fair list in, grant Claude access
 
 2a. **MEDIUM (Next Week):**
-   - [ ] Master lead list organization (paused, resume per Eikko)
+   - [ ] Master lead list organization — flagged "paused" here, but GitHub audit (Aug 18) shows Yoni built extensive export/dedupe tooling for this Aug 13-17. Likely resolved or in a different state than "paused" — confirm before resuming.
    - [ ] Email account audit (paused, resume per Eikko)
    - [ ] Claude shared project access — research + propose to Yoni
    - [ ] Financial model automation — refine Claude prompt to read all 15 tabs

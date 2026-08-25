@@ -1,18 +1,24 @@
 # Chris Drew (Satlas) — Client Profile
 
 **Status:** Active | **Rate:** $200 AUD/month | **Hours:** Variable (1pm-4pm PHT) | **Role:** Lead Generation & Outreach Specialist
-**Coverage Period:** February 2026 – Present | **Last Updated:** 2026-08-07
+**Coverage Period:** February 2026 – Present | **Last Updated:** 2026-08-24 (reconciled against EOD log + infra audit through 2026-08-22)
 
 ---
 
 ## Contact Details
-- **Email:** (TBD)
+- **Email:** (TBD) — working account used on Satlas's behalf: eikko@satlas.com.au
 - **WhatsApp:** (TBD — group chat)
 - **Company:** Satlas
 - **Website:** https://satlas.com.au/
 - **Industry:** Lead Generation & Cold Email Outreach Services
-- **Timezone:** (TBD)
+- **Timezone:** (TBD — Sydney, AEST/AEDT assumed)
 - **Meetings:** As-needed (urgent only)
+
+### Others in the account
+- **Ally (ally@satlas.com.au)** — Satlas side; owns audience/targeting requests, holds Editor access on the Satlas Campaign Tracker sheet, drives the Capital Financing engagement
+- **Tremayne Chivers** — registered owner of all 25 Porkbun domains and all 60 mailboxes; renewals sit with him
+- **Spencer Hirst** — copy + capacity framework owner; reviews new segment copy with Chris before launch
+- **Rohan Burgess (Capital Financing)** — Satlas's own client, onboarded via Ally 2026-08-11 (see below)
 
 ---
 
@@ -28,30 +34,68 @@
 
 ---
 
-## Current Status (as of Aug 7 — most recent)
+## Current Status (as of 2026-08-22 infra audit — most recent verified pull)
 
-**Infrastructure:** 25 active domains, 60 mailboxes (30 Zapmail + 30 InboxKit), 9 campaigns total.
+**Infrastructure:** 25 Porkbun domains, 60 mailboxes — but only the 30 InboxKit mailboxes are sending-safe. The 30 Zapmail mailboxes are degraded (see below).
 
-**Instantly → Plusvibe Migration:**
-- Phase 1: ✅ Complete (3 campaign shells created Aug 5 — Hillary/Finance Broker, Mortgage Brokers, Referral Finance Campaign)
-- Phase 2: ✅ Complete (sequence configuration Aug 6–7)
-- Phase 3: 🔄 In progress — lead import & launch prep next
+**Instantly → Plusvibe migration: ✅ COMPLETE.** Campaigns launched 2026-08-10. Instantly is deprecated and its API key is dead — treat it as archive only.
 
-**Active campaigns:**
-1. Hillary - Finance Broker (Created Aug 5)
-2. Mortgage Brokers (Created Aug 5)
-3. Referral Finance Campaign (Created Aug 5)
-4. Peru Silver Chain Wholesalers
-5–9. (Others TBD)
+**Live Satlas campaigns (7, verified Aug 12):**
+
+| Campaign | Leads | Contacted | Replied | Bounced |
+|---|---|---|---|---|
+| Mortgage Brokers - Catchall | 109 | 70.6% | 0% | 23.5% |
+| Mortgage Brokers - Google/Microsoft & Others | 459 | 21.4% | 3.1% | 7.1% |
+| Financial Planner - Catchall | 291 | 27.1% | 1.3% | 9% |
+| Financial Planner - Microsoft | 2,677 | 2.9% | 0% | 1% |
+| Commercial Real Estate - Catchall | 73 | 15.1% | 0% | 5% |
+| Commercial Real Estate - Microsoft | 1,170 | 7% | 0% | 2.3% |
+| Commercial Real Estate - Google & Others | 225 | 32% | 1.4% | 10.7% |
+
+**Still in draft (not launched):** Hillary — Finance Broker, Referral Finance Campaign (both deliberately held back Aug 10, reason/timeline still TBD with Chris), plus 3 Capital Financing shells.
+
+**Account-wide:** 5,005 leads loaded · 662 contacted (Aug 13) · 30-day reply rate **0.66%** (17 replies / 2,588 sent) — below the 2% target · 30-day bounce 1.28%. Remaining runway on current 30-mailbox capacity ≈ 43 business days (~2 months).
+
+**🔴 Open issues carried into this update:**
+1. **Zapmail batch is not sending-safe** — domain health 22.65/100, `isWarmedUp: false` on all 30 mailboxes, CloudNS SURBL issue unresolved. Open decision for Chris: release the 10 domains or attempt recovery. Do **not** launch from them as-is.
+2. **6 PlusVibe mailboxes bouncing >5%** — worst is tremaynec@satlasmail.com at 20%. Pause or investigate.
+3. **2 mailboxes below 90% warmup health** — tremayne.c@satlaszone.com (83.3%), tremayne.c@satlasplus.com (89.3%).
+4. **0.66% reply rate** is a copy/targeting problem, not just infra — worth a review pass.
+5. **Ally's two new audiences** (~47K net new) don't fit current capacity — see Capacity Reality Check below.
 
 **Key notes:**
 - No automated logging tool — manual EOD logging required
 - PlusVibe inbox health is the critical daily metric; monitor for >98% utilization, errors, alerts
-- APIs connected: [ ] PlusVibe · [ ] Apollo (both still pending confirmation)
+- APIs: PlusVibe ✅ (raw key `SATLAS_PLUSVIBE_API_KEY`, workspace `6a5f60452fd3fe45b2605b48`) · Apollo ✅ (`APOLLO_API_KEY`) · Zapmail ✅ (reconnected 2026-08-22) · InboxKit ✅ (2026-08-22) · Porkbun ✅ ("claudeee" key pair, 2026-08-22) · Instantly ⚫ dead
+- ⚠️ The **native/MCP PlusVibe connector** is authenticated to an unrelated account (Yoni Lebovits / albertscott*.com — that's the Albert Scott Smartlead client). Never trust PlusVibe numbers from that connector for Satlas.
 
 ---
 
-## Migration Detail: Instantly → Plusvibe
+## Capital Financing (Satlas's client — Rohan Burgess)
+
+Onboarded 2026-08-11 from Ally's kickoff. Satlas white-labels the outreach; Eikko builds it.
+- **Segments:** Trades (250 prospects), Logistics, Labour Hire — Apollo lists built for all 3
+- **Plusvibe:** 3 campaign shells created; **Trades sequence built**, Logistics + Labour Hire have no content yet
+- 🟡 Trades sequence still uses the old subject-line format (time-greeting in the subject) instead of the corrected v3 format (short spintaxed subject, greeting in the body) — needs a fix pass
+- **Reference copy:** `OUTPUT/Campaign Tracking/Capital Financing/Capital-Financing-Cold-Email-Sequence-v3.docx` (v1/v2 superseded)
+
+---
+
+## Capacity Reality Check (2026-08-13) — Ally's two new audiences
+
+Two Apollo searches saved in Chris's account:
+- **AU - Commercial & Asset Finance Brokers (Ally Targeting)** — 41.9K total / **36.3K net new**
+- **AU - Specialist Mortgage & Investment Brokers (Ally Targeting)** — **13.3K / 10.7K net new** with Ally's specialist keywords applied
+
+At 10 campaign emails/inbox/day (Spencer's model), on the 30 free mailboxes: Commercial/Asset ≈ 363 business days (~17 months) — **not viable**. Specialist Mortgage/Investment ≈ 107 days (~5 months) — viable. The 1–20 employee cut of the specialist audience (~1.5K net new) finishes in ~3 weeks and is the recommended fast win.
+
+⚠️ That math assumed the 30 Zapmail mailboxes were free *and healthy*. The Aug 22 audit disproved the healthy half — **rerun these estimates before quoting timelines to Chris or Ally.**
+
+---
+
+## Migration Detail: Instantly → Plusvibe — ✅ CLOSED 2026-08-10
+
+*Kept for reference. All campaigns launched Aug 10 except Hillary and Referral Finance (held back deliberately). The checklist and monitoring plan below are historical; live monitoring now runs off `Plusvibe Mailbox Health - Daily Monitor.md`.*
 
 **Objective:** Move all campaigns/leads off Instantly due to infrastructure issues that hurt deliverability last month (July 2026).
 
@@ -101,11 +145,15 @@ Plusvibe campaign count: 9 total (up from 6 pre-migration), 7 drafts, 1 complete
 
 **Porkbun** (registrar) — 25 domains total, owner Tremayne Chivers. Dashboard: https://porkbun.com/account/domainsSpeedy
 - **Batch 1 (Zapmail):** 10 domains, purchased May 2026, expires 2027-05-14. 30 inboxes (3/domain). List: trysatlas.com, satlastry.com, gosatlas.com, satlasgo.com, satlaswork.com, partnersatlas.com, satlaspartner.com, discoversatlas.com, satlasdiscover.com, satlasworks.com
-- **Batch 2 (InboxKit):** 15 domains, purchased July 2026, expires 2027-07-07. 10 active domains (30 inboxes) + 5 backup (no inboxes yet). Active list: hellosatlas.com, usesatlas.com, satlasready.com, satlasriq.com, withsatlas.com, satlasplus.com, satlasway.com, satlasedge.com, satlasbase.com, satlascore.com. Backup list: satlasmail.com, satlaslink.com, satlasrise.com, satlashub.com, satlaszone.com
+- **Batch 2 (InboxKit):** 15 domains, purchased July 2026, expires 2027-07-07. 10 provisioned (30 inboxes) + 5 with **zero** mailboxes.
+  - **Provisioned (corrected 2026-08-22 via live `domains/list` + `mailboxes/list`):** satlasedge.com, satlaszone.com, withsatlas.com, satlasplus.com, satlasrise.com, satlasready.com, satlashq.com, satlasbase.com, satlasmail.com, satlaslink.com
+  - **Unprovisioned:** hellosatlas.com, satlashub.com, usesatlas.com, satlasway.com, satlascore.com
+  - ⚠️ The previous version of this list had provisioned/backup **swapped** — hellosatlas, usesatlas, satlasway and satlascore were wrongly shown as active. Fixed.
+  - ⚠️ **Unresolved:** the old list contained `satlasriq.com`; the Aug 22 API pull returns `satlashq.com` and no satlasriq. Almost certainly a transcription error, but it has not been confirmed against Porkbun — verify before using either in a doc that matters.
 
-**Zapmail** (https://app.zapmail.ai) — 10 domains, 30 mailboxes, health score 87/100, fully operational.
+**Zapmail** (https://app.zapmail.ai) — 10 domains, 30 mailboxes. 🔴 **Health 22.65/100** (verified live 2026-08-22, sampled 3 of 10, all identical), **0 of 30 warmed up**, CloudNS SURBL issue unresolved. The old "87/100" figure was stale and had never been re-verified after the July deliverability incident. "Active" in the Zapmail dashboard means *not suspended*, not healthy. **Not sending-safe.**
 
-**InboxKit** (https://app.inboxkit.com) — 15 domains synced, 30 active inboxes, health 100%, fully operational, 5 backup domains available.
+**InboxKit** (https://app.inboxkit.com) — 15 domains synced, 30 active inboxes (15 Google + 15 Microsoft 365), health 100/100 (verified 2026-08-22), 0 slots remaining. This is the only healthy sending capacity Satlas currently has.
 
 **Instantly** — DEPRECATED, being migrated off.
 **Plusvibe** (https://app.plusvibe.ai/v2/campaigns/) — ACTIVE, primary platform going forward.
@@ -118,7 +166,8 @@ Plusvibe campaign count: 9 total (up from 6 pre-migration), 7 drafts, 1 complete
 | Mailboxes | 30 | 30 | 60 |
 | Purchase | May 2026 | July 2026 | — |
 | Renewal | 2027-05-14 | 2027-07-07 | — |
-| Health | 87/100 | 100/100 | — |
+| Health (2026-08-22) | 🔴 22.65/100 | 🟢 100/100 | — |
+| Warmed up | 0/30 | 30/30 | 30/60 |
 
 Total email accounts: 180+ (3 per mailbox + admin). Full breakdown → `OUTPUT/Campaign Tracking/DOMAIN_INVENTORY.md`.
 
@@ -199,7 +248,25 @@ Full list of Notion links (list build, validation, copy refresh, weekly launch/r
 - `OUTPUT/Campaign Tracking/Instantly to Plusvibe - Campaign Migration Guide.md`
 - `OUTPUT/Campaign Tracking/Plusvibe Mailbox Health - Daily Monitor.md`
 - `OUTPUT/Campaign Tracking/DOMAIN_INVENTORY.md`
+- `OUTPUT/Campaign Tracking/Ally-Plusvibe-Artifact-Prompt.md` — setup prompt so Ally can build her own live trackers
+- `OUTPUT/Campaign Tracking/Capital Financing/` — Capital Financing sequences + Apollo filters
+- Satlas Campaign Tracker (Google Sheet) — shared with Ally as Editor, manual refresh
+
+---
+
+## Open Threads (as of 2026-08-24)
+
+- [ ] Chris's decision: release or recover the 10 Zapmail domains
+- [ ] Pause/investigate the 6 high-bounce mailboxes (satlasmail.com pair worst)
+- [ ] Copy/targeting review — 0.66% reply rate vs 2% target
+- [ ] Fix Capital Financing Trades subject lines to v3 format
+- [ ] Build Capital Financing Logistics + Labour Hire sequences
+- [ ] Confirm why Hillary + Referral Finance are still held back
+- [ ] Rerun Ally's capacity estimates now that Zapmail's 30 mailboxes are known-unhealthy
+- [ ] Tremayne's inbound "commercial finance brokers" interest — scope not yet defined
+- [ ] Verify satlasriq.com vs satlashq.com against Porkbun
 
 ---
 
 **Document owner:** Eikko Ybanez | **Status:** Active & current | **Update monthly** with new projects, avatars, metrics, strategic shifts.
+**Change log:** 2026-08-24 — reconciled against EOD log entries Aug 10–22 and the Aug 22 infra audit. Corrected Zapmail health (87→22.65), swapped InboxKit domain lists, closed the Instantly migration, added Capital Financing, Ally capacity work, and current campaign metrics.
