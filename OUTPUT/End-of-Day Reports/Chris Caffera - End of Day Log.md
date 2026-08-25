@@ -4,6 +4,39 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-15 → 2026-08-24 — ⚠️ NOT LOGGED
+
+**Gap flagged 2026-08-24.** No end-of-day entries exist for this window. Work may or may
+not have happened; nothing was recorded either way. Do not treat the Aug 14 action items
+as open *or* closed until Eikko backfills this. Affected trackers:
+`PROJECTS/Active/CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG24.md`,
+`OUTPUT/Campaign Tracking/Chris Caffera - Lemlist Campaigns - Metrics.md` (last data Aug 13).
+
+---
+
+## 2026-08-14
+
+**Tasks Completed:**
+- Weekly call with Chris — Apollo export strategy, HivePoint plan pivot, new Reddit task.
+  Full summary + action items: `OUTPUT/Meetings/Chris Caffera/2026-08-14 - Apollo Export, HivePoint Strategy, Reddit Task.md`
+  (Fathom recording 785647705 / recording_id 173423085; transcript not pulled)
+
+**Metrics:**
+- Lemlist (Fathom campaign benchmark discussed on the call): 37.9% open rate, 6.5% bounce rate
+  — bounce within the 8% working threshold, attributed to an unverified list
+- Apollo: ~1,500 credits remaining ahead of the planned downgrade to the $59/mo plan
+
+**Notes:**
+- **Decision — Apollo:** export all remaining credits against *fractionals* and *project consultants*
+  (excluding MSPs) by Monday, then downgrade to $59/mo to retain account access rather than cancel
+- **New strategy — HivePoint pivot:** sell lower-cost HivePoint plans ($79–$179/mo) to fractionals
+  as a new revenue stream to offset slow MSP sales
+- **New responsibility:** Eikko takes over the Reddit account, posting from the existing playbook
+- Entry reconstructed 2026-08-24 from the meeting file — **not** written same-day; treat the
+  action items as assigned-but-unverified
+
+---
+
 ## 2026-08-13
 
 **Tasks Completed:**

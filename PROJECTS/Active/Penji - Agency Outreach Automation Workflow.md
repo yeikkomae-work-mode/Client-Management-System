@@ -4,21 +4,29 @@ Proposed automation for the Agency Advisor role. Goal: cut manual work out of th
 
 This mirrors the pattern already running for Chris Drew's `smartlead-pipedrive-automation` — same shape, different tools.
 
+> **Updated 2026-08-18:** the role is confirmed **LinkedIn-only** (see `Penji - Sales Ecosystem & Team Standards.md`) — Lemlist/email is Jayvy's scope, not this pipeline's. Stage 5 below is now Dripify/HeyReach only. A real task for this exact automation is already logged in Eikko's Notion Task Tracker: **"Connect Dripify + Zapier + Claude"** (due 2026-08-18) — "will automate update activity on the leads to the google sheet." Treat that task as the live kickoff of Stage 5/7 below, not just a design exercise.
+
 ---
 
-## Current Manual Workflow (from training doc)
+## Current Manual Workflow (confirmed 2026-08-18)
 
 ```
-Source agency → ICP filter → find decision-maker → Gojiberry enrich →
-post to Slack → 👍/👎 → load Lemlist + Dripify → monitor for warm reply →
-route to Joan → log everything in Sheets/CRM
+[New] Build LinkedIn account (AdsPower) → Source agency → ICP filter (marketing-only, no founders) →
+Gojiberry enrich → post to Slack → 👍/👎 → load Dripify/HeyReach (RPS 7-touch script) →
+manually copy Dripify activity into Google Sheet → monitor for warm reply →
+route to Joan within 1hr / post to #response → log everything in Sheets
 ```
 
-Every arrow above is a manual step today. Each one is a candidate for automation.
+Every arrow above is a manual step today except the account pool build (AdsPower, semi-templated). Each one is a candidate for automation. **Constraint confirmed 2026-08-17 (Alan):** Gojiberry scraping and Dripify/HeyReach sending should never run simultaneously on the same account — any automated version of this pipeline needs to respect that as a hard sequencing rule, not just run stages in parallel for speed.
 
 ---
 
 ## Proposed Automated Pipeline
+
+**Stage 0 — Account Pool (AdsPower, semi-automated)**
+- Confirmed SOP as of Aug 18: new AdsPower profile → proxy from Sales and PR sheet → WebRTC "Replace" → warm-up browsing on US sites → sign in via Google (bypasses phone verification) → skip LinkedIn setup steps → update photo/banner/work email → 5 initial connection requests only
+- Candidate for scripting the proxy-assignment and warm-up-browsing steps specifically; the actual LinkedIn sign-in and initial activity should probably stay manual/semi-manual given how sensitive this step is to detection
+- Failure handling (mark for deletion, tag proxy as bad) could auto-update the Sales and PR sheet's "For Deletion" tab instead of manual moves
 
 **Stage 1 — Sourcing (semi-automated)**
 - Scheduled scraper/script pulls new listings from directories with public APIs or scrapeable structure (Clutch, Sortlist, GoodFirms) on a rotating weekly schedule
@@ -39,13 +47,13 @@ Every arrow above is a manual step today. Each one is a candidate for automation
 - Your 👍/👎 reaction stays manual — this is the one human quality gate in the pipeline and shouldn't be automated away
 - A listener picks up the reaction and updates the Sheet status automatically (no manual copy-paste)
 
-**Stage 5 — Sequence Loading (automated on 👍)**
-- On 👍, script pushes the contact into the correct Lemlist campaign (selected by angle — capacity/margin/freelancer/white-label — based on the signal tag from Stage 1–3) via the Lemlist API
-- Same trigger pushes the LinkedIn contact into the matching Dripify campaign
-- Both loads happen within minutes of the reaction, not manually batched later
+**Stage 5 — Sequence Loading (automated on 👍) — this is the "Connect Dripify + Zapier + Claude" task**
+- On 👍, script pushes the contact into the Dripify (or HeyReach) RPS 7-touch campaign via API/Zapier — LinkedIn-only, no Lemlist
+- Respect the one-tool-at-a-time rule: this stage should not fire while Stage 3 (Gojiberry enrichment) is actively running on the same account
+- This directly automates the currently-manual "copy Dripify activity into Google Sheet" step flagged in the training/onboarding notes
 
 **Stage 6 — Reply Detection & Routing (automated)**
-- Webhook listener on Lemlist + Dripify reply events
+- Webhook listener on Dripify/HeyReach reply events (no Lemlist — LinkedIn-only role)
 - Basic sentiment/keyword classification (positive / OOO / unsubscribe / negative) — auto-tags obvious cases, routes anything ambiguous to you for a manual call
 - Positive replies auto-post to Slack tagging the sales channel immediately — removes the "route within the hour" as a manual task and makes it near-instant
 - Sheet status updates automatically on every reply event
@@ -78,12 +86,13 @@ Every arrow above is a manual step today. Each one is a candidate for automation
 
 ## Blockers
 
-- Lemlist, Email Bison, and Gojiberry account/API access — not yet obtained (see `Penji - Agency Advisor Quick Reference.md`, Open Items)
-- Confirm with Johnathan/Shekinah whether API access is something Eikko can request directly or needs to go through Penji's internal tooling/ops person
+- Gojiberry, Dripify, and HeyReach API/account access — Dripify personal-LinkedIn connection is done (Aug 17), but seat/API access still coming from Alan; Dripify is on a **free trial expiring 2026-08-24**
+- Lemlist/Email Bison are **out of scope entirely** — confirmed Aug 17, Jayvy's domain, not this pipeline
+- Confirm with Alan/Shekinah whether API access is something Eikko can request directly or needs to go through Penji's internal tooling/ops person
 - Slack app/bot permissions needed in the dotpenji workspace for automated posting + reaction listening
 
 ---
 
-**Status:** Design only — no code built yet. Recommend starting with Stage 7 once basic Sheet/Slack access is confirmed, independent of the blocked tool logins.
+**Status:** The "Connect Dripify + Zapier + Claude" task (Stage 5/7) is now a live, dated task in Eikko's tracker (due 2026-08-18) — this has moved from design-only to active. Recommend building it before the Dripify trial expires Aug 24.
 
-**Last updated:** 2026-08-13
+**Last updated:** 2026-08-18

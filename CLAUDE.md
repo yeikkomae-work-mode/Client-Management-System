@@ -1,5 +1,11 @@
 # Claude Code Agent Reference
 
+## Build discipline
+
+Anything nontrivial (new agent, new automation, new client system, structural folder change) gets a short PRD first — `TEMPLATES/PRD Template.md` — with Eikko's sign-off before building. Quick fixes, single-file edits, and routine logging (EOD reports, meeting files) skip this. Full operating rules: `ABOUT ME/Operating Instructions.md`.
+
+Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building — see `PROJECTS/README - Builder Pipeline.md`.
+
 ## Front-office (Client-facing work)
 
 - **lead-prospector** — Apollo searches, campaign create/pause, list building

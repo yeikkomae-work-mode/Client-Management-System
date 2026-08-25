@@ -1,0 +1,86 @@
+[
+  {
+    "date": "2026-08-14",
+    "clients": 8,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-15",
+    "clients": 8,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-16",
+    "clients": 8,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-17",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-18",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-19",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-20",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-21",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-22",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-23",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 6
+  },
+  {
+    "date": "2026-08-24",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 8
+  },
+  {
+    "date": "2026-08-25",
+    "clients": 10,
+    "activeClients": 5,
+    "agents": 10,
+    "activeTasks": 8
+  }
+]
