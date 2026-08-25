@@ -103,3 +103,15 @@ Not yet done: final review with Eikko before the link goes to Yoni (PRD Plan ste
 **Open item surfaced by this test — resolved:** asked to set the new person's "owner" to Eikko — there is no separate Eikko user in this Pipedrive account; every owner_id default (organization and person alike) came back as Yoni's (26939288) automatically. Eikko confirmed 2026-08-25: leave it as Yoni, no separate Eikko user needed. Going forward, Pipedrive records created on Eikko's behalf keep defaulting to owner Yoni — this is expected, not a gap.
 
 **Also confirmed:** `get_lead_categories` (Smartlead tool) is broken server-side (`Cannot read properties of undefined`) — couldn't set/read Smartlead's own category tags on these two leads, only Pipedrive-side.
+
+## Design refresh — 2026-08-26
+
+Restyled the Phase 1 build to a design brief Eikko provided ("Outbound Command Center" — enterprise SaaS look, oxblood/crimson brand palette, left icon-rail nav, KPI/chart/exception/data-table component patterns) and reorganized it into the full channel-based nav Yoni originally described (SmartLead, Pipedrive, Automation Log, SEO, LinkedIn, SmartScout, General/Software), rather than one long scrolling page. No new data was pulled for this pass — same live numbers as the 2026-08-25 build, replated into the new layout, plus two additions that reuse data already on hand:
+
+- **SEO section, wired to real data** for the first time — pulls in the same-day AIOSEO audit (719 passed / 351 warnings / 282 errors, 53% health score, 113/113 missing-OG headline finding) and links out to the client-facing SEO review artifact awaiting Yoni's sign-off. Nothing here was fabricated to fill the section; it reuses the audit already run today.
+- **LinkedIn and SmartScout** render as explicit "not connected yet" placeholders instead of empty/fake sections — consistent with this PRD's own Non-goals (no connector for either exists).
+- **General / Software & Infrastructure** section built as a structural table (software, purpose, seats, login-link-out, owner) populated only with entries this workspace can actually confirm (Smartlead, Pipedrive, n8n, WordPress+AIOSEO, Google Workspace, Calendly); costs/renewals/seat counts are marked "Not recorded" rather than guessed, per the PRD's own note that this needs a Yoni/Eikko data-gathering pass.
+
+QA'd every nav section via headless-Chromium screenshots before publishing (same technique used for the SEO PDF export) — no layout bugs found. Source file unchanged in location (`dashboard/command-center.html`), republished to the same artifact URL: https://claude.ai/code/artifact/14ba19a5-9fea-41ac-9d97-36e40621f801
+
+Not a scope change — same Phase 1 build already signed off 2026-08-25, restyled and reorganized rather than re-scoped. Still not shared with Yoni; still pending Eikko's final review (PRD Plan step 6).
