@@ -1,6 +1,6 @@
 # Claude Code Subagents — Client-Management-System
 
-**9 operators, a 3-agent C-suite, and one front door.** The operators split front-office
+**13 agents — one front door, a 3-agent C-suite, and 9 operators.** The operators split front-office
 (client-facing) / back-office (internal ops), adapted from Eikko's research into this actual
 system. Built 2026-08-13, replacing the earlier 5-agent functional version (kept in
 `_archived-5-agent-version/` for reference, not deleted). The `chief-of-staff`
