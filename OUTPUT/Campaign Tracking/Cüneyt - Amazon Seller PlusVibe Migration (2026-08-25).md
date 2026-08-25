@@ -1,7 +1,8 @@
-# Cüneyt (Starfix) — Amazon Seller Campaign: Instantly → PlusVibe
+# Cüneyt (SellerVate) — Amazon Seller Campaign: Instantly → PlusVibe
 
 **Date:** 2026-08-25
-**Client:** Cüneyt (Elevate Commerce / Starfix)
+**Client:** Cüneyt — **SellerVate** (https://sellervate.de)
+**Brand note:** the business is **SellerVate**, not "Starfix" as older records in this repo say (corrected 2026-08-25). Starfix is sending-domain identity only. The campaign copy names no brand — it signs off with `{{sender_signature}}` — so nothing built here was affected.
 **Status:** ✅ Built in PlusVibe — **PAUSED, not launched**
 
 ---
@@ -87,7 +88,11 @@ serve both blocs better).
 
 - [ ] Send a test email from PlusVibe and confirm `{{custom_product_category}}` renders (this is the
       variable most likely to break — verify before anything else)
-- [ ] Confirm `{{sender_signature}}` is populated per inbox — signatures do not carry over from Instantly
+- [ ] **Set `{{sender_signature}}` on the sending inboxes — checked 2026-08-25, 18 of 19 are EMPTY.**
+      As it stands every email would end with no sign-off at all. The one populated signature
+      (laura@hellostarfix.com) reads `Best,\n\nLaura\nSellerVeta` — **"SellerVeta" is a misspelling
+      of SellerVate** and needs fixing before it goes out. Signatures do not carry over from Instantly.
+      Needs Cüneyt's actual sign-off block (name, title, contact) — his call, not ours to invent.
 - [ ] Confirm the step delays read as Day 0 / 3 / 7 in the UI (`wait_time` is set as days *after*
       each step; step 3 carries a filler value of 1 because the API rejects 0)
 - [ ] Wait out warmup — do not activate before ~Sep 7

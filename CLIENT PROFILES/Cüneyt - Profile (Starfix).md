@@ -1,4 +1,4 @@
-# Cüneyt (Starfix) — Client Profile
+# Cüneyt (SellerVate) — Client Profile
 
 **Status:** 🟡 Trial (20 hours) | **Rate:** $7/hr | **Role:** Cold Email & Lead Gen Specialist (Deliverability + Campaign Ops)
 **Coverage Period:** Aug 13, 2026 – Present | **Last Updated:** 2026-08-24 (full migration to PlusVibe — 19 mailboxes connected and warming)
@@ -54,7 +54,8 @@ Reusable build script + API gotchas: `scripts/plusvibe-migration/`.
 ## Contact Details
 - **Contact:** Cüneyt (hiring manager) — also Junaid mentioned on the call (provides Hostinger/Instantly access)
 - **Email:** info@elevate-commerce.de
-- **Company:** Elevate Commerce (brand: Starfix)
+- **Company:** SellerVate — https://sellervate.de (Elevate Commerce appears to be the legal entity; Cüneyt's email is info@elevate-commerce.de)
+- **Brand name:** **SellerVate** — corrected 2026-08-25. Earlier records in this repo call the business "Starfix"; that is **wrong**. Starfix survives only as sending-domain identity (hellostarfix.com, starfix.online), not as the business name. Also note the misspelling **"SellerVeta"** floating around (a lead-list filename, and laura@'s PlusVibe signature) — the correct spelling is SellerVate.
 - **Business:** B2B service for Amazon sellers — pay-per-removed-review model, targeting US/UK Amazon sellers
 - **Communication:** WhatsApp
 - **Meetings:** Ad hoc (first call was Google Meet, booked with ~5 min notice)

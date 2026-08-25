@@ -31,7 +31,23 @@ copy written on the skill's guidance may be rendering blank names. Worth a spot-
 Build script + the API gotchas (Cloudflare blocks urllib; `schedules` is an array; `days` only accepts
 enabled keys; `wait_time` must be ≥1 on every step) saved to `scripts/plusvibe-migration/`.
 
+**Correction, same day — the business is SellerVate, not Starfix.** Eikko flagged it and confirmed
+with https://sellervate.de. The site carries neither "Starfix" nor "Elevate Commerce"; Elevate Commerce
+looks to be the legal entity (Cüneyt's email is info@elevate-commerce.de) with **SellerVate** as the
+brand. Starfix survives only as sending-domain identity (hellostarfix.com, starfix.online). Profile
+corrected. **The campaign copy was unaffected — it names no brand and signs off with
+`{{sender_signature}}`.** Note the site's own "5,000+ resolved cases" and Amazon SPN partner claims
+line up with the copy already written.
+
+**Signature check off the back of that — 18 of 19 PlusVibe inboxes have an EMPTY sender signature.**
+Every email would currently end with no sign-off at all. The single populated one
+(laura@hellostarfix.com) reads `Best, / Laura / SellerVeta` — **"SellerVeta" is a misspelling of
+SellerVate** and would have gone out that way. Both need fixing before launch; the real sign-off block
+has to come from Cüneyt.
+
 **Next Steps:**
+- Get Cüneyt's signature block and set it across the 9 sending inboxes; fix the "SellerVeta" typo on laura@
+- Decide how far to carry the Starfix → SellerVate rename through the repo (9 files + a meetings folder carry "Starfix" in the name)
 - Test-send from PlusVibe and confirm `{{custom_product_category}}` renders before activating
 - Confirm `{{sender_signature}}` is set per inbox — signatures don't carry over from Instantly
 - Decide: open tracking is ON (per the Aug 13 audit rec) and the list runs on a single
