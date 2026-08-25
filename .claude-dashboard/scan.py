@@ -373,6 +373,256 @@ def scan_pipeline() -> dict:
     return out
 
 
+# ── Campaigns ────────────────────────────────────────────────────────
+# Parses OUTPUT/Campaign Tracking/*.md. Two things are extracted:
+#   1. Header fields (**Client:**, **Tool:**, **Status:**, **Launched:**)
+#   2. Per-campaign metric tables, when a table clearly is one.
+# A file with no parseable table gets metrics=None rather than zeros —
+# "documented but not measured" is a real state and the UI says so.
+
+CAMPAIGN_DIR_NAME = "Campaign Tracking"
+
+# Column header -> canonical metric key. Matched case-insensitively on the
+# stripped, de-bolded header cell.
+METRIC_COLUMNS = {
+    "sent": "sent", "emails sent": "sent",
+    "leads contacted": "leads", "total leads": "leads", "leads": "leads",
+    "replies": "replies", "replies (unique)": "replies", "unique replies": "replies",
+    "opens": "opens", "clicks": "clicks",
+    "bounces": "bounces", "bounced": "bounces",
+    "opportunities": "opportunities", "opps": "opportunities",
+    "completed leads": "completed",
+}
+
+STATUS_TONES = [
+    ("\U0001F7E2", "good"),    # 🟢
+    ("\u2705", "good"),        # ✅
+    ("\U0001F7E1", "warn"),    # 🟡
+    ("\U0001F534", "bad"),     # 🔴
+]
+
+
+def _cell(text: str) -> str:
+    """Strip markdown emphasis and whitespace from one table cell."""
+    return re.sub(r"[*`]", "", text).strip()
+
+
+def _num(text: str):
+    """'1,699' -> 1699. Returns None when the cell isn't a plain number,
+    so a '—' or 'N/A' never silently becomes 0."""
+    t = _cell(text).replace(",", "")
+    if re.fullmatch(r"-?\d+", t):
+        return int(t)
+    return None
+
+
+def _status_tone(status: str) -> str:
+    for glyph, tone in STATUS_TONES:
+        if glyph in status:
+            return tone
+    return "neutral"
+
+
+def parse_metric_table(lines: list, start: int):
+    """Given the index of a table header row, return (rows, total, consumed).
+    Returns (None, None, 0) if this table isn't a per-campaign metric table."""
+    header_cells = [_cell(c).lower() for c in lines[start].strip().strip("|").split("|")]
+    # Needs a name column plus at least one recognised metric column.
+    if not header_cells or "campaign" not in header_cells[0]:
+        return None, None, 0
+    mapped = {i: METRIC_COLUMNS[h] for i, h in enumerate(header_cells) if h in METRIC_COLUMNS}
+    if not mapped:
+        return None, None, 0
+
+    status_idx = next((i for i, h in enumerate(header_cells) if h == "status"), None)
+    rows, total, i = [], None, start + 1
+    if i < len(lines) and re.match(r"^\|[\s:\-|]+\|$", lines[i].strip()):
+        i += 1  # separator row
+
+    while i < len(lines) and lines[i].lstrip().startswith("|"):
+        cells = lines[i].strip().strip("|").split("|")
+        name = _cell(cells[0]) if cells else ""
+        if not name or set(name) <= set("-: "):
+            i += 1
+            continue
+        rec = {"name": name}
+        for idx, key in mapped.items():
+            if idx < len(cells):
+                v = _num(cells[idx])
+                if v is not None:
+                    rec[key] = v
+        if status_idx is not None and status_idx < len(cells):
+            rec["status"] = _cell(cells[status_idx])
+        # A bolded "Combined total" / "Totals" row is the file's own sum.
+        if re.search(r"\b(combined\s+)?totals?\b", name, re.IGNORECASE):
+            total = rec
+        elif len(rec) > 1:
+            rows.append(rec)
+        i += 1
+
+    return (rows or None), total, i - start
+
+
+# Field-style tables ( | **Total Leads** | 40 | ) describe ONE campaign per
+# file — Krishna's Apollo campaign logs use this shape. Only consulted when
+# no per-campaign table was found, so it never overrides richer data.
+FIELD_METRICS = {
+    "total leads": "leads", "leads": "leads",
+    "emails sent": "sent", "sent": "sent",
+    "replies": "replies", "opens": "opens",
+    "bounces": "bounces", "opportunities": "opportunities",
+}
+
+
+def parse_field_table_campaign(text: str, fallback_name: str):
+    """Return a single-campaign record from | **Field** | value | rows,
+    or None when the file carries no recognised metric field."""
+    rec, found = {}, False
+    for label, key in FIELD_METRICS.items():
+        m = re.search(rf"\|\s*\*\*{re.escape(label)}\*\*\s*\|\s*([^|\n]+)\|",
+                      text, re.IGNORECASE)
+        if m:
+            v = _num(m.group(1))
+            if v is not None:
+                rec[key] = v
+                found = True
+    if not found:
+        return None
+    m = re.search(r"\|\s*\*\*Campaign Name\*\*\s*\|\s*([^|\n]+)\|", text, re.IGNORECASE)
+    rec["name"] = _cell(m.group(1)) if m else fallback_name
+    m = re.search(r"\|\s*\*\*Status\*\*\s*\|\s*([^|\n]+)\|", text, re.IGNORECASE)
+    if m:
+        rec["status"] = _cell(m.group(1))
+    return rec
+
+
+def match_known_client(text: str, filename: str, roster: list) -> str:
+    """Attribute a campaign file to a real client from CLIENT PROFILES.
+    Matches the declared **Client:** value, then the filename, then the body —
+    always against the roster, so it can only ever return a real client name."""
+    head = text[:1500]
+    for c in roster:
+        # First token of the profile name ("Cüneyt", "Chris Caffera" -> "Chris")
+        full = c["name"]
+        base = re.split(r"\s*\(", full)[0].strip()
+        needles = {full, base}
+        # Distinguish the two Chrises by their bracketed qualifier.
+        for n in sorted(needles, key=len, reverse=True):
+            if len(n) < 4:
+                continue
+            if re.search(rf"\b{re.escape(n)}\b", filename, re.IGNORECASE) or \
+               re.search(rf"\b{re.escape(n)}\b", head, re.IGNORECASE):
+                return full
+    return ""
+
+
+def scan_campaigns(roster=None) -> list:
+    roster = roster or []
+    camp_dir = ROOT / "OUTPUT" / CAMPAIGN_DIR_NAME
+    out = []
+    if not camp_dir.is_dir():
+        return out
+
+    for f in sorted(camp_dir.rglob("*.md")):
+        try:
+            text = f.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        lines = text.splitlines()
+
+        h1 = next((l.lstrip("# ").strip() for l in lines if l.startswith("# ")), f.stem)
+        client = extract_field(text, "Client")
+        tool = extract_field(text, "Tool") or extract_field(text, "Platform")
+        status = extract_field(text, "Status")
+        launched = (extract_field(text, "Launched")
+                    or extract_field(text, "Launch Date")
+                    or extract_field(text, "Report date"))
+
+        # Field-style tables ( | **Client** | value | ) as a fallback.
+        def field_row(label):
+            m = re.search(rf"\|\s*\*\*{re.escape(label)}\*\*\s*\|\s*([^|\n]+)\|", text, re.IGNORECASE)
+            return m.group(1).strip() if m else ""
+        client = client or field_row("Client")
+        client = client or match_known_client(text, f.name, roster)
+        tool = tool or field_row("Tool")
+        status = status or field_row("Status")
+        launched = launched or field_row("Launch Date")
+
+        rows, total = None, None
+        i = 0
+        while i < len(lines):
+            if lines[i].lstrip().startswith("|"):
+                r, t, consumed = parse_metric_table(lines, i)
+                if r or t:
+                    rows, total = r, t
+                    i += max(consumed, 1)
+                    continue
+            i += 1
+
+        if not rows and not total:
+            single = parse_field_table_campaign(text, h1)
+            if single:
+                rows = [single]
+
+        metrics = None
+        if rows or total:
+            keys = ("sent", "leads", "replies", "opens", "clicks", "bounces",
+                    "opportunities", "completed")
+            if total:
+                metrics = {k: total[k] for k in keys if k in total}
+            else:
+                metrics = {}
+                for k in keys:
+                    vals = [r[k] for r in (rows or []) if k in r]
+                    if vals:
+                        metrics[k] = sum(vals)
+            if metrics.get("sent"):
+                metrics["replyRate"] = round(
+                    100 * metrics.get("replies", 0) / metrics["sent"], 2)
+                metrics["bounceRate"] = round(
+                    100 * metrics.get("bounces", 0) / metrics["sent"], 2)
+
+        canonical = match_known_client(text, f.name, roster)
+        out.append({
+            "title": h1,
+            "clientCanonical": canonical or client,
+            "fileName": f.name,
+            "client": client,
+            "tool": tool,
+            "status": status,
+            "statusTone": _status_tone(status),
+            "launched": launched,
+            "relPath": str(f.relative_to(ROOT)),
+            "modified": iso(f.stat().st_mtime),
+            "campaigns": rows or [],
+            "metrics": metrics,
+            "hasMetrics": bool(metrics),
+        })
+
+    return out
+
+
+def campaign_totals(campaigns: list) -> dict:
+    """Roll up every file that had parseable metrics. Files without metrics
+    are counted separately so the UI can be honest about coverage."""
+    keys = ("sent", "leads", "replies", "opens", "clicks", "bounces", "opportunities")
+    totals = {k: 0 for k in keys}
+    measured = 0
+    for c in campaigns:
+        if not c["hasMetrics"]:
+            continue
+        measured += 1
+        for k in keys:
+            totals[k] += c["metrics"].get(k, 0)
+    if totals["sent"]:
+        totals["replyRate"] = round(100 * totals["replies"] / totals["sent"], 2)
+        totals["bounceRate"] = round(100 * totals["bounces"] / totals["sent"], 2)
+    totals["filesMeasured"] = measured
+    totals["filesTotal"] = len(campaigns)
+    totals["campaignCount"] = sum(len(c["campaigns"]) for c in campaigns)
+    return totals
+
+
 def main():
     DASHBOARD_DIR.mkdir(exist_ok=True)
 
@@ -381,6 +631,7 @@ def main():
     skills = scan_skills()
     pipeline = scan_pipeline()
     activity = scan_activity()
+    campaigns = scan_campaigns(clients)
 
     snapshot = {
         "clients": len(clients),
@@ -399,6 +650,8 @@ def main():
         "skills": skills,
         "pipeline": pipeline,
         "activity": activity,
+        "campaigns": campaigns,
+        "campaignTotals": campaign_totals(campaigns),
         "history": history,
     }
     payload = json.dumps(data, indent=2)
@@ -409,7 +662,8 @@ def main():
 
     print(f"[{data['generatedAt']}] wrote {OUTPUT_FILE.name} + {OUTPUT_JS_FILE.name} "
           f"({len(data['clients'])} clients, {len(data['agents'])} agents, "
-          f"{len(data['skills'])} skills)")
+          f"{len(data['skills'])} skills, "
+          f"{data['campaignTotals']['filesMeasured']}/{len(campaigns)} campaign files measured)")
 
 
 if __name__ == "__main__":

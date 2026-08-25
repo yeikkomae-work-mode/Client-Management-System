@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T00:55:57.229798+00:00",
+  "generatedAt": "2026-08-25T19:05:53.129142+00:00",
   "systemRoot": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System",
   "me": {
     "name": "Eikko Ybanez",
@@ -1650,6 +1650,14 @@
       "relPath": ".claude/agents/copywriter.md"
     },
     {
+      "name": "cto",
+      "description": "Use for evaluating new tools, techniques, or automations against Eikko's actual stack; designing what to build next; auditing the stack for silent decay; and tracking skills worth learning. Strategy agent \u2014 internal tech judgment, not client-market research.",
+      "tools": "Read, Grep, Glob, WebSearch, WebFetch, Write, Edit, Bash",
+      "model": "opus",
+      "category": "Specialized",
+      "relPath": ".claude/agents/cto.md"
+    },
+    {
       "name": "file-organizer",
       "description": "Use for cleaning up the Client-Management-System folder structure, deduplicating or merging overlapping files, fixing naming, or general file hygiene across client spaces. Back-office Agent 9 \u2014 File & Asset Organizer.",
       "tools": "Read, Grep, Glob, Write, Edit, Bash",
@@ -1726,6 +1734,12 @@
       "description": "Set up (or update) a recurring end-of-day sync for a client \u2014 Notion command center + client folder + agent kickoff",
       "kind": "command",
       "relPath": ".claude/commands/eod-sync.md"
+    },
+    {
+      "name": "/tech-radar",
+      "description": "Look up or list Tech Radar verdicts \u2014 what's been evaluated, adopted, killed",
+      "kind": "command",
+      "relPath": ".claude/commands/tech-radar.md"
     }
   ],
   "pipeline": {
@@ -1846,6 +1860,783 @@
       "2026-08-09": 1
     }
   },
+  "campaigns": [
+    {
+      "title": "AAPEX / Global Pet / Cosmoprof \u2014 Rewrite v2 (per Aug 25 feedback call)",
+      "clientCanonical": "Yoni (Albert Scott)",
+      "fileName": "AAPEX-GlobalPet-Cosmoprof-Rewrite-v2-Yoni-Review.md",
+      "client": "Yoni (Albert Scott)",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/AAPEX-GlobalPet-Cosmoprof-Rewrite-v2-Yoni-Review.md",
+      "modified": "2026-08-24T20:44:43.608586+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "AAPEX / Global Pet / Cosmoprof \u2014 Copy for Yoni's Review",
+      "clientCanonical": "Yoni (Albert Scott)",
+      "fileName": "AAPEX-GlobalPet-Cosmoprof-Yoni-Review.md",
+      "client": "Yoni (Albert Scott)",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/AAPEX-GlobalPet-Cosmoprof-Yoni-Review.md",
+      "modified": "2026-08-24T17:14:43.745498+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Setting up your own live Plusvibe tracker in Claude",
+      "clientCanonical": "",
+      "fileName": "Ally-Plusvibe-Artifact-Prompt.md",
+      "client": "",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Ally-Plusvibe-Artifact-Prompt.md",
+      "modified": "2026-08-12T13:51:04.696600+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "CAMPAIGN METRICS \u2014 Lemlist (Chris Caffera / Fractio)",
+      "clientCanonical": "Chris Caffera",
+      "fileName": "Chris Caffera - Lemlist Campaigns - Metrics.md",
+      "client": "Chris Caffera / Fractio",
+      "tool": "Lemlist",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "2026-08-13",
+      "relPath": "OUTPUT/Campaign Tracking/Chris Caffera - Lemlist Campaigns - Metrics.md",
+      "modified": "2026-08-13T12:39:13.437241+00:00",
+      "campaigns": [
+        {
+          "name": "CTRO - Fractio Deals",
+          "sent": 264,
+          "opens": 112,
+          "clicks": 9,
+          "replies": 1,
+          "bounces": 19,
+          "status": "Ended"
+        },
+        {
+          "name": "CTRO - Fractio LinkedIn Page Followers",
+          "sent": 489,
+          "opens": 154,
+          "clicks": 58,
+          "replies": 0,
+          "bounces": 31,
+          "status": "Running"
+        },
+        {
+          "name": "CTRO - Fractio Podcast Attendees",
+          "sent": 129,
+          "opens": 38,
+          "clicks": 22,
+          "replies": 0,
+          "bounces": 13,
+          "status": "Running"
+        },
+        {
+          "name": "CTRO - Fractio Content Offer Consumed",
+          "sent": 378,
+          "opens": 143,
+          "clicks": 28,
+          "replies": 3,
+          "bounces": 19,
+          "status": "Running"
+        }
+      ],
+      "metrics": {
+        "sent": 1260,
+        "replies": 4,
+        "opens": 447,
+        "clicks": 117,
+        "bounces": 82,
+        "replyRate": 0.32,
+        "bounceRate": 6.51
+      },
+      "hasMetrics": true
+    },
+    {
+      "title": "Chris Drew (Satlas) \u2014 Infrastructure & Campaign Tracking",
+      "clientCanonical": "Chris Drew (Satlas)",
+      "fileName": "Chris Drew - Satlas Infrastructure & Campaigns.md",
+      "client": "Chris Drew",
+      "tool": "",
+      "status": "\ud83d\udfe2 ACTIVE & MONITORED",
+      "statusTone": "good",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Chris Drew - Satlas Infrastructure & Campaigns.md",
+      "modified": "2026-08-24T21:01:41.870429+00:00",
+      "campaigns": [
+        {
+          "name": "Mortgage Brokers - Catchall",
+          "leads": 109,
+          "status": "\ud83d\udfe2 ACTIVE"
+        },
+        {
+          "name": "Mortgage Brokers - Googles, Microsoft & Others",
+          "leads": 459,
+          "status": "\ud83d\udfe2 ACTIVE"
+        },
+        {
+          "name": "Financial Planner - Catchall",
+          "leads": 291,
+          "status": "\ud83d\udfe2 ACTIVE"
+        },
+        {
+          "name": "Financial Planner - Microsoft",
+          "leads": 2677,
+          "status": "\ud83d\udfe2 ACTIVE"
+        },
+        {
+          "name": "Commercial Real Estate - Catchall",
+          "leads": 73,
+          "status": "\ud83d\udfe2 ACTIVE"
+        },
+        {
+          "name": "Commercial Real Estate - Microsoft",
+          "leads": 1170,
+          "status": "\ud83d\udfe2 ACTIVE"
+        },
+        {
+          "name": "Commercial Real Estate - Google & Others",
+          "leads": 225,
+          "status": "\ud83d\udfe2 ACTIVE"
+        },
+        {
+          "name": "Hillary \u2014 Finance Broker",
+          "leads": 0,
+          "status": "\ud83d\udfe1 DRAFT"
+        },
+        {
+          "name": "Referral Finance Campaign",
+          "leads": 0,
+          "status": "\ud83d\udfe1 DRAFT"
+        },
+        {
+          "name": "Capital Financing - Trades",
+          "leads": 0,
+          "status": "\ud83d\udfe1 DRAFT"
+        },
+        {
+          "name": "Capital Financing - Logistics",
+          "leads": 0,
+          "status": "\ud83d\udfe1 DRAFT"
+        },
+        {
+          "name": "Capital Financing - Labour Hire",
+          "leads": 0,
+          "status": "\ud83d\udfe1 DRAFT"
+        }
+      ],
+      "metrics": {
+        "leads": 5004
+      },
+      "hasMetrics": true
+    },
+    {
+      "title": "Starfix Lead Database Cleaning \u2014 2026-08-21",
+      "clientCanonical": "",
+      "fileName": "README - Cleaning Summary.md",
+      "client": "",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/C\u00fcneyt - Cleaned Lead Lists (2026-08-21)/README - Cleaning Summary.md",
+      "modified": "2026-08-21T04:55:53.353951+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Starfix \u2014 New Email Sequences for the 4 Lead Lists (Draft)",
+      "clientCanonical": "C\u00fcneyt (Starfix)",
+      "fileName": "C\u00fcneyt - New Lead List Email Sequences (Draft, 2026-08-14).md",
+      "client": "C\u00fcneyt (Starfix)",
+      "tool": "",
+      "status": "Draft \u2014 not yet built in Instantly, needs C\u00fcneyt's review before launch",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/C\u00fcneyt - New Lead List Email Sequences (Draft, 2026-08-14).md",
+      "modified": "2026-08-14T15:09:55.519263+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "C\u00fcneyt (Starfix) \u2014 Campaign Settings: Before / After Report",
+      "clientCanonical": "C\u00fcneyt (Starfix)",
+      "fileName": "C\u00fcneyt - Starfix Before-After Report (2026-08-13).md",
+      "client": "C\u00fcneyt (Starfix)",
+      "tool": "Instantly",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/C\u00fcneyt - Starfix Before-After Report (2026-08-13).md",
+      "modified": "2026-08-13T20:52:19.255769+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "C\u00fcneyt (Starfix) \u2014 Campaign Tracking",
+      "clientCanonical": "C\u00fcneyt (Starfix)",
+      "fileName": "C\u00fcneyt - Starfix Campaign Tracking.md",
+      "client": "C\u00fcneyt (Elevate Commerce / Starfix)",
+      "tool": "Instantly",
+      "status": "\ud83d\udfe1 Trial \u2014 audit complete, optimization pending",
+      "statusTone": "warn",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/C\u00fcneyt - Starfix Campaign Tracking.md",
+      "modified": "2026-08-13T14:07:17.106773+00:00",
+      "campaigns": [
+        {
+          "name": "Liste von Dennis",
+          "sent": 400,
+          "leads": 389,
+          "replies": 4,
+          "bounces": 8,
+          "completed": 140,
+          "opportunities": 2
+        },
+        {
+          "name": "USA Seller",
+          "sent": 366,
+          "leads": 366,
+          "replies": 0,
+          "bounces": 7,
+          "completed": 90,
+          "opportunities": 0
+        },
+        {
+          "name": "Sports & Fitness (sellervate)",
+          "sent": 314,
+          "leads": 300,
+          "replies": 5,
+          "bounces": 6,
+          "completed": 45,
+          "opportunities": 1
+        },
+        {
+          "name": "UK Seller (starfix)",
+          "sent": 284,
+          "leads": 284,
+          "replies": 3,
+          "bounces": 1,
+          "completed": 88,
+          "opportunities": 3
+        },
+        {
+          "name": "Starfix New US Leads 2026-07-29",
+          "sent": 78,
+          "leads": 78,
+          "replies": 0,
+          "bounces": 2,
+          "completed": 0,
+          "opportunities": 0
+        },
+        {
+          "name": "Baby (mixed)",
+          "sent": 70,
+          "leads": 70,
+          "replies": 0,
+          "bounces": 2,
+          "completed": 101,
+          "opportunities": 0
+        },
+        {
+          "name": "Pet (mixed)",
+          "sent": 57,
+          "leads": 57,
+          "replies": 2,
+          "bounces": 0,
+          "completed": 107,
+          "opportunities": 0
+        },
+        {
+          "name": "Amazon seller 2nd",
+          "sent": 52,
+          "leads": 52,
+          "replies": 0,
+          "bounces": 0,
+          "completed": 0,
+          "opportunities": 0
+        },
+        {
+          "name": "Starfix New UK Leads 2026-08",
+          "sent": 36,
+          "leads": 30,
+          "replies": 0,
+          "bounces": 1,
+          "completed": 0,
+          "opportunities": 0
+        },
+        {
+          "name": "Sports & Fitness (mixed)",
+          "sent": 23,
+          "leads": 23,
+          "replies": 0,
+          "bounces": 1,
+          "completed": 102,
+          "opportunities": 1
+        },
+        {
+          "name": "Amazon Seller 2cnd (2)",
+          "sent": 19,
+          "leads": 13,
+          "replies": 0,
+          "bounces": 2,
+          "completed": 0,
+          "opportunities": 0
+        }
+      ],
+      "metrics": {
+        "sent": 1699,
+        "leads": 1662,
+        "replies": 14,
+        "bounces": 30,
+        "opportunities": 7,
+        "completed": 673,
+        "replyRate": 0.82,
+        "bounceRate": 1.77
+      },
+      "hasMetrics": true
+    },
+    {
+      "title": "C\u00fcneyt (Starfix) \u2014 Email Sequences by Campaign",
+      "clientCanonical": "C\u00fcneyt (Starfix)",
+      "fileName": "C\u00fcneyt - Starfix Email Sequences (2026-08-13).md",
+      "client": "C\u00fcneyt (Starfix)",
+      "tool": "",
+      "status": "Active",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/C\u00fcneyt - Starfix Email Sequences (2026-08-13).md",
+      "modified": "2026-08-13T15:26:15.088416+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "C\u00fcneyt (Starfix) \u2014 Personalized Email Sequence Draft",
+      "clientCanonical": "C\u00fcneyt (Starfix)",
+      "fileName": "C\u00fcneyt - Starfix Personalized Sequence Draft (2026-08-20).md",
+      "client": "C\u00fcneyt (Starfix)",
+      "tool": "",
+      "status": "Draft for C\u00fcneyt's review \u2014 not yet built in Instantly.",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/C\u00fcneyt - Starfix Personalized Sequence Draft (2026-08-20).md",
+      "modified": "2026-08-20T16:41:29.644899+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "C\u00fcneyt (Starfix) \u2014 Sequences Revised Against Cleaned Database",
+      "clientCanonical": "C\u00fcneyt (Starfix)",
+      "fileName": "C\u00fcneyt - Starfix Revised Sequences (Cleaned Database, 2026-08-21).md",
+      "client": "C\u00fcneyt (Starfix)",
+      "tool": "",
+      "status": "Draft for review \u2014 not yet built in Instantly.",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/C\u00fcneyt - Starfix Revised Sequences (Cleaned Database, 2026-08-21).md",
+      "modified": "2026-08-21T04:56:35.204361+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "C\u00fcneyt (Starfix) \u2014 Suggested Email Sequence (Spintax)",
+      "clientCanonical": "Chris Drew (Satlas)",
+      "fileName": "C\u00fcneyt - Starfix Suggested Sequence (Spintax).md",
+      "client": "Chris Drew (Satlas)",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/C\u00fcneyt - Starfix Suggested Sequence (Spintax).md",
+      "modified": "2026-08-13T15:56:07.762009+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Satlas Domain Inventory & Mailbox Configuration",
+      "clientCanonical": "",
+      "fileName": "DOMAIN_INVENTORY.md",
+      "client": "",
+      "tool": "",
+      "status": "\ud83d\udd34 **NOT SENDING-SAFE** \u2014 domain health 22.65/100, `isWarmedUp: false` on all 30 mailboxes (verified live 2026-08-22, sampled 3 of 10 domains, identical). CloudNS SURBL issue unresolved. \"Active\" below means registered/not-suspended only.",
+      "statusTone": "bad",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/DOMAIN_INVENTORY.md",
+      "modified": "2026-08-24T21:01:42.407443+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "\ud83d\udcca Daily Lead Sync Summary",
+      "clientCanonical": "",
+      "fileName": "Daily-Lead-Summary.md",
+      "client": "",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Daily-Lead-Summary.md",
+      "modified": "2026-08-11T21:16:54.904132+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Fancy Foods Q4 Campaign \u2014 Email Copy for Review",
+      "clientCanonical": "Yoni (Albert Scott)",
+      "fileName": "Fancy Foods - 9 Email Variants - Yoni Review.md",
+      "client": "Yoni (Albert Scott)",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Fancy Foods - 9 Email Variants - Yoni Review.md",
+      "modified": "2026-08-11T20:50:59.271345+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Instantly \u2192 Plusvibe Campaign Migration Guide",
+      "clientCanonical": "Chris Drew (Satlas)",
+      "fileName": "Instantly to Plusvibe - Campaign Migration Guide.md",
+      "client": "Chris Drew (Satlas)",
+      "tool": "",
+      "status": "\u2705 PHASE 1 COMPLETE (August 5, 2026)",
+      "statusTone": "good",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Instantly to Plusvibe - Campaign Migration Guide.md",
+      "modified": "2026-08-06T11:06:49.277036+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Instantly Campaign Analytics Report",
+      "clientCanonical": "Chris Drew (Satlas)",
+      "fileName": "Instantly-Campaign-Report-Notion.md",
+      "client": "Chris Drew (Satlas)",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Instantly-Campaign-Report-Notion.md",
+      "modified": "2026-08-07T10:05:47.119767+00:00",
+      "campaigns": [
+        {
+          "name": "Hillary \u2014 Finance Broker",
+          "status": "Draft"
+        },
+        {
+          "name": "Mortgage Brokers",
+          "status": "Draft"
+        },
+        {
+          "name": "Referral Finance Campaign",
+          "status": "Draft"
+        },
+        {
+          "name": "Commercial Real Estate - Catchall",
+          "leads": 311,
+          "sent": 880,
+          "replies": 16,
+          "opportunities": 0,
+          "status": "Paused"
+        },
+        {
+          "name": "Commercial Real Estate - ESG \u2705",
+          "leads": 52,
+          "sent": 144,
+          "replies": 0,
+          "opportunities": 0,
+          "status": "Completed"
+        },
+        {
+          "name": "Commercial Real Estate - Microsoft",
+          "leads": 310,
+          "sent": 591,
+          "replies": 2,
+          "opportunities": 0,
+          "status": "Paused"
+        },
+        {
+          "name": "Commercial Real Estate - Google & Others",
+          "leads": 32,
+          "sent": 45,
+          "replies": 0,
+          "opportunities": 0,
+          "status": "Paused"
+        },
+        {
+          "name": "Financial Planner - Catchall",
+          "leads": 87,
+          "sent": 211,
+          "replies": 8,
+          "opportunities": 0,
+          "status": "Paused"
+        },
+        {
+          "name": "Financial Planner - ESG \u2705",
+          "leads": 66,
+          "sent": 182,
+          "replies": 0,
+          "opportunities": 0,
+          "status": "Completed"
+        },
+        {
+          "name": "Financial Planner - Microsoft",
+          "leads": 955,
+          "sent": 2411,
+          "replies": 8,
+          "opportunities": 2,
+          "status": "Paused"
+        },
+        {
+          "name": "Financial Planner - Google & Others \ud83c\udfc6",
+          "leads": 448,
+          "sent": 1305,
+          "replies": 55,
+          "opportunities": 4,
+          "status": "Paused"
+        },
+        {
+          "name": "Finance Brokers - Catchall",
+          "leads": 78,
+          "sent": 227,
+          "replies": 6,
+          "opportunities": 0,
+          "status": "Paused"
+        },
+        {
+          "name": "Finance Brokers - ESG",
+          "leads": 10,
+          "sent": 27,
+          "replies": 0,
+          "opportunities": 0,
+          "status": "Paused"
+        },
+        {
+          "name": "Finance Brokers - Microsoft \u2705",
+          "leads": 461,
+          "sent": 1368,
+          "replies": 9,
+          "opportunities": 3,
+          "status": "Completed"
+        },
+        {
+          "name": "Finance Brokers - Google & Others \ud83c\udfc6",
+          "leads": 121,
+          "sent": 335,
+          "replies": 8,
+          "opportunities": 4,
+          "status": "Paused"
+        }
+      ],
+      "metrics": {
+        "sent": 7726,
+        "leads": 2931,
+        "replies": 112,
+        "opportunities": 13,
+        "replyRate": 1.45,
+        "bounceRate": 0.0
+      },
+      "hasMetrics": true
+    },
+    {
+      "title": "Penji \u2014 Agency Cold Email Sequence",
+      "clientCanonical": "Penji",
+      "fileName": "Penji - Agency Email Sequence.md",
+      "client": "Penji",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Penji - Agency Email Sequence.md",
+      "modified": "2026-08-18T04:36:45.359488+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Penji \u2014 LinkedIn Content Bank (30 Posts)",
+      "clientCanonical": "Penji",
+      "fileName": "Penji - LinkedIn Content Bank (30 Posts).md",
+      "client": "Penji",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Penji - LinkedIn Content Bank (30 Posts).md",
+      "modified": "2026-08-18T23:15:01.297442+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Peru Silver Chain Wholesalers Campaign \u2014 Live Tracking",
+      "clientCanonical": "Krishna",
+      "fileName": "Peru Silver Chain Wholesalers - Campaign Log.md",
+      "client": "Krishna",
+      "tool": "Apollo",
+      "status": "\ud83d\udfe2 LIVE",
+      "statusTone": "good",
+      "launched": "August 5, 2026",
+      "relPath": "OUTPUT/Campaign Tracking/Peru Silver Chain Wholesalers - Campaign Log.md",
+      "modified": "2026-08-06T22:19:11.558344+00:00",
+      "campaigns": [
+        {
+          "leads": 40,
+          "name": "Peru Silver Chain Wholesalers",
+          "status": "Active"
+        }
+      ],
+      "metrics": {
+        "leads": 40
+      },
+      "hasMetrics": true
+    },
+    {
+      "title": "Philippines Silver Chain Retailers Campaign \u2014 Live Tracking",
+      "clientCanonical": "Krishna",
+      "fileName": "Philippines Silver Chain Retailers - Campaign Log.md",
+      "client": "Krishna",
+      "tool": "Apollo",
+      "status": "\ud83d\udfe2 LIVE (per Eikko's Notion update, 2026-08-13 \u2014 launch date, lead count, and copy sign-off not yet logged here; pull from Apollo and update this file next time it's touched)",
+      "statusTone": "good",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Philippines Silver Chain Retailers - Campaign Log.md",
+      "modified": "2026-08-13T02:17:01.512849+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Plusvibe Mailbox Health & Deliverability \u2014 Daily Monitor",
+      "clientCanonical": "Chris Drew (Satlas)",
+      "fileName": "Plusvibe Mailbox Health - Daily Monitor.md",
+      "client": "Chris Drew (Satlas)",
+      "tool": "Plusvibe (app.plusvibe.ai/v2/email-accounts/)",
+      "status": "\ud83d\udfe1 WARNING \u2014 2 mailboxes below 90% warmup health, 6 mailboxes above 5% bounce rate. Also see Zapmail note below.",
+      "statusTone": "warn",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Plusvibe Mailbox Health - Daily Monitor.md",
+      "modified": "2026-08-21T20:14:39.751202+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Q4 2026 Toy Brands Campaign - Call Notes with Yoni",
+      "clientCanonical": "Yoni (Albert Scott)",
+      "fileName": "Q4-Toy-Campaign-Call-Notes-Yoni.md",
+      "client": "Yoni (Albert Scott)",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Q4-Toy-Campaign-Call-Notes-Yoni.md",
+      "modified": "2026-08-06T11:16:08.349802+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "\ud83d\udcdd Smartlead-Pipedrive Sync Audit Trail",
+      "clientCanonical": "Yoni (Albert Scott)",
+      "fileName": "Smartlead-Pipedrive-Sync-Log.md",
+      "client": "Yoni (Albert Scott)",
+      "tool": "",
+      "status": "",
+      "statusTone": "neutral",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Smartlead-Pipedrive-Sync-Log.md",
+      "modified": "2026-08-07T17:18:56.634367+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Toy Fair Q4 Campaign \u2014 Final Email Copy (Approved)",
+      "clientCanonical": "Yoni (Albert Scott)",
+      "fileName": "Toy Fair - 9 Email Variants - Yoni Review.md",
+      "client": "Yoni (Albert Scott)",
+      "tool": "",
+      "status": "\u2705 Approved by Yoni (his own final revision, submitted via [Google Doc](https://docs.google.com/document/d/10JFZBeSfV6CBJ0o0CMjvIVGlA-AvrhyB6bi3IFpN5UI/edit)) and saved live to Smartlead campaign 3771090 on Aug 11.",
+      "statusTone": "good",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Toy Fair - 9 Email Variants - Yoni Review.md",
+      "modified": "2026-08-11T12:51:47.105469+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "US Silver Chain Retailers Sample Run Campaign \u2014 Live Tracking",
+      "clientCanonical": "Krishna",
+      "fileName": "US Silver Chain Retailers Sample Run - Campaign Log.md",
+      "client": "Krishna",
+      "tool": "Apollo",
+      "status": "\u2705 COMPLETED (per Eikko's Notion update, 2026-08-13 \u2014 final analysis/variant-performance writeup not yet logged here)",
+      "statusTone": "good",
+      "launched": "June 22, 2026",
+      "relPath": "OUTPUT/Campaign Tracking/US Silver Chain Retailers Sample Run - Campaign Log.md",
+      "modified": "2026-08-13T02:17:12.117854+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    },
+    {
+      "title": "Active Projects - Yoni",
+      "clientCanonical": "Yoni (Albert Scott)",
+      "fileName": "Yoni-Projects-Active.md",
+      "client": "Yoni (Albert Scott)",
+      "tool": "",
+      "status": "\u2705 LAUNCHED (Aug 11) \u2014 campaign is ACTIVE, leads loaded, sending Mon-Fri 9am-6pm ET",
+      "statusTone": "good",
+      "launched": "",
+      "relPath": "OUTPUT/Campaign Tracking/Yoni-Projects-Active.md",
+      "modified": "2026-08-11T21:17:11.094835+00:00",
+      "campaigns": [],
+      "metrics": null,
+      "hasMetrics": false
+    }
+  ],
+  "campaignTotals": {
+    "sent": 10685,
+    "leads": 9637,
+    "replies": 130,
+    "opens": 447,
+    "clicks": 117,
+    "bounces": 112,
+    "opportunities": 20,
+    "replyRate": 1.22,
+    "bounceRate": 1.05,
+    "filesMeasured": 5,
+    "filesTotal": 28,
+    "campaignCount": 43
+  },
   "history": [
     {
       "date": "2026-08-14",
@@ -1928,7 +2719,7 @@
       "date": "2026-08-25",
       "clients": 10,
       "activeClients": 5,
-      "agents": 10,
+      "agents": 11,
       "activeTasks": 8
     }
   ]

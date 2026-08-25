@@ -1,4 +1,69 @@
-# Central Command Dashboard
+# Command Center
+
+The single dashboard for clients, campaigns, tasks, projects and the agent
+system. Four files, two of them generated:
+
+| File | What it is |
+|---|---|
+| `scan.py` | Reads the repo and writes `dashboard-data.json` + `.js`. The only thing that touches your real files. |
+| `command-center.html` | **The dashboard.** Open it directly; it loads the scanned data. |
+| `build-artifact.py` | Builds the shareable copy from the two above. |
+| `command-center-hosted.html` | Generated. Self-contained, data inlined, rates and task text redacted. |
+
+## Refresh it
+
+```bash
+python3 .claude-dashboard/scan.py            # re-read the repo
+python3 .claude-dashboard/build-artifact.py  # rebuild the shareable copy
+```
+
+Then open `command-center.html`, or re-publish the hosted file as an Artifact.
+The dashboard cache-busts the data bundle on every load, so a fresh scan is
+never masked by a cached copy — the "scanned Xm ago" chip is always truthful.
+
+## Views
+
+**Overview** · greeting, campaign KPIs, the outbound funnel, 7-day EOD logging,
+a two-series system trend, and a client list.
+**Campaigns** · the rollup across every measured campaign file — volume by
+campaign and by client, plus a sortable table with reply-rate bars. Files with
+no metric table are listed separately under "Documented, not measured" rather
+than counted as zeros.
+**Clients** · roster plus a detail panel — terms, tenure with its actual source,
+campaign performance, and a To Do / Done board.
+**Tasks** · every client's tasks in one place.
+**Pipeline** · `PROJECTS/` by bucket.
+**Agents & Skills** · the system itself, grouped by front/back office.
+
+## Interaction
+
+`⌘K` or `/` opens the command palette (clients, campaigns, tasks, agents,
+skills). `o c l t p s` jump between views. The theme button cycles
+system → light → dark and is remembered per browser.
+
+## Ground rules this dashboard follows
+
+- **Never invent a number.** A file with no parseable metric table gets no
+  metrics, not zeros. Trends say "building history…" until there are two real
+  snapshots to compare.
+- **Only genuinely nested stages go in the funnel.** Leads contacted is
+  reported beside it, not inside it — leads and sends come from different files,
+  so one is not a subset of the other.
+- **The hosted copy omits rates and task text.** Those are the fields that would
+  leak one client's commercial terms to another if the link is shared.
+- **Colour never carries meaning alone.** Every status is a dot *and* a label;
+  every bar carries a direct value label. The categorical palette is validated
+  for colour-vision deficiency in both light and dark.
+
+---
+
+## Previous dashboard (superseded)
+
+`central-command.html` and `central-command-hosted.html` are the earlier
+version, kept until you're happy with the new one. They have no Campaigns view.
+Safe to delete once you've confirmed the replacement.
+
+---
 
 A CRM-style live overview of the Client-Management-System: your profile,
 clients (role, tenure, rate), agents, skills/commands, and project pipeline
