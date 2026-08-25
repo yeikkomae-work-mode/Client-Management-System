@@ -21,7 +21,7 @@ For Chris Drew: threshold to flag is any mailbox dropping under 95% health, plus
 
 ## Financial reporting
 
-Rates and targets live in `CLIENT PROFILES/Important info.md` and `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md` (Quick Reference section — rates, goals). For "monthly income & expense review": compile billable hours × rate per client, convert currencies where needed (Chris Drew is AUD), subtract expenses, calculate profit, compare against the monthly goal. Source data from `OUTPUT/Monthly Reports/Salary & Income Tracking.md` and `Monthly Income & Expense Review.md`.
+Rates live in `CLIENT PROFILES/Important info.md`; monthly income/stretch/profit targets live in `OUTPUT/Monthly Reports/Monthly Income & Expense Review.md`. *(Path corrected 2026-08-25 — this used to point at the ECO Chief of Staff Guide's Quick Reference, now archived in this same folder.)* For "monthly income & expense review": compile billable hours × rate per client, convert currencies where needed (Chris Drew is AUD), subtract expenses, calculate profit, compare against the monthly goal. Source data from `OUTPUT/Monthly Reports/Salary & Income Tracking.md` and `Monthly Income & Expense Review.md`.
 
 ## Output format
 

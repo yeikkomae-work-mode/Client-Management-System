@@ -45,7 +45,7 @@ Active and prospective projects organized by status.
 
 ### **TEMPLATES**
 Reusable workflows and automation setup.
-- **01 Automation Daily Routine/** — ECO system files, work logs, briefing prompts, `ECO - Chief of Staff Guide.md` (merged reference)
+- **01 Automation Daily Routine/** — ECO system files, work logs, briefing prompts, `CLIENT ACCOUNT MAPPING - CRITICAL.md` (per-client emails/API accounts/Drive search terms — still live). `ECO - Chief of Staff Guide.md` was archived Aug 25 to `ARCHIVE - Inactive Automations/5-agent-version-superseded/` — it described the superseded 5-agent ECO system and collided by name with the current `chief-of-staff` agent
 - **02 Plugin Client Templates/** — Checklists, meeting templates, campaign trackers
 - **03 App Dashboard & Work Logger/** — Browser-based work logging app
 - `PRD Template.md` — Added Aug 15. Used for any nontrivial build (new agent, automation, client system, structural change) — problem, success criteria, scope, plan, sign-off, before building.

@@ -33,4 +33,4 @@ When Eikko sends something expecting a reply, note it. If 3+ days pass with noth
 
 ## House style for reporting back
 
-Short, one-line header + emoji, bullets not paragraphs, flag urgency (🔴 urgent, ↩️ needs reply, ⚠️ heads-up). See `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md` for the full house-style spec and worked examples.
+Short, one-line header + emoji, bullets not paragraphs, flag urgency (🔴 urgent, ↩️ needs reply, ⚠️ heads-up). See `ECO - Chief of Staff Guide.md` (archived in this same folder as of 2026-08-25) for the full house-style spec and worked examples.

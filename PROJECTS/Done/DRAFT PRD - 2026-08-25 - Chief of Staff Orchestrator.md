@@ -70,6 +70,9 @@ chat windows that never got logged.
 
 - `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md` describes a **superseded
   5-agent system**. This build does not extend it and must not be confused with it.
+  *(Resolved 2026-08-25, same day, on Eikko's go-ahead: archived to
+  `ARCHIVE - Inactive Automations/5-agent-version-superseded/` with a historical banner. Not
+  deleted. See the follow-up section at the end of this build log.)*
 - `.claude/agents/_shared/connector-status.md` stays the single source of truth for connectors.
   Nothing built here may carry its own copy of tool statuses.
 - Existing agent-file conventions (YAML frontmatter: `name`, `description`, `tools`, `model`)
@@ -260,3 +263,72 @@ a read, which is auto. **Pass.**
    obligation to be online at shift time, which does not co-exist cleanly with Yoni's 9pm–5am
    block, Chris Caffera's 2pm–11pm block, and an active Cüneyt trial. Surfaced, not resolved —
    it's Eikko's call.
+
+
+---
+
+# Follow-up — 2026-08-25, same day
+
+## ECO Chief of Staff Guide archived as historical
+
+One of the two items flagged at the end of the build. Eikko gave the go-ahead; done as
+recommended — moved, not deleted, following the precedent `file-organizer.md` already cites
+(`ARCHIVE - Inactive Automations/README.md`: move the file, explain what's there and why, fix
+every broken reference left behind).
+
+**Moved:** `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md` →
+`ARCHIVE - Inactive Automations/5-agent-version-superseded/ECO - Chief of Staff Guide.md` via
+`git mv`.
+
+**Why that subfolder and not the top-level archive:** the top-level archive is for docs about
+*disabled scheduled tasks*. This guide is the orchestrator doc for the five agents already
+sitting in `5-agent-version-superseded/` — it describes coordinating CLIENTS · COMMS · OPS ·
+METRICS · STRATEGY by name. It belongs with the agents it coordinates.
+
+**Historical banner added at the top of the file**, stating: what superseded it (the 10-agent
+team on 2026-08-13, and `.claude/agents/chief-of-staff.md` on 2026-08-25); an explicit
+name-collision warning, since two documents called "chief of staff" describing different systems
+is the actual risk here; a table mapping each still-accurate piece of its content to where that
+content actually lives now; and two things that are outright wrong rather than merely stale —
+the client roster (names 3 in narrative, 5 in the Quick Reference table, against a real roster of
+8) and the `/clients` `/comms` `/ops` `/metrics` `/strategy` `@eco` commands, none of which exist.
+The original footer's "Reference guide (not a live-status claim)" line was kept but prefixed with
+the historical status rather than replaced.
+
+**Checked before moving — nothing unique was lost.** Two pieces of content in the guide were
+still being cited by other files:
+- **Monthly goals** (84,000 PHP target / 112,000 stretch / 75,000 profit) — also in
+  `OUTPUT/Monthly Reports/Monthly Income & Expense Review.md` and `Income & Expense Tracking.md`.
+  Worth noting separately: `billing-auditor.md` claims these live in `CLIENT PROFILES/Important
+  info.md`, and they do not. Left as-is, flagged.
+- **Per-client Drive search terms and account mapping** — also in
+  `TEMPLATES/01 Automation Daily Routine/CLIENT ACCOUNT MAPPING - CRITICAL.md`, which stays live.
+
+**References fixed — 6 sites across 6 files:**
+
+| File | What changed |
+|---|---|
+| `README.md` | TEMPLATES folder description now names `CLIENT ACCOUNT MAPPING - CRITICAL.md` as what's still live there, and records where the guide went and why |
+| `ARCHIVE - .../5-agent-version-superseded/strategy.md` | Goals/rates pointer redirected to `Important info.md` + `Monthly Income & Expense Review.md` (their real homes) rather than the guide |
+| `ARCHIVE - .../5-agent-version-superseded/metrics.md` | Same redirect |
+| `ARCHIVE - .../5-agent-version-superseded/comms.md` | House-style pointer now resolves within the same folder |
+| `RESOURCES/ECO System/ECO_README.md` | Was calling the guide "the up-to-date consolidated guide" — corrected, and points at `.claude/agents/chief-of-staff.md` for current routing |
+| `RESOURCES/ECO System/ECO - COWORK QUICK START.md` | Source attribution updated with the archival note |
+
+**Both archive READMEs updated.** The top-level one explicitly claimed the
+`TEMPLATES/01 Automation Daily Routine/` guides were *not* archived — that line was true when
+written and is now partly false, so it carries a dated correction rather than a silent rewrite.
+The subfolder README explains what the guide is, why it landed there specifically, and redirects
+anyone looking for current routing.
+
+**Verified:** zero references to the old path remain anywhere in the repo; the file exists at its
+new path; `git mv` recorded a rename with the banner as the only content change, so history
+follows.
+
+## Still open — the other flagged item
+
+The builder pipeline (`project-builder-check` / `daily-eod-sync`) has **not** been touched.
+Neither scheduled task was found in the account's Routines, and `Pending/`, `In-Progress/`, and
+`Failed/` still do not exist as directories. That one is still waiting on Eikko — and the check
+is incomplete on its own terms: this session can only see the Routines/cron surface, not tasks
+stored locally by the Cowork desktop app.

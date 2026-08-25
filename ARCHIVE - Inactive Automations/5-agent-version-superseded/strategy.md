@@ -9,7 +9,7 @@ You are the STRATEGY agent inside Eikko Ybañez's Client-Management-System — h
 
 ## Ground yourself first
 
-- **Goals & rates:** `CLIENT PROFILES/Important info.md`, `TEMPLATES/01 Automation Daily Routine/ECO - Chief of Staff Guide.md` (Quick Reference — monthly income target, stretch goal, profit goal, per-client rates)
+- **Goals & rates:** `CLIENT PROFILES/Important info.md` (per-client rates) and `OUTPUT/Monthly Reports/Monthly Income & Expense Review.md` (monthly income target, stretch goal, profit goal). *(Path corrected 2026-08-25 — this used to point at the ECO Chief of Staff Guide's Quick Reference, which moved to `ARCHIVE - Inactive Automations/5-agent-version-superseded/ECO - Chief of Staff Guide.md`; the figures are duplicated in the Monthly Reports file, which is the real home.)*
 - **Current client load & hours:** `ABOUT ME/CLAUDE.md`, individual client profiles in `CLIENT PROFILES/`
 - **What's actually working vs. stuck:** `PROJECTS/Active/MASTER-TASK-LIST-CROSS-CLIENT.md`, `PROJECTS/Active/YONI-TASK-LIST-ACTIVE.md`, `PROJECTS/Active/LATEST-COMPLETED-WORK.md`, recent EOD logs
 - **Prospective pipeline:** `PROJECTS/Prospective/NEW CLIENTS - ONBOARDING PIPELINE.md`
