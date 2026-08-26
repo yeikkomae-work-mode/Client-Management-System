@@ -36,6 +36,10 @@ One-page reference for the role. Full detail lives in the "Agency Advisor Eikko"
 8. **Watch for trigger signals** — job postings for designers, negative competitor reviews, funding news, new campaign launches. Any of these jump an agency to the front of the queue.
 9. **Route warm replies to Joan within the hour.** No exceptions. Oliver closes. Also post positive responses in the `#response` Slack channel.
 10. **Log everything in real time** — CRM/tracking sheet (the "Agency Master List" in Google Sheets), status, next action, conversation history in the prospect's exact words. Not logged = didn't happen. Note: transferring who's been messaged in Dripify into the Sheet is still a **manual** step as of Aug 18 — see Open Items for the automation task in progress.
+10a. **Response routing (confirmed 2026-08-25 by Kristine, Slack — no prior SOP existed for this):** after forwarding a response in Slack, it also has to be logged in the shared **"LinkedIn responses"** sheet (`docs.google.com/spreadsheets/d/1euKlI0MZLw1ptXLXXggzQ9QmEo_FlXil34R9aMMBaOM` — checked weekly by John). Two tabs, easy to get backwards (Eikko had it flipped until corrected):
+    - **Agency Response** tab → cold leads, declines, unsubscribes, anything not warm
+    - **Agency LEAD** tab → hot/warm leads only
+    Reporting on this sheet happens **every Thursday**.
 11. **15-day rule:** any prospect untouched for 15 days rolls into automated re-engagement — not manual follow-up.
 12. **Morning discipline:** work warm leads before cold contacts, every morning, without exception.
 
@@ -122,7 +126,7 @@ This is the current SOP for building "Benji" and any other new US-based persona 
 | AdsPower | Proxy-based browser profiles for new LinkedIn account creation |
 | LinkedIn Helper | Not yet adopted — evaluating against Dripify |
 | Clearout | Lead verification (current) — Million Verifier recommended as cheaper alternative |
-| Google Sheets | Master agency database & tracking ("Agency Master List") |
+| Google Sheets | Master agency database & tracking ("Agency Master List"); response logging ("LinkedIn responses" — Agency Response / Agency LEAD tabs, see Daily Workflow #10a) |
 | Slack | Verification + warm reply routing (`#response` channel) |
 | Lemlist / Email Bison / Instantly / Linless | Jayvy's email-automation scope, **not part of this role** |
 
@@ -141,14 +145,15 @@ This is the current SOP for building "Benji" and any other new US-based persona 
 - [x] Add Cristy's LinkedIn to HeyReach — Done Aug 17
 - [x] Setup Gojiberry Campaign (RPS sequence, marketing-only filter) — Done Aug 17
 - [x] Meeting with Shekinah — process/tooling clarification — Done Aug 17
-- [ ] 🔴 **Dripify free trial expires 2026-08-24 — THAT IS TODAY.** Confirm the paid seat/upgrade with Alan Walker or LinkedIn outreach stops.
+- [ ] 🔴 **Dripify paid seat still not active as of 2026-08-25** (trial expired Aug 24). Card/billing not set up on the account per Eikko — Hayden was to tell Shekinah. Doing outreach manually on personal LinkedIn in the meantime.
 - [ ] Send Hudson Miller & Shane Williams the meeting link promised in the Aug 19 "Yearly Team Outing" email from the Amanda Scott account — never sent
 - [ ] **Connect Dripify + Zapier + Claude** (due 2026-08-18) — automate lead-activity updates from Dripify into the Google Sheet; matches Stage 5/7 of the automation workflow doc
 - [ ] Setup AdsPower (proxy tool) — in progress
 - [ ] Build the "Benji" persona LinkedIn account using the AdsPower SOP above
 - [ ] Evaluate LinkedIn Helper against Dripify
 - [ ] Daily 8AM meeting with Penji team — recurring, ongoing
+- [x] Response-routing SOP clarified (Agency Response vs Agency LEAD tabs) — Aug 25, Kristine
 
 ---
 
-**Last updated:** 2026-08-24
+**Last updated:** 2026-08-25
