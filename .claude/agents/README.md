@@ -17,7 +17,7 @@
 | Agent | Scope |
 |---|---|
 | `project-manager` | Daily task rollup across clients, morning briefing, EOD wrap-up, quick task capture |
-| `billing-auditor` | Time tracking vs. rates, monthly income/expense review, invoice prep |
+| `cfo` | **Money.** Monthly close (P&L), cash-flow + 60-day runway, debt payoff modelling, tool/subscription cost register, per-client profitability, invoice prep. Notion `Finance Tracker and Bills` is its source of truth. Read-only Notion tools by design — every write is confirmed with Eikko first. **Replaced `billing-auditor` 2026-08-25**, carrying forward its rate card and its full 2026-08-13 known-gaps audit verbatim. |
 | `onboarding-guide` | New client setup — folders, profile doc, welcome/questionnaire draft |
 | `file-organizer` | Keeps this whole system clean — dedup, archive stale docs, fix naming, fix broken references |
 | `meeting-summarizer` | Transcript → minutes + action items, pushed to task files |
@@ -32,7 +32,7 @@ Claude Code auto-picks a subagent from its `description` when a task matches, or
 
 ```
 Use the lead-prospector agent to build Krishna's next Apollo list.
-Use the billing-auditor agent for this month's income review.
+Use the cfo agent for this month's income review.
 ```
 
 ## The three chaos-prevention rules baked into these agents

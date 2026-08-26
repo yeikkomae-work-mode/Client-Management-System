@@ -17,7 +17,7 @@ Your personal profile and system overview.
 Root-level `CLAUDE.md` is a lighter agent quick-reference that Claude Code reads automatically each session — see **Agent System** below.
 
 ### **CLIENT PROFILES**
-One consolidated profile per client (10 files).
+One consolidated profile per client (11 files).
 - `Important info.md` — Master reference (rates, contact, payment info)
 - `Chris Caffera - Profile.md` — Personal Assistant ($7/hr, 20h/week, 2pm-11pm)
 - `Chris Drew - Profile (Satlas).md` — Satlas Lead Gen, full engagement history, infrastructure & campaign playbook ($200 AUD/mo, 1pm-4pm)
@@ -27,6 +27,7 @@ One consolidated profile per client (10 files).
 - `Penji - Profile.md` + `Penji - Agency Advisor Quick Reference.md` — Signed Aug 10, role confirmed Aug 13 (Agency Advisor — Outbound Outreach Specialist)
 - `Cüneyt - Profile (Starfix).md` — Trial client (20h @ $7/hr), started Aug 13
 - `Edward Lehner - Profile.md` — Prospective client, Talk-Through / Focus Accountability Partner role (Upwork)
+- `Darius - Profile.md` — New client (confirmed Aug 21 via ₱1,590 Wise payment). Rate, role, hours all TBD — confirm with Eikko
 
 ### **SKILLS**
 Your skills documentation and competencies (empty — ready for expansion).
@@ -51,7 +52,7 @@ Reusable workflows and automation setup.
 
 ### **OUTPUT**
 Reports, data, metrics, and end-of-day summaries from your work.
-- **End-of-Day Reports/** — Daily logs, one per client/prospect (10 files): Chris Caffera, Chris Drew, Yoni, Krishna, Chris Soriano, Penji, Cüneyt, Edward Lehner, Top Acquisitions (closed)
+- **End-of-Day Reports/** — Daily logs, one per client/prospect (11 files): Chris Caffera, Chris Drew, Yoni, Krishna, Chris Soriano, Penji, Cüneyt, Edward Lehner, Darius (new, no entries yet), Top Acquisitions (closed)
 - **Meetings/** — One folder per client, one file per meeting, sourced live from Fathom (connected Aug 13). Each file has the meeting purpose, key takeaways, action items with owner + timestamp links, and either the full transcript or a note that it's available on request. Currently: Yoni (6), Chris Caffera (2), Cüneyt (1, trial agreement), Edward Lehner (2, hiring call + first session). See **Meeting Sync (Fathom)** below.
 - **Campaign Tracking/** — Live campaign metrics & logs (24 files), including Satlas infrastructure & Plusvibe health, Peru/Philippines/US Silver Chain campaigns (Krishna), Capital Financing (Chris Drew), Starfix campaign tracking & sequences (Cüneyt), Penji's agency email sequence, and Chris Caffera's Lemlist metrics + engaged-lead call list
 - **Monthly Reports/** — Monthly financial summaries & expense tracking
@@ -78,13 +79,13 @@ Leftover sourcing file (`top-acquisitions-hvac-sourcing.md`) from the closed tri
 
 ## 🤖 Agent System (current, built Aug 13)
 
-Claude Code auto-routes to the right subagent based on the task, or you can call one directly ("Use the billing-auditor agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager` slash command.
+Claude Code auto-routes to the right subagent based on the task, or you can call one directly ("Use the cfo agent for this month's income review"). Full reference: `.claude/agents/README.md`. Quick list: `/agent-manager` slash command.
 
 **Front-office (client-facing — drafts only, nothing sends without your yes):**
 `inbox-triage` · `copywriter` · `lead-prospector` · `reply-handler` · `market-scout`
 
 **Back-office (internal ops):**
-`project-manager` · `billing-auditor` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
+`project-manager` · `cfo` · `onboarding-guide` · `file-organizer` · `meeting-summarizer`
 
 **Shared reference:** `.claude/agents/_shared/connector-status.md` — single source of truth every agent reads before claiming a tool is live. Twin copy in Notion: 🎛️ VA Command Center.
 
@@ -162,6 +163,7 @@ Drop a signed-off PRD, wake up to a finished build — adapted from Tina Huang's
 | Penji | TBD | TBD | ✅ Signed (Aug 10) | Agency Advisor — Outbound Outreach |
 | Cüneyt (Starfix) | $7/hr | 20h trial | 🟡 Trial (started Aug 13) | Cold Email & Lead Gen, Deliverability |
 | Edward Lehner | $5/hr billed | 5h/week | 🟠 Prospective | Talk-Through / Focus Accountability Partner |
+| Darius | TBD | TBD | ✅ Active (new) | TBD — confirm with Eikko |
 | Top Acquisitions | — | — | 🔴 Closed (Aug 13) | Not selected |
 
 ---
@@ -272,7 +274,7 @@ Client-Management-System/
 - **Automation:** 🟡 Only `daily-eod-sync` is actually running; morning briefing, Lemwarm monitor, PlusVibe monitor are disabled (re-enable via the `schedule` skill if needed — check for staleness first)
 - **Client profiles:** 🟢 One consolidated file per client/prospect, 9 total
 - **Connector status:** 🟡 Core lead-gen/CRM tools + Fathom connected; HubSpot, Slack, Fireflies, Porkbun need auth; several tools (Zapmail, Lemlist, LinkedIn, etc.) have no viable connector and stay manual
-- **Client roster:** 🟢 6 active, 1 signed (Penji), 1 trial (Cüneyt), 1 prospective (Edward Lehner), 1 closed (Top Acquisitions)
+- **Client roster:** 🟢 7 active (incl. Darius — new, terms TBD), 1 signed (Penji), 1 trial (Cüneyt), 1 prospective (Edward Lehner), 1 closed (Top Acquisitions)
 - **Meeting sync:** 🟢 Fathom connected Aug 13 — 11 meetings backfilled into `OUTPUT/Meetings/`, new ones filed automatically going forward
 - **Build discipline:** 🟢 Added Aug 15 — Operating Instructions doc (paste into Cowork Settings), PRD-first habit for nontrivial builds, and an unattended builder pipeline (`PROJECTS/Pending/` → `project-builder-check` every 3h → `Done/`/`Failed/`)
 
