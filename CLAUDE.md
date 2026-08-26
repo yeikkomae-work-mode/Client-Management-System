@@ -22,6 +22,13 @@ Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building
 - **onboarding-guide** — New client setup, folder structure, onboarding checklist
 - **meeting-summarizer** — Call transcripts → minutes & action items
 
+## Marketing (CMO layer)
+
+- **cmo** — Marketing orchestrator: intake, track selection, phase gates, owns the client Marketing Brief
+- **outbound-agent** — Cold outbound end to end: research → ICP → leads → verification → copy → campaign build → deliverability
+- **seo-agent** — SEO audits via the `claude-seo` plugin, zero-key mode by default
+- **brand-agent** — Positioning, verbal/visual identity, brand guidelines, website, content engine
+
 ## Specialized
 
 - **Explore** — Fast code search (find files, grep symbols)
