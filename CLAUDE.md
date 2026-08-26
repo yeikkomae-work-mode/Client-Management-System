@@ -22,6 +22,10 @@ Approved PRDs can also be dropped in `PROJECTS/Pending/` for unattended building
 - **onboarding-guide** — New client setup, folder structure, onboarding checklist
 - **meeting-summarizer** — Call transcripts → minutes & action items
 
+## Strategy
+
+- **cio** — Access, credentials, scopes, data security; which inbox/sender belongs to which client; filing pasted Slack/WhatsApp threads
+
 ## Specialized
 
 - **Explore** — Fast code search (find files, grep symbols)

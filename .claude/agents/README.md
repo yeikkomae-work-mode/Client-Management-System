@@ -22,6 +22,12 @@
 | `file-organizer` | Keeps this whole system clean — dedup, archive stale docs, fix naming, fix broken references |
 | `meeting-summarizer` | Transcript → minutes + action items, pushed to task files |
 
+## Strategy
+
+| Agent | Scope |
+|---|---|
+| `cio` | Identity, access & scopes across every client account; the information routing map `inbox-triage` reads; pasted Slack/WhatsApp intake with redaction. Proposes credential changes — never executes them. |
+
 ## Shared context (not agents — reference files the agents read)
 
 - `_shared/connector-status.md` — **the single source of truth** for which tools are actually connected vs. broken vs. need authorizing vs. don't exist. Update this ONE file when a connector changes status; every agent reads it instead of carrying its own stale copy.
