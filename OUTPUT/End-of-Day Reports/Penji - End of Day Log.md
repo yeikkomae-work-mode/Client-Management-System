@@ -4,6 +4,74 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-26
+
+Two separate connection-request batches ran today, from two different sessions — logged together since both are the same day's outreach work.
+
+### Batch 1 — Sales Navigator hand-screened ICP search (Day 1 of daily workflow, 15–20/day target)
+
+**Tasks Completed:**
+- Built a Sales Navigator lead search against Penji's ICP (Geography=US; Marketing Director/CMO/Creative Director-type titles; Director/VP/CXO seniority; Marketing function; 11–200 headcount; Marketing & Advertising / Advertising Services / Design Services industries) — 16K+ raw results.
+- Hand-screened candidates company-by-company rather than trusting the Industry filter alone, per Eikko's direction — the filter was producing heavy false positives (~8% true agency-employed hit rate vs. the ~20–30% initially estimated, observed across ~130 screened profiles).
+- 11 candidates screened and presented; Eikko approved all 11 with "send it." **10 connection requests sent**, all with the same opener (line 1 of the Shekinah Sol script): *"Hey [First name], if I beat you at Rock Paper Scissors, would you give Penji 10 minutes?"*
+  1. Michael Rivera — Arthur Elliott
+  2. Anthony Abel — The Wood Agency
+  3. Mark Weinstein — Graphic Village
+  4. Adam Junkroski — Graphite
+  5. Meagan Solano — BIG HAPPY
+  6. Michael Orsava — Webout
+  7. Garin N. — Point2Web, Director of Account Growth
+  8. Alicia Childers — Creative Direct Marketing Group, Inc., CMO | Head of AI
+  9. Lindsay del Valle — Constellation Marketing, Director of Organic Marketing
+  10. Tina Preston — Intent Amplify®, Director, Growth
+
+  (Items 1–6 were sent and confirmed earlier in the session before this report was compiled — titles weren't re-captured verbatim; pull from Sales Navigator's "Sent" activity if the full record is needed.)
+
+**Excluded (1):** Jordan Lacenski — Director of Marketing, Fungi Marketing. Screened as a clean title match, but her full headline reads "...| Founder, SheWolf | Co-Chair, Women to Women Gala" — a Founder title alongside the marketing title, which trips the no-founder/owner/partner exclusion rule. No request sent, not counted toward the daily target.
+
+**Metrics:**
+- 10 connection requests sent / 15–20 target (under target — see data-quality flag)
+- 11 screened → 10 sent, 1 excluded
+- ~8% true hit rate on the Industry filter across ~130 profiles screened (vs. ~20–30% initial estimate)
+
+**Notes:**
+- ⚠️ **Data-quality flag (carried from mid-batch):** the Sales Navigator Industry filter is unreliable — most "Marketing Director"-titled results in this search aren't actually agency-employed. Eikko confirmed continuing to hand-screen at the observed ~8% rate rather than switching to an Account-first approach; flagged again in case today's under-target count changes that call for tomorrow.
+- Report wasn't written back to any CRM/Sales Navigator notes — filed here per Eikko's usual convention.
+
+**Next Steps:**
+- Follow-up cadence: for accepted connections with no reply, send the next unsent line of the Shekinah Sol script every 2 days. COMPANY placeholder in message line 3 gets eyeballed per lead before sending — never auto-filled.
+- Tomorrow: pick up hand-screening the same saved search for the next batch toward 15–20/day.
+
+---
+
+### Batch 2 — Targeted list from Shekinah Sol's Slack script thread (separate session, Claude in Chrome side panel)
+
+**Tasks Completed:**
+- Sourced 10 LinkedIn connection targets from a Slack script thread (Shekinah Sol). Confirmed each profile's name/title/company before sending; got Eikko's explicit go-ahead in-thread before sending anything (client-facing outreach, standing reversibility rule).
+- **Decision:** the pasted script is a 7-message DM sequence meant for after acceptance, not a connection note (LinkedIn caps notes at 200 characters) — sent all 10 as blank connection requests, saving the "Rock Paper Scissors" opener as the first post-accept DM.
+- **9 of 10 sent** (all Pending):
+  - Sabrina Tager — Sr. Director, Brand Marketing — FIGS
+  - Sarah Carnabuci — Sr. Director, Intl Marketing — FIGS
+  - Kim Waterbury — SVP Growth & Marketing — Savage X Fenty
+  - Zach Solomon — Director, Ecommerce & Digital — Filson
+  - Kristen Becerra — Strategic Marketing Leader — Filson
+  - Renato Fernandez Jr. — VP Sales & Marketing, NA — Gsource Technologies
+  - Kelley Sharp — Director, Integrated Marketing — Worthy.com
+  - Jessica Kalichman — Sr. Marketing Leader — Rails
+  - Trisha Gallagher — SVP Marketing — Marketri (ICP mismatch — see below)
+- **Skipped (1):** Emillie Stephenson (Assoc. Director, Marketing & Ecomm, BAGGU) — already showed a Pending invite from before this session, sent at some earlier point not by Claude today. Left untouched to avoid a duplicate/odd state.
+
+**Notes:**
+- Trisha Gallagher (Marketri) flagged as a B2B marketing/AI consulting agency — not a typical Penji design-subscription buyer, closer to a peer/competitor than a lead. Eikko said include her anyway; sent. Worth a gut-check before running the full pitch sequence if she accepts.
+- ⚠️ **Hiccup, verified clean:** browser connection dropped mid-batch right after clicking Connect on Jessica Kalichman. Reconnected, confirmed via screenshot that her invite had actually gone through ("Invitation sent to Jessica" + Pending) before continuing — no duplicate send, no gap.
+- This session (Claude in Chrome, not connected to the Client-Management-System repo) couldn't file its own report — delivered to Eikko as a file, filed here now instead.
+- This list isn't yet in a CRM/tracker — Eikko to decide whether these 10 go into a Pipedrive list, an Apollo sequence, or elsewhere Penji outreach is tracked.
+
+**Next Steps:**
+- Watch for accepts on both batches — once accepted, send the RPS opener as the first DM, then the rest of the 7-message sequence per the normal cadence.
+
+---
+
 ## 2026-08-25
 
 **Tasks Completed:**
