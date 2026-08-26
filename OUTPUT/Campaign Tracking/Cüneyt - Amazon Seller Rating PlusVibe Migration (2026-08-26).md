@@ -26,9 +26,33 @@ Product Type).
 | Campaign name | `Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]` |
 | Campaign ID | `6a8ee087c3903d2a71741b72` |
 | Status | **PAUSED** — nothing sends until manually activated |
-| Leads | **964** uploaded — 0 duplicate, 0 invalid, 0 missing rating |
+| Leads | **1,327** — 964 from the Instantly draft + 363 folded in below, 0 duplicate, 0 invalid, 0 missing rating |
 | Sequence | 3 emails, Day 0 / 3 / 7, Rating variant |
 | Mailboxes | 10 — all of hellostarfix.com |
+
+---
+
+## Update (2026-08-26, same day) — folded in the leftover rating-ready leads
+
+Per Eikko's request to build PlusVibe campaigns matching everything exported from Instantly: the
+964-lead campaign above was the one clean, ready-to-go slice. The other 24 Instantly campaigns use
+a different pitch/audience entirely and weren't in scope for this round (see the EOD log for the
+full account audit).
+
+What *was* in scope: **363 more leads** from the local Aug-21 cleaned database (files 1 + 2,
+1,327 total rating-populated leads) that were never uploaded to the Instantly draft in the first
+place. Cross-checked against the 964 already in this campaign — zero overlap, all 363 genuinely
+new to it. Uploaded via `lead/add` with `skip_if_in_workspace: true` as a safety net; API confirmed
+363/363 uploaded, 0 duplicate, 0 skipped.
+
+**Correction on the number:** the original scoping conversation said "+470." That figure was against
+the *full* 1,434-lead local database, which includes file 3's 109 product-category leads — those
+have no Rating data and are already live in the separate `Amazon Seller UK/USA [MIGRATED]` campaign,
+so they don't belong here. The correct, rating-only leftover is **363**, and that's what was added.
+
+This campaign — `Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]` — now holds **100% of the
+local star-rating database (1,327 of 1,327)**, still PAUSED, still on the same 10 hellostarfix.com
+mailboxes.
 
 ---
 

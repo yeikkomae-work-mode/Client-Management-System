@@ -42,9 +42,26 @@ credential missed the decoded value in a parenthetical and printed the actual In
 secret into the conversation. That key (like the PlusVibe one shared earlier) should be rotated —
 noted here so it isn't lost.
 
+**Same-day follow-up — Eikko asked to build PlusVibe campaigns matching everything exported from
+Instantly.** Scoped this down together: the other 24 Instantly campaigns are a different pitch and
+audience entirely (German review campaigns, mixed lists, Upwork/Agency leads), and all 19
+SellerVate mailboxes are already committed to the 2 campaigns built so far — so the actual work was
+folding the leftover rating-ready local leads into the existing 964-lead campaign rather than
+building anything new.
+
+**Corrected the count while doing it:** the "470 leftover" figure from earlier was against the full
+1,434-lead local database, which includes file 3's 109 product-category leads (no Rating data,
+already live in the other PlusVibe campaign — don't belong here). Recomputed against just the
+rating-based files (1+2, 1,327 total): **363** were genuinely never uploaded to the Instantly draft.
+Normalized both source files (they use different column names for the same fields — "Company" vs
+"Company Name", "Direct number" vs "Contact Number", etc.) and uploaded all 363 with zero errors,
+zero duplicates. `Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]` now holds **1,327 leads —
+100% of the local star-rating database.** Verified live: still PAUSED, spot-checked lead carries
+`custom_rating` correctly.
+
 **Next Steps:**
 - Test-send both PlusVibe campaigns, confirm `{{custom_rating}}` and `{{custom_product_category}}` render
-- Fold in the 470 + ~178 leftover rating-ready leads as a second batch once reviewed
+- Decide on Zakir's ~178 new usable leads — separate batch or hold
 - Retire the Instantly "Amazon Seller" draft once the PlusVibe version is confirmed working, so nobody launches it by accident
 - Rotate the Instantly API key (exposed in chat during testing)
 

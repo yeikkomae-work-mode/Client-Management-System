@@ -43,9 +43,17 @@ Useful reads: `campaign/list?workspace_id=`, `campaign/get/status`, `campaign/ge
 
 `sequences.py` holds Sequence B (product-category), built and live as `Amazon Seller UK/USA
 [MIGRATED]` (107 leads). `sequences_rating.py` + `migrate_rating.py` hold Sequence A (rating) and
-are already built and live as `Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]` (964 leads,
-2026-08-26) — pulled straight from the "Amazon Seller" campaign drafted in Instantly rather than
-the local markdown draft, so the shipped copy matches what's actually in the client's account.
+are already built and live as `Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]` (2026-08-26)
+— pulled straight from the "Amazon Seller" campaign drafted in Instantly rather than the local
+markdown draft, so the shipped copy matches what's actually in the client's account. That campaign
+now holds all 1,327 leads from the local star-rating database (964 from the Instantly draft +
+363 more via `add_leftover_batch.py`, which folds in local leads never uploaded to Instantly at
+all — dry-run it against a fresh `amazon_seller_leads_full.json` export before reusing, since the
+"already in this campaign" set changes over time).
+
+Neither `amazon_seller_leads_full.json` (the raw Instantly export) nor `leftover_rating_leads.json`
+(the normalized local leftover) are committed — both hold lead PII and are regenerated locally by
+`migrate_rating.py` / the Instantly pull each time.
 
 ## Pulling from Instantly directly (used for the 964-lead rating campaign)
 

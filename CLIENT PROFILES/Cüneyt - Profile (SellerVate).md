@@ -64,10 +64,18 @@ data (old German "Review2" campaigns, Sports & Fitness/Baby/Pet, Upwork Leads, A
 usable with this sequence as-is. 470 more Rating-ready leads from the local Aug-21 database were
 never uploaded to the draft campaign at all — still sitting as an easy follow-up batch.
 
+**Update, same day:** scoped down from "recreate every Instantly campaign" to just the
+review-removal pitch (the other 24 Instantly campaigns are a different audience/offer, out of
+scope for now). Folded the leftover 363 rating-ready local leads (files 1+2, never uploaded to the
+Instantly draft) into the same PlusVibe campaign — it now holds **1,327 leads, 100% of the local
+star-rating database.** Correction: the "470" figure floated earlier included file 3's
+product-category leads, which don't belong here (no rating, already in the other campaign); 363 is
+the real number and what actually got added.
+
 **Not yet done — needs a decision:**
 - [ ] Swap Starfix → SellerVate in the Instantly email copy before reusing or relaunching any of it
-- [ ] Test-send both PlusVibe Amazon Seller campaigns (964-lead rating + 107-lead product-category) and confirm merge fields render, then activate after ~Sep 7
-- [ ] Decide whether to fold in the 470 leftover rating-ready local leads + Zakir's ~178 new usable ones as a second batch
+- [ ] Test-send both PlusVibe Amazon Seller campaigns (1,327-lead rating + 107-lead product-category) and confirm merge fields render, then activate after ~Sep 7
+- [ ] Decide whether to fold in Zakir's ~178 new usable leads too, or hold for a future batch
 - [ ] Retire the Instantly "Amazon Seller" draft once the PlusVibe version is live and confirmed, so it can't accidentally get launched too
 - [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
 - [ ] Formally retire/archive the paused Instantly campaigns once PlusVibe campaigns are live and confirmed working
