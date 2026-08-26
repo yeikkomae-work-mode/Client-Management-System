@@ -47,10 +47,28 @@ credential keys and verbatim email copy preserved). All 19 PlusVibe inboxes now 
 signature; the `SellerVeta` typo on laura@ is fixed. **Open risk: the Instantly copy itself still says
 "Starfix"** — see the banners on the two sequence docs.
 
+## Update (Aug 26, 2026) — 964-lead campaign pulled straight from Instantly's draft
+
+Audited the whole Instantly account via direct API (25 campaigns, 3,776 unique leads, 4,021 total
+rows). Found an untouched **"Amazon Seller" draft campaign — 964 leads, Rating populated on all of
+them, `emails_sent_count: 0`, and confirmed none of those 964 have send history anywhere else in
+the account either.** Pulled its actual 3-step dual-variant (Rating/Product Type) sequence straight
+from the Instantly API — not the local markdown draft — and built it into PlusVibe as
+`Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]` (`6a8ee087c3903d2a71741b72`), **PAUSED**,
+on all 10 hellostarfix.com mailboxes (idle — the other paused campaign already claims
+starfix.online + sellervate.net). Full record:
+`OUTPUT/Campaign Tracking/Cüneyt - Amazon Seller Rating PlusVibe Migration (2026-08-26).md`.
+
+Rest of the account: 2,704 more leads exist in Instantly with neither Rating nor Product Type
+data (old German "Review2" campaigns, Sports & Fitness/Baby/Pet, Upwork Leads, Agency Leads) — not
+usable with this sequence as-is. 470 more Rating-ready leads from the local Aug-21 database were
+never uploaded to the draft campaign at all — still sitting as an easy follow-up batch.
+
 **Not yet done — needs a decision:**
 - [ ] Swap Starfix → SellerVate in the Instantly email copy before reusing or relaunching any of it
-- [ ] Test-send Amazon Seller UK/USA and confirm `{{custom_product_category}}` renders, then activate after ~Sep 7
-- [ ] Build the two star-rating lists into PlusVibe (Product Review 2nd SMB 613, MAIN List 714 — Sequence A)
+- [ ] Test-send both PlusVibe Amazon Seller campaigns (964-lead rating + 107-lead product-category) and confirm merge fields render, then activate after ~Sep 7
+- [ ] Decide whether to fold in the 470 leftover rating-ready local leads + Zakir's ~178 new usable ones as a second batch
+- [ ] Retire the Instantly "Amazon Seller" draft once the PlusVibe version is live and confirmed, so it can't accidentally get launched too
 - [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
 - [ ] Formally retire/archive the paused Instantly campaigns once PlusVibe campaigns are live and confirmed working
 - [ ] sellervate.net renewal still due Sep 28, 2026 — not yet renewed

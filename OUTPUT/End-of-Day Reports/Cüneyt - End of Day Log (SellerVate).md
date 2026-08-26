@@ -4,6 +4,52 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-26
+
+**Source:** Eikko — "scan, review, and analyze the whole database and see if we can have it all on
+one campaigns same email sequence with 3 steps(3email spintax) that was drafted on instantly name
+Amazon Seller on amazon rating and product category."
+
+**Full account audit via direct Instantly API** — 25 campaigns, 3,776 unique leads, 4,021 total
+rows. Found the **"Amazon Seller" campaign already drafted in Instantly is exactly what was asked
+for**: one campaign, 3 steps, each step carrying two spintax variants (Rating-based and
+Product-Type-based) side by side. Confirmed via campaign analytics it has **never sent a single
+email** (`emails_sent_count: 0`), and cross-checked all 964 of its leads against every other
+campaign in the account — zero send history anywhere. Fully clean, untouched inventory.
+
+**Consolidating the entire account onto this one sequence isn't possible as-is:** only 964 of the
+3,776 unique leads (26%) have Rating populated; zero have Product Type in Instantly (that data only
+ever existed in our local files, not uploaded there); 2,704 leads have neither and would render
+broken merge fields. 1,675 of the 3,776 already have send history somewhere in the account, so
+dumping everything into one fresh campaign risked re-contacting people.
+
+**Built the clean 964 into PlusVibe** — pulled the actual sequence copy live from Instantly's API
+(not the local markdown draft, so it matches what's really in the client's account), converted for
+PlusVibe's platform rules (custom_ prefix, no nested vars in spintax, snake_case), and uploaded all
+964 leads with zero errors. Campaign: `Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]`
+(`6a8ee087c3903d2a71741b72`), **PAUSED**, on all 10 hellostarfix.com mailboxes — deliberately kept
+separate from the 9 starfix.online/sellervate.net mailboxes already claimed by the 107-lead
+product-category campaign built Aug 25, so the two don't compete for daily send capacity. Full
+record: `OUTPUT/Campaign Tracking/Cüneyt - Amazon Seller Rating PlusVibe Migration (2026-08-26).md`.
+
+**What's still outside it, for a follow-up batch:** 470 Rating-ready leads from the local Aug-21
+database that were never uploaded to the Instantly draft at all, plus ~178 of Zakir's new leads
+(151 genuinely new + 27 sitting untouched elsewhere in Instantly) — all Rating-populated, ready to
+fold in the same way once reviewed.
+
+**Correction en route, worth flagging:** while testing, my own redaction pattern on a pulled
+credential missed the decoded value in a parenthetical and printed the actual Instantly API
+secret into the conversation. That key (like the PlusVibe one shared earlier) should be rotated —
+noted here so it isn't lost.
+
+**Next Steps:**
+- Test-send both PlusVibe campaigns, confirm `{{custom_rating}}` and `{{custom_product_category}}` render
+- Fold in the 470 + ~178 leftover rating-ready leads as a second batch once reviewed
+- Retire the Instantly "Amazon Seller" draft once the PlusVibe version is confirmed working, so nobody launches it by accident
+- Rotate the Instantly API key (exposed in chat during testing)
+
+---
+
 ## 2026-08-25
 
 **Source:** Eikko — "move the campaign amazon seller we drafted on instantly to plusvibe."

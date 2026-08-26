@@ -41,8 +41,30 @@ Useful reads: `campaign/list?workspace_id=`, `campaign/get/status`, `campaign/ge
 
 ## Reusing for the other lists
 
-`sequences.py` holds Sequence B (product-category). The two star-rating lists — Amazon USA Product
-Review 2nd SMB (613) and Amazon Leads MAIN List (714) — need Sequence A from
-`OUTPUT/Campaign Tracking/Cüneyt - SellerVate Revised Sequences (Cleaned Database, 2026-08-21).md`,
-with `{{star_rating}}` mapped from the `Rating` column as `{{custom_star_rating}}`. Point
-`CSV_PATH` and `CAMP_NAME` in `migrate.py` at the right list.
+`sequences.py` holds Sequence B (product-category), built and live as `Amazon Seller UK/USA
+[MIGRATED]` (107 leads). `sequences_rating.py` + `migrate_rating.py` hold Sequence A (rating) and
+are already built and live as `Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]` (964 leads,
+2026-08-26) — pulled straight from the "Amazon Seller" campaign drafted in Instantly rather than
+the local markdown draft, so the shipped copy matches what's actually in the client's account.
+
+## Pulling from Instantly directly (used for the 964-lead rating campaign)
+
+Base `https://api.instantly.ai/api/v2`, auth via `Authorization: Bearer <key>` — the account's key
+decodes to a `uuid:secret` pair but the whole base64 string is what goes in the header, not the
+decoded parts. `api_key=` query-param auth (the old v1 scheme) 401s; don't bother with it.
+
+- `GET /campaigns?limit=100&starting_after=<cursor>` — list campaigns, paginated.
+- `GET /campaigns/{id}` — full detail including `sequences` (steps → variants → subject/body) and
+  `custom_variables` (the field names configured for that campaign, e.g. `Rating`, `Product Type`).
+- `POST /leads/list` with body `{"campaign": "<id>", "limit": 100, "starting_after": "<cursor>"}` —
+  full lead objects, personalization fields live under `payload` (e.g. `payload.Rating`,
+  `payload["Product Type"]`, `payload["Amazon URL"]`). `{"filter": {...}}` is NOT the right shape
+  for this endpoint (400s) — pass the campaign id as a top-level key.
+- `GET /campaigns/analytics?id=<id>` — per-campaign send stats (`emails_sent_count`, `bounced_count`,
+  etc.). A draft campaign that's never been launched returns `emails_sent_count: 0` — use this to
+  confirm a "drafted, never sent" campaign really has zero send history before treating its leads as
+  untouched.
+- Campaign `status`: 0=Draft, 1=Active, 2=Paused, 3=Completed, 4=Running Subsequences. The
+  lead-level `status` field is a **separate**, undocumented enum — don't assume it maps the same way;
+  use `status_summary` (non-empty = has a `lastStep`, i.e. has been sent to before) as the reliable
+  signal for "already contacted somewhere," not the raw status code.
