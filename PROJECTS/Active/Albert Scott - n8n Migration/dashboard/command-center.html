@@ -1,0 +1,1330 @@
+<title>Outbound Command Center</title>
+<style>
+  :root {
+    --ink: #1D0000;
+    --crimson: #B10548;
+    --pink: #E51958;
+    --bg: #F2F2F2;
+    --surface: #FFFFFF;
+    --surface-alt: #FAFAFA;
+    --border: #E6E4E4;
+    --text: #1A1A1A;
+    --text-secondary: #5A5A5A;
+    --text-tertiary: #8A8A8A;
+    --chart-crimson: #B10548;
+    --chart-blue: #1F6FEB;
+    --chart-amber: #B26A00;
+    --chart-purple: #7A3BD1;
+    --chart-green: #4C7A1F;
+    --success: #137A4D; --success-bg: #E8F3ED;
+    --warning: #B8860B; --warning-bg: #F8F1DF;
+    --danger: #CC3311;  --danger-bg: #FBEAE6;
+    --neutral-bg: #EFEFEF;
+    --shadow-sm: 0 1px 2px rgba(29,0,0,.04);
+    --shadow-lg: 0 8px 24px rgba(29,0,0,.05);
+    --r-lg: 20px; --r-md: 14px; --r-sm: 9px;
+    --font: "Inter", -apple-system, "Segoe UI", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #150A0B;
+      --surface: #201113;
+      --surface-alt: #1A0E0F;
+      --border: #34191C;
+      --text: #F2EDED;
+      --text-secondary: #C9B9BA;
+      --text-tertiary: #8F7A7C;
+      --chart-crimson: #FF4D82;
+      --chart-blue: #5B9CFF;
+      --chart-amber: #E0A030;
+      --chart-purple: #B187EE;
+      --chart-green: #8FCB5C;
+      --success: #6FDDA9; --success-bg: #123526;
+      --warning: #F0C34D; --warning-bg: #3A2C10;
+      --danger: #FF8A75;  --danger-bg: #3A1613;
+      --neutral-bg: #2A1D1F;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #150A0B; --surface: #201113; --surface-alt: #1A0E0F; --border: #34191C;
+    --text: #F2EDED; --text-secondary: #C9B9BA; --text-tertiary: #8F7A7C;
+    --chart-crimson: #FF4D82; --chart-blue: #5B9CFF; --chart-amber: #E0A030;
+    --chart-purple: #B187EE; --chart-green: #8FCB5C;
+    --success: #6FDDA9; --success-bg: #123526;
+    --warning: #F0C34D; --warning-bg: #3A2C10;
+    --danger: #FF8A75; --danger-bg: #3A1613;
+    --neutral-bg: #2A1D1F;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.3); --shadow-lg: 0 8px 24px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text); font-family: var(--font);
+    font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  .tabular { font-variant-numeric: tabular-nums; }
+  svg.icon { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------- App shell ---------- */
+  .app { display: flex; min-height: 100vh; }
+
+  .rail {
+    width: 74px; flex: none; background: var(--ink); color: #fff;
+    position: sticky; top: 0; height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 16px 0; border-radius: 0 20px 20px 0;
+    z-index: 10;
+  }
+  .rail .mark {
+    width: 38px; height: 38px; border-radius: 11px;
+    background: linear-gradient(155deg, var(--crimson), var(--pink));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; letter-spacing: -0.02em; margin-bottom: 22px;
+  }
+  .rail nav { display: flex; flex-direction: column; gap: 6px; width: 100%; align-items: center; }
+  .rail .navbtn {
+    position: relative; width: 46px; height: 46px; border-radius: var(--r-sm);
+    display: flex; align-items: center; justify-content: center;
+    background: transparent; border: none; color: rgba(255,255,255,.62); cursor: pointer;
+  }
+  .rail .navbtn:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .rail .navbtn.active { background: #fff; color: var(--ink); }
+  .rail .navbtn .badge {
+    position: absolute; top: 2px; right: 4px; min-width: 15px; height: 15px; padding: 0 3px;
+    background: var(--pink); color: #fff; font-size: 9.5px; font-weight: 800;
+    border-radius: 999px; display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--ink);
+  }
+  .rail .spacer { flex: 1; }
+  .rail .profile {
+    width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.12);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;
+    color: #fff; border: none; cursor: pointer;
+  }
+
+  .main { flex: 1; min-width: 0; }
+
+  /* ---------- Topbar ---------- */
+  .topbar {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 28px; border-bottom: 1px solid var(--border);
+    background: var(--surface); position: sticky; top: 0; z-index: 5;
+  }
+  .search-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface-alt); border: 1px solid var(--border);
+    border-radius: 999px; padding: 8px 16px; width: 280px; color: var(--text-tertiary);
+  }
+  .search-pill input {
+    border: none; background: transparent; outline: none; font-size: 13.5px;
+    color: var(--text); width: 100%; font-family: inherit;
+  }
+  .search-pill input::placeholder { color: var(--text-tertiary); }
+  .topbar .today { font-size: 12.5px; color: var(--text-tertiary); font-weight: 500; }
+  .topbar .fill { flex: 1; }
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text-secondary); display: flex;
+    align-items: center; justify-content: center; cursor: pointer; text-decoration: none;
+    position: relative;
+  }
+  .icon-btn:hover { border-color: var(--pink); color: var(--pink); }
+  .icon-btn .dot { position: absolute; top: 6px; right: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--pink); }
+  .user-chip { display: flex; align-items: center; gap: 10px; padding-left: 6px; }
+  .user-chip .av {
+    width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;
+  }
+  .user-chip .who { line-height: 1.25; }
+  .user-chip .name { font-size: 13px; font-weight: 700; }
+  .user-chip .role { font-size: 11.5px; color: var(--text-tertiary); }
+
+  /* ---------- Content ---------- */
+  .content { padding: 26px 28px 64px; max-width: 1320px; }
+  .view { display: none; }
+  .view.active { display: block; }
+
+  .page-head { margin-bottom: 22px; }
+  .page-head h1 {
+    font-size: 27px; font-weight: 800; letter-spacing: -0.6px; margin: 0 0 4px;
+  }
+  .page-head p { margin: 0; color: var(--text-secondary); font-size: 14px; max-width: 62ch; }
+  .eyebrow {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.65px; color: var(--text-tertiary);
+    font-weight: 700; margin: 0 0 8px;
+  }
+
+  /* ---------- KPI row ---------- */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .kpi-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+    padding: 18px 20px; box-shadow: var(--shadow-sm), var(--shadow-lg);
+  }
+  .kpi-card.hero {
+    background: linear-gradient(150deg, var(--ink), var(--crimson));
+    border-color: transparent; color: #fff;
+  }
+  .kpi-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.65px; color: var(--text-tertiary); font-weight: 700; }
+  .kpi-card.hero .kpi-label { color: rgba(255,255,255,.7); }
+  .kpi-badge {
+    width: 30px; height: 30px; border-radius: 999px; background: var(--neutral-bg);
+    display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex: none;
+  }
+  .kpi-card.hero .kpi-badge { background: rgba(255,255,255,.16); color: #fff; }
+  .kpi-value { font-size: 31px; font-weight: 800; letter-spacing: -0.4px; }
+  .kpi-value .suffix { font-size: 15px; font-weight: 600; color: var(--text-tertiary); }
+  .kpi-card.hero .kpi-value .suffix { color: rgba(255,255,255,.75); }
+  .kpi-foot { margin-top: 12px; }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700;
+    padding: 3px 9px; border-radius: 999px;
+  }
+  .status-pill.success { background: var(--success-bg); color: var(--success); }
+  .status-pill.warning { background: var(--warning-bg); color: var(--warning); }
+  .status-pill.danger { background: var(--danger-bg); color: var(--danger); }
+  .status-pill.neutral { background: var(--neutral-bg); color: var(--text-secondary); }
+  .kpi-card.hero .status-pill { background: rgba(255,255,255,.18); color: #fff; }
+
+  /* ---------- Exception row ---------- */
+  .exc-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 22px; }
+  .exc-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+    padding: 15px 16px; box-shadow: var(--shadow-sm); cursor: pointer; text-align: left;
+    display: flex; gap: 12px; width: 100%; font-family: inherit;
+  }
+  .exc-card:hover { border-color: var(--pink); box-shadow: var(--shadow-lg); }
+  .exc-card .badge {
+    width: 34px; height: 34px; border-radius: var(--r-sm); background: var(--warning-bg); color: var(--warning);
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .exc-card .badge.danger { background: var(--danger-bg); color: var(--danger); }
+  .exc-card .txt { min-width: 0; }
+  .exc-card .num { font-size: 19px; font-weight: 800; }
+  .exc-card .title { font-size: 12.5px; font-weight: 700; margin: 1px 0 3px; }
+  .exc-card .desc { font-size: 12px; color: var(--text-tertiary); line-height: 1.4; }
+
+  /* ---------- Chart cards ---------- */
+  .chart-row { display: grid; grid-template-columns: 1.55fr 1fr; gap: 16px; margin-bottom: 22px; align-items: start; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm), var(--shadow-lg); overflow: hidden;
+  }
+  .card-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 16px 20px; border-bottom: 1px solid var(--border);
+  }
+  .card-head h2 { font-size: 16.5px; font-weight: 750; margin: 0; }
+  .card-head .meta { font-size: 12px; color: var(--text-tertiary); }
+  .card-body { padding: 18px 20px 20px; }
+  .toggle-btn {
+    font-size: 11.5px; font-weight: 700; color: var(--text-secondary); background: var(--surface-alt);
+    border: 1px solid var(--border); border-radius: 999px; padding: 5px 11px; cursor: pointer;
+  }
+  .toggle-btn:hover { border-color: var(--pink); color: var(--pink); }
+  .plain-table { display: none; margin-top: 14px; }
+  .plain-table.show { display: block; }
+
+  .donut-wrap { display: flex; align-items: center; gap: 22px; }
+  .donut {
+    width: 132px; height: 132px; border-radius: 50%; flex: none; position: relative;
+  }
+  .donut .hole {
+    position: absolute; inset: 22px; border-radius: 50%; background: var(--surface);
+  }
+  .legend { display: flex; flex-direction: column; gap: 9px; flex: 1; min-width: 0; }
+  .legend .row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; }
+  .legend .swatch { width: 9px; height: 9px; border-radius: 3px; flex: none; }
+  .legend .lbl { color: var(--text-secondary); flex: 1; }
+  .legend .val { font-weight: 700; }
+
+  /* ---------- Data table card ---------- */
+  .table-card { padding: 0; margin-bottom: 22px; }
+  .table-title-bar {
+    display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid var(--border);
+  }
+  .table-title-bar h2 { font-size: 16.5px; font-weight: 750; margin: 0; }
+  .table-title-bar .count {
+    font-size: 11.5px; font-weight: 700; color: var(--text-secondary); background: var(--surface-alt);
+    border: 1px solid var(--border); border-radius: 999px; padding: 2px 9px;
+  }
+  .table-title-bar .fill { flex: 1; }
+  .btn-action {
+    font-size: 12.5px; font-weight: 700; color: #fff; background: var(--crimson);
+    border: none; border-radius: var(--r-sm); padding: 8px 14px; cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-action:hover { background: var(--pink); }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 20px 0; }
+  .chip {
+    font-size: 12px; font-weight: 700; background: var(--surface-alt); border: 1px solid var(--border);
+    color: var(--text-secondary); border-radius: 999px; padding: 6px 13px; cursor: pointer;
+  }
+  .chip:hover { border-color: var(--crimson); color: var(--text); }
+  .chip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  .subnav { display: flex; gap: 6px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 999px; padding: 4px; width: fit-content; margin-bottom: 18px; }
+  .subnav-btn {
+    font-size: 12.5px; font-weight: 700; color: var(--text-secondary); background: transparent; border: none;
+    border-radius: 999px; padding: 7px 16px; cursor: pointer; display: flex; align-items: center; gap: 7px;
+  }
+  .subnav-btn:hover { color: var(--text); }
+  .subnav-btn.active { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+  .subnav-badge {
+    background: var(--pink); color: #fff; font-size: 10px; font-weight: 800; min-width: 16px; height: 16px;
+    border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; padding: 0 4px;
+  }
+  .subview { display: none; }
+  .subview.active { display: block; }
+  .legend-key {
+    display: flex; flex-wrap: wrap; gap: 16px; padding: 12px 20px 0; font-size: 11.5px; color: var(--text-tertiary);
+  }
+  .legend-key .row { display: flex; align-items: center; gap: 6px; }
+  .legend-key .swatch { width: 8px; height: 8px; border-radius: 2px; }
+  .table-scroll { overflow-x: auto; padding: 14px 20px 18px; }
+  table.data { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 640px; }
+  table.data th {
+    text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--text-tertiary); font-weight: 700; padding: 0 10px 8px 0; border-bottom: 1px solid var(--border);
+    cursor: pointer; user-select: none; white-space: nowrap;
+  }
+  table.data th:hover { color: var(--text); }
+  table.data th.sort-active { color: var(--crimson); }
+  table.data th .arrow { font-size: 9px; opacity: .55; margin-left: 2px; }
+  table.data td { padding: 9px 10px 9px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data td.num { font-family: inherit; text-align: left; white-space: nowrap; }
+  .pill { display: inline-block; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+  .pill.good { background: var(--success-bg); color: var(--success); }
+  .pill.warn { background: var(--warning-bg); color: var(--warning); }
+  .pill.bad { background: var(--danger-bg); color: var(--danger); }
+  .pill.idle { background: var(--neutral-bg); color: var(--text-secondary); }
+  .faint { color: var(--text-tertiary); }
+  .days-tag { font-size: 10.5px; color: var(--text-tertiary); display: block; margin-top: 2px; }
+  #overdueEmpty { display: none; color: var(--text-tertiary); font-size: 13px; padding: 4px 20px 18px; }
+
+  .flag-note {
+    margin: 0 20px 16px; background: var(--warning-bg); border-radius: var(--r-sm);
+    padding: 11px 14px; font-size: 12.5px; color: var(--text);
+  }
+  .flag-note strong { color: var(--warning); }
+  .info-note {
+    margin: 0 20px 16px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: var(--r-sm);
+    padding: 11px 14px; font-size: 12.5px; color: var(--text-secondary);
+  }
+
+  /* ---------- Placeholder / not-built sections ---------- */
+  .placeholder {
+    background: var(--surface); border: 1px dashed var(--border); border-radius: var(--r-lg);
+    padding: 40px 30px; text-align: center; color: var(--text-secondary);
+  }
+  .placeholder .icon-lg {
+    width: 46px; height: 46px; border-radius: var(--r-sm); background: var(--surface-alt);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; color: var(--text-tertiary);
+  }
+  .placeholder h3 { margin: 0 0 8px; font-size: 15px; }
+  .placeholder p { margin: 0 auto; max-width: 48ch; font-size: 13px; color: var(--text-tertiary); }
+
+  .automations { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--border); border-top: 1px solid var(--border); }
+  .automations .a { background: var(--surface); padding: 16px 20px; }
+  .automations .a .name { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .automations .a .desc { font-size: 12px; color: var(--text-tertiary); }
+
+  .score-hero { display: flex; align-items: center; gap: 22px; padding: 4px 0 6px; }
+  .score-ring { width: 96px; height: 96px; border-radius: 50%; flex: none; position: relative; }
+  .score-ring .hole { position: absolute; inset: 15px; border-radius: 50%; background: var(--surface); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+  .score-ring .hole b { font-size: 20px; font-weight: 800; }
+  .score-ring .hole span { font-size: 9px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .5px; }
+
+  footer.app-footer {
+    padding: 18px 28px 40px; font-size: 12px; color: var(--text-tertiary);
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border); margin-top: 8px;
+  }
+  footer.app-footer a { color: var(--text-secondary); }
+
+  @media (max-width: 980px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .exc-row { grid-template-columns: 1fr; }
+    .chart-row { grid-template-columns: 1fr; }
+    .search-pill { width: 180px; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
+
+<div class="app">
+
+  <aside class="rail">
+    <div class="mark">AS</div>
+    <nav id="railNav">
+      <button type="button" class="navbtn active" data-view="overview" title="Overview">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+      </button>
+      <button type="button" class="navbtn" data-view="smartlead" title="SmartLead">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6.5 8-6.5"/></svg>
+      </button>
+      <button type="button" class="navbtn" data-view="pipedrive" title="Pipedrive">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16l-6 8.5V19l-4 2v-8.5Z"/></svg>
+        <span class="badge">103</span>
+      </button>
+      <button type="button" class="navbtn" data-view="automation" title="Automation Log">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M13 3 4 14h6l-1 7 9-11h-6z"/></svg>
+      </button>
+      <button type="button" class="navbtn" data-view="seo" title="SEO">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.7-4.7"/></svg>
+      </button>
+      <button type="button" class="navbtn" data-view="linkedin" title="LinkedIn Outreach">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3.2c0-1 .8-1.8 2-1.8s2 .8 2 1.8V16"/></svg>
+      </button>
+      <button type="button" class="navbtn" data-view="smartscout" title="SmartScout">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/><circle cx="12" cy="12" r="2"/></svg>
+      </button>
+      <button type="button" class="navbtn" data-view="general" title="General / Software">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H10a1.7 1.7 0 0 0 1-1.6V4a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V10a1.7 1.7 0 0 0 1.6 1H20a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1Z"/></svg>
+      </button>
+    </nav>
+    <div class="spacer"></div>
+    <button type="button" class="profile" title="Yoni Lebovits">YL</button>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="search-pill">
+        <svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.7-4.7"/></svg>
+        <input id="searchInput" type="text" placeholder="Search campaigns, leads, domains…">
+      </div>
+      <span class="today">Wednesday, Aug 26 2026 · Synced 12:21 UTC (daily refresh)</span>
+      <div class="fill"></div>
+      <button type="button" class="icon-btn" title="3 items need attention">
+        <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M6 8a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
+        <span class="dot"></span>
+      </button>
+      <div class="user-chip">
+        <div class="av">YL</div>
+        <div class="who"><div class="name">Yoni Lebovits</div><div class="role">Owner</div></div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ============ OVERVIEW ============ -->
+      <section class="view active" id="view-overview">
+        <div class="page-head">
+          <h1>Sales &amp; Marketing Command Center</h1>
+          <p>What happened, what needs attention, and where to click — across SmartLead, Pipedrive, SEO and the automation stack. Phase 1 of the approved build.</p>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card hero">
+            <div class="kpi-top">
+              <div class="kpi-label">Overdue Pipedrive activities</div>
+              <div class="kpi-badge"><svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            </div>
+            <div class="kpi-value tabular">103</div>
+            <div class="kpi-foot"><span class="status-pill">Oldest: 85 days</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-label">Unread Master Inbox replies</div>
+              <div class="kpi-badge"><svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6.5 8-6.5"/></svg></div>
+            </div>
+            <div class="kpi-value tabular">23</div>
+            <div class="kpi-foot"><span class="status-pill warning">Oldest: 95 days</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-label">Automation runs logged</div>
+              <div class="kpi-badge"><svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><path d="M13 3 4 14h6l-1 7 9-11h-6z"/></svg></div>
+            </div>
+            <div class="kpi-value tabular">0</div>
+            <div class="kpi-foot"><span class="status-pill danger">No platform since n8n retired</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-label">Connected inboxes</div>
+              <div class="kpi-badge"><svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><path d="M4 4h16v16H4z"/><path d="m4 5 8 7 8-7"/></svg></div>
+            </div>
+            <div class="kpi-value tabular">111</div>
+            <div class="kpi-foot"><span class="status-pill success">111/111 confirmed</span></div>
+          </div>
+        </div>
+
+        <p class="eyebrow" style="margin: 4px 0 10px;">Needs a decision</p>
+        <div class="exc-row">
+          <button type="button" class="exc-card" data-goto="pipedrive">
+            <div class="badge"><svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px;"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+            <div class="txt">
+              <div class="num tabular">2 owners</div>
+              <div class="title">Pipedrive owner IDs unmapped</div>
+              <div class="desc">25102178 (49 overdue) / 25109251 (53 overdue) don't resolve to names — confirm in Pipedrive → Settings → Users.</div>
+            </div>
+          </button>
+          <button type="button" class="exc-card" data-goto="automation">
+            <div class="badge danger"><svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px;"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>
+            <div class="txt">
+              <div class="num tabular">No platform</div>
+              <div class="title">n8n retired 2026-08-26</div>
+              <div class="desc">Reply-triage across SmartLead and LinkedIn is manual for now — no automation platform has replaced n8n yet.</div>
+            </div>
+          </button>
+          <button type="button" class="exc-card" data-goto="smartlead">
+            <div class="badge"><svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px;"><path d="M3 17V9l6 4 6-4v8"/><path d="M15 9h6v8"/></svg></div>
+            <div class="txt">
+              <div class="num tabular">179 campaigns</div>
+              <div class="title">Per-campaign metrics not pulled</div>
+              <div class="desc">Only the 16 active campaigns + 7-day account total are in. Full history is a Phase 1.1 pull.</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="chart-row">
+          <div class="card">
+            <div class="card-head">
+              <h2>Campaign status mix</h2>
+              <button type="button" class="toggle-btn" data-table-toggle="mixTable">Plain table</button>
+            </div>
+            <div class="card-body">
+              <svg viewBox="0 0 460 210" width="100%" height="210" role="img" aria-label="Campaign status bar chart">
+                <line x1="34" y1="20" x2="450" y2="20" stroke="var(--border)" stroke-width="1"/>
+                <line x1="34" y1="76.7" x2="450" y2="76.7" stroke="var(--border)" stroke-width="1"/>
+                <line x1="34" y1="133.3" x2="450" y2="133.3" stroke="var(--border)" stroke-width="1"/>
+                <line x1="34" y1="190" x2="450" y2="190" stroke="var(--border)" stroke-width="1.4"/>
+                <text x="26" y="24" text-anchor="end" font-size="9.5" fill="var(--text-tertiary)">150</text>
+                <text x="26" y="80.5" text-anchor="end" font-size="9.5" fill="var(--text-tertiary)">100</text>
+                <text x="26" y="137" text-anchor="end" font-size="9.5" fill="var(--text-tertiary)">50</text>
+                <text x="26" y="194" text-anchor="end" font-size="9.5" fill="var(--text-tertiary)">0</text>
+
+                <rect x="55" y="29.1" width="46" height="160.9" rx="6" fill="var(--chart-blue)"/>
+                <rect x="55" y="183.8" width="46" height="6" fill="var(--chart-blue)"/>
+                <text x="78" y="203" text-anchor="middle" font-size="10.5" fill="var(--text-secondary)">Completed</text>
+                <text x="78" y="23" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--text)">142</text>
+
+                <rect x="141" y="166.2" width="46" height="23.8" rx="6" fill="var(--chart-amber)"/>
+                <rect x="141" y="184" width="46" height="6" fill="var(--chart-amber)"/>
+                <text x="164" y="203" text-anchor="middle" font-size="10.5" fill="var(--text-secondary)">Paused</text>
+                <text x="164" y="160" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--text)">21</text>
+
+                <rect x="227" y="171.9" width="46" height="18.1" rx="6" fill="var(--chart-green)"/>
+                <rect x="227" y="184" width="46" height="6" fill="var(--chart-green)"/>
+                <text x="250" y="203" text-anchor="middle" font-size="10.5" fill="var(--text-secondary)">Active</text>
+                <text x="250" y="166" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--text)">16</text>
+
+                <rect x="313" y="180.9" width="46" height="9.1" rx="6" fill="var(--chart-purple)"/>
+                <rect x="313" y="184" width="46" height="6" fill="var(--chart-purple)"/>
+                <text x="336" y="203" text-anchor="middle" font-size="10.5" fill="var(--text-secondary)">Drafted</text>
+                <text x="336" y="175" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--text)">8</text>
+
+                <rect x="399" y="180.9" width="46" height="9.1" rx="6" fill="var(--chart-crimson)"/>
+                <rect x="399" y="184" width="46" height="6" fill="var(--chart-crimson)"/>
+                <text x="422" y="203" text-anchor="middle" font-size="10.5" fill="var(--text-secondary)">Stopped</text>
+                <text x="422" y="175" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--text)">8</text>
+              </svg>
+              <div class="plain-table" id="mixTable">
+                <table class="data"><thead><tr><th>Status</th><th>Campaigns</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>Completed</td><td class="num tabular">142</td><td class="num tabular">72.8%</td></tr>
+                  <tr><td>Paused</td><td class="num tabular">21</td><td class="num tabular">10.8%</td></tr>
+                  <tr><td>Active</td><td class="num tabular">16</td><td class="num tabular">8.2%</td></tr>
+                  <tr><td>Drafted</td><td class="num tabular">8</td><td class="num tabular">4.1%</td></tr>
+                  <tr><td>Stopped</td><td class="num tabular">8</td><td class="num tabular">4.1%</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h2>195 campaigns</h2>
+              <button type="button" class="toggle-btn" data-table-toggle="donutTable">Plain table</button>
+            </div>
+            <div class="card-body">
+              <div class="donut-wrap">
+                <div class="donut" style="background: conic-gradient(var(--chart-green) 0% 8.2%, var(--chart-blue) 8.2% 81.0%, var(--chart-amber) 81.0% 91.8%, var(--chart-purple) 91.8% 95.9%, var(--chart-crimson) 95.9% 100%);">
+                  <div class="hole"></div>
+                </div>
+                <div class="legend">
+                  <div class="row"><span class="swatch" style="background:var(--chart-green);"></span><span class="lbl">Active</span><span class="val tabular">16</span></div>
+                  <div class="row"><span class="swatch" style="background:var(--chart-blue);"></span><span class="lbl">Completed</span><span class="val tabular">142</span></div>
+                  <div class="row"><span class="swatch" style="background:var(--chart-amber);"></span><span class="lbl">Paused</span><span class="val tabular">21</span></div>
+                  <div class="row"><span class="swatch" style="background:var(--chart-purple);"></span><span class="lbl">Drafted</span><span class="val tabular">8</span></div>
+                  <div class="row"><span class="swatch" style="background:var(--chart-crimson);"></span><span class="lbl">Stopped</span><span class="val tabular">8</span></div>
+                </div>
+              </div>
+              <div class="plain-table" id="donutTable">
+                <table class="data"><thead><tr><th>Status</th><th>Campaigns</th></tr></thead>
+                <tbody>
+                  <tr><td>Active</td><td class="num tabular">16</td></tr>
+                  <tr><td>Completed</td><td class="num tabular">142</td></tr>
+                  <tr><td>Paused</td><td class="num tabular">21</td></tr>
+                  <tr><td>Drafted</td><td class="num tabular">8</td></tr>
+                  <tr><td>Stopped</td><td class="num tabular">8</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-title-bar">
+            <h2>Overdue Pipedrive follow-ups</h2>
+            <span class="count tabular">103</span>
+            <div class="fill"></div>
+            <a class="btn-action" href="https://app.pipedrive.com/activities/list" target="_blank" rel="noopener">Open in Pipedrive ↗</a>
+          </div>
+          <div class="chip-row" id="ownerFilterOverview" data-table="overview"></div>
+          <div class="legend-key">
+            <span class="row"><span class="swatch" style="background:var(--success);"></span>Call</span>
+            <span class="row"><span class="swatch" style="background:var(--warning);"></span>Task</span>
+            <span class="row"><span class="swatch" style="background:var(--text-tertiary);"></span>Meeting</span>
+          </div>
+          <div class="table-scroll">
+            <table class="data" id="overdueTable-overview">
+              <thead><tr>
+                <th data-key="0" class="sortable sort-active">Due <span class="arrow">▲</span></th>
+                <th data-key="2" class="sortable">Type</th>
+                <th>Subject</th>
+                <th data-key="4" class="sortable">Lead</th>
+                <th data-key="6" class="sortable">Owner</th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="faint" style="margin: 0 20px 16px; font-size:12px;">Showing the 12 oldest of 103 — <a href="#" data-goto="pipedrive" style="color:var(--crimson); font-weight:700; text-decoration:none;">open the full Pipedrive view</a> for all rows, filters and sort.</p>
+        </div>
+      </section>
+
+      <!-- ============ SMARTLEAD ============ -->
+      <section class="view" id="view-smartlead">
+        <div class="page-head">
+          <h1>SmartLead</h1>
+          <p>Outbound email campaigns, inboxes and domain health — pulled live from the Smartlead API, laid out to sort and compare in ways Smartlead's own UI doesn't.</p>
+        </div>
+
+        <div class="subnav" id="smartleadSubnav">
+          <button type="button" class="subnav-btn active" data-sub="campaigns">Campaigns</button>
+          <button type="button" class="subnav-btn" data-sub="inbox">Inbox monitor <span class="subnav-badge">2</span></button>
+        </div>
+
+        <div class="subview active" data-sub="campaigns">
+          <div class="kpi-row">
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Inboxes</div></div><div class="kpi-value tabular">111</div><div class="kpi-foot"><span class="status-pill success">All accounted for</span></div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Campaigns total</div></div><div class="kpi-value tabular">195</div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Active now</div></div><div class="kpi-value tabular">16</div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Unread replies</div></div><div class="kpi-value tabular">23</div><div class="kpi-foot"><span class="status-pill warning">Oldest 95d</span></div></div>
+          </div>
+
+          <div class="info-note" style="margin: 0 0 18px;"><strong style="color:var(--text);">Inbox count, resolved:</strong> the old dashboard showed "100/100" — that was a pagination page-size cap, not a real exclusion. Paging the Smartlead API at offsets 0/100/111 confirms the true total is <strong>111 active inboxes</strong>, all counted here.</div>
+
+          <div class="card table-card">
+            <div class="table-title-bar">
+              <h2>Campaigns</h2>
+              <span class="count tabular">195</span>
+              <div class="fill"></div>
+              <a class="btn-action" href="https://app.smartlead.ai" target="_blank" rel="noopener">Open Smartlead ↗</a>
+            </div>
+            <div class="chip-row" id="statusFilter">
+              <button type="button" class="chip active" data-status="all">All <span class="tabular">195</span></button>
+              <button type="button" class="chip" data-status="Active">Active <span class="tabular">16</span></button>
+              <button type="button" class="chip" data-status="Completed">Completed <span class="tabular">142</span></button>
+              <button type="button" class="chip" data-status="Paused">Paused <span class="tabular">21</span></button>
+              <button type="button" class="chip" data-status="Drafted">Drafted <span class="tabular">8</span></button>
+              <button type="button" class="chip" data-status="Stopped">Stopped <span class="tabular">8</span></button>
+            </div>
+            <div class="table-scroll">
+              <table class="data" id="campaignTable">
+                <thead><tr>
+                  <th data-key="0" class="sortable sort-active">Campaign <span class="arrow">▲</span></th>
+                  <th data-key="1" class="sortable">Owner</th>
+                  <th data-key="2" class="sortable">Status</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p id="campaignEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No campaigns match this filter/search.</p>
+            <div class="info-note">Only the 16 <strong>active</strong> campaigns and account-wide 7-day totals have been pulled so far — per-campaign sent/open/reply/bounce for all 195 (including the 179 completed/paused/stopped/drafted) is a heavier pull, flagged as a Phase 1.1 candidate rather than guessed at here.</div>
+          </div>
+
+          <div class="chart-row" style="grid-template-columns: 1fr 1fr;">
+            <div class="card">
+              <div class="card-head"><h2>Last 7 days — account-wide</h2></div>
+              <div class="card-body">
+                <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: 12px;">
+                  <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Sent</div><div class="kpi-value tabular" style="font-size:22px;">5,910</div></div>
+                  <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Open rate</div><div class="kpi-value tabular" style="font-size:22px;">49.9<span class="suffix">%</span></div></div>
+                  <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Reply rate</div><div class="kpi-value tabular" style="font-size:22px;">0.8<span class="suffix">%</span></div></div>
+                  <div class="kpi-card" style="padding:14px 16px;"><div class="kpi-label">Bounce rate</div><div class="kpi-value tabular" style="font-size:22px;">7.9<span class="suffix">%</span></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h2>Domains</h2><span class="meta">~51 domains</span></div>
+              <div class="card-body">
+                <div class="info-note" style="margin:0;">The old dashboard flagged some domains as <strong>"Deliverability Watch List"</strong> with no explanation of why. That domain-by-domain data hasn't been pulled into this build yet — showing an unexplained label here would repeat the same problem it's meant to fix. Needs a scoping pass: what should count as "flagged" (bounce rate threshold? spam complaints? blocklist hits?) before this section goes live with real reasons attached.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subview" data-sub="inbox">
+          <div class="flag-note" style="margin: 0 0 18px;"><strong>No automation platform</strong> — n8n was retired as the automation platform for Albert Scott on 2026-08-26, so nothing here classifies or syncs to Pipedrive automatically. The two rows below were <strong>manually run through the same triage logic by Claude on 2026-08-25</strong> to prove the categorization + Pipedrive-sync rules work correctly, ahead of whatever platform ends up running this unattended; everything else in the Master Inbox is still sitting unclassified. Those 2 are no longer counted in "Unread in Master Inbox" below — Smartlead marked them read once reviewed, so all 23 currently unread are still fully unclassified.</div>
+
+          <div class="kpi-row">
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Unread in Master Inbox</div></div><div class="kpi-value tabular">23</div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Manually QA'd</div></div><div class="kpi-value tabular">2</div><div class="kpi-foot"><span class="status-pill success">Logic verified</span></div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Auto-classified</div></div><div class="kpi-value tabular">0</div><div class="kpi-foot"><span class="status-pill danger">No platform</span></div></div>
+            <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Awaiting classification</div></div><div class="kpi-value tabular">23</div></div>
+          </div>
+
+          <div class="card table-card">
+            <div class="table-title-bar">
+              <h2>Reply → category → Pipedrive sync</h2>
+              <span class="count tabular" id="qaCount">2</span>
+              <div class="fill"></div>
+              <a class="btn-action" href="https://app.pipedrive.com" target="_blank" rel="noopener">Open Pipedrive ↗</a>
+            </div>
+            <div class="chip-row" id="qaCategoryFilter">
+              <button type="button" class="chip active" data-cat="all">All <span class="tabular">2</span></button>
+              <button type="button" class="chip" data-cat="Interested">Interested <span class="tabular">1</span></button>
+              <button type="button" class="chip" data-cat="Not interested">Not interested <span class="tabular">1</span></button>
+            </div>
+            <div class="legend-key">
+              <span class="row"><span class="swatch" style="background:var(--success);"></span>Interested</span>
+              <span class="row"><span class="swatch" style="background:var(--text-tertiary);"></span>Not interested</span>
+            </div>
+            <div class="table-scroll">
+              <table class="data" style="min-width:760px;">
+                <thead><tr><th>Lead</th><th>Campaign</th><th>Category assigned</th><th>Pipedrive action</th><th>Verified</th></tr></thead>
+                <tbody id="qaBody"></tbody>
+              </table>
+            </div>
+            <p id="qaEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No replies match this filter.</p>
+            <div class="info-note">Rule confirmed working: "Not interested" replies block the domain only and skip Pipedrive, per <code>CLIENT PROFILES/Yoni - Profile (Albert Scott).md</code> — this deviates from a literal "add every reply to Pipedrive" reading, flagged to Eikko rather than guessed at silently.</div>
+          </div>
+
+          <div class="card table-card">
+            <div class="table-title-bar">
+              <h2>Unread — awaiting classification</h2>
+              <span class="count tabular" id="awaitingCount">5</span>
+              <span class="meta" style="margin-left:2px;">of 23</span>
+            </div>
+            <div class="chip-row" id="awaitingOwnerFilter">
+              <button type="button" class="chip active" data-owner="all">All <span class="tabular">5</span></button>
+              <button type="button" class="chip" data-owner="Rachel">Rachel <span class="tabular">5</span></button>
+              <button type="button" class="chip" data-owner="Unassigned">Unassigned <span class="tabular">0</span></button>
+            </div>
+            <div class="table-scroll">
+              <table class="data" style="min-width:640px;">
+                <thead><tr><th>Lead</th><th>Campaign</th><th>Waiting</th><th>Status</th></tr></thead>
+                <tbody id="awaitingBody"></tbody>
+              </table>
+            </div>
+            <p id="awaitingEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No replies match this filter.</p>
+            <div class="info-note">Only the oldest 5 of 23 still-unread replies are loaded into this build. Owner is now read directly off each Smartlead campaign's real name prefix ("Rachel - …" / "Eikko - …") rather than inferred from active-campaign-list membership — a real fix over the previous guess, which had wrongly shown some of these as Unassigned. These stay "not yet classified" until an automation platform actually runs this — showing them as "done" before that would misrepresent what's happened.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PIPEDRIVE ============ -->
+      <section class="view" id="view-pipedrive">
+        <div class="page-head">
+          <h1>Pipedrive</h1>
+          <p>Every overdue activity, filterable by owner, sortable by any column. Due-today and upcoming views need a fresh pull — only overdue has been pulled this pass.</p>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card hero"><div class="kpi-top"><div class="kpi-label">Overdue</div></div><div class="kpi-value tabular">103</div></div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">— Calls</div></div><div class="kpi-value tabular">93</div></div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">— Tasks</div></div><div class="kpi-value tabular">7</div></div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">— Meetings</div></div><div class="kpi-value tabular">3</div></div>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-title-bar">
+            <h2>Overdue activities</h2>
+            <span class="count tabular" id="pdCount">103</span>
+            <div class="fill"></div>
+            <a class="btn-action" href="https://app.pipedrive.com/activities/list" target="_blank" rel="noopener">Open in Pipedrive ↗</a>
+          </div>
+          <div class="chip-row" id="ownerFilterFull" data-table="full"></div>
+          <div class="legend-key">
+            <span class="row"><span class="swatch" style="background:var(--success);"></span>Call</span>
+            <span class="row"><span class="swatch" style="background:var(--warning);"></span>Task</span>
+            <span class="row"><span class="swatch" style="background:var(--text-tertiary);"></span>Meeting</span>
+          </div>
+          <div class="table-scroll">
+            <table class="data" id="overdueTable-full">
+              <thead><tr>
+                <th data-key="0" class="sortable sort-active">Due <span class="arrow">▲</span></th>
+                <th data-key="2" class="sortable">Type</th>
+                <th>Subject</th>
+                <th data-key="4" class="sortable">Lead</th>
+                <th data-key="6" class="sortable">Owner</th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p id="overdueEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 4px 20px 18px;">No overdue activities for this owner.</p>
+          <div class="flag-note"><strong>Open question:</strong> Pipedrive has no user-directory lookup available this session, so owner IDs <code>25102178</code> (Owner A, 49 overdue) and <code>25109251</code> (Owner B, 53 overdue) couldn't be matched to real names — sampling linked contacts found no clean US/Europe split either. Confirm in Pipedrive → Settings → Users and this maps to names on the next sync.</div>
+        </div>
+
+        <div class="info-note">"Pipedrive Sync" and "BlueDot" boxes from the old dashboard aren't included here — no one could confirm what either one tracked, and per Yoni's own instruction, an unexplained widget gets dropped rather than guessed at. Revisit if either turns out to matter.</div>
+      </section>
+
+      <!-- ============ AUTOMATION LOG ============ -->
+      <section class="view" id="view-automation">
+        <div class="page-head">
+          <h1>Claude Activity / Automation Log</h1>
+          <p>Every lead Claude categorizes, updates, or moves — filterable by date, channel, and category. No automation runs unattended yet; this tracks Claude's manual review passes across SmartLead and LinkedIn until a platform does.</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 18px;">
+          <div class="card-head">
+            <h2>Run history</h2>
+          </div>
+          <div class="card-body" style="text-align:center; padding: 40px 20px;">
+            <p class="eyebrow" style="margin-bottom:10px;">No automated runs — n8n retired 2026-08-26</p>
+            <p style="max-width: 56ch; margin: 0 auto; color: var(--text-secondary); font-size: 13.5px;">n8n was built out for this client (51 nodes, SmartLead reply-triage + Calendly→Pipedrive) but never went live — the workflow's test run 2026-08-25 failed on missing credentials, and Eikko retired n8n as the platform for Albert Scott the next day before those credentials were ever created. Zero runs were ever logged. No replacement platform has been chosen yet, so every action below is a manual review pass by Claude, not an automated one.</p>
+            <div style="display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap;">
+              <a class="btn-action" style="background: var(--surface-alt); color: var(--text); border:1px solid var(--border);" href="https://docs.google.com/spreadsheets/d/1cEXs1sX0_Zdy08xq2iBvYmziOLd68OI-yeygzBR1BaU/edit" target="_blank" rel="noopener">Run log sheet (unused)</a>
+              <a class="btn-action" style="background: var(--surface-alt); color: var(--text); border:1px solid var(--border);" href="https://claude.ai/code/artifact/53a35471-298c-4fe1-b944-c5ed2e319df3" target="_blank" rel="noopener">n8n feasibility writeup (superseded)</a>
+            </div>
+          </div>
+          <div class="automations">
+            <div class="a"><div class="name">SmartLead reply triage</div><div class="desc">Retired 2026-08-26 (was built in n8n, never went live). Manual reviews are logged in the table below instead.</div></div>
+            <div class="a"><div class="name">LinkedIn reply review (HeyReach)</div><div class="desc">No automation exists — every unread conversation is read and categorized by hand, logged below.</div></div>
+            <div class="a"><div class="name">Calendly → Pipedrive</div><div class="desc">Retired 2026-08-26 (was built in n8n, never went live). Bookings are currently handled manually.</div></div>
+          </div>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-title-bar">
+            <h2>Recent manual reviews</h2>
+            <span class="count tabular" id="logCount">8</span>
+          </div>
+          <div class="chip-row" id="logChannelFilter">
+            <button type="button" class="chip active" data-channel="all">All <span class="tabular">8</span></button>
+            <button type="button" class="chip" data-channel="SmartLead">SmartLead <span class="tabular">2</span></button>
+            <button type="button" class="chip" data-channel="LinkedIn">LinkedIn <span class="tabular">6</span></button>
+          </div>
+          <div class="table-scroll">
+            <table class="data" style="min-width:760px;">
+              <thead><tr><th>Date</th><th>Channel</th><th>Lead</th><th>Category</th><th>Action taken</th></tr></thead>
+              <tbody id="logBody"></tbody>
+            </table>
+          </div>
+          <div class="info-note">All rows here are manual review passes by Claude, not automated runs — labeled by channel so this doubles as the LinkedIn reply log Yoni asked for, not just SmartLead's.</div>
+        </div>
+      </section>
+
+      <!-- ============ SEO ============ -->
+      <section class="view" id="view-seo">
+        <div class="page-head">
+          <h1>SEO</h1>
+          <p>Pulled live from albertscott.com's own AIOSEO REST API. Sent for Yoni's review — nothing has been changed on the live site yet.</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 18px;">
+          <div class="card-body score-hero">
+            <div class="score-ring" style="background: conic-gradient(var(--chart-green) 0% 53.2%, var(--neutral-bg) 53.2% 100%);">
+              <div class="hole"><b>53%</b><span>Health</span></div>
+            </div>
+            <div>
+              <div class="title" style="font-weight:800; font-size:16px; margin-bottom:4px;">719 passed · 351 warnings · 282 errors</div>
+              <div class="faint" style="font-size:13px;">113 objects scanned (57 pages, 24 projects, 13 posts, 19 taxonomy terms) — 100% of indexed content.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exc-row" style="grid-template-columns: 1fr 1fr;">
+          <div class="exc-card" style="cursor:default;">
+            <div class="badge danger"><svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px;"><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div>
+            <div class="txt"><div class="num tabular">113/113</div><div class="title">Missing Open Graph tags</div><div class="desc">Every page shares with no preview image on Facebook/LinkedIn/Slack. One global fix (default OG image) clears the whole bucket.</div></div>
+          </div>
+          <div class="exc-card" style="cursor:default;">
+            <div class="badge danger"><svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px;"><path d="M4 4h16v16H4z"/></svg></div>
+            <div class="txt"><div class="num tabular">86</div><div class="title">Images missing alt text</div><div class="desc">Accessibility + image-search gap, mechanical fix across the site.</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <p style="margin:0 0 12px; font-size:13.5px; color:var(--text-secondary);">Full findings, business impact, and a proposed fix per item are in the client-facing review — nothing acts until Yoni signs off on which items to proceed with.</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn-action" href="https://claude.ai/code/artifact/e5ad0e7a-9808-40e4-8fd3-f535de6a6584" target="_blank" rel="noopener">Open SEO review for Yoni ↗</a>
+              <a class="btn-action" style="background: var(--surface-alt); color: var(--text); border:1px solid var(--border);" href="https://docs.google.com/" target="_blank" rel="noopener" onclick="return false;" title="See PROJECTS/Active/Albert Scott - n8n Migration/SEO Health Check - Albert Scott (2026-08-26).pdf in the repo">PDF report (in repo)</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ LINKEDIN (deferred) ============ -->
+      <section class="view" id="view-linkedin">
+        <div class="page-head">
+          <h1>LinkedIn Outreach</h1>
+          <p>Pulled live from HeyReach (workspace API key connected 2026-08-26) — Yoni's and Rachel's LinkedIn accounts, one active campaign.</p>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card hero">
+            <div class="kpi-top">
+              <div class="kpi-label">Connections sent (6 days)</div>
+              <div class="kpi-badge"><svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 8h5M18.5 5.5v5"/></svg></div>
+            </div>
+            <div class="kpi-value tabular">111</div>
+            <div class="kpi-foot"><span class="status-pill">11 accepted · 9.9%</span></div>
+          </div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Message reply rate</div></div><div class="kpi-value tabular">18.2<span class="suffix">%</span></div><div class="kpi-foot"><span class="status-pill neutral">2 replies / 11 started</span></div></div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Auto-tagged interested</div></div><div class="kpi-value tabular">1</div></div>
+          <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Unread in inbox</div></div><div class="kpi-value tabular">6</div><div class="kpi-foot"><span class="status-pill warning">of 80 conversations</span></div></div>
+        </div>
+
+        <div class="card" style="margin-bottom: 18px;">
+          <div class="card-head">
+            <h2>Global Brands</h2>
+            <span class="meta">Started 2026-08-20 · list "Global Brands 4"</span>
+          </div>
+          <div class="card-body">
+            <div style="display:flex; height:14px; border-radius:7px; overflow:hidden; background:var(--surface-alt); margin-bottom:10px;">
+              <span style="width:91.0%; background:var(--text-tertiary);" title="Pending 1815"></span>
+              <span style="width:7.8%; background:var(--chart-blue);" title="In progress 156"></span>
+              <span style="width:1.1%; background:var(--danger);" title="Failed 22"></span>
+              <span style="width:0.1%; background:var(--success);" title="Finished 2"></span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12.5px; color:var(--text-secondary); margin-bottom:16px;">
+              <span><span class="swatch" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--text-tertiary);margin-right:5px;"></span>Pending 1,815</span>
+              <span><span class="swatch" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--chart-blue);margin-right:5px;"></span>In progress 156</span>
+              <span><span class="swatch" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--danger);margin-right:5px;"></span>Failed 22</span>
+              <span><span class="swatch" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--success);margin-right:5px;"></span>Finished 2</span>
+              <span class="faint">1,995 total leads</span>
+            </div>
+            <div class="table-scroll" style="padding:0;">
+              <table class="data">
+                <thead><tr><th>Sender</th><th>LinkedIn</th><th>Daily connection limit</th><th>Navigator</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Yoni Lebovits</td>
+                    <td><a href="https://www.linkedin.com/in/yoni-lebovits-932855149" target="_blank" rel="noopener" style="color:var(--crimson); text-decoration:none;">Profile ↗</a></td>
+                    <td class="num tabular">22 / 40</td>
+                    <td><span class="pill good">Valid</span></td>
+                    <td><span class="pill good">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Rachel Safra</td>
+                    <td><a href="https://www.linkedin.com/in/ssafrareis" target="_blank" rel="noopener" style="color:var(--crimson); text-decoration:none;">Profile ↗</a></td>
+                    <td class="num tabular">25 / 40</td>
+                    <td><span class="pill good">Valid</span></td>
+                    <td><span class="pill good">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-title-bar">
+            <h2>Inbox — unread</h2>
+            <span class="count tabular" id="liCount">6</span>
+            <span class="meta" style="margin-left:2px;">of 80 total conversations</span>
+          </div>
+          <div class="chip-row" id="liOwnerFilter">
+            <button type="button" class="chip active" data-owner="all">All <span class="tabular">6</span></button>
+            <button type="button" class="chip" data-owner="Yoni">Yoni <span class="tabular">6</span></button>
+            <button type="button" class="chip" data-owner="Rachel">Rachel <span class="tabular">0</span></button>
+          </div>
+          <div class="table-scroll">
+            <table class="data" style="min-width:760px;">
+              <thead><tr><th>Contact</th><th>Company</th><th>Owner</th><th>Last message</th><th>When</th></tr></thead>
+              <tbody id="liBody"></tbody>
+            </table>
+          </div>
+          <p id="liEmpty" style="display:none; color:var(--text-tertiary); font-size:13px; padding: 0 20px 18px;">No unread conversations for this owner.</p>
+          <div class="info-note">One of these — Claire Boggs (Tremendous) — is an inbound vendor pitch to Yoni, not a prospect reply; flagged rather than counted as real outreach backlog. The rest are declines (wrong region, wrong Amazon marketplace, no US focus) — none from this batch are tagged Interested. No automation touches LinkedIn replies yet; this is a manual-read view only.</div>
+        </div>
+      </section>
+
+      <!-- ============ SMARTSCOUT (deferred) ============ -->
+      <section class="view" id="view-smartscout">
+        <div class="page-head"><h1>SmartScout</h1><p>Deferred to a later phase.</p></div>
+        <div class="placeholder">
+          <div class="icon-lg"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <h3>No connector or prior integration found</h3>
+          <p>Nothing in this workspace shows what SmartScout access looks like. Needs Yoni to confirm account/API access before this is buildable — flagged in the approved PRD's open questions.</p>
+        </div>
+      </section>
+
+      <!-- ============ GENERAL / SOFTWARE ============ -->
+      <section class="view" id="view-general">
+        <div class="page-head">
+          <h1>General — Software &amp; Infrastructure</h1>
+          <p>What we're running and what we're paying for. Structure only — costs, seats and renewal dates need Yoni/Eikko to populate; nothing here was guessed. Passwords are never shown — every login links out to wherever the credential actually lives.</p>
+        </div>
+        <div class="card table-card">
+          <div class="table-title-bar"><h2>Stack inventory</h2><span class="count tabular">7 known</span></div>
+          <div class="table-scroll">
+            <table class="data" style="min-width:900px;">
+              <thead><tr><th>Software</th><th>Purpose</th><th>Monthly cost</th><th>Seats / accounts</th><th>Login</th><th>Owner</th></tr></thead>
+              <tbody>
+                <tr><td>Smartlead</td><td>Outbound email sending, 111 inboxes / 195 campaigns</td><td class="faint">Not recorded</td><td>1 workspace, 111 inboxes, ~51 domains</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
+                <tr><td>Pipedrive</td><td>CRM — pipeline, activities, follow-ups</td><td class="faint">Not recorded</td><td>2+ users (Yoni + 1 unmapped owner)</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
+                <tr><td>HeyReach</td><td>LinkedIn outreach — connections, messaging, inbox</td><td class="faint">Not recorded</td><td>2 LinkedIn senders (Yoni, Rachel), 1 workspace</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
+                <tr style="opacity:.6;"><td>n8n (Eikko's cloud)</td><td><span class="pill idle">Retired 2026-08-26</span> — was being built for reply-triage + Calendly→Pipedrive, never went live</td><td class="faint">Not recorded</td><td>1 workspace</td><td class="faint">1Password / Notion</td><td>Eikko</td></tr>
+                <tr><td>WordPress + AIOSEO Pro</td><td>albertscott.com hosting + on-page SEO engine</td><td class="faint">Not recorded</td><td>1 site, Administrator app password (sales)</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
+                <tr><td>Google Workspace</td><td>Sheets automation log (unused), Drive, Site Kit</td><td class="faint">Not recorded</td><td class="faint">Not recorded</td><td class="faint">1Password / Notion</td><td>Yoni / Eikko</td></tr>
+                <tr><td>Calendly</td><td>Booking → Pipedrive sync (currently manual)</td><td class="faint">Not recorded</td><td class="faint">Not recorded</td><td class="faint">1Password / Notion</td><td>Yoni</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="info-note">Costs, renewal dates, and exact seat counts are a Yoni/Eikko data-gathering pass, not something Claude can pull from any connector — flagged as a non-goal in the approved PRD for this reason.</div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="app-footer">
+      <span>Phase 1 of the approved PRD, restyled to the Outbound Command Center design system — LinkedIn, SmartScout and the software registry inventory remain deferred.</span>
+      <span>Data: SmartLead + Pipedrive connectors refreshed 2026-08-26 (daily-refresh Routine, fired 12:21 UTC) · AIOSEO/SEO data last live-pulled 2026-08-25/26, not part of this refresh</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  // [due, daysOverdue, type, subject, lead, domain, owner]
+  var ROWS = [["2026-06-02",85,"call","followup","Joe Zhao","gozleo.com","Owner A"],["2026-06-02",85,"call","followup","Ronald Pastor","globalbeautycare.com","Owner A"],["2026-06-02",85,"call","check in","Lucas","louistellier.com","Owner A"],["2026-06-02",85,"call","follow up","Prince Thomas","metashot.com","Owner A"],["2026-06-02",85,"call","check in","Roni Varghese","funskool.co.in","Owner A"],["2026-06-02",85,"call","check in","Gigi Steinbarth","lapreferida.com","Owner A"],["2026-06-02",85,"call","check in","Parker","wabashvalleyfarms.com","Owner A"],["2026-06-02",85,"call","Call scheduled?","Justin Fourie","flavafil.com","Owner A"],["2026-06-02",85,"call","call scheduled? check in","Rolin Kostya (Kostiantyn)","gmail.com","Owner A"],["2026-06-02",85,"call","follow up","Linda Lee","abamericacorp.com","Owner A"],["2026-06-03",84,"call","check in/how are things going","Michael Mackey","beanhut.com","Owner A"],["2026-06-03",84,"call","Call scheduled?","Lucia Escalona Lopez","sowetospice.co.za","Owner A"],["2026-06-03",84,"call","follow up","Nicholas Monette","rozvelt.com","Owner A"],["2026-06-23",64,"call","Check in/see how amazon activity going","Marc Brown","eatonoin.com","Owner A"],["2026-06-23",64,"call","follow up","Jennifer Morey","yespleasetreats.com","Owner A"],["2026-06-25",62,"call","reschedule call?","Boris Lu","solamex.com.cn","Owner A"],["2026-06-29",58,"call","follow up","Ken Schuffenhauer","lrultrasonics.com","Owner A"],["2026-06-29",58,"call","close loop","Benjamin Perisse","routin.com","Owner A"],["2026-06-29",58,"call","close loop","Adnan","hermanoscoffeeroasters.com","Owner A"],["2026-06-29",58,"call","close loop","Edy Piro","terrone.co.uk","Owner A"],["2026-06-29",58,"call","close loop","Karla Zuniga","adawall-usa.com","Owner A"],["2026-07-01",56,"call","Call","Will Penfold","routescoffee.co.uk","Owner A"],["2026-07-14",43,"call","Follow up Daniela Rodriguez","—","","Owner B"],["2026-07-14",43,"call","follow up tyler@thetattoozoo.com","—","","Owner B"],["2026-07-14",43,"call","Lead book a call: aorhan@targus.com","Ali Orhan","targus.com","Owner B"],["2026-07-15",42,"call","follow up","Lauren Rebar","naturallyhomegrownfoods.com","Owner B"],["2026-07-17",40,"call","follow up","Sabrina Tridico","auraselflove.com","Owner A"],["2026-07-20",37,"call","close loop","Chain Yu","dreame.tech","Owner A"],["2026-07-20",37,"call","close loop Sofia Cen /Kevin","—","","Owner A"],["2026-07-20",37,"call","close loop Braulio Jimenez (smartelad)","—","","Owner A"],["2026-07-20",37,"call","Calendly Schedule","Halima Bepo","beautyb.com.ng","Owner B"],["2026-07-20",37,"call","Calendly Schedule","MICHELLE COMPO","gmail.com","Owner B"],["2026-07-21",36,"call","Follow up with Sunny Park (smartlead)","—","","Owner B"],["2026-07-21",36,"call","Follow up","Hector","condobugs.com","Owner B"],["2026-07-21",36,"call","schedule call for next","Raghav Agarwal","fireupuk.com","Owner B"],["2026-07-21",36,"call","follow up","Mario Aleksic","japanmintusa.com","Owner B"],["2026-07-21",36,"call","follow up Susiana Dai","—","","Owner B"],["2026-07-21",36,"call","follow up Anshul joshi","—","","Owner B"],["2026-07-21",36,"call","follow up","Sean Yim","platinumbridge.co.kr","Owner A"],["2026-07-21",36,"call","follow up","Stan Gearhart","panarocases.com","Owner A"],["2026-07-21",36,"call","follow up","Ammer Iqbal","bfcosmetics.co.uk","Owner A"],["2026-07-21",36,"call","follow up","The Cuticle Lab","thecuticlelab.com","Owner A"],["2026-07-21",36,"call","follow up","Suzanne Cummins","14daymanicure.ie","Owner A"],["2026-07-21",36,"call","follow up","Nibi","kinkyapothecary.com","Owner A"],["2026-07-21",36,"call","follow up","Tem Sulu","detangleduette.com","Owner A"],["2026-07-21",36,"call","follow up","Adil Jahangir","ardalzaafaranshop.com","Owner A"],["2026-07-21",36,"call","follow up","M. Ahsan Javaid","sjs.com.pk","Owner A"],["2026-07-21",36,"call","follow up LI","Milos Ilic","orthomol.de","Owner A"],["2026-07-22",35,"call","check in sergio soto","—","","Owner B"],["2026-07-22",35,"call","call","Alwyn Stephen","orovento.com","Owner B"],["2026-07-23",34,"call","check in gabrijela","—","","Owner B"],["2026-07-23",34,"call","Calendly Schedule","Arnie Demecillo","gmail.com","Owner B"],["2026-07-27",30,"call","call scheduled?","Esther Foo","hph.hawpar.com","Owner B"],["2026-07-27",30,"call","follow up martins okonkwo","—","","Owner A"],["2026-07-28",29,"call","close loop steve luhrs","—","","Owner B"],["2026-07-28",29,"call","Follow up for book appointment - AOrhan@targus.com","Ali Orhan","targus.com","Owner B"],["2026-07-28",29,"call","try to give him a call","Carlos Bahamonde Cruz","joma-sport.com","Owner A"],["2026-07-29",28,"call","Calendly Schedule","ZAKARIA AHMED","gmail.com","Owner B"],["2026-07-30",27,"call","Call","Simonne Solarsh","intrinsicurlyme.co.za","Owner B"],["2026-07-30",27,"call","follow up Sonto","—","","Owner A"],["2026-07-30",27,"call","Calendly Schedule","Jack Hartmann","kubotea.com","Owner B"],["2026-07-31",26,"call","Interested","Ben Kim","daehanmills.com","Owner B"],["2026-07-31",26,"call","Interested","Sainatee Boonfun","thekindeeco.com","Owner B"],["2026-07-31",26,"call","no show on call, follow up","Lawrencia","vitalityproduct.com","Owner A"],["2026-08-03",23,"call","Action Item","Simonne Solarsh","intrinsicurlyme.co.za","Owner A"],["2026-08-05",21,"call","Calendly Schedule","Karen Cursham","btinternet.com","Owner B"],["2026-08-07",19,"task","Follow Up","Ronald Goenawan","bukitsari.net","Owner B"],["2026-08-07",19,"call","Meeting Request - Schedule Call","Vladimir","creatpea.com","Owner B"],["2026-08-08",18,"call","Interested","Test User","example.com","Owner B"],["2026-08-08",18,"call","Interested","Sarah Johnson","acmecorp.com","Owner B"],["2026-08-08",18,"call","Interested","Test User","company.com","Owner B"],["2026-08-08",18,"call","Interested","—","","Owner B"],["2026-08-08",18,"call","Interested","John Doe","acme.com","Owner B"],["2026-08-10",16,"call","Calendly Scheduled","Matt sisk","gmail.com","Owner B"],["2026-08-10",16,"call","Calendly Schedule","Sonto Pooe","nativechild.co","Owner B"],["2026-08-11",15,"call","Follow Up","Elena","cotsrl.it","Owner B"],["2026-08-11",15,"call","Calendly Schedule","Wouter Morsink","imbarro.nl","Owner B"],["2026-08-11",15,"call","Calendly Booked","Andy Donahue","formula100.com","Owner B"],["2026-08-12",14,"call","Call","Jono Clark","jtscushions.co.uk","Owner B"],["2026-08-12",14,"call","Follow Up","Kazım Palaz","erisfoods.com","Owner B"],["2026-08-12",14,"call","Calendly Schedule","Jono Clark","jtscushions.co.uk","Owner B"],["2026-08-12",14,"call","Calendly Booked","Wouter Morsink","imbarro.nl","Owner B"],["2026-08-14",12,"call","Follow Up","Arif Hassan","pistafood.com","Owner B"],["2026-08-17",9,"call","check in","Sahar","bemka.com","Owner A"],["2026-08-17",9,"meeting","Calendly Booking","Cristian","clydecandles.co.uk","Owner B"],["2026-08-18",8,"task","Triage Jun 2 overdue call batch (11 leads)","—","","Owner A"],["2026-08-18",8,"task","Follow up: Perry Fishing USA — asked about Amazon cost/pricing","Jesse","perryfishingusa.com","Owner B"],["2026-08-18",8,"meeting","Calendly Booking","Slava","snackunity.com","Owner B"],["2026-08-18",8,"meeting","Calendly Booking","Chloé Denommé","carandache.com","Owner B"],["2026-08-19",7,"call","follow up","Matt Soreco","mrbarbq.com","Owner B"],["2026-08-21",5,"task","Contact Dana Stehr at RoyRobson","Dana Stehr","royrobson.com","Owner A"],["2026-08-21",5,"task","Respond to Weronika Wróbel re: UK distributor question","Weronika Wróbel","jkoptrade.com","Owner A"],["2026-08-21",5,"task","Follow up: Alumacart — agreed to review case study","Jennifer","alumacart.com","Yoni"],["2026-08-24",2,"call","Interested","Alex Joseph","sensiqnootropics.com","Owner B"],["2026-08-24",2,"task","Find contact for Patrick at Handelshouse","—","","Owner A"],["2026-08-24",2,"call","Follow up with Christopher Brown (No More Lids) — reseller model question","Christopher Brown","nomorelids.com","Owner A"],["2026-08-25",1,"call","check in","Katia Barga","cselene.com","Owner B"],["2026-08-25",1,"call","check in","Allison Mosca","fundamental-brands.com","Owner A"],["2026-08-25",1,"call","Interested","Jack Hartmann","kubotea.com","Owner B"],["2026-08-25",1,"call","Interested","Kimberly Thomson","poppletonpantry.com","Owner B"],["2026-08-25",1,"call","Meeting Scheduled","Joshua Friedman","gmail.com","Owner B"],["2026-08-25",1,"call","follow up","Luk Morren","belkorn.com","Owner A"],["2026-08-25",1,"call","Interested","Alisa Barry","bellacucina.com","Owner B"]];
+
+  var OWNER_COUNTS = { all: 103, "Owner A": 49, "Owner B": 53, Yoni: 1 };
+  var TYPE_PILL = { call: "good", task: "warn", meeting: "idle" };
+
+  function esc(s) { return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+
+  function buildOwnerChips(container, tableId) {
+    var owners = ["all", "Owner A", "Owner B", "Yoni"];
+    container.innerHTML = owners.map(function (o, i) {
+      var label = o === "all" ? "All" : o;
+      return '<button type="button" class="chip' + (i === 0 ? " active" : "") + '" data-owner="' + o + '">' + label + ' <span class="tabular">' + OWNER_COUNTS[o] + '</span></button>';
+    }).join("");
+  }
+
+  function makeOverdueTable(tableId, containerFilterId, limit) {
+    var state = { owner: "all", sortKey: 0, sortDir: 1 };
+    var table = document.getElementById(tableId);
+    var tbody = table.querySelector("tbody");
+    var emptyEl = tableId === "overdueTable-full" ? document.getElementById("overdueEmpty") : null;
+    var countEl = tableId === "overdueTable-full" ? document.getElementById("pdCount") : null;
+
+    function render() {
+      var rows = ROWS.filter(function (r) { return state.owner === "all" || r[6] === state.owner; });
+      rows.sort(function (a, b) {
+        var av = a[state.sortKey], bv = b[state.sortKey];
+        if (av < bv) return -1 * state.sortDir;
+        if (av > bv) return 1 * state.sortDir;
+        return 0;
+      });
+      if (countEl) countEl.textContent = rows.length;
+      var display = limit ? rows.slice(0, limit) : rows;
+      tbody.innerHTML = display.map(function (r) {
+        var pill = TYPE_PILL[r[2]] || "idle";
+        var lead = r[4] === "—" ? "—" : esc(r[4]) + (r[5] ? ' <span class="faint">' + esc(r[5]) + "</span>" : "");
+        return "<tr>" +
+          '<td class="num tabular">' + r[0] + '<span class="days-tag">' + r[1] + "d overdue</span></td>" +
+          '<td><span class="pill ' + pill + '">' + esc(r[2]) + "</span></td>" +
+          "<td>" + esc(r[3]) + "</td>" +
+          "<td>" + lead + "</td>" +
+          "<td>" + esc(r[6]) + "</td>" +
+          "</tr>";
+      }).join("");
+      if (emptyEl) emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    var filterEl = document.getElementById(containerFilterId);
+    buildOwnerChips(filterEl, tableId);
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.owner = btn.getAttribute("data-owner");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    table.querySelectorAll("th.sortable").forEach(function (th) {
+      th.addEventListener("click", function () {
+        var key = Number(th.getAttribute("data-key"));
+        if (state.sortKey === key) { state.sortDir *= -1; } else { state.sortKey = key; state.sortDir = 1; }
+        table.querySelectorAll("th").forEach(function (h) { h.classList.remove("sort-active"); h.querySelector(".arrow") && (h.querySelector(".arrow").textContent = ""); });
+        th.classList.add("sort-active");
+        var arrow = th.querySelector(".arrow");
+        if (!arrow) { arrow = document.createElement("span"); arrow.className = "arrow"; th.appendChild(arrow); }
+        arrow.textContent = state.sortDir === 1 ? "▲" : "▼";
+        render();
+      });
+    });
+
+    render();
+  }
+
+  makeOverdueTable("overdueTable-overview", "ownerFilterOverview", 12);
+  makeOverdueTable("overdueTable-full", "ownerFilterFull", null);
+
+  // ---- Campaign table (SmartLead) ----
+  var CAMPAIGNS = [
+    ["Expo West Q4","Eikko","Active"],["Sweets and Snacks Q4","Eikko","Active"],["Winter Fancy Fair Q4","Eikko","Active"],
+    ["Fancy Foods Q4","Eikko","Active"],["Toy Fair Q4","Eikko","Active"],["Tea Expo","Eikko","Active"],
+    ["Cosmoprof 2026","Eikko","Active"],["ICAST 2026","Eikko","Active"],["Cosmoprof Follow up","Eikko","Active"],
+    ["Pitti Immagine Uomo","Rachel","Active"],["Spoga+gafa","Rachel","Active"],["ISM Cologne","Rachel","Active"],
+    ["Nordstil","Rachel","Active"],["IFA (intro before the show)","Rachel","Active"],["Global Brands 3","Rachel","Active"],
+    ["IHS","John (legacy)","Active"]
+  ];
+  (function () {
+    var state = { status: "all", search: "", sortKey: 0, sortDir: 1 };
+    var table = document.getElementById("campaignTable");
+    var tbody = table.querySelector("tbody");
+    var emptyEl = document.getElementById("campaignEmpty");
+
+    function render() {
+      var rows = CAMPAIGNS.filter(function (r) {
+        if (state.status !== "all" && r[2] !== state.status) return false;
+        if (state.search && r[0].toLowerCase().indexOf(state.search) === -1) return false;
+        return true;
+      });
+      rows.sort(function (a, b) {
+        var av = a[state.sortKey], bv = b[state.sortKey];
+        return av < bv ? -1 * state.sortDir : av > bv ? 1 * state.sortDir : 0;
+      });
+      tbody.innerHTML = rows.map(function (r) {
+        return "<tr><td>" + esc(r[0]) + "</td><td>" + esc(r[1]) + '</td><td><span class="pill good">' + esc(r[2]) + "</span></td></tr>";
+      }).join("");
+      emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    document.getElementById("statusFilter").addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.status = btn.getAttribute("data-status");
+      document.querySelectorAll("#statusFilter .chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+    table.querySelectorAll("th.sortable").forEach(function (th) {
+      th.addEventListener("click", function () {
+        var key = Number(th.getAttribute("data-key"));
+        if (state.sortKey === key) { state.sortDir *= -1; } else { state.sortKey = key; state.sortDir = 1; }
+        table.querySelectorAll("th").forEach(function (h) { h.classList.remove("sort-active"); });
+        th.classList.add("sort-active");
+        render();
+      });
+    });
+    document.getElementById("searchInput").addEventListener("input", function (e) {
+      state.search = e.target.value.trim().toLowerCase();
+      render();
+    });
+
+    render();
+  })();
+
+  // ---- Chart plain-table toggles ----
+  document.querySelectorAll("[data-table-toggle]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.getAttribute("data-table-toggle"));
+      el.classList.toggle("show");
+    });
+  });
+
+  // ---- SmartLead Inbox monitor: QA table (reply -> category -> Pipedrive) ----
+  var QA_ROWS = [
+    ["alisa", "bellacucina.com", "Eikko — Fancy Foods Q4", "Interested", "Org + person + activity created (Bella Cucina, id 1020) · domain blocked in Smartlead", "Manual QA, 2026-08-25"],
+    ["Alexandra Moorfoot", "thenextfish.com", "Eikko — ICAST 2026", "Not interested", "No Pipedrive record (correct per rule) · domain blocked in Smartlead", "Manual QA, 2026-08-25"]
+  ];
+  (function () {
+    var state = { cat: "all" };
+    var tbody = document.getElementById("qaBody");
+    var emptyEl = document.getElementById("qaEmpty");
+    var countEl = document.getElementById("qaCount");
+    var filterEl = document.getElementById("qaCategoryFilter");
+    if (!tbody || !filterEl) return;
+
+    function render() {
+      var rows = QA_ROWS.filter(function (r) { return state.cat === "all" || r[3] === state.cat; });
+      countEl.textContent = rows.length;
+      tbody.innerHTML = rows.map(function (r) {
+        var pill = r[3] === "Interested" ? "good" : "idle";
+        return "<tr><td>" + esc(r[0]) + ' <span class="faint">' + esc(r[1]) + "</span></td>" +
+          "<td>" + esc(r[2]) + "</td>" +
+          '<td><span class="pill ' + pill + '">' + esc(r[3]) + "</span></td>" +
+          "<td>" + esc(r[4]) + "</td>" +
+          '<td class="faint">' + esc(r[5]) + "</td></tr>";
+      }).join("");
+      emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.cat = btn.getAttribute("data-cat");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    render();
+  })();
+
+  // ---- SmartLead Inbox monitor: awaiting-classification table ----
+  var AWAITING_ROWS = [
+    ["Christopher Brown", "nomorelids.com", "Rachel - London Coffee Festival from LI", 95, "Rachel"],
+    ["Weronika Wróbel", "jkoptrade.com", "Rachel - Tones of Beauty 2026", 49, "Rachel"],
+    ["Marcus Bomsdorff", "bomsdorff.de", "Rachel - Nordstil", 12, "Rachel"],
+    ["Sonja Altrock-N Cho", "fairtrade.net", "Rachel - ISM Cologne", 9, "Rachel"],
+    ["Marc O'Sullivan", "candykittens.co.uk", "Rachel - ISM Cologne", 9, "Rachel"]
+  ];
+  (function () {
+    var state = { owner: "all" };
+    var tbody = document.getElementById("awaitingBody");
+    var emptyEl = document.getElementById("awaitingEmpty");
+    var countEl = document.getElementById("awaitingCount");
+    var filterEl = document.getElementById("awaitingOwnerFilter");
+    if (!tbody || !filterEl) return;
+
+    function render() {
+      var rows = AWAITING_ROWS.filter(function (r) { return state.owner === "all" || r[4] === state.owner; });
+      countEl.textContent = rows.length;
+      tbody.innerHTML = rows.map(function (r) {
+        var lead = r[1] ? esc(r[0]) + ' <span class="faint">' + esc(r[1]) + "</span>" : esc(r[0]);
+        return "<tr><td>" + lead + "</td>" +
+          "<td>" + esc(r[2]) + "</td>" +
+          '<td class="num tabular">' + r[3] + "d</td>" +
+          '<td><span class="pill idle">Not yet classified</span></td></tr>';
+      }).join("");
+      emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.owner = btn.getAttribute("data-owner");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    render();
+  })();
+
+  // ---- LinkedIn (HeyReach) inbox — unread conversations ----
+  var LI_ROWS = [
+    ["Claire Boggs", "Tremendous", "Yoni", "Hi Yoni, how much time does Albert Scott spend managing global marketing incentives every month? (vendor pitch)", "2026-08-25"],
+    ["Thomas Klemenz", "GEFU Küchenboss", "Yoni", "I am Not at GeFu since 2018", "2026-08-25"],
+    ["Jaganath Reddy Bollapu", "EPOS", "Yoni", "I appreciate your effort. But I don't handle Amazon US for EPOS.", "2026-08-21"],
+    ["Wilson Yeung", "Venchi", "Yoni", "Amazon US is not in my scope, do you know about Amazon Australia?", "2026-08-18"],
+    ["Lukas Schlenz", "Schöffel Sport", "Yoni", "Happy to connect, however at the moment we have no focus on the US market and want to master the European marketplaces first.", "2026-08-15"],
+    ["Enrico Lomoro", "NeoLife International", "Yoni", "Farmasi does not allow its products to be sold on e-commerce platforms such as Amazon, eBay, etc.", "2026-08-12"]
+  ];
+  (function () {
+    var state = { owner: "all" };
+    var tbody = document.getElementById("liBody");
+    var emptyEl = document.getElementById("liEmpty");
+    var countEl = document.getElementById("liCount");
+    var filterEl = document.getElementById("liOwnerFilter");
+    if (!tbody || !filterEl) return;
+
+    function render() {
+      var rows = LI_ROWS.filter(function (r) { return state.owner === "all" || r[2] === state.owner; });
+      countEl.textContent = rows.length;
+      tbody.innerHTML = rows.map(function (r) {
+        return "<tr><td>" + esc(r[0]) + "</td>" +
+          "<td>" + esc(r[1]) + "</td>" +
+          "<td>" + esc(r[2]) + "</td>" +
+          '<td class="faint">' + esc(r[3]) + "</td>" +
+          '<td class="num tabular">' + r[4] + "</td></tr>";
+      }).join("");
+      emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.owner = btn.getAttribute("data-owner");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    render();
+  })();
+
+  // ---- Automation Log: unified manual-review table (SmartLead + LinkedIn) ----
+  var LOG_ROWS = [
+    ["2026-08-25", "SmartLead", "alisa (Bella Cucina)", "Interested", "Org + person + activity created in Pipedrive · domain blocked"],
+    ["2026-08-25", "SmartLead", "Alexandra Moorfoot (The Next Fish)", "Not interested", "No Pipedrive record (correct per rule) · domain blocked"],
+    ["2026-08-25", "LinkedIn", "Claire Boggs (Tremendous)", "Vendor pitch", "Flagged, not a lead — no action taken"],
+    ["2026-08-25", "LinkedIn", "Thomas Klemenz (GEFU Küchenboss)", "Not interested", "No action — stale contact, left Aug 2018"],
+    ["2026-08-21", "LinkedIn", "Jaganath Reddy Bollapu (EPOS)", "Not interested", "No action — doesn't handle Amazon US"],
+    ["2026-08-18", "LinkedIn", "Wilson Yeung (Venchi)", "Not interested", "No action — wrong Amazon marketplace"],
+    ["2026-08-15", "LinkedIn", "Lukas Schlenz (Schöffel Sport)", "Not interested", "No action — no US market focus"],
+    ["2026-08-12", "LinkedIn", "Enrico Lomoro (NeoLife International)", "Not interested", "No action — direct-selling company, can't list on Amazon"]
+  ];
+  (function () {
+    var state = { channel: "all" };
+    var tbody = document.getElementById("logBody");
+    var countEl = document.getElementById("logCount");
+    var filterEl = document.getElementById("logChannelFilter");
+    if (!tbody || !filterEl) return;
+
+    function render() {
+      var rows = LOG_ROWS.filter(function (r) { return state.channel === "all" || r[1] === state.channel; });
+      countEl.textContent = rows.length;
+      tbody.innerHTML = rows.map(function (r) {
+        var catPill = r[3] === "Interested" ? "good" : (r[3] === "Vendor pitch" ? "warn" : "idle");
+        return "<tr><td class=\"num tabular\">" + r[0] + "</td>" +
+          "<td>" + esc(r[1]) + "</td>" +
+          "<td>" + esc(r[2]) + "</td>" +
+          '<td><span class="pill ' + catPill + '">' + esc(r[3]) + "</span></td>" +
+          '<td class="faint">' + esc(r[4]) + "</td></tr>";
+      }).join("");
+    }
+
+    filterEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".chip");
+      if (!btn) return;
+      state.channel = btn.getAttribute("data-channel");
+      filterEl.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+      render();
+    });
+
+    render();
+  })();
+
+  // ---- SmartLead subnav (Campaigns / Inbox monitor) ----
+  var smartleadSubnav = document.getElementById("smartleadSubnav");
+  if (smartleadSubnav) {
+    smartleadSubnav.addEventListener("click", function (e) {
+      var btn = e.target.closest(".subnav-btn");
+      if (!btn) return;
+      var sub = btn.getAttribute("data-sub");
+      smartleadSubnav.querySelectorAll(".subnav-btn").forEach(function (b) { b.classList.toggle("active", b === btn); });
+      document.querySelectorAll("#view-smartlead .subview").forEach(function (v) { v.classList.toggle("active", v.getAttribute("data-sub") === sub); });
+    });
+  }
+
+  // ---- Nav / view switching ----
+  function goTo(view) {
+    document.querySelectorAll(".navbtn[data-view]").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-view") === view); });
+    document.querySelectorAll(".view").forEach(function (v) { v.classList.toggle("active", v.id === "view-" + view); });
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  }
+  document.getElementById("railNav").addEventListener("click", function (e) {
+    var btn = e.target.closest(".navbtn[data-view]");
+    if (!btn) return;
+    goTo(btn.getAttribute("data-view"));
+  });
+  document.querySelectorAll("[data-goto]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      if (el.tagName === "A") e.preventDefault();
+      goTo(el.getAttribute("data-goto"));
+    });
+  });
+})();
+</script>
