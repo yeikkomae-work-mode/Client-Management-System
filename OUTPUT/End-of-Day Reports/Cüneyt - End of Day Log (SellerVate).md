@@ -88,7 +88,8 @@ all 13 PlusVibe campaigns' status/bounce rate and all 19 mailboxes' health/warmu
 Eikko a summary — satisfies "always give me notif of campaign health and inbox health." Mailbox
 snapshot right after launch: 19/19 ACTIVE.
 
-**Deliverables:** `scripts/plusvibe-migration/split_uk_us.py` (not yet committed — pending review).
+**Deliverables:** `scripts/plusvibe-migration/split_uk_us.py`, `scripts/plusvibe-migration/README.md`
+updates.
 
 **Next Steps:**
 - Apply the daily ramp increment by hand until standing write access is decided
@@ -97,6 +98,45 @@ snapshot right after launch: 19/19 ACTIVE.
   about the split need re-checking after the first live day)
 - The other 9 PlusVibe campaigns are still PAUSED and single-timezone — same UK/US split question
   will apply whenever they launch
+
+---
+
+**Update (later same day) — further split by recipient mail provider (Google/Microsoft/Other).**
+
+**Source:** Eikko — "after separating the campaigns based from timezone also separate leads google
+account and Microsoft accounts like Amazon US - Google then Amazon US - Microsoft."
+
+No PlusVibe field exposes a lead's mail provider, and PlusVibe's own `provider: REGULAR_ACCOUNT` on
+the sending mailboxes is unrelated (that's about the sending inbox's connection type, not the
+recipient's ESP). Resolved it the only way available: MX-record lookup on each lead's email domain
+(installed `dnspython`, no `dig`/`host`/`nslookup` on this box). 679 unique domains across the 4
+legs, resolved concurrently.
+
+Asked what to do with domains that are neither Google- nor Microsoft-hosted (12-24% of each list)
+plus a small MX-unresolved slice, rather than silently picking a bucket — Eikko chose a third
+"- Other" campaign per leg.
+
+**Re-verified nothing had sent on any of the 4 legs immediately before touching anything** (still
+same day as launch) — confirmed a zero-risk re-split, no chance of duplicate or missed sends.
+
+**Split all 4 legs into 3 (12 campaigns, all ACTIVE):**
+- Amazon Seller US/CA — Google 33 / Microsoft 17 / Other 12
+- Amazon Seller UK — Google 17 / Microsoft 16 / Other 12
+- Amazon Seller - Rating US — Google 358 / Microsoft 333 / Other 245
+- Amazon Seller - Rating UK — Google 110 / Microsoft 178 / Other 103
+
+Each leg's original campaign became its Google bucket (renamed in place, non-Google leads removed
+via `lead/delete`); Microsoft and Other are new campaigns cloning the same schedule, mailbox pool,
+and sequence copy — only the lead subset differs. All 12 at daily_limit=6 (ramp start).
+
+**Account now has 21 PlusVibe campaigns** (9 untouched paused + these 12 active legs).
+
+**Deliverables:** `scripts/plusvibe-migration/split_esp.py`, `scripts/plusvibe-migration/classify_esp.py`.
+
+**Next Steps:**
+- Ramp increment across all 12 (not just 4) needs to be applied by hand daily
+- Decide whether the other 9 paused campaigns get the same UK/US + Google/Microsoft/Other treatment
+  before they launch, or launch as single campaigns instead
 
 ---
 

@@ -170,7 +170,40 @@ former 2). Mailbox health snapshot right after launch: 19/19 ACTIVE.
 
 **Still needs a decision:**
 - [ ] Approve standing write access for the daily ramp increment, or keep doing it by hand
-- [ ] The remaining 9 campaigns (SalesFix, Ops Support, etc.) are still PAUSED — same UK/US split question applies whenever those launch too
+- [x] The remaining 9 campaigns (SalesFix, Ops Support, etc.) are still PAUSED — same UK/US split question applies whenever those launch too — N/A for now, ESP split below only applied to the 4 already-launched legs
+
+---
+
+## Update (Aug 28, 2026) — further split by recipient mail provider (Google/Microsoft/Other)
+
+Eikko: "after separating the campaigns based from timezone also separate leads google account and
+Microsoft accounts like Amazon US - Google then Amazon US - Microsoft."
+
+Classified every lead's domain via MX-record lookup (`dig`-equivalent, `dnspython`) — no bulk lead
+endpoint exists so domains had to be resolved directly rather than read from PlusVibe. 679 unique
+domains across all 4 legs. Asked what to do with domains that are neither Google- nor
+Microsoft-hosted (custom mail servers, Zoho, etc. — 12-24% of each list) plus a small MX-unresolved
+slice; Eikko chose a third "- Other" campaign per leg over dropping them or leaving them unsplit.
+
+**Each of the 4 UK/US legs split into 3 (12 campaigns total now), all ACTIVE same day, nothing had
+sent yet on any of the 4 originals so this was a zero-risk re-split** (verified `last_lead_sent`
+empty on all 4 immediately before touching anything):
+
+| Base leg | Google | Microsoft | Other |
+|---|---|---|---|
+| Amazon Seller US/CA | 33 (`6a8cf6f27e5c6119d8830749`, reused) | 17 (`6a90cd6f2dbb802b3e05cc6b`) | 12 (`6a90cd70fdaf9c49f3b0ca64`) |
+| Amazon Seller UK | 17 (`6a90b3bcf68baa1111ed5c7f`, reused) | 16 (`6a90cd72b8f24dca09ef6bb8`) | 12 (`6a90cd742dbb802b3e05cc6c`) |
+| Amazon Seller - Rating US | 358 (`6a8ee087c3903d2a71741b72`, reused) | 333 (`6a90cd764fdc64a002d2ca4a`) | 245 (`6a90cd772dbb802b3e05cc6d`) |
+| Amazon Seller - Rating UK | 110 (`6a90b41d24acfefeb9390a4c`, reused) | 178 (`6a90cd790d0bcf449012a962`) | 103 (`6a90cd7b5dddc42c583f1012`) |
+
+Each leg's original campaign became its "Google" bucket (renamed, non-Google leads removed via
+`lead/delete`); Microsoft and Other are new campaigns with identical schedule/mailboxes/sequences to
+their sibling, only the lead subset differs. All 12 start at daily_limit=6, same manual-ramp caveat
+as before. Account now has **21 PlusVibe campaigns total** (9 untouched paused + these 12).
+
+**Still needs a decision:**
+- [ ] Same UK/US + Google/Microsoft/Other split will apply to the other 9 campaigns whenever they launch
+- [ ] Ramp increment for all 12 still needs to be applied by hand daily (same classifier restriction as before)
 
 ---
 

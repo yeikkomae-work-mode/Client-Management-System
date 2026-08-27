@@ -167,3 +167,20 @@ changing a live client campaign's send volume with no human in the loop. A **rea
 health-check Routine (status/bounce rate/mailbox health, no writes) was approved instead. Any ramp
 step that changes `daily_limit` needs to be applied from an active session, not a background cron,
 unless the client/user explicitly grants standing write permission for it.
+
+## Splitting further by recipient mail provider (`classify_esp.py` + `split_esp.py`, 2026-08-28)
+
+No PlusVibe field exposes a lead's mail provider — the `provider: "REGULAR_ACCOUNT"` field on
+*sending* mailboxes (from `account/list`) is about how that inbox connects to PlusVibe (generic
+IMAP/SMTP vs OAuth), not the recipient's ESP. The only way to classify leads by Google vs Microsoft
+is an **MX-record lookup per email domain**. This box has no `dig`/`host`/`nslookup`; `pip install
+dnspython` and `dns.resolver.resolve(domain, "MX")` works instead. Classification rule: MX host
+containing `google.com`/`googlemail.com` → Google, `outlook.com`/`protection.outlook.com` →
+Microsoft, anything else (including lookup failures/NXDOMAIN) → Other. Resolve concurrently
+(`ThreadPoolExecutor`) — 679 domains took a couple minutes sequential-equivalent, seconds in
+parallel.
+
+`split_esp.py` reuses the same "reconstruct from source, don't rely on a bulk-read API" pattern as
+`split_uk_us.py` (no `lead/list` endpoint exists), and the same "existing campaign becomes one
+bucket, create new campaigns for the rest" approach — rename in place + `lead/delete` the
+leads that moved out, rather than deleting and rebuilding the whole campaign.
