@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { initializeWatcher, getWatcherStatus, closeWatcher } from './services/file-watcher.js';
 import agentsTrackingRouter from './routes/agents-tracking.js';
+import campaignsRouter from './routes/campaigns.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,6 +36,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/agents/track', agentsTrackingRouter);
+app.use('/api/campaigns', campaignsRouter);
 
 // Root endpoint
 app.get('/', (req, res) => {
@@ -47,7 +49,9 @@ app.get('/', (req, res) => {
       agentHistory: 'GET /api/agents/track/:name/history',
       agentOutput: 'GET /api/agents/track/:name/latest-output',
       activityFeed: 'GET /api/agents/track/activity-feed/recent',
-      stats: 'GET /api/agents/track/stats/aggregate'
+      stats: 'GET /api/agents/track/stats/aggregate',
+      campaignsData: 'GET /api/campaigns/data',
+      campaignsSync: 'POST /api/campaigns/sync'
     }
   });
 });

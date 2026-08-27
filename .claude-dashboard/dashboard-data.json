@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-25T00:55:57.229798+00:00",
-  "systemRoot": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System",
+  "generatedAt": "2026-08-27T22:49:06.317053+00:00",
+  "systemRoot": "/home/user/Client-Management-System",
   "me": {
     "name": "Eikko Ybanez",
     "role": "Solo VA / Agency Operator",
@@ -22,9 +22,9 @@
     {
       "name": "Chris Caffera",
       "fileName": "Chris Caffera - Profile.md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Chris Caffera - Profile.md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Chris Caffera - Profile.md",
       "relPath": "CLIENT PROFILES/Chris Caffera - Profile.md",
-      "modified": "2026-08-24T20:58:22.752391+00:00",
+      "modified": "2026-08-25T01:32:41.195194+00:00",
       "status": "Active",
       "role": "see Workstreams below",
       "hours": "",
@@ -541,6 +541,7 @@
           "bucket": "Active"
         }
       ],
+      "lastEOD": "2026-08-22",
       "since": {
         "label": "2026-08-05",
         "source": "first_logged",
@@ -556,14 +557,15 @@
     {
       "name": "Chris Drew (Satlas)",
       "fileName": "Chris Drew - Profile (Satlas).md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Chris Drew - Profile (Satlas).md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Chris Drew - Profile (Satlas).md",
       "relPath": "CLIENT PROFILES/Chris Drew - Profile (Satlas).md",
-      "modified": "2026-08-24T21:01:41.409976+00:00",
+      "modified": "2026-08-25T01:32:41.196659+00:00",
       "status": "Active",
       "role": "Lead Generation & Outreach Specialist",
       "hours": "Variable (1pm-4pm PHT)",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-22",
       "since": {
         "label": "February 2026",
         "source": "coverage_period",
@@ -579,14 +581,15 @@
     {
       "name": "Chris Soriano",
       "fileName": "Chris Soriano - Profile.md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Chris Soriano - Profile.md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Chris Soriano - Profile.md",
       "relPath": "CLIENT PROFILES/Chris Soriano - Profile.md",
-      "modified": "2026-08-06T11:07:25.933063+00:00",
+      "modified": "2026-08-25T01:32:41.196659+00:00",
       "status": "Active",
       "role": "Data Entry Specialist & Researcher",
       "hours": "As-needed",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-22",
       "since": {
         "label": "2026-08-05",
         "source": "first_logged",
@@ -602,14 +605,15 @@
     {
       "name": "C\u00fcneyt (SellerVate)",
       "fileName": "C\u00fcneyt - Profile (SellerVate).md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/C\u00fcneyt - Profile (SellerVate).md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/C\u00fcneyt - Profile (SellerVate).md",
       "relPath": "CLIENT PROFILES/C\u00fcneyt - Profile (SellerVate).md",
-      "modified": "2026-08-24T17:03:34.479598+00:00",
+      "modified": "2026-08-27T22:06:37.978686+00:00",
       "status": "\ud83d\udfe1 Trial (20 hours)",
       "role": "Cold Email & Lead Gen Specialist (Deliverability + Campaign Ops)",
       "hours": "",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-28",
       "since": {
         "label": "Aug 13, 2026",
         "source": "coverage_period",
@@ -625,14 +629,15 @@
     {
       "name": "Edward Lehner",
       "fileName": "Edward Lehner - Profile.md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Edward Lehner - Profile.md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Edward Lehner - Profile.md",
       "relPath": "CLIENT PROFILES/Edward Lehner - Profile.md",
-      "modified": "2026-08-13T01:54:47.746877+00:00",
+      "modified": "2026-08-25T01:32:41.196659+00:00",
       "status": "Prospective",
       "role": "Talk-Through / Focus Accountability Partner",
       "hours": "5h/week (potential for more)",
       "meeting": "First session Aug 12, 2026 at 9:00 AM (60\u201375 min) \u2014 recurring schedule TBD",
       "tasks": [],
+      "lastEOD": "2026-08-12",
       "since": {
         "label": "Aug 12, 2026",
         "source": "start_date_field",
@@ -648,14 +653,15 @@
     {
       "name": "Krishna",
       "fileName": "Krishna - Profile.md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Krishna - Profile.md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Krishna - Profile.md",
       "relPath": "CLIENT PROFILES/Krishna - Profile.md",
-      "modified": "2026-08-06T11:07:20.678475+00:00",
+      "modified": "2026-08-25T01:32:41.196659+00:00",
       "status": "Active",
       "role": "Lead Gen Specialist",
       "hours": "3h/week",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-10",
       "since": {
         "label": "2026-08-07",
         "source": "first_logged",
@@ -671,14 +677,15 @@
     {
       "name": "Penji",
       "fileName": "Penji - Profile.md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Penji - Profile.md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Penji - Profile.md",
       "relPath": "CLIENT PROFILES/Penji - Profile.md",
-      "modified": "2026-08-24T21:03:18.333092+00:00",
+      "modified": "2026-08-25T02:17:45.819417+00:00",
       "status": "\u2705 Signed (Aug 10, 2026)",
       "role": "LinkedIn Outreach Specialist *(offer-letter title)* / Agency Advisor \u2014 Outbound Outreach Specialist *(Notion training title)*",
       "hours": "Full-time, 8am\u20135pm (1hr break 12\u20131pm)",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-24",
       "since": {
         "label": "Aug 10, 2026",
         "source": "status_date",
@@ -694,14 +701,15 @@
     {
       "name": "Penji - Sales Conversion Playbook",
       "fileName": "Penji - Sales Conversion Playbook.md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Penji - Sales Conversion Playbook.md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Penji - Sales Conversion Playbook.md",
       "relPath": "CLIENT PROFILES/Penji - Sales Conversion Playbook.md",
-      "modified": "2026-08-17T03:48:54.272597+00:00",
+      "modified": "2026-08-25T01:32:41.199194+00:00",
       "status": "Unknown",
       "role": "Not documented yet",
       "hours": "",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-24",
       "since": {
         "label": "2026-08-10",
         "source": "first_logged",
@@ -717,14 +725,15 @@
     {
       "name": "Penji - Sales Ecosystem & Team Standards",
       "fileName": "Penji - Sales Ecosystem & Team Standards.md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Penji - Sales Ecosystem & Team Standards.md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Penji - Sales Ecosystem & Team Standards.md",
       "relPath": "CLIENT PROFILES/Penji - Sales Ecosystem & Team Standards.md",
-      "modified": "2026-08-17T03:48:55.340381+00:00",
+      "modified": "2026-08-25T01:32:41.199194+00:00",
       "status": "Unknown",
       "role": "Not documented yet",
       "hours": "",
       "meeting": "",
       "tasks": [],
+      "lastEOD": "2026-08-24",
       "since": {
         "label": "2026-08-10",
         "source": "first_logged",
@@ -740,9 +749,9 @@
     {
       "name": "Yoni (Albert Scott)",
       "fileName": "Yoni - Profile (Albert Scott).md",
-      "absPath": "/Users/eikkoyu/Claude Code:Cowork/Client-Management-System/CLIENT PROFILES/Yoni - Profile (Albert Scott).md",
+      "absPath": "/home/user/Client-Management-System/CLIENT PROFILES/Yoni - Profile (Albert Scott).md",
       "relPath": "CLIENT PROFILES/Yoni - Profile (Albert Scott).md",
-      "modified": "2026-08-13T00:05:40.301872+00:00",
+      "modified": "2026-08-25T01:32:41.199194+00:00",
       "status": "Active",
       "role": "Outreach Specialist / Sales-Marketing Ops Assistant",
       "hours": "5h/day (9pm\u20135am PHT, weekdays)",
@@ -1619,6 +1628,7 @@
           "bucket": "Active"
         }
       ],
+      "lastEOD": "2026-08-19",
       "since": {
         "label": "2026-08-07",
         "source": "first_logged",
@@ -1732,49 +1742,49 @@
     "Active": [
       {
         "name": "ACTION-PLAN-UNCATEGORIZED-MESSAGES",
-        "modified": "2026-08-06T11:16:08.353112+00:00",
+        "modified": "2026-08-25T01:32:41.252281+00:00",
         "relPath": "PROJECTS/Active/ACTION-PLAN-UNCATEGORIZED-MESSAGES.md",
         "isDir": false
       },
       {
         "name": "CHRIS-CAFFERA-HPG-WORKSTREAM",
-        "modified": "2026-08-24T20:58:41.637645+00:00",
+        "modified": "2026-08-25T01:32:41.253158+00:00",
         "relPath": "PROJECTS/Active/CHRIS-CAFFERA-HPG-WORKSTREAM.md",
         "isDir": false
       },
       {
         "name": "CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG10",
-        "modified": "2026-08-24T20:59:12.236022+00:00",
+        "modified": "2026-08-25T01:32:41.253158+00:00",
         "relPath": "PROJECTS/Active/CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG10.md",
         "isDir": false
       },
       {
         "name": "CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG24",
-        "modified": "2026-08-24T20:59:12.235311+00:00",
+        "modified": "2026-08-25T01:32:41.253158+00:00",
         "relPath": "PROJECTS/Active/CHRIS-CAFFERA-TASK-LIST-WEEK-OF-AUG24.md",
         "isDir": false
       },
       {
         "name": "LATEST-COMPLETED-WORK",
-        "modified": "2026-08-11T21:16:28.827025+00:00",
+        "modified": "2026-08-25T01:32:41.253158+00:00",
         "relPath": "PROJECTS/Active/LATEST-COMPLETED-WORK.md",
         "isDir": false
       },
       {
         "name": "MASTER-TASK-LIST-ACTIVE",
-        "modified": "2026-08-18T04:34:09.533135+00:00",
+        "modified": "2026-08-25T01:32:41.253158+00:00",
         "relPath": "PROJECTS/Active/MASTER-TASK-LIST-ACTIVE.md",
         "isDir": false
       },
       {
         "name": "Penji - Agency Outreach Automation Workflow",
-        "modified": "2026-08-18T04:36:35.402855+00:00",
+        "modified": "2026-08-25T01:32:41.253158+00:00",
         "relPath": "PROJECTS/Active/Penji - Agency Outreach Automation Workflow.md",
         "isDir": false
       },
       {
         "name": "YONI-FEEDBACK-UNCATEGORIZED-MESSAGES",
-        "modified": "2026-08-06T11:16:08.354093+00:00",
+        "modified": "2026-08-25T01:32:41.253158+00:00",
         "relPath": "PROJECTS/Active/YONI-FEEDBACK-UNCATEGORIZED-MESSAGES.md",
         "isDir": false
       }
@@ -1786,7 +1796,7 @@
     "Prospective": [
       {
         "name": "NEW CLIENTS - ONBOARDING PIPELINE",
-        "modified": "2026-08-13T13:50:19.101226+00:00",
+        "modified": "2026-08-25T02:17:45.834447+00:00",
         "relPath": "PROJECTS/Prospective/NEW CLIENTS - ONBOARDING PIPELINE.md",
         "isDir": false
       }
@@ -1794,14 +1804,6 @@
   },
   "activity": {
     "week": [
-      {
-        "date": "2026-08-19",
-        "count": 3
-      },
-      {
-        "date": "2026-08-20",
-        "count": 1
-      },
       {
         "date": "2026-08-21",
         "count": 1
@@ -1820,7 +1822,15 @@
       },
       {
         "date": "2026-08-25",
-        "count": 0
+        "count": 1
+      },
+      {
+        "date": "2026-08-26",
+        "count": 1
+      },
+      {
+        "date": "2026-08-27",
+        "count": 1
       }
     ],
     "byDate": {
@@ -1830,20 +1840,24 @@
       "2026-08-17": 1,
       "2026-08-13": 6,
       "2026-08-10": 5,
+      "2026-08-07": 5,
+      "2026-08-05": 8,
+      "2026-08-04": 1,
       "2026-08-22": 1,
       "2026-08-12": 5,
       "2026-08-11": 9,
-      "2026-08-07": 5,
       "2026-08-06": 2,
-      "2026-08-05": 8,
+      "2026-08-15": 2,
+      "2026-08-14": 4,
+      "2026-08-08": 2,
+      "2026-08-09": 1,
+      "2026-08-28": 1,
+      "2026-08-27": 1,
+      "2026-08-26": 1,
+      "2026-08-25": 1,
       "2026-08-21": 1,
       "2026-08-20": 1,
-      "2026-08-16": 1,
-      "2026-08-14": 4,
-      "2026-08-15": 2,
-      "2026-08-08": 2,
-      "2026-08-04": 1,
-      "2026-08-09": 1
+      "2026-08-16": 1
     }
   },
   "history": [
@@ -1926,6 +1940,13 @@
     },
     {
       "date": "2026-08-25",
+      "clients": 10,
+      "activeClients": 5,
+      "agents": 10,
+      "activeTasks": 8
+    },
+    {
+      "date": "2026-08-27",
       "clients": 10,
       "activeClients": 5,
       "agents": 10,
