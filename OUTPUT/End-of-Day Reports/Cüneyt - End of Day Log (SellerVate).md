@@ -59,10 +59,29 @@ PlusVibe across 10 campaigns. 822 (all SalesFix) are one answer away from full c
 > we should fix to SellerVate before these go out? Wanted to check before touching real prospects
 > under a name we can't confirm."
 
+**Update, same day — Eikko confirmed SalesFix is legitimate** ("keep it," no need to ask Cüneyt
+after all). Built the held-back group as its own campaign, keeping the SalesFix branding
+completely untouched (no Starfix-style swap). Targeted 822 verified leads; **692 actually landed**
+— uploading in two 500-lead batches (PlusVibe's cap per call), the first batch's own
+`skip_if_in_workspace` protection silently skipped 130. Checked before accepting that number:
+all 130 confirmed already present in one of the 8 campaigns built minutes earlier in the same
+session — expected, not a bug (245 leads were already known to appear in 2+ of the original 24
+Instantly campaigns).
+
+**Checked for a rendering risk before calling it done:** this campaign's copy never references
+`{{firstName}}` — it's written as a group greeting ("Hallo zusammen") because every one of its 822
+leads turned out to be a role-based inbox (`info@`, `hallo@`, `amazon.sc2@`), not a named contact.
+100% blank first-name data, but the copy was already built around that. Swept the other 8
+campaigns built earlier for the same mismatch too — clean across the board: every campaign using
+`{{firstName}}` has 0% blanks, every campaign with blanks uses a group greeting instead.
+
+**Account-wide state now: 11 PlusVibe campaigns, 3,333 of 3,776 unique Instantly leads (88%)
+covered.** What's left (the empty SEO-audit offer, and a campaign fully superseded by earlier
+migrations) has 0 leads either way — nothing actionable remaining from the original account audit.
+
 **Next Steps:**
-- Send the SalesFix question to Cüneyt, then build that group once answered
-- Test-send all 10 PlusVibe campaigns, confirm every merge field renders
-- Decide launch staggering — 10 campaigns now share 19 mailboxes' daily capacity
+- Test-send all 11 PlusVibe campaigns, confirm every merge field renders
+- Decide launch staggering — 11 campaigns now share 19 mailboxes' daily capacity
 - Fold in Zakir's ~178 leads as a separate decision
 - Retire the source Instantly campaigns once PlusVibe equivalents are confirmed working
 

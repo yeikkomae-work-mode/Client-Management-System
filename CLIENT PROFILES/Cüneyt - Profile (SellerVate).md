@@ -100,12 +100,16 @@ PlusVibe** across 10 campaigns. The remaining 822 are the SalesFix group, one an
 being covered too. Full record:
 `OUTPUT/Campaign Tracking/Cüneyt - Full Instantly Account Migration to PlusVibe (2026-08-27).md`.
 
+**Update, same day:** Eikko confirmed SalesFix is legitimate ("keep it") — built as its own campaign,
+brand untouched. **11 campaigns now live in PlusVibe, PAUSED — 3,333 of the account's 3,776 unique
+Instantly leads (88%) are covered.** Only the empty SEO-audit offer and a fully-superseded campaign
+remain outside PlusVibe, both for reasons that don't need action (0 leads either way).
+
 **Not yet done — needs a decision:**
-- [ ] **Ask Cüneyt what SalesFix / www.salesfix.ai is** before building or discarding that copy — question drafted, see EOD log
 - [ ] Swap Starfix → SellerVate in the Instantly email copy before reusing or relaunching any of it
-- [ ] Test-send all 10 PlusVibe campaigns and confirm merge fields render, then activate after ~Sep 7
+- [ ] Test-send all 11 PlusVibe campaigns and confirm merge fields render, then activate after ~Sep 7
 - [ ] Decide whether to fold in Zakir's ~178 new usable leads too, or hold for a future batch
-- [ ] With 10 campaigns sharing 19 mailboxes, decide launch order/staggering rather than activating all at once
+- [ ] With 11 campaigns sharing 19 mailboxes, decide launch order/staggering rather than activating all at once
 - [ ] Retire the Instantly campaigns once their PlusVibe equivalents are live and confirmed, so nothing gets launched twice
 - [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
 - [ ] Formally retire/archive the paused Instantly campaigns once PlusVibe campaigns are live and confirmed working

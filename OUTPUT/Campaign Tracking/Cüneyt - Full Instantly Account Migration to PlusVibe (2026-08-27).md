@@ -106,9 +106,38 @@ mechanical renaming:
 
 | Group | Leads | Why |
 |---|---|---|
-| SalesFix-signed copy | 822 verified | Pending Cüneyt's answer on the SalesFix brand identity |
 | "Upwork Leads" (SEO-audit offer) | 0 | Different offer again (listing keyword/indexing audit); 0 leads currently so no real cost to waiting |
 | "Starfix New UK Leads 2026-08" | 0 remaining | All 45 already covered by earlier campaigns — nothing left to build |
+
+---
+
+## Update (2026-08-27, same day) — SalesFix confirmed, campaign built
+
+Eikko confirmed SalesFix is legitimate — "keep it." Built the held-back group as its own campaign,
+**`Sports & Fitness / Pet / Baby / Review2-DE (SalesFix) [MIGRATED]`**, PAUSED, sharing the same
+19 mailboxes. Brand text (`SalesFix Team`, `www.salesfix.ai`) preserved untouched — no swap applied,
+unlike the Starfix-signed campaigns.
+
+**822 verified leads targeted, 692 landed** (not 822): uploading in two 500-lead batches, the API's
+own `skip_if_in_workspace` protection silently skipped 130 leads in the first batch. Checked why
+before treating that as fine — every one of the 130 was confirmed to already exist in one of the
+8 campaigns built earlier the same session (245 leads were already known to appear in 2+ of the
+original 24 Instantly campaigns; this is that overlap surfacing on upload). Not a bug, not lost
+data — those 130 are already covered elsewhere in PlusVibe.
+
+**Checked for a rendering risk before calling this done:** this campaign's copy uses no
+`{{firstName}}` merge tag at all — it's written as a group greeting ("Hallo zusammen") for what
+turned out to be 100% role-based/generic company inboxes (`info@`, `hallo@`, `amazon.sc2@` etc.),
+not named contacts. Confirmed the original drafters accounted for this correctly. Also swept the
+other 8 campaigns for the same risk: every campaign that *does* use `{{firstName}}` has 0% blank
+names, every campaign with blank names uses a group greeting instead — no campaign has a mismatch.
+
+| | |
+|---|---|
+| Campaign | `Sports & Fitness / Pet / Baby / Review2-DE (SalesFix) [MIGRATED]` |
+| Leads | 692 (822 verified, 130 already covered elsewhere) |
+| Brand | SalesFix / www.salesfix.ai — unchanged, confirmed legitimate |
+| Mailboxes | Same 19, shared |
 
 ---
 
@@ -118,12 +147,14 @@ mechanical renaming:
 |---|---|
 | Amazon Seller - Rating (review-removal, star rating) | 1,327 |
 | Amazon Seller UK/USA (review-removal, product category) | 107 |
-| The 8 campaigns built this round | 1,207 |
-| **Total in PlusVibe** | **2,641** |
-| Still only in Instantly (SalesFix pending + the two out-of-scope groups) | 822 |
+| The 8 campaigns built earlier this round | 1,207 |
+| SalesFix campaign | 692 |
+| **Total in PlusVibe** | **3,333** |
 
-Of the original 3,776 unique leads across the whole Instantly account, **2,641 (70%) are now in
-PlusVibe.** The remaining 822 are one answer away from being fully covered too.
+Of the original 3,776 unique leads across the whole Instantly account, **3,333 (88%) are now in
+PlusVibe** across 11 campaigns. The remainder is the empty "Upwork Leads" SEO-audit offer (0 leads,
+different pitch, out of scope) and 0 leftover from "Starfix New UK Leads 2026-08" (already fully
+covered).
 
 ---
 

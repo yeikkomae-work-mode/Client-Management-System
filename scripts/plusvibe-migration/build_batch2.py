@@ -192,11 +192,16 @@ def main():
             "var_sel_type": "R_ROBIN",
         })
 
-        added = call("POST", "lead/add", {
-            "workspace_id": WS, "campaign_id": cid, "leads": lead_rows,
-            "skip_if_in_workspace": True,
-        })
-        print(f"  campaign_id={cid}  upload result: {json.dumps(added)[:200]}\n")
+        # PlusVibe caps lead/add at 500 per call.
+        CHUNK = 500
+        for i in range(0, len(lead_rows), CHUNK):
+            chunk = lead_rows[i:i + CHUNK]
+            added = call("POST", "lead/add", {
+                "workspace_id": WS, "campaign_id": cid, "leads": chunk,
+                "skip_if_in_workspace": True,
+            })
+            print(f"  campaign_id={cid}  batch {i}-{i+len(chunk)}: {json.dumps(added)[:200]}")
+        print()
         summary.append({"name": camp_name, "id": cid, "leads": len(lead_rows), "members": members})
 
     with open(os.path.join(SCRATCH, "batch2_summary.json"), "w") as f:
