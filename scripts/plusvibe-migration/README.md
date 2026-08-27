@@ -133,3 +133,37 @@ this file:
   variables with clearly-labeled placeholder values (no real lead was used) plus a `[TEST SEND]`
   banner in the body. One test per campaign (11 total), spread across 11 distinct mailboxes, all
   sent to `cueneyt.nurdogan@sellervate.de`.
+
+## Splitting a campaign by timezone (`split_uk_us.py`, 2026-08-28)
+
+`schedules` accepts **at most one entry** — confirmed via a live 400 (`schedules must contain ≤ 1
+items`) when trying to add a second block for a different timezone. A single campaign cannot serve
+two timezones; the only way to actually match send time to each lead's region is to split into
+separate campaigns, one per region.
+
+- `campaign/update/campaign` rejects `status: "ACTIVE"` in the same call that first attaches
+  `email_accounts` to a brand-new campaign (`"Email account must be added before you can start the
+  campaign"`) even though the accounts array is right there in the same request body — apply
+  settings/sequences/mailboxes/schedule first while still `PAUSED`, upload leads, then send a
+  second, separate `PATCH` with just `{"status": "ACTIVE"}`.
+- `POST lead/delete` removes leads from one campaign: `{"workspace_id", "campaign_id",
+  "delete_list": ["email1@x.com", ...]}` — note the key is `delete_list`, not `emails` (`emails` is
+  rejected outright as "not allowed"). Used to move UK leads out of a campaign before re-uploading
+  them into a new UK-only one, so nothing gets sent from both.
+- Before touching anything live, `split_uk_us.py` reconstructs each campaign's exact lead list from
+  the same source files used to originally build it (CSV + dedupe list for the product-category
+  campaign; the Instantly export + leftover-batch JSON for the rating campaign) and dry-run-checks
+  the country-split counts against the documented live total — both matched exactly (107 = 62 US/CA
+  + 45 UK, 1,327 = 936 US/other + 391 UK) before any write happened.
+- There is still no bulk "list leads in a campaign" GET endpoint (`lead/list`, `lead/get/all`,
+  `campaign/get/leads` all 404) — reconstructing from source, not reading back from PlusVibe, is the
+  only option for this kind of split.
+
+## Autonomous writes to live campaigns are not something the session can schedule unsupervised
+
+Tried to set up a daily cron Routine that would both increment a campaign's `daily_limit` (ramp) and
+report health — the permission classifier declined it, since it's a standing job that would keep
+changing a live client campaign's send volume with no human in the loop. A **read-only** daily
+health-check Routine (status/bounce rate/mailbox health, no writes) was approved instead. Any ramp
+step that changes `daily_limit` needs to be applied from an active session, not a background cron,
+unless the client/user explicitly grants standing write permission for it.

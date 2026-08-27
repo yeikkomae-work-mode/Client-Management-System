@@ -129,6 +129,51 @@ Both scripts and the corrected SalesFix sequence JSON are committed under `scrip
 
 ---
 
+## Update (Aug 28, 2026) — Campaigns 1 & 2 launched, split by UK/US timezone
+
+Eikko: "launch 1 and 2 campaigns match timezone sent to uk and us send 6 emails per day ramp up 1
+increase then use all mailboxes and always give me notif of campaign health and inbox health."
+
+**PlusVibe only allows one `schedules` block per campaign** (confirmed via a live 400: `schedules
+must contain ≤ 1 items`) — a single campaign can't run on two timezones at once. Asked Eikko to
+choose between a true UK/US split (2 new campaigns) or one compromise schedule; he chose the split.
+
+**Split and launched, both legs ACTIVE, daily_limit=6 (ramp start), same day:**
+
+| Campaign | ID | Timezone | Leads | Mailboxes |
+|---|---|---|---|---|
+| Amazon Seller US/CA [MIGRATED] (renamed from "...UK/USA...") | `6a8cf6f27e5c6119d8830749` | America/New_York | 62 | 9 (starfix.online + sellervate.net) |
+| Amazon Seller UK [MIGRATED] (new) | `6a90b3bcf68baa1111ed5c7f` | Europe/London | 45 | same 9 |
+| Amazon Seller - Rating US [MIGRATED FROM INSTANTLY DRAFT] (renamed) | `6a8ee087c3903d2a71741b72` | America/New_York | 936 | 10 (hellostarfix.com) |
+| Amazon Seller - Rating UK [MIGRATED FROM INSTANTLY DRAFT] (new) | `6a90b41d24acfefeb9390a4c` | Europe/London | 391 | same 10 |
+
+Non-UK leads (US, Canada, and the ~183 leads spread across 13 other EU countries in the rating list)
+all route to the US leg, matching the account's existing "largest bloc drives the schedule" default.
+UK leads were removed from the original campaigns via `lead/delete` before being uploaded fresh into
+the new UK campaigns — verified no duplicate sends across legs. Both new UK campaigns reuse the exact
+same sequence copy and mailbox pool as their US sibling; only the schedule differs.
+
+**Ramp:** 6/day start today, +1/day, capped at 30 (matching the rest of the account's convention).
+Once a leg reaches 30, its mailbox pool expands from the leg-specific subset to all 19 shared
+mailboxes — this satisfies "then use all mailboxes." **Important operational note:** the safety
+classifier would not allow a fully autonomous daily cron that writes to live campaigns (increments
+send volume) without a human in the loop — only a **read-only** daily health-check routine was
+approved (see below). The daily +1 ramp step itself needs to be applied by hand each day (by Eikko
+or in an active Claude session) until/unless he explicitly grants standing write permission for it.
+
+**Monitoring:** a daily read-only Routine (`trig_01UUaYfY7S9b8Qz8JgziBvz5`, fires 08:00 UTC) checks
+all 13 PlusVibe campaigns' status/bounce rate and all 19 mailboxes' health/warmup, and always messages
+Eikko a status summary — satisfies "always give me notif of campaign health and inbox health."
+
+**Account now has 13 PlusVibe campaigns** (the original 9 untouched + these 4 legs replacing the
+former 2). Mailbox health snapshot right after launch: 19/19 ACTIVE.
+
+**Still needs a decision:**
+- [ ] Approve standing write access for the daily ramp increment, or keep doing it by hand
+- [ ] The remaining 9 campaigns (SalesFix, Ops Support, etc.) are still PAUSED — same UK/US split question applies whenever those launch too
+
+---
+
 ## Contact Details
 - **Contact:** Cüneyt (hiring manager) — also Junaid mentioned on the call (provides Hostinger/Instantly access)
 - **Email:** info@elevate-commerce.de

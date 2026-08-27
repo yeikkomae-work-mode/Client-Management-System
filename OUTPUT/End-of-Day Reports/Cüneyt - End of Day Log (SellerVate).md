@@ -51,6 +51,55 @@ full `unibox/emails/send` API notes.
 
 ---
 
+**Update (later same day) — campaigns 1 & 2 launched, live sending started.**
+
+**Source:** Eikko — "launch 1 and 2 campaigns match timezone sent to uk and us send 6 emails per
+day ramp up 1 increase then use all mailboxes and always give me notif of campaign health and inbox
+health."
+
+Tried to add a UK schedule block alongside the existing US one on the same campaign — PlusVibe
+rejects more than one `schedules` entry per campaign (400: `must contain ≤ 1 items`). Flagged this
+to Eikko rather than guessing; he chose a real UK/US split over a single-timezone compromise.
+
+**Split both campaigns into US-leg + UK-leg pairs and launched all 4, ACTIVE, today:**
+- Amazon Seller US/CA [MIGRATED] (`6a8cf6f27e5c6119d8830749`, renamed) — 62 leads, America/New_York
+- Amazon Seller UK [MIGRATED] (`6a90b3bcf68baa1111ed5c7f`, new) — 45 leads, Europe/London
+- Amazon Seller - Rating US [MIGRATED FROM INSTANTLY DRAFT] (`6a8ee087c3903d2a71741b72`, renamed) —
+  936 leads, America/New_York
+- Amazon Seller - Rating UK [MIGRATED FROM INSTANTLY DRAFT] (`6a90b41d24acfefeb9390a4c`, new) —
+  391 leads, Europe/London
+
+Reconstructed each campaign's exact live lead list from the same source files used to build it,
+dry-run-verified the UK/US split counts matched the documented live totals exactly (107 = 62+45,
+1,327 = 936+391) before touching anything live. UK leads removed from the original campaigns via
+`lead/delete`, then uploaded fresh into the new UK campaigns with the same copy and mailbox pool —
+no duplicate sends across legs. Non-UK/non-US leads (Canada, ~183 leads across 13 other EU
+countries) folded into the US leg, same "largest bloc drives the schedule" default used earlier.
+
+**Ramp:** all 4 legs start at daily_limit=6 today, +1/day, capped at 30 (account convention). Once a
+leg hits 30, its mailbox pool expands from the leg-specific subset to all 19 shared mailboxes —
+satisfies "then use all mailboxes." **The daily +1 ramp step is not automated** — the safety
+classifier declined to create a cron job that writes to live campaigns unsupervised; only a
+**read-only** daily health-check routine was approved. The ramp increment needs a human (or an
+active Claude session) to apply it each day until Eikko explicitly authorizes standing write access.
+
+**Monitoring set up:** daily read-only Routine (`trig_01UUaYfY7S9b8Qz8JgziBvz5`, 08:00 UTC) checks
+all 13 PlusVibe campaigns' status/bounce rate and all 19 mailboxes' health/warmup, always messages
+Eikko a summary — satisfies "always give me notif of campaign health and inbox health." Mailbox
+snapshot right after launch: 19/19 ACTIVE.
+
+**Deliverables:** `scripts/plusvibe-migration/split_uk_us.py` (not yet committed — pending review).
+
+**Next Steps:**
+- Apply the daily ramp increment by hand until standing write access is decided
+- Watch the first day's actual send counts against expectation (open question: does PlusVibe's
+  per-campaign daily_limit behave as expected with only one schedule block now, or does anything
+  about the split need re-checking after the first live day)
+- The other 9 PlusVibe campaigns are still PAUSED and single-timezone — same UK/US split question
+  will apply whenever they launch
+
+---
+
 ## 2026-08-27
 
 **Source:** Eikko — "pull the copy for the other 24 campaigns and revise email copies and make
