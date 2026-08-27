@@ -4,6 +4,53 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-28
+
+**Source:** Cüneyt, via WhatsApp — reviewed the 11 PlusVibe campaigns/copy, replied "this can leave
+it as it is and dont start in the beginning" (don't activate), flagged the SalesFix-signed copy
+still needed the Starfix-style brand fix, then asked "what about the warm up?" and "can you send
+few test mails?"
+
+**SalesFix brand correction applied.** Eikko's earlier "keep it" on the SalesFix branding was
+provisional pending Cüneyt's actual answer — Cüneyt confirmed SalesFix needs the same
+Starfix→SellerVate fix as everywhere else, not a real second brand. Patched only the `sequences`
+field on the live campaign (`Sports & Fitness / Pet / Baby / Review2-DE (SalesFix) [MIGRATED]`, id
+`6a9023eb0d0bcf449012149a`) — verified zero "SalesFix"/"salesfix.ai" mentions remain, leads/
+mailboxes/schedule/PAUSED status untouched.
+
+**Warmup checked.** All 19 mailboxes `ACTIVE`, warming since Aug 24 (4 days in), slow rampup at
+15/day. Normal for this stage — not a blocker yet, but worth rechecking before activating anything.
+
+**Sent one test email per campaign (11 total)** to Cüneyt's own inbox
+(cueneyt.nurdogan@sellervate.de), each rendering that campaign's real Step 1 / Variant A copy
+(spintax resolved to its first branch, merge fields filled with clearly-labeled placeholder data,
+`[TEST SEND]` banner in the body — no real lead's data was used), sent from 11 distinct mailboxes.
+All 11 sent successfully. Had to reverse-engineer `unibox/emails/send`'s schema first (not
+documented, and behaves differently from every other PlusVibe endpoint used so far —
+`workspace_id` goes in the query string, not the body) using safely-invalid `from` addresses so
+nothing could send by accident while probing.
+
+**Security note:** the PlusVibe API key used throughout this migration lives only in the session
+environment, never committed or written to disk — this session's fresh container didn't inherit it
+from the prior one, so had to ask Cüneyt/Eikko to re-supply it before any of today's work could run.
+Expected behavior given the never-commit-secrets rule, not a bug, but worth knowing it'll happen
+again on any future fresh session touching PlusVibe/Instantly/MillionVerifier.
+
+**Deliverables:** `scripts/plusvibe-migration/fix_salesfix_brand.py`,
+`scripts/plusvibe-migration/salesfix_sequences_fixed.json`,
+`scripts/plusvibe-migration/send_test_emails.py`, README updated with the SalesFix-fix record and
+full `unibox/emails/send` API notes.
+
+**Next Steps:**
+- Cüneyt to review the 11 test emails in cueneyt.nurdogan@sellervate.de and confirm copy/merge
+  fields look right
+- Recheck warmup progress before any campaign activates (currently 4 days into ramp-up)
+- Still open from Aug 27: Starfix→SellerVate swap in the raw Instantly copy, Zakir's ~178 leads
+  decision, launch order/staggering across 19 shared mailboxes, retiring source Instantly
+  campaigns, the 3 suspended hellostarfix.com mailboxes, sellervate.net renewal (due Sep 28)
+
+---
+
 ## 2026-08-27
 
 **Source:** Eikko — "pull the copy for the other 24 campaigns and revise email copies and make

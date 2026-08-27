@@ -99,3 +99,37 @@ the user — a hardcoded key like that is exactly what got caught and fixed here
   variable renaming (`{{firstName}}` → `{{first_name}}`, `{{jobTitle}}` → `{{custom_job_title}}`,
   etc.) plus a targeted brand-name correction on the campaigns that were still signed "Starfix"
   instead of "SellerVate" — not creative rewriting.
+
+## SalesFix brand fix (2026-08-28)
+
+Cüneyt confirmed via WhatsApp: the "SalesFix"-signed campaign (built by `build_salesfix.py` with
+`fix_brand=False`, since at build time it wasn't clear whether SalesFix was a real second brand or
+a leftover mistake) needed the **same** Starfix→SellerVate correction as every other campaign, and
+should stay paused ("dont make it active"). `fix_salesfix_brand.py` PATCHes only the `sequences`
+field on the live campaign (`6a9023eb0d0bcf449012149a`) — leads, mailboxes, schedule, and PAUSED
+status are untouched. `salesfix_sequences_fixed.json` is the corrected sequence payload it sends
+(committed here since it's small and is the definitive record of what shipped, unlike the large raw
+pulls elsewhere in this pipeline which are left uncommitted and regenerable).
+
+## Test sends (2026-08-28)
+
+Cüneyt asked (same WhatsApp thread) to check warmup status and send a few test emails. Warmup:
+`account/list?workspace_id=` shows all 19 mailboxes `ACTIVE`, warming since 2026-08-24 at a slow
+15/day rampup — normal for 4-day-old warmup, not a blocker on its own but worth watching before any
+campaign goes live.
+
+Test sends use `POST unibox/emails/send`, which behaves differently from every other endpoint in
+this file:
+- `workspace_id` must be a **query param** (`?workspace_id=`), not a body field — passing it in the
+  body gets back a misleading `"workspace_id" is required` even though the body clearly has it.
+- Body requires `subject`, `from` (must be an existing connected mailbox — validated by lookup;
+  an unrecognized address returns `Email Account not found`, not a generic validation error), `to`.
+  `body` is optional.
+- There is no live "fetch full campaign detail" GET endpoint (`campaign/get/campaign`,
+  `campaign/get/sequences` etc. all 404) — `send_test_emails.py` renders each campaign's Step 1
+  Variant A copy from the same local source data used to build it (`sequences.py`,
+  `sequences_rating.py`, `other24_full.json` via `build_batch2.convert_sequences`,
+  `salesfix_sequences_fixed.json`), resolving spintax to its first branch and filling merge
+  variables with clearly-labeled placeholder values (no real lead was used) plus a `[TEST SEND]`
+  banner in the body. One test per campaign (11 total), spread across 11 distinct mailboxes, all
+  sent to `cueneyt.nurdogan@sellervate.de`.

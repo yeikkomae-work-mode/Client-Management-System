@@ -107,13 +107,25 @@ remain outside PlusVibe, both for reasons that don't need action (0 leads either
 
 **Not yet done — needs a decision:**
 - [ ] Swap Starfix → SellerVate in the Instantly email copy before reusing or relaunching any of it
-- [ ] Test-send all 11 PlusVibe campaigns and confirm merge fields render, then activate after ~Sep 7
+- [x] Test-send all 11 PlusVibe campaigns and confirm merge fields render — see Aug 28 update below
 - [ ] Decide whether to fold in Zakir's ~178 new usable leads too, or hold for a future batch
 - [ ] With 11 campaigns sharing 19 mailboxes, decide launch order/staggering rather than activating all at once
 - [ ] Retire the Instantly campaigns once their PlusVibe equivalents are live and confirmed, so nothing gets launched twice
 - [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
 - [ ] Formally retire/archive the paused Instantly campaigns once PlusVibe campaigns are live and confirmed working
 - [ ] sellervate.net renewal still due Sep 28, 2026 — not yet renewed
+
+---
+
+## Update (Aug 28, 2026) — SalesFix brand fix, warmup check, 11 test sends
+
+Cüneyt reviewed the 11 PlusVibe campaigns and email copy via WhatsApp. His feedback:
+- **Leave the campaigns as-is otherwise, don't activate** ("dont make it active") — confirmed staying PAUSED.
+- **The SalesFix-signed campaign needs the same brand correction as Starfix did** — his earlier "keep it" (relayed by Eikko) was provisional; SalesFix is not a separate legitimate brand after all. Fixed: `sequences` field on `Sports & Fitness / Pet / Baby / Review2-DE (SalesFix) [MIGRATED]` (id `6a9023eb0d0bcf449012149a`) patched to SellerVate, verified zero "SalesFix"/"salesfix.ai" mentions remain. Leads, mailboxes, schedule, and PAUSED status untouched — this was a copy-only fix. Script: `scripts/plusvibe-migration/fix_salesfix_brand.py`.
+- **Warmup status checked** — all 19 mailboxes `ACTIVE`, warming since Aug 24 (4 days in), slow rampup at 15/day. Normal for this stage, not yet a blocker, but worth another look before any campaign activates.
+- **Sent a test email per campaign (11 total)** to Cüneyt's own inbox (cueneyt.nurdogan@sellervate.de), each rendering that campaign's actual Step 1 / Variant A copy (spintax resolved to its first branch, merge fields filled with clearly-labeled placeholder data — no real lead was used) from a distinct mailbox. All 11 sent successfully via `unibox/emails/send`. Script: `scripts/plusvibe-migration/send_test_emails.py`.
+
+Both scripts and the corrected SalesFix sequence JSON are committed under `scripts/plusvibe-migration/`. Full API notes (including the `unibox/emails/send` quirks — `workspace_id` as a query param, no live full-campaign-detail GET endpoint) in that folder's `README.md`.
 
 ---
 
