@@ -4,6 +4,70 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-27
+
+**Source:** Eikko — "pull the copy for the other 24 campaigns and revise email copies and make
+sure all leads go unders millionverifier [...] before uploading to the plusvibe and after the
+pulling from instantly have it run a dedupe first before millionverifier."
+
+**Full pipeline built and run:** pulled all 24 remaining Instantly campaigns (3,057 raw lead rows)
+→ deduped (within the 24, then against everyone already in PlusVibe) → **2,704 unique targets** →
+ran every one through MillionVerifier (`quality=good` required) → **1,899 pass, 675 risky, 130
+bad**, ~1,994 credits spent (9,360 → 7,366 remaining, checked balance before and after). Sanity
+checked the two lowest pass-rate campaigns before trusting the numbers — both were correct
+dedupe exclusions (already covered by earlier PlusVibe campaigns), not a pipeline bug.
+
+**Copy pulled and checked for structure:** the 24 campaigns turned out to be only 11 distinct
+sequences — several are one German template reused across 9 "Review2 - DE" company-size tiers.
+None use spintax, so revising for PlusVibe was mechanical (variable renaming), not creative
+rewriting — much lighter lift than expected.
+
+**Stopped before writing or uploading anything** when the copy pull surfaced a real problem: 1,164
+leads (43% of the batch — Sports & Fitness mixed, Pet, Baby, all 9 Review2-DE tiers) are signed
+**"SalesFix Team" from www.salesfix.ai** — a brand that has never appeared anywhere in this repo.
+Given the Starfix/SellerVate mixup from two days ago, didn't want to repeat that mistake blind.
+Asked Eikko directly rather than guessing; he asked for a question to send to Cüneyt instead of
+deciding it myself — drafted below. That whole group is excluded from this build until answered.
+
+Also flagged a second distinct offer in the batch: 202 leads ("50K Leads" + "Agency Leads") pitch
+general Amazon operational support (catalog errors, listing indexing, technical fixes) — not
+review removal at all. Eikko confirmed build it as its own campaign.
+
+**Built 8 campaigns in PlusVibe, all PAUSED**, sharing the existing 19 mailboxes: Liste von Dennis
++ 50K DE Amazon Leads (175), USA Seller (18), Amazon Seller 2cnd 2 (180), Sports & Fitness Reviews
+(130), UK Seller (24), Amazon Ops Support (148), Starfix New US Leads 2026-07-29 (368), Review
+(164) — **1,207 verified leads total**, zero upload errors.
+
+**Brand correction applied to 4 of the 8** (the ones originally signed "Starfix"): swapped
+`"Starfix Team"` → `"SellerVate Team"`, `"at/using/helps Starfix"` → `"at/using/helps SellerVate"`,
+`"starfix.ai"` → `"sellervate.de"`. Verified zero leftover Starfix mentions in the converted copy
+via regex sweep before uploading.
+
+**Caught and fixed my own mistake mid-task:** the MillionVerifier key was hardcoded directly in
+`verify_batch.py` (since Eikko pasted it inline in a URL) instead of read from the environment
+like every other key this session. Final secret-scan before committing caught it — fixed to read
+from `MV_KEY` env var before pushing, matching the standing rule for every other API key.
+
+**Account-wide state now:** of the original 3,776 unique Instantly leads, 2,641 (70%) are in
+PlusVibe across 10 campaigns. 822 (all SalesFix) are one answer away from full coverage.
+
+**Question drafted for Cüneyt (via Eikko):**
+> "Hey Cüneyt — while migrating the older Instantly campaigns to PlusVibe I found a batch of
+> ~1,200 leads (Sports & Fitness, Pet, Baby, and the German 'Review2' campaigns) whose email copy
+> is signed 'SalesFix Team' from www.salesfix.ai — not Starfix or SellerVate. Is SalesFix a real
+> brand of yours (sister company, prior name, reseller setup), or is that leftover/wrong branding
+> we should fix to SellerVate before these go out? Wanted to check before touching real prospects
+> under a name we can't confirm."
+
+**Next Steps:**
+- Send the SalesFix question to Cüneyt, then build that group once answered
+- Test-send all 10 PlusVibe campaigns, confirm every merge field renders
+- Decide launch staggering — 10 campaigns now share 19 mailboxes' daily capacity
+- Fold in Zakir's ~178 leads as a separate decision
+- Retire the source Instantly campaigns once PlusVibe equivalents are confirmed working
+
+---
+
 ## 2026-08-26
 
 **Source:** Eikko — "scan, review, and analyze the whole database and see if we can have it all on

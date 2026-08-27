@@ -76,3 +76,26 @@ decoded parts. `api_key=` query-param auth (the old v1 scheme) 401s; don't bothe
   lead-level `status` field is a **separate**, undocumented enum — don't assume it maps the same way;
   use `status_summary` (non-empty = has a `lastStep`, i.e. has been sent to before) as the reliable
   signal for "already contacted somewhere," not the raw status code.
+
+## MillionVerifier + `build_batch2.py` / `verify_batch.py`
+
+Used to migrate the other 24 Instantly campaigns (2026-08-27) — pull → dedupe → verify → revise →
+upload. `MV_KEY` (the MillionVerifier key) and `PV_KEY`/`PV_WS` must be set as environment
+variables; never hardcode a key directly in a script, even one handed to you inline in a URL by
+the user — a hardcoded key like that is exactly what got caught and fixed here.
+
+- `GET /api/v3/?api=<key>&email=<email>&timeout=10` — single lookup, real SMTP handshake for
+  valid-looking domains, so ~1-2s per call. `GET /api/v3/credits?api=<key>` — check balance before
+  a large run. Same Cloudflare block as PlusVibe/Instantly — shell out to `curl`, don't use
+  `requests`/`urllib` directly.
+- Response has `quality` (good/risky/bad/unknown — use `quality == "good"` as the pass bar),
+  `result`/`resultcode`/`subresult` for the detailed reason, and `credits` (balance after this
+  call). `verify_batch.py` parallelizes with a thread pool (`ThreadPoolExecutor`, concurrency 15)
+  since sequential calls at ~2s each don't scale past a few hundred leads.
+- `build_batch2.py` first collapses near-duplicate Instantly campaigns down to their distinct copy
+  (many campaigns in this account reuse an identical sequence under different names/segments —
+  hash each sequence's variant bodies to find the real count of unique campaigns before revising
+  anything). None of the other 24 campaigns used spintax, so "revising" them was pure mechanical
+  variable renaming (`{{firstName}}` → `{{first_name}}`, `{{jobTitle}}` → `{{custom_job_title}}`,
+  etc.) plus a targeted brand-name correction on the campaigns that were still signed "Starfix"
+  instead of "SellerVate" — not creative rewriting.

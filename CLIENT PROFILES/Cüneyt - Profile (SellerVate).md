@@ -72,11 +72,41 @@ star-rating database.** Correction: the "470" figure floated earlier included fi
 product-category leads, which don't belong here (no rating, already in the other campaign); 363 is
 the real number and what actually got added.
 
+## Update (Aug 27, 2026) — remaining 24 Instantly campaigns audited and 8 built in PlusVibe
+
+Pulled, deduped, verified, and migrated everything else in the Instantly account. Pipeline: pull
+full campaign+lead data (24 campaigns, 3,057 rows) → dedupe (within the 24, and against everyone
+already in PlusVibe) → 2,704 unique targets → MillionVerifier on all of them (1,899 pass / 675
+risky / 130 bad, ~1,994 credits spent, 7,366 left) → revise copy for PlusVibe → upload.
+
+**Copy check found the 24 campaigns are only 11 distinct sequences** — many are the same template
+reused across segments (9 "Review2 - DE" tiers share one German sequence). None use spintax, so
+"revising" was mechanical variable renaming, not rewriting.
+
+**Found a third brand identity mid-pull:** 1,164 leads (43% of the batch) are signed
+**"SalesFix Team" / www.salesfix.ai** — never seen anywhere in this repo before, not Starfix or
+SellerVate. Didn't guess — flagged it and held that whole group out of the build pending
+confirmation from Cüneyt (question drafted, see EOD log).
+
+**Built 8 campaigns, all PAUSED, sharing the same 19 mailboxes** (1,207 verified leads total):
+Liste von Dennis + 50K DE Amazon Leads (175), USA Seller (18), Amazon Seller 2cnd 2 (180), Sports
+& Fitness Reviews (130), UK Seller (24), **Amazon Ops Support** (148 — a genuinely different offer,
+Amazon operational support rather than review-removal), Starfix New US Leads (368), Review (164).
+4 of these were signed "Starfix" in the original copy — corrected to SellerVate the same way as
+the earlier sweep, verified zero leftover mentions after conversion.
+
+**Account-wide picture:** of the original 3,776 unique Instantly leads, **2,641 (70%) are now in
+PlusVibe** across 10 campaigns. The remaining 822 are the SalesFix group, one answer away from
+being covered too. Full record:
+`OUTPUT/Campaign Tracking/Cüneyt - Full Instantly Account Migration to PlusVibe (2026-08-27).md`.
+
 **Not yet done — needs a decision:**
+- [ ] **Ask Cüneyt what SalesFix / www.salesfix.ai is** before building or discarding that copy — question drafted, see EOD log
 - [ ] Swap Starfix → SellerVate in the Instantly email copy before reusing or relaunching any of it
-- [ ] Test-send both PlusVibe Amazon Seller campaigns (1,327-lead rating + 107-lead product-category) and confirm merge fields render, then activate after ~Sep 7
+- [ ] Test-send all 10 PlusVibe campaigns and confirm merge fields render, then activate after ~Sep 7
 - [ ] Decide whether to fold in Zakir's ~178 new usable leads too, or hold for a future batch
-- [ ] Retire the Instantly "Amazon Seller" draft once the PlusVibe version is live and confirmed, so it can't accidentally get launched too
+- [ ] With 10 campaigns sharing 19 mailboxes, decide launch order/staggering rather than activating all at once
+- [ ] Retire the Instantly campaigns once their PlusVibe equivalents are live and confirmed, so nothing gets launched twice
 - [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
 - [ ] Formally retire/archive the paused Instantly campaigns once PlusVibe campaigns are live and confirmed working
 - [ ] sellervate.net renewal still due Sep 28, 2026 — not yet renewed
