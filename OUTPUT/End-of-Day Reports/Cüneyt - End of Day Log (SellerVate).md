@@ -140,6 +140,15 @@ and sequence copy — only the lead subset differs. All 12 at daily_limit=6 (ram
 
 ---
 
+**Update (later same day) — first ramp increment applied.**
+
+Eikko: "apply today's ramp increment to 6/day campaigns." Bumped all 12 legs from daily_limit=6 to
+7 (`scripts/plusvibe-migration/ramp_increment.py` — no PlusVibe endpoint reads the current schedule
+back, so the script takes the known prior value as an argument rather than trusting a live read).
+Verified all 12 still ACTIVE after the PATCH. Next increment: 7 → 8.
+
+---
+
 ## 2026-08-27
 
 **Source:** Eikko — "pull the copy for the other 24 campaigns and revise email copies and make
