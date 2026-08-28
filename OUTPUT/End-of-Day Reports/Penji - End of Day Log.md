@@ -13,14 +13,15 @@ Running daily record of work completed, metrics, and notes.
   - **All 15 signals replaced** with values never tried before: 2 new verified influencers (Dave Gerhardt, Katelyn Bourgoin — both real, pulled from Kim's already-verified agent config), 3 new competitor pages (Superside, Design Pickle, Kimp — previously only used as ICP exclusions, now also used as engagement signals, since people following Penji's closest competitors is a strong intent signal), and 7 new keyword phrases.
   - Verified the write persisted via a fresh `get_agent` read (not just trusting the write response), after the Aug 25 incident where a similar update briefly dropped working signals.
 - Created `CLIENT PROFILES/Penji - Agency-Eikko Signal & ICP History.md` — full record of every ICP and signal ever run on this agent, with yield numbers, so future refreshes don't retest dead ideas. Retired Round 2's final yield: the two influencer signals (Chris Do, Daniel Murray) worked well (17 leads combined) and got replaced with fresh influencers rather than dropped as a signal type; 2 of the 3 keyword swaps from Aug 25 never produced anything ("overflow design work," "white label design" — both stayed at 0).
+- Mirrored the same record into Notion at https://app.notion.com/p/3ca811e21c7f8152965be78cf622506e ("📡 Penji — Agency-Eikko Signal & ICP Tracker"), filed under VA Command Center since the connected Notion integration still can't reach dotpenji's real Signal Tracker (see Notes). Confirmed it rendered correctly (3 tables, callout, nesting) via a fresh fetch after creating it.
 
 **Notes:**
-- Couldn't reach Penji's own "dotpenji" Notion workspace (Agency Advisor page, Agency Outreach Redefined doc, Signal Tracker) — those links are in a separate Notion workspace from the one connected to this session (Eikko's personal "VA Command Center"). Proceeded without them; if the team's Signal Tracker has its own convention for recording this, worth reconciling against `Penji - Agency-Eikko Signal & ICP History.md` later.
+- Confirmed why dotpenji is unreachable, not just that it is: `ListConnectors` shows exactly one Notion connection, authorized against Eikko's personal workspace only. Notion connectors are workspace-scoped at OAuth time, so no amount of page-level sharing inside dotpenji fixes this — Eikko needs to reconnect the Notion connector in claude.ai → Settings → Connectors and select "dotpenji" during the authorization step (may replace the personal-workspace connection rather than add a second one — his call which matters more to have connected).
 - `mcp__gojiberry__*` tools still 401 in this session — the `/etc/environment` fix from Aug 25 hasn't taken effect (same long-running container). Used the raw-script Bash workaround again.
 
 **Next Steps:**
 - Give the new signals a few days to source leads before judging them — Round 2 took ~3 days to show which of its swaps worked.
-- Consider getting the Signal Tracker Notion page shared/accessible to this session, so future refreshes can check what other reps (not just Eikko) have already tried.
+- Once dotpenji is reconnected: move/copy the Notion tracker page into the real Signal Tracker, and check whether other reps' tried signals should factor into future rounds.
 
 ---
 

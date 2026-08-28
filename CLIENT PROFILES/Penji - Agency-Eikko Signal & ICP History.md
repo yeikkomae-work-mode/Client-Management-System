@@ -2,6 +2,8 @@
 
 Running record of every ICP and signal configuration run on the Gojiberry "Agency - Eikko" agent (id `29267`, list `45132` "Agency - Eikko leads"). Purpose: every time the ICP/signals get refreshed, whoever does it next can see exactly what's already been tried and its yield, instead of re-testing dead ideas or guessing what's new. Update this file **before** removing anything from the live agent.
 
+**Also mirrored in Notion:** https://app.notion.com/p/3ca811e21c7f8152965be78cf622506e — filed under VA Command Center (Eikko's personal workspace) rather than Penji's own "dotpenji" Signal Tracker (`app.notion.com/p/dotpenji/8-17-26-Signal-Tracker-...`), since the connected Notion integration isn't authorized for the dotpenji workspace. Move/copy it there once that's reconnected, and keep both in sync on future rounds.
+
 ---
 
 ## Round 3 — live now (started 2026-08-28)
