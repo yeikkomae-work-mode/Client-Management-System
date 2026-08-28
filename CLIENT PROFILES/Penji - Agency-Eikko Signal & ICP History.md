@@ -6,7 +6,17 @@ Running record of every ICP and signal configuration run on the Gojiberry "Agenc
 
 ---
 
-## Round 3 — live now (started 2026-08-28)
+## Round 4 — live now (Round 2's config restored, 2026-08-28)
+
+**Reason:** Round 3 was reverted a few hours after launch — Shekinah flagged it directly in Slack, with a screenshot of the Gojiberry agent dashboard showing 0 leads found on nearly every new signal (all 7 new keywords, all 3 new competitor pages, and Katelyn Bourgoin; only Dave Gerhardt and the two premium job-title signals showed any activity, and even those were minimal). Her guidance: adjust the signal, check what other reps are doing for ideas, and combine with other triggers rather than guessing blind.
+
+Restored Round 2's exact ICP and all 15 signals (verbatim from the saved pre-Round-3 snapshot, byte-for-byte — same values, same order). Verified via a fresh `get_agent` read after the write.
+
+**Worth noting for next time:** Round 3 was live for only a few hours before this feedback — far short of the ~3 days Round 2 took to show which of *its* swaps worked. Zero leads that fast doesn't necessarily mean the ideas were bad, just unproven. But Shekinah's instruction was explicit and Eikko acknowledged it ("noted po fix ko po"), so reverting now rather than waiting it out. If a Round 5 gets built, do it informed by what other reps' agents are actually running (Kim's config was already checked for Round 3's influencers — worth doing the same for Evi, Kristine, and Shekinah's own agents too) rather than another blind-guess batch of untried phrases.
+
+---
+
+## Round 3 — retired 2026-08-28, same day (reverted after a few hours)
 
 **Reason for the refresh:** per Eikko's request — retire Round 2 in full (record it below), and build a genuinely new ICP + signal set rather than another partial swap. Also corrects a real gap: the ICP had been pulling Founder/CEO/President/Managing Director titles the whole time, despite Shekinah's Aug 17 correction (see `Penji - Agency Advisor Quick Reference.md` #3) explicitly saying to exclude Founders/Co-Founders and target marketing-specific titles instead. That correction was never actually applied to the live Gojiberry config until now — Round 2's lead data confirms it: 14 "Founder", 7 CEO-variant, 3 "President", 2 "Co-Founder" titles came through despite the rule.
 
@@ -108,7 +118,7 @@ Original config from initial agent setup. 6 signals replaced 2026-08-25 for sour
 
 **COMPETITOR_PAGE_URL:** Upwork, Fiverr, Canva, 99designs, Superside, Design Pickle, Kimp
 
-**Job titles tried as the primary ICP:** Creative Director, Founder, CEO, Managing Director, President, Design Lead, Head of Creative, Art Director, Client Success Manager, Director of Client Services *(Rounds 1–2)* → Marketing Director, Head of Marketing, CMO, VP of Marketing, Director of Brand Marketing, Director of Growth Marketing, Director of Digital Marketing, Marketing Manager, Creative Director, Head of Creative *(Round 3)*
+**Job titles tried as the primary ICP:** Creative Director, Founder, CEO, Managing Director, President, Design Lead, Head of Creative, Art Director, Client Success Manager, Director of Client Services *(Rounds 1–2, restored as Round 4 — currently live)* → Marketing Director, Head of Marketing, CMO, VP of Marketing, Director of Brand Marketing, Director of Growth Marketing, Director of Digital Marketing, Marketing Manager, Creative Director, Head of Creative *(Round 3 only, reverted same day)*
 
 ---
 
