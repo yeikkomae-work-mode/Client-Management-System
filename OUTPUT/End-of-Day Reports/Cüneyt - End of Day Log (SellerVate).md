@@ -4,6 +4,28 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-31
+
+**Source:** Eikko — "mailboxes with health below 95% remove from campaigns for it to focus on
+recovery and warm up phase."
+
+Pulled live health for all 19 mailboxes. 5 under 95%: sebastian@sellervate.net (90.00%),
+jonas@sellervate.net (93.24%), audits@hellostarfix.com (94.12%), david@sellervate.net (94.67%),
+tobias@sellervate.net (94.67%).
+
+Removed all 5 from every campaign they were attached to — 21 of 21 PlusVibe campaigns touched.
+Roster-only edit (`email_accounts` on `campaign/update/campaign`), nothing else changed on any
+campaign. Verified after: all 5 mailboxes at 0 campaigns, still ACTIVE/ACTIVE so warmup keeps
+running; all 21 campaigns still correctly 12 ACTIVE / 9 PAUSED, none left with zero mailboxes
+(smallest roster after removal: 5, on the 4 US/CA + UK Google/Microsoft/Other legs).
+
+**Next Steps:**
+- Re-check these 5 mailboxes' health periodically; re-add once recovered above 95%
+- Daily ramp increment for the 12 active legs still needs to be applied by hand (currently at 7/day
+  as of Friday Aug 28, no weekend increments since nothing sends Sat/Sun)
+
+---
+
 ## 2026-08-28
 
 **Source:** Cüneyt, via WhatsApp — reviewed the 11 PlusVibe campaigns/copy, replied "this can leave

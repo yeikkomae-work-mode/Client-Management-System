@@ -207,6 +207,40 @@ as before. Account now has **21 PlusVibe campaigns total** (9 untouched paused +
 
 ---
 
+## Update (Aug 31, 2026) — 5 low-health mailboxes pulled from all campaigns for recovery
+
+Eikko: "mailboxes with health below 95% remove from campaigns for it to focus on recovery and warm up phase."
+
+Pulled live warmup health for all 19 mailboxes; 5 were under the 95% bar:
+
+| Mailbox | Health |
+|---|---|
+| sebastian@sellervate.net | 90.00% |
+| jonas@sellervate.net | 93.24% |
+| audits@hellostarfix.com | 94.12% |
+| david@sellervate.net | 94.67% |
+| tobias@sellervate.net | 94.67% |
+
+Removed each from every campaign it was attached to (21 of the 21 PlusVibe campaigns touched at least
+one of the five) — a pure `email_accounts` roster edit via `campaign/update/campaign`, nothing else on
+any campaign changed (schedules, status, leads, sequences all untouched). Verified after: all 5
+mailboxes now show 0 campaigns attached, still `ACTIVE`/`ACTIVE` (account + warmup status) so warmup
+mail keeps flowing, just no longer double-duty sending real campaign volume. Verified campaign statuses
+unchanged (still 12 ACTIVE / 9 PAUSED) — no campaign lost every mailbox:
+
+- The 4 US/CA + UK (Google/Microsoft/Other) legs went from 9 → 5 mailboxes each (lost 4 of 5
+  sellervate.net boxes, kept all 4 starfix.online + maximilian@sellervate.net).
+- The 4 Rating US/UK legs went from 10 → 9 (lost only audits@).
+- The 8 shared-pool campaigns (batch2 + SalesFix) went from 19 → 14.
+
+**Next Steps:**
+- Re-check these 5 mailboxes' health periodically; re-add to campaigns once recovered above 95%
+- No script committed for this one-off — straightforward enough to redo by hand if needed; the pattern
+  (invert `account/list`'s per-account `cmps` into a campaign→mailbox roster, subtract the flagged IDs,
+  PATCH `email_accounts` per affected campaign) is documented here for reuse
+
+---
+
 ## Contact Details
 - **Contact:** Cüneyt (hiring manager) — also Junaid mentioned on the call (provides Hostinger/Instantly access)
 - **Email:** info@elevate-commerce.de
