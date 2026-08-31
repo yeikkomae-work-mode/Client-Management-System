@@ -26,6 +26,32 @@ running; all 21 campaigns still correctly 12 ACTIVE / 9 PAUSED, none left with z
 
 ---
 
+**Update (later same day) — ramp increment applied, then all campaigns paused.**
+
+Applied the day's ramp increment (7 → 8/day) across the 12 active legs before anything else
+changed today — verified ACTIVE status and mailbox rosters untouched after.
+
+Cross-referenced the WhatsApp thread with Cüneyt while preparing his weekly update and found the
+Aug 28 test-send result hadn't been accurately reflected in the draft: 7 of 11 test emails landed
+in spam, not confirmed-clean as first written. Corrected that write-up before sending. Also found
+Cüneyt's actual Aug 27 request for the SalesFix campaign's signature was "Starfix Team," not
+"SellerVate Team" as originally applied — re-patched the sequences to match (still PAUSED, leads/
+mailboxes untouched).
+
+**Eikko then asked to pause all active campaigns.** PATCHed `status: PAUSED` on all 12
+previously-ACTIVE legs (the other 9 were already paused). Verified account-wide: **21 of 21
+PlusVibe campaigns now PAUSED, 0 ACTIVE.** No leads, mailboxes, or schedules touched — status
+only.
+
+**Next Steps:**
+- Resolve the spam-rate issue on the affected sends before anything goes ACTIVE again
+- Daily ramp increment is now moot until campaigns resume — don't apply further increments while
+  paused
+- Confirm with Eikko what triggers turning campaigns back on (copy fix, mailbox health recovery,
+  or an explicit go-ahead from Cüneyt)
+
+---
+
 ## 2026-08-28
 
 **Source:** Cüneyt, via WhatsApp — reviewed the 11 PlusVibe campaigns/copy, replied "this can leave

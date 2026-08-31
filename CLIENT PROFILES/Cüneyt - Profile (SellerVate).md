@@ -1,9 +1,25 @@
 # Cüneyt (SellerVate) — Client Profile
 
 **Status:** 🟡 Trial (20 hours) | **Rate:** $7/hr | **Role:** Cold Email & Lead Gen Specialist (Deliverability + Campaign Ops)
-**Coverage Period:** Aug 13, 2026 – Present | **Last Updated:** 2026-08-24 (full migration to PlusVibe — 19 mailboxes connected and warming)
+**Coverage Period:** Aug 13, 2026 – Present | **Last Updated:** 2026-08-31 (all 21 campaigns paused pending spam-rate fix)
 
 ---
+
+## Update (Aug 31, 2026) — all campaigns paused
+
+All 21 PlusVibe campaigns are now **PAUSED, 0 ACTIVE** (12 legs were live at 8/day; the other 9
+were already paused). No leads, mailboxes, or schedules were touched — status only.
+
+**Why:** cross-referencing the WhatsApp thread while prepping Cüneyt's weekly update surfaced that
+7 of the 11 Aug 28 test sends landed in spam, not clean as first logged — that needs resolving
+before more volume goes out. Also caught and fixed a signature mismatch on the SalesFix campaign
+(Cüneyt asked for "Starfix Team," it had been set to "SellerVate Team").
+
+**Next Steps:**
+- Diagnose and fix the spam-landing issue before reactivating anything
+- Daily ramp increment is paused along with the campaigns — don't resume it until sending resumes
+- Confirm with Eikko what the reactivation trigger is (copy fix verified, mailbox health recovery,
+  or explicit sign-off from Cüneyt)
 
 ## Update (Aug 24, 2026) — Full migration off Instantly to PlusVibe
 
