@@ -39,10 +39,11 @@ your total lead base (3,333 of 3,776) was live in PlusVibe.
 
 ### Friday, Aug 28 — Campaigns Launched (3.5 hrs)
 
-Sent test emails from every campaign to confirm copy and personalization were rendering
-correctly, then launched the first campaigns live — split by region (UK/US) and by recipient
-email provider for better deliverability control (12 campaigns now active). Set up daily
-automated monitoring for campaign and mailbox health.
+Sent test emails from every campaign to check deliverability before going live. 4 of 11 landed
+in the inbox; 7 landed in spam — flagged same day, currently reviewing copy on the affected sends
+before scaling further. Launched the new star-rating/product-category campaigns live (split by
+region and by recipient email provider, 12 campaigns), kept the older Instantly-copy campaigns
+paused per your instruction. Set up daily automated monitoring for campaign and mailbox health.
 
 ---
 
