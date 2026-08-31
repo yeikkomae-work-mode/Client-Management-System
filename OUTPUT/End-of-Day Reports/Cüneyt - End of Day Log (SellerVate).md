@@ -71,6 +71,33 @@ Cüneyt's to report back). Script: `scripts/plusvibe-migration/send_test_emails_
 
 ---
 
+**Update (later same day) — WhatsApp check, then campaigns reactivated.**
+
+WhatsApp screenshot showed Cüneyt confirmed receipt of the test batch ("sent" / thumbs up) and
+separately asked whether the 3.8-star rating in one test email was real data from his Excel.
+**Flagged to Eikko that it wasn't** — `custom_rating: "3.8"` was a hardcoded placeholder applied to
+every rating-family test send regardless of lead, same as "Example Amazon Co," clearly marked by
+the `[TEST SEND — placeholder lead data]` banner in the email itself. Eikko had told Cüneyt "yes is
+from our data" — flagged as inaccurate and worth correcting directly with him; not yet confirmed
+whether that correction has been sent.
+
+**Eikko then asked to resume launching the campaigns.** PATCHed `status: ACTIVE` on the same 12
+legs that were paused earlier today. Verified account-wide: **12 ACTIVE / 9 PAUSED**, matching the
+pre-pause split exactly.
+
+**Flag carried into this reactivation:** the root cause of the Aug 28 spam-rate issue (7 of 11
+landed in spam) was never actually diagnosed or fixed — today's test sends checked deliverability
+across all 3 steps but no copy/infrastructure change was made in response. Resuming is Eikko's
+explicit call; noting the gap here so it isn't lost.
+
+**Next Steps:**
+- Confirm whether the 3.8-rating correction was actually sent to Cüneyt
+- Watch the daily health-check routine's next report for bounce/spam signal now that sending has
+  resumed
+- Daily ramp increment (currently 8/day) resumes being relevant again now that campaigns are live
+
+---
+
 ## 2026-08-28
 
 **Source:** Cüneyt, via WhatsApp — reviewed the 11 PlusVibe campaigns/copy, replied "this can leave
