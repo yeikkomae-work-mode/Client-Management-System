@@ -26,7 +26,7 @@ CAMPAIGNS = [
     ("6a90cd7b5dddc42c583f1012", "Amazon Seller - Rating UK - Other [MIGRATED FROM INSTANTLY DRAFT]", "Europe/London"),
 ]
 
-START_DATE = "2026-08-28"
+START_DATE = "2026-08-31"
 CAP = 30
 
 
