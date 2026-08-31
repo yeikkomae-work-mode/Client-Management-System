@@ -52,6 +52,25 @@ only.
 
 ---
 
+**Update (later same day) — full-sequence test sends on all 12 legs.**
+
+**Source:** Eikko — "on those 12 campaigns send test emails to cuynet each sequence from 1-3."
+
+Sent Steps 1, 2, and 3 (36 emails total) from each of the 12 ESP-split campaigns to
+cueneyt.nurdogan@sellervate.de — the earlier Aug 28 test only covered Step 1. `from` was pulled
+live per campaign via `campaign/get/accounts` rather than assumed, so it reflects the actual
+post-health-removal roster: the 6 product-category legs (US/CA + UK × Google/Microsoft/Other) all
+share one pool and sent from alex@starfix.online; the 6 rating legs share a separate pool and sent
+from kevin@hellostarfix.com — expected, since the ESP split only changes which leads a campaign
+targets, not its mailbox pool. All 36/36 sent successfully (API-level; inbox-vs-spam placement is
+Cüneyt's to report back). Script: `scripts/plusvibe-migration/send_test_emails_all_steps.py`.
+
+**Next Steps:**
+- Wait on Cüneyt's placement report across all 3 steps this time, not just the opener
+- Still don't reactivate any campaign until the spam-rate issue is actually diagnosed and fixed
+
+---
+
 ## 2026-08-28
 
 **Source:** Cüneyt, via WhatsApp — reviewed the 11 PlusVibe campaigns/copy, replied "this can leave
