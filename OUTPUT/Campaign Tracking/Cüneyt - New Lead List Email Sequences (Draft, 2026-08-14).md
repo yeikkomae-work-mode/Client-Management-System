@@ -1,4 +1,14 @@
-# Starfix — New Email Sequences for the 4 Lead Lists (Draft)
+# SellerVate — New Email Sequences for the 4 Lead Lists (Draft)
+
+> [!IMPORTANT]
+> **Brand name in the copy below is wrong — corrected 2026-08-25.**
+> The email copy on this page signs off as **"Starfix"**. The business is
+> **SellerVate** (https://sellervate.de). The copy is left here **verbatim** because
+> this page is a record of what was actually built/sent — do not silently edit it.
+> **Any of this copy must have "Starfix" swapped to "SellerVate" before it is reused
+> or relaunched.** The PlusVibe Amazon Seller campaign built on 2026-08-25 is not
+> affected: it names no brand and signs off with `{{sender_signature}}`.
+
 
 **Date:** 2026-08-14 | **Status:** Draft — not yet built in Instantly, needs Cüneyt's review before launch
 

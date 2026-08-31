@@ -7,7 +7,7 @@
 
 | Client | Stage | Next Step | Deadline | Status |
 |--------|-------|-----------|----------|--------|
-| **Cüneyt (Starfix)** | Trial (20h @ $7/hr) | Fix DKIM, confirm upfront payment | Ongoing | 🟡 TRIAL STARTED (Aug 13) |
+| **Cüneyt (SellerVate)** | Trial (20h @ $7/hr) | Fix DKIM, confirm upfront payment | Ongoing | 🟡 TRIAL STARTED (Aug 13) |
 | **Top Acquisitions** | Closed | None — not selected | — | 🔴 CLOSED (Aug 13) |
 
 ---
@@ -15,8 +15,8 @@
 ## CLIENT 3: CÜNEYT (STARFIX / ELEVATE COMMERCE) — 🟡 TRIAL IN PROGRESS
 
 Inbound lead, same-day call, trial agreed Aug 13. Full details now live in:
-- `CLIENT PROFILES/Cüneyt - Profile (Starfix).md`
-- `OUTPUT/End-of-Day Reports/Cüneyt - End of Day Log (Starfix).md`
+- `CLIENT PROFILES/Cüneyt - Profile (SellerVate).md`
+- `OUTPUT/End-of-Day Reports/Cüneyt - End of Day Log (SellerVate).md`
 
 Trial: 20 hours @ $7/hr, weekly billing, 50% upfront for week 1 (still pending). Path to monthly retainer + lead-gen services if trial succeeds.
 

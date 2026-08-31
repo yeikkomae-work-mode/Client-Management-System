@@ -1,4 +1,4 @@
-# Cüneyt (Starfix) — Campaign Settings: Before / After Report
+# Cüneyt (SellerVate) — Campaign Settings: Before / After Report
 
 **Date:** 2026-08-13 | **Platform:** Instantly | **Prepared for:** Client delivery (Cüneyt / Elevate Commerce)
 
@@ -83,7 +83,7 @@ All 11 Instantly-connected mailboxes checked individually — all Active, warmup
 
 Four more campaigns (Sports & Fitness mixed, Baby mixed, Pet mixed, Amazon seller 2nd) were paused with the same root problem as the original 3: their assigned mailboxes (`@salesfix.eu`) no longer exist in the connected Instantly account — stale references, most likely from a disconnected/removed domain. Reassigned to hellostarfix.com's 3 mailboxes (cueneyt@, daniel@, james@ — previously unused by any campaign) and resumed.
 
-**Final state — all Starfix campaigns:**
+**Final state — all SellerVate campaigns:**
 
 | Campaign | Status | Mailboxes |
 |---|---|---|

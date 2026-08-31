@@ -1,4 +1,4 @@
-# Cüneyt (Starfix) — Sequences Revised Against Cleaned Database
+# Cüneyt (SellerVate) — Sequences Revised Against Cleaned Database
 
 **Trigger:** "clean it, organize it, then revise email sequence based from the cleaned database."
 **Source data:** `Cüneyt - Cleaned Lead Lists (2026-08-21)/` — 1,436 unique clean leads across 3 files (see README in that folder for cleaning details).
@@ -85,7 +85,7 @@ Hi {{first_name}},
 
 ## Sequence B — Product Category (File 3 only)
 
-File 3 has no rating data, so this version drops the star-rating hook and personalizes on `{{product_category}}` (map from the `Product Type` column, e.g. "Health Products") instead — still ties back to Starfix's core review-removal pitch without claiming a rating figure that isn't in the data.
+File 3 has no rating data, so this version drops the star-rating hook and personalizes on `{{product_category}}` (map from the `Product Type` column, e.g. "Health Products") instead — still ties back to SellerVate's core review-removal pitch without claiming a rating figure that isn't in the data.
 
 ### Email 1 — Day 0
 

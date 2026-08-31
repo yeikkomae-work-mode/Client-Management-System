@@ -28,3 +28,5 @@ RESOURCES/Tools & API Details/Albertscott Domains and Emails/Premium Inboxes.csv
 *.bak-*
 .claude-dashboard/logs/
 **/node_modules/
+__pycache__/
+*.pyc
