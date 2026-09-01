@@ -4,6 +4,31 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-09-01
+
+**Tasks Completed:**
+- HeyReach free trial ended; Eikko asked to export the leads and move them to Cristy's Dripify account. Verified both API keys live: HeyReach's key works (`X-API-KEY` header, `api.heyreach.io/api/public`) and pulled real data; the Dripify key does not appear to grant any programmatic API access — tested every plausible base URL/auth header combination, got either a real "expects OAuth JWT" rejection (Bearer) or a generic 500 on every endpoint tried (X-API-KEY/Api-Key), and Dripify's own help center has no public API docs plus a live user feature request asking for one. Concluded Dripify's real import path is CSV upload or a LinkedIn search URL through their UI, not something callable headlessly.
+- Pulled the actual HeyReach campaign data ("Gojiberry - Agency," created Aug 28, run via Cristy's LinkedIn, status FAILED — consistent with the trial ending) and found the 172 sourced leads are not one uniform group:
+  - **62 genuinely untouched (Pending)** — exported to CSV and sent to Eikko, safe to import into Dripify as fresh leads.
+  - **67 with a connection request already sent** (no accept yet) — the invite exists on LinkedIn independent of HeyReach; Dripify can't resume tracking it and would likely try (and fail) to send a duplicate.
+  - **6 already accepted** (some already messaged) — 1st-degree connections now; need a message-only sequence, not a cold connection-request campaign.
+  - **4 failed with no reply** — cause not yet investigated.
+  - **3 have actual replies** — see below, flagged as urgent and separate from the migration question.
+  - Also noted: the source list has 172 leads but only 142 ever entered active campaign processing — 30 unaccounted for, not yet chased down.
+
+**⚠️ Urgent — flagged directly, not buried:**
+Three leads replied and are sitting unanswered, well past Penji's "route warm replies to Joan within the hour" rule: Christopher Campbell (CMO, SportsID) replied Aug 29, Maxwell Veitch (CEO, V&M Systems Group) replied Aug 30, Eric Hoffman (CEO/Dir. Design Services, Reform Collective) replied Aug 28. That's 2–4 days overdue as of this entry. Raised directly to Eikko; not yet confirmed handled.
+
+**Notes:**
+- Neither the HeyReach nor Dripify API key was written to any file in the repo — used directly in Bash for the session only, per the repo's standing no-plaintext-secrets convention.
+- Did not write anything to Dripify or take any other consequential action pending Eikko's direction on: who handles the 3 replies, what to do with the 67 sent+6 accepted leads, and whether the 172-vs-142 gap is worth chasing.
+
+**Next Steps:**
+- Awaiting Eikko's call on the open questions above before any further action on this migration.
+- If Dripify's real API does exist under different auth than tested, would need Eikko to pull real endpoint/header details from Dripify support directly — further guessing isn't productive.
+
+---
+
 ## 2026-08-28
 
 **Tasks Completed:**
