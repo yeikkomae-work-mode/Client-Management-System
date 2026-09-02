@@ -21,7 +21,7 @@ Running daily record of work completed, metrics, and notes.
 - The Google Sheet "Gojiberry Listing" tab is still out of sync — last dedup/append was at 180 leads (Aug 28/29); this 261-lead pull hasn't been re-checked against it.
 
 **Next Steps:**
-- Confirm with Eikko whether "Amanda Scout" is Amanda Scott (likely) or a genuinely separate persona.
+- ~~Confirm with Eikko whether "Amanda Scout" is Amanda Scott~~ — confirmed same day: it's Amanda Scott, name was a typo. `Penji - Profile.md` updated accordingly.
 - Cross-check Whitney Cole's credentials against the Sales & PR Team LinkedIn Accounts sheet once accessible, and add her there if she's missing.
 - Dedupe the 261-lead export against the Gojiberry Listing sheet before it drifts further out of sync.
 

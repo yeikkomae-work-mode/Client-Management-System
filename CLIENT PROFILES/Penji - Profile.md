@@ -152,13 +152,13 @@
 **Manual Logins (⚠️ treat as sensitive — do not share this file):**
 - Dripify — Business@penji.co *(from Notion export, Aug 13, 2026)*
 - LinkedIn (Tina Lombardo persona) — tina.lombardo098@gmail.com *(from Notion export, Aug 13, 2026)* — ⚠️ this is the account that hit the login issue; the Aug 17 plan uses Eikko's **personal** LinkedIn instead, at least initially
-- Google / Gmail (**Amanda Scott** persona) — `amanda@trypenji.co` — LinkedIn password **`PENji206!1`** *(given 2026-09-02, for a Dripify import — supersedes the Aug 19 reset password `PENji206!`, one character added)*. ⚠️ **Sent to me as "Amanda Scout"** — likely the same persona misspelled (same password root, same `trypenji.co` context), not confirmed. Source of truth is the "Sales & PR Team Linkedin Accounts" sheet, Female tab, row 11, column E — **if it's rotated there, update it here too.**
+- Google / Gmail (**Amanda Scott** persona) — `amanda@trypenji.co` — LinkedIn password **`PENji206!1`** *(given 2026-09-02, for a Dripify import — supersedes the Aug 19 reset password `PENji206!`, one character added)*. Sent to Eikko as "Amanda Scout" 2026-09-02 — **confirmed same day by Eikko: it's the same persona, name was a typo.** Source of truth is the "Sales & PR Team Linkedin Accounts" sheet, Female tab, row 11, column E — **if it's rotated there, update it here too.**
 - LinkedIn (**Whitney Cole** persona) — password **`peNJI2026>1`** *(given 2026-09-02)* — new persona, no prior record in this repo before today. Not yet cross-checked against the Sales & PR Team LinkedIn Accounts sheet.
 
 **Persona accounts owned by Eikko:**
 | Persona | Account | Status |
 |---|---|---|
-| Amanda Scott | `amanda@trypenji.co` | Active — password reset Aug 19 (`PENji206!`), updated again 2026-09-02 (`PENji206!1`) for a Dripify import. Sent as "Amanda Scout" 2026-09-02 — unconfirmed whether that's a typo or a distinct persona. |
+| Amanda Scott | `amanda@trypenji.co` | Active — password reset Aug 19 (`PENji206!`), updated again 2026-09-02 (`PENji206!1`) for a Dripify import. Sent as "Amanda Scout" 2026-09-02 — confirmed by Eikko same day, was a typo, same persona. |
 | Whitney Cole | *(no email on file)* | New as of 2026-09-02 — a Dripify API key and LinkedIn password were given for outreach; no other record of this persona exists yet. |
 | "Benji" | (to be built) | Planned — new US-based LinkedIn account via the AdsPower SOP, name chosen by Eikko |
 | Tina Lombardo | tina.lombardo098@gmail.com | Blocked — login issue, paused since Aug 13 |
