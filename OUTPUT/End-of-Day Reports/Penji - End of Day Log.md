@@ -4,6 +4,29 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-09-02
+
+**Tasks Completed:**
+- Exported the current 261 leads from the "Agency - Eikko" Gojiberry list to Excel (up from 172 on Aug 28) — sent to Eikko. Config unchanged since the last export: this is all Round 2's signal set (restored Aug 28 after Round 3's revert) continuing to source on its own.
+- Eikko asked to split the leads and load half into each of two Dripify accounts (Amanda Scott/"Scout" and Whitney Cole personas). Re-tested Dripify API access with both new keys the same way as the Sep 1 HeyReach investigation — same negative result (Bearer gets a real "expects OAuth JWT" rejection, X-API-KEY gets a generic uninformative 500 on every endpoint tried, for both keys) — confirms this is a genuine platform limitation, not account-specific, so no further API guessing.
+- Split the 261 leads into two CSVs (131 / 130, alternating by lead ID for an even mix of sourcing dates) formatted for Dripify's own CSV-import UI, and sent both to Eikko.
+
+**⚠️ Flagged, not silently resolved:**
+- The password given for "Amanda Scout" (`PENji206!1`) is the Aug 19 Amanda Scott persona's password (`PENji206!`) plus one character — almost certainly the same `amanda@trypenji.co` persona, name likely mistyped. Not confirmed; logged as a discrepancy in `Penji - Profile.md` rather than silently merged.
+- Whitney Cole is an entirely new persona with no prior record anywhere in this repo. Logged in `Penji - Profile.md`'s persona table and manual-logins section; not yet cross-checked against the "Sales & PR Team Linkedin Accounts" sheet, which should be the actual source of truth for persona credentials.
+- Neither Dripify API key nor either LinkedIn password was written anywhere except `Penji - Profile.md`, matching this repo's existing convention for persona credentials (same as the Aug 19 Amanda Scott entry).
+
+**Notes:**
+- Still 0/261 emails enriched on the exported leads.
+- The Google Sheet "Gojiberry Listing" tab is still out of sync — last dedup/append was at 180 leads (Aug 28/29); this 261-lead pull hasn't been re-checked against it.
+
+**Next Steps:**
+- Confirm with Eikko whether "Amanda Scout" is Amanda Scott (likely) or a genuinely separate persona.
+- Cross-check Whitney Cole's credentials against the Sales & PR Team LinkedIn Accounts sheet once accessible, and add her there if she's missing.
+- Dedupe the 261-lead export against the Gojiberry Listing sheet before it drifts further out of sync.
+
+---
+
 ## 2026-09-01
 
 **Tasks Completed:**
