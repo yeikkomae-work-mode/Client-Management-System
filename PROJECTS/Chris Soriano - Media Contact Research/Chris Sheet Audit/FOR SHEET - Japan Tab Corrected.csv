@@ -1,0 +1,111 @@
+#,COMPANY NAME,CATEGORY,US PRESENCE,WEBSITE,EMAIL,NOTES,SENT,LEAD BY
+1,Masamoto Sohonten,Japanese Knives,Japan only,masamoto-sohonten.co.jp,support@masamoto-sohonten.co.jp,Tokyo-based knife maker. No US office. Contact JP HQ. [02-Sep: verified on company site],FALSE,Eikko
+2,Misono,Japanese Knives,Japan only,misonoknives.us,contact@misonoknives.us,US distributor contact via misono.us [02-Sep: verified on company site],FALSE,Eikko
+3,Sakai Takayuki,Japanese Knives,Japan only,sakaitakayukiknives.com,,"Sakai City knife maker. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+4,Yoshihiro,Japanese Knives,Yes (US),echefknife.com,info@echefknife.com,US-based e-commerce and distribution. [02-Sep: verified on company site],FALSE,Eikko
+5,Shun (KAI USA),Japanese Knives,Yes (USA HQ),kaiusa.com / shun.kaiusa.com,,"KAI USA Ltd. Oregon HQ. Shun, Kershaw, ZT brands. [02-Sep: website verified, no working email found]",FALSE,Eikko
+6,Miyabi (Zwilling),Japanese Knives,Yes (USA HQ),miyabi-knives.com,press@zwilling.com,Part of Zwilling J.A. Henckels USA.,FALSE,Eikko
+7,Global,Japanese Knives,Yes (US dist.),yoshikin.co.jp,info@yoshikin.co.jp,Yoshikin brand. US distributed via Chef's Resource & others.,FALSE,Eikko
+8,Tojiro,Japanese Knives,Yes (US dist.),tojiro.com,info@tojiro.com,US distributor available. Contact via website.,FALSE,Eikko
+9,MAC Knife,Japanese Knives,Yes (USA),macknife.com,info@macknife.com,"US office in Torrance, CA.",FALSE,Eikko
+10,Aritsugu,Japanese Knives,Japan only,aritsugu.co.jp,info@aritsugu.co.jp,Kyoto knife maker since 1560. No public English email.,FALSE,Eikko
+11,Koshihikari (variety),Premium Japanese Rice,Japan only,,,"Variety name, not a brand. Contact JA Toyama or rice cooperatives.",FALSE,Eikko
+12,Tamanishiki,Premium Japanese Rice,Yes (USA),jfc.com (brand owner),,"US brand by JFC International. [02-Sep: website verified, no working email found]",FALSE,Eikko
+13,Tamaki Gold,Premium Japanese Rice,Yes (USA),tamakimai.com,info@tamakimai.com,"US brand. Tamaki Corp, Forest Grove OR. [02-Sep: verified on company site]",FALSE,Eikko
+14,Shirakiku,Premium Japanese Rice,Yes (USA),wismettacusa.com (brand owner),,"US brand under JFC International. [02-Sep: website verified, no working email found]",FALSE,Eikko
+15,Nishiki,Premium Japanese Rice,Yes (USA),nishikirice.com,info@nishikirice.com,Popular US Japanese rice brand.,FALSE,Eikko
+16,Kagayaki,Premium Japanese Rice,Yes (US dist.),kagayakirice.com,info@kagayakirice.com,Distributed in US through Asian grocery wholesalers.,FALSE,Eikko
+17,Toyama Koshihikari,Premium Japanese Rice,Japan only,ja-toyama.or.jp,,Japan rice cooperative. No US contact.,FALSE,Eikko
+18,Yuki Tsubaki,Premium Japanese Rice,Japan only,,,Japan-only brand. No US distribution contact found.,FALSE,Eikko
+19,Sekka,Premium Japanese Rice,Yes (USA),jfc.com (brand owner),,"US brand. Available nationwide. [02-Sep: website verified, no working email found]",FALSE,Eikko
+20,Shinmei,Premium Japanese Rice,Japan only,shinmei.co.jp,info@shinmei.co.jp,Major Japan rice processor. No US office.,FALSE,Eikko
+21,Dassai (Asahi Shuzo),Premium Sake,Yes (USA),dassai.com / dassai-blue.com,press@dassai.com,Dassai USA office in New York. [02-Sep: verified on company site],FALSE,Eikko
+22,Kubota,Premium Sake,Japan only,asahi-shuzo.co.jp,info@asahi-shuzo.co.jp,Premium sake. US imported via distributors.,FALSE,Eikko
+23,Hakkaisan,Premium Sake,Yes (US imp.),hakkaisan.com,press@hakkaisan.co.jp,US importer available. [02-Sep: verified on company site],FALSE,Eikko
+24,Born,Premium Sake,Japan only,born.co.jp,info@born.co.jp,Kato Sake Works. Japan-only. Rare US distribution.,FALSE,Eikko
+25,Dewazakura,Premium Sake,Japan only,dewazakura.co.jp,,"Yamagata sake. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+26,Kikusui,Premium Sake,Yes (US imp.),kikusui.co.jp,us@kikusui-sake.com,US contact via importer Vine Connections.,FALSE,Eikko
+27,Otokoyama,Premium Sake,Yes (US imp.),otokoyama.com,info@otokoyama.com,Hokkaido sake. US import via World Sake Imports.,FALSE,Eikko
+28,Tedorigawa,Premium Sake,Japan only,tedorigawa.com,info@tedorigawa.com,Ishikawa sake. Limited US presence.,FALSE,Eikko
+29,Gekkeikan,Premium Sake,Yes (USA HQ),us.gekkeikan.com,,"Gekkeikan USA, Folsom CA. Largest sake brand in US. [02-Sep: website verified, no working email found]",FALSE,Eikko
+30,Hakutsuru,Premium Sake,Yes (USA),hakutsuru-sake.com / hakutsuru-america.com,info@hakutsuru-america.com,"Hakutsuru USA, Los Angeles CA. [02-Sep: verified on company site]",FALSE,Eikko
+31,Suntory (Beam Suntory),Japanese Whisky,Yes (USA HQ),suntory.com,,"Beam Suntory USA, Deerfield IL. Yamazaki, Hibiki, Toki brands. [02-Sep: website verified, no working email found]",FALSE,Eikko
+32,Nikka Whisky,Japanese Whisky,Yes (US imp.),nikka.com,,"US imported by Asahi Beer USA. [02-Sep: website verified, no working email found]",FALSE,Eikko
+33,Chichibu Distillery,Japanese Whisky,Japan only,,,Ichiro's Malt. No US office. US dist. via whisky importers. [02-Sep: no verified website or email found - left blank rather than guess. Needs Eikko/Chris follow-up.],FALSE,Eikko
+34,Mars Whisky,Japanese Whisky,Japan only,hombo.co.jp,info@hombo.co.jp,Hombo Shuzo. No US office.,FALSE,Eikko
+35,Fuji Gotemba Distillery,Japanese Whisky,Japan only,kirin.co.jp,,Kirin subsidiary. No dedicated US contact.,FALSE,Eikko
+36,Kirin Fuji Whisky,Japanese Whisky,Japan only,kirin.co.jp,,Japan-only brand under Kirin Holdings.,FALSE,Eikko
+37,Kaiyo Whisky,Japanese Whisky,Yes (USA),kaiyowhisky.com,info@kaiyowhisky.com,US-marketed Japanese whisky. Miami-based US team.,FALSE,Eikko
+38,Akkeshi Distillery,Japanese Whisky,Japan only,akkeshi-distillery.com,info@akkeshi-distillery.com,Hokkaido. No US office. Rare US import.,FALSE,Eikko
+39,Shizuoka Distillery,Japanese Whisky,Japan only,shizuoka-distillery.jp,info@shizuoka-distillery.jp,Japan only. No US distribution.,FALSE,Eikko
+40,Kanosuke Distillery,Japanese Whisky,Japan only,kanosuke.com,info@kanosuke.com,Kagoshima. No US office.,FALSE,Eikko
+41,Noritake,Luxury Japanese Ceramics,Yes (USA HQ),noritake.com,marketing@noritake.com,"Noritake America, Perrysburg OH. Premium tableware.",FALSE,Eikko
+42,Arita Porcelain Lab,Luxury Japanese Ceramics,Japan only,aritaporcelainlab.com,,"Arita, Saga Prefecture. US dist. via Japanese design shops. [02-Sep: website verified, no working email found]",FALSE,Eikko
+43,Kihara,Luxury Japanese Ceramics,Japan only,e-kihara.co.jp,,"Fukuoka. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+44,Koransha,Luxury Japanese Ceramics,Japan only,koransha.co.jp,info@koransha.co.jp,Arita. No US office.,FALSE,Eikko
+45,Narumi,Luxury Japanese Ceramics,Yes (USA),narumi.co.jp,,"Nagoya-based. US distribution available. [02-Sep: website verified, no working email found]",FALSE,Eikko
+46,Maruni,Luxury Japanese Ceramics,Japan only,maruni.com,info@maruni.com,Hiroshima furniture/tableware. No US office.,FALSE,Eikko
+47,Hasami Porcelain,Luxury Japanese Ceramics,Yes (US dist.),hasami-porcelain.com,sales@saikaiusa.com,"US distributed by Tortoise General Store, LA. [02-Sep: verified on company site]",FALSE,Eikko
+48,1616 / Arita Japan,Luxury Japanese Ceramics,Yes (US dist.),1616arita.jp,info@momota-touen.jp,Arita porcelain. US dist. via Japanese design retailers. [02-Sep: verified on company site],FALSE,Eikko
+49,Kutani Ware,Luxury Japanese Ceramics,Japan only,,,Ishikawa craft collective. No unified US contact.,FALSE,Eikko
+50,Mino Ware,Luxury Japanese Ceramics,Japan only,,,Gifu craft collective. No unified US contact.,FALSE,Eikko
+51,Kawai,Luxury Chopsticks,Japan only,kawai-ohashi.co.jp (also kawai-hajime.com),,"Wakasa lacquer chopsticks. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+52,Hyozaemon,Luxury Chopsticks,Japan only,hyozaemon.co.jp,customer@hyozaemon.co.jp,"Wakasa, Fukui. Premium lacquer chopsticks. No US office. [02-Sep: verified on company site]",FALSE,Eikko
+53,Hashikura Matsukan,Luxury Chopsticks,Yes (US dist.),matsukan.com,info@matsukan.com,Available on Amazon US. Contact via website.,FALSE,Eikko
+54,Yamachiku,Luxury Chopsticks,Yes (US dist.),hashi.co.jp,,"Oita bamboo chopsticks. US dist. via Asian grocers. [02-Sep: website verified, no working email found]",FALSE,Eikko
+55,Miyabi Urushi,Luxury Chopsticks,Japan only,,,Fukui lacquerware. No US office. [02-Sep: no verified website or email found - left blank rather than guess. Needs Eikko/Chris follow-up.],FALSE,Eikko
+56,Ishida,Luxury Chopsticks,Japan only,,,No public website or English email found.,FALSE,Eikko
+57,Wajima Nuri,Luxury Chopsticks,Japan only,,,Ishikawa lacquerware craft collective. No unified contact.,FALSE,Eikko
+58,Marunao,Luxury Chopsticks,Yes (US dist.),marunao.com,info@marunao.com,Mikawa craft chopsticks. US available on website.,FALSE,Eikko
+59,Sunlife,Luxury Chopsticks,Japan only,ohashi-sunlife.com,,"Japan-only distributor. [02-Sep: website verified, no working email found]",FALSE,Eikko
+60,Kawai Chopsticks,Luxury Chopsticks,Japan only,,,Duplicate of Kawai entry above.,FALSE,Eikko
+61,Yamaroku Shoyu,Premium Soy Sauce,Japan only,yama-roku.net,,"Shodoshima Island. Small artisan brewer. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+62,Kikkoman,Premium Soy Sauce,Yes (USA HQ),kikkomanusa.com,,"Kikkoman USA, San Francisco CA. World's #1 soy sauce. [02-Sep: website verified, no working email found]",FALSE,Eikko
+63,Yamasa,Premium Soy Sauce,Yes (US dist.),yamasausa.com,,"US import via Japanese food distributors. [02-Sep: website verified, no working email found]",FALSE,Eikko
+64,Marukin,Premium Soy Sauce,Yes (US dist.),marukin.co.jp,info@marukin.co.jp,Shodoshima. US dist. via JFC International.,FALSE,Eikko
+65,Fundokin,Premium Soy Sauce,Japan only,fundokin.co.jp,info@fundokin.co.jp,"Oita, Kyushu. No US office.",FALSE,Eikko
+66,Shoda,Premium Soy Sauce,Japan only,shoda.co.jp,info@shoda.co.jp,Gunma. No US office.,FALSE,Eikko
+67,Higeta,Premium Soy Sauce,Japan only,higeta.co.jp,info@higeta.co.jp,"Choshi, Chiba. No US office.",FALSE,Eikko
+68,Yugeta,Premium Soy Sauce,Japan only,yugeta.com,,"埼玉. Small artisan brewer. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+69,Suehiro Shoyu,Premium Soy Sauce,Japan only,suehiro-s.co.jp,info@suehiro-s.co.jp,Shimane. No US office. [02-Sep: verified on company site],FALSE,Eikko
+70,Inoue Jozo,Premium Soy Sauce,Japan only,,,Wakayama. No US office. [02-Sep: no verified website or email found - left blank rather than guess. Needs Eikko/Chris follow-up.],FALSE,Eikko
+71,Kinjirushi,Fresh Wasabi,Japan only,kinjirushiusa.com,,"Nagoya. Largest wasabi processor in Japan. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+72,World Wasabi Inc.,Fresh Wasabi,Yes (USA),worldwasabi.com,info@worldwasabi.com,US-based wasabi company.,FALSE,Eikko
+73,Pacific Coast Wasabi,Fresh Wasabi,Yes (USA),wasabia.com,info@wasabia.com,US-based fresh wasabi grower. [02-Sep: verified on company site],FALSE,Eikko
+74,Half Moon Bay Wasabi,Fresh Wasabi,Yes (USA),hmbwasabi.com,,"California wasabi farm. [02-Sep: website verified, no working email found]",FALSE,Eikko
+75,Daio Wasabi Farm,Fresh Wasabi,Japan only,daiowasabi.co.jp,koho@daiowasabi.jp,Nagano. Famous tourist farm. No US office. [02-Sep: verified on company site],FALSE,Eikko
+76,Utogi Wasabi,Fresh Wasabi,Japan only,,,Shizuoka. No US contact. [02-Sep: no verified website or email found - left blank rather than guess. Needs Eikko/Chris follow-up.],FALSE,Eikko
+77,Real Wasabi LLC,Fresh Wasabi,Yes (USA),realwasabi.com,info@realwasabi.com,US company promoting fresh wasabi in America.,FALSE,Eikko
+78,Shizuoka Wasabi,Fresh Wasabi,Japan only,,,Regional Shizuoka producers collective. No unified contact.,FALSE,Eikko
+79,Azumino Wasabi,Fresh Wasabi,Japan only,,,Regional Nagano producers. No unified contact.,FALSE,Eikko
+80,Oregon Coast Wasabi,Fresh Wasabi,Yes (USA),oregoncoastwasabi.com,info@oregoncoastwasabi.com,Oregon-based US fresh wasabi grower.,FALSE,Eikko
+81,Yamamoto Nori,Premium Nori,Japan only,yamamotoyama.com,info@yamamotoyama.com,Tokyo. Premium nori brand. No US office. [02-Sep: verified on company site],FALSE,Eikko
+82,Shirako,Premium Nori,Japan only,shirako.co.jp,info@shirako.co.jp,Chiba nori producer. No US office.,FALSE,Eikko
+83,JFC International,Premium Nori,Yes (USA HQ),jfcintl.com,marketing@jfcintl.com,"JFC International, San Francisco. Distributes 10+ nori brands in US.",FALSE,Eikko
+84,Ariake,Premium Nori,Japan only,ariake-jp.com,info@ariake-jp.com,Saga nori cooperative. No US office.,FALSE,Eikko
+85,Mitsui Norin,Premium Nori,Japan only,mitsui-norin.co.jp,info@mitsui-norin.co.jp,Shizuoka tea/nori company. No US office.,FALSE,Eikko
+86,Nico Nico Nori,Premium Nori,Yes (US dist.),niconico-nori.co.jp,,"Available in US via Japanese grocery distributors. [02-Sep: website verified, no working email found]",FALSE,Eikko
+87,Yamamotoyama,Premium Nori,Yes (USA),yamamotoyama.com,info@yamamotoyama.com,"Yamamotoyama USA, City of Industry CA. Tea and nori. [02-Sep: verified on company site]",FALSE,Eikko
+88,Kanesa,Premium Nori,Japan only,kanesa.co.jp,info@kanesa.co.jp,Chiba. No US office.,FALSE,Eikko
+89,Hagoromo,Premium Nori,Japan only,hagoromofoods.co.jp,,"Shizuoka. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+90,Marutomo,Premium Nori,Japan only,marutomo.co.jp,info@marutomo.co.jp,Ehime. Nori and bonito maker. No US office.,FALSE,Eikko
+91,Mizkan,Sushi Vinegar,Yes (USA HQ),mizkan.com,Communications@mizkan.com,"Mizkan America, Mount Prospect IL. #1 Japanese vinegar in US. [02-Sep: verified on company site]",FALSE,Eikko
+92,Iio Jozo,Sushi Vinegar,Japan only,iio-jozo.co.jp,info@iio-jozo.co.jp,Kyoto. Premium akasu vinegar. No US office.,FALSE,Eikko
+93,Marukan,Sushi Vinegar,Yes (USA),marukan-usa.com,,"Marukan USA, Paramount CA. [02-Sep: website verified, no working email found]",FALSE,Eikko
+94,Tajima Vinegar,Sushi Vinegar,Japan only,tajimajozo.co.jp,,"Hyogo. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+95,Sennari,Sushi Vinegar,Japan only,sennari-oochi.com,,"Osaka. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+96,Akasu by Yokoi,Sushi Vinegar,Japan only,yokoi-vinegar.co.jp,info@yokoi-vinegar.co.jp,Nagoya. Rare akasu producer. No US office.,FALSE,Eikko
+97,Mizkan Zenmi,Sushi Vinegar,Yes (USA HQ),mizkan.com,Communications@mizkan.com,Sub-brand of Mizkan America. Same contact. [02-Sep: verified on company site],FALSE,Eikko
+98,Kakuida,Sushi Vinegar,Japan only,essan.com,info@essan.com,Kagoshima. Black vinegar specialist. No US office. [02-Sep: verified on company site],FALSE,Eikko
+99,Naogen,Sushi Vinegar,Japan only,,,Aichi. No US office. [02-Sep: no verified website or email found - left blank rather than guess. Needs Eikko/Chris follow-up.],FALSE,Eikko
+100,Kono Vinegar,Sushi Vinegar,Japan only,kohno-honten.co.jp,,"Osaka. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+101,Ippodo Tea,Premium Japanese Tea,Yes (USA),ippodo-tea.co.jp,newyork@ippodo-tea.co.jp,Ippodo Tea New York store. Premium Kyoto matcha.,FALSE,Eikko
+102,Marukyu Koyamaen,Premium Japanese Tea,Japan only,marukyu-koyamaen.co.jp,info@marukyu-koyamaen.co.jp,"Uji, Kyoto. Top-tier ceremonial matcha. No US office.",FALSE,Eikko
+103,Yamamasa Koyamaen,Premium Japanese Tea,Japan only,yamamasa-koyamaen.co.jp,info@yamamasa-koyamaen.co.jp,Kyoto. Related to Marukyu. No US office.,FALSE,Eikko
+104,Hibiki-an,Premium Japanese Tea,Japan only,hibiki-an.com,info@hibiki-an.com,Uji. Ships worldwide but JP-based. English website available.,FALSE,Eikko
+105,Yamamotoyama,Premium Japanese Tea,Yes (USA),yamamotoyama.com,info@yamamotoyama.com,"Yamamotoyama USA, City of Industry CA. Tea and nori. [02-Sep: verified on company site]",FALSE,Eikko
+106,Horii Shichimeien,Premium Japanese Tea,Japan only,horiishichimeien.com,,"Uji. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+107,Ito En,Premium Japanese Tea,Yes (USA HQ),itoen.com,customerservice@itoen.com,"Ito En USA, New York NY. #1 Japanese green tea in US. [02-Sep: verified on company site]",FALSE,Eikko
+108,Lupicia,Premium Japanese Tea,Yes (USA),lupicia.com,info@lupicia.com,Lupicia USA. Multiple US stores.,FALSE,Eikko
+109,Nakamura Tokichi,Premium Japanese Tea,Japan only,global.tokichi.jp,,"Uji. No US office. [02-Sep: website verified, no working email found]",FALSE,Eikko
+110,Hoshino Seichaen,Premium Japanese Tea,Japan only,hoshino-cha.com,info@hoshinocha.com,"Yame, Fukuoka. Gyokuro specialist. No US office. [02-Sep: verified on company site]",FALSE,Eikko
