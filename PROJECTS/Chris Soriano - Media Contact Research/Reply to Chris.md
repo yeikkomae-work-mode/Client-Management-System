@@ -1,36 +1,33 @@
-# Draft WhatsApp reply to Chris — 2 Sep
-
-Send as a few messages.
+# Draft WhatsApp reply to Chris — 2 Sep (after seeing the sheet)
 
 ---
 
-Went back through every site on the list. Found real errors on my end and fixed them — but there's one thing I need to check with you first.
+Thanks for sending the sheet — that explains it. Two things.
 
-**You mentioned Japanese rice and Japanese blades.** Neither of those is on the list I built. My rice rows are China and Vietnam only, and there's no knives/blades category at all — zero entries, any country. So at least some of what you're clicking through came from a different list. Can you send me the exact sheet you're working from? If there's a second list in play I want to be fixing the right one.
+**First: this isn't the list I built.** Mine was 116 rows across Japan, China and Vietnam — soy sauce, sake, whisky, tea, snacks, fish sauce, mooncakes. This sheet is 110 rows, Japan only, and includes knives, ceramics and chopsticks, which I never researched. Only 15 companies even overlap.
 
-**One thing about the columns.** Out of 116 rows only 43 ever had an actual email. The rest are web forms, phone numbers, or "no contact published" — because a lot of these Japanese and Chinese companies genuinely don't publish an email address anywhere. If those cells got pulled into a send list they'd bounce, but that's the column being used as an address rather than the data being wrong. Only email out of the "Best Media Contact" column where it actually contains an @.
+**Second: I ran the whole sheet through a deliverability check, and half of it is bad.**
 
-**Now the real errors — mine, and fixed:**
-- Richy: I had `richyexport.com`, which is a dead domain. Real site is richy.com.vn. New email `info@richy.com.vn`.
-- Bama Tea: I had `en.int-bamatea.com`, also dead.
-- Gold Plum: I had `jcof.com` — doesn't resolve. It's `jscof.com`, so `zhanghui@jscof.com`.
+- **39 of 98 email addresses cannot receive mail.** 33 of them are on domains that don't exist at all.
+- **40 of 98 websites don't resolve** — that's the "websites don't work" you hit.
+- **55 of 110 rows unusable.** Exactly half.
 
-Sorry about those three. They'd have wasted your time.
+You can see the pattern in how it was built — nearly every address is `info@` plus a domain guessed from the company name. `info@masamoto.jp`, `info@sekkarice.com`, `info@daio-wasabi.co.jp`, `info@kono-su.co.jp`. None of those domains exist. One of them, `info@yoshiiroknife.com`, is just a misspelling of `yoshihiroknife.com` with a letter dropped.
 
-**And the upside — I pulled emails straight off the sites this time instead of trusting search. 43 real emails is now 56.** Best of them:
+**The one that tells you the most: the sheet has `pr@kikkoman.com`.** That's the exact fake address I flagged back on 25 August — it doesn't exist anywhere on any Kikkoman site. Kikkoman publishes no email at all. So whatever generated this sheet made the same mistake I'd already caught and written up.
 
-- **Masan / CHIN-SU: `pr@msn.masangroup.com`** — their PR desk. It was hidden behind Cloudflare scrambling so it doesn't show in any search; I decoded it out of the page source. That one contact covers CHIN-SU, Phúc Long and Vinacafe.
-- **Maxim's: `pcr@maxims.com.hk`** — PCR is Public/Corporate Relations, an actual PR desk.
-- SABECO, King Coffee, Acecook, White Rabbit/Bright Food, Luzhou Laojiao, SAFOCO, Sugimoto, Aiya — all new, all read off the live site.
+A few more that look fine but are wrong:
+- Mizkan: sheet has `press@mizkan.com`, real one is `Communications@mizkan.com`
+- Ito En: sheet has `marketing@`, real one is `customerservice@`
+- **Yamasa: sheet has `info@yamasa.org` — yamasa.org is a Japanese language school, not the soy sauce company**
+- Gekkeikan, Kinjirushi and Yamamotoyama all point at domains that don't exist. I have the real ones.
 
-**I also added a social column** for the ~20 companies that publish no email at all. For Kikkoman, Yamasa, Marukan, Gekkeikan, Ozeki, Glico and Suntory, a DM is genuinely the only inbound route that exists.
+Also #87 and #105 are the same company (Yamamotoyama), and #91 and #97 are both Mizkan.
 
-**Two more things I caught so you don't hit them:**
-- `maruiwasabi.com` is a parked template site, not the company — the emails on it belong to typeface designers. Don't scrape it.
-- King Coffee's own contact page has `info@domainname.com` sitting on it, an unedited template placeholder. Ignore it.
+**What I'd do right now:**
 
-**Also: Nam Dương is Wilmar International-owned** — not an independent Vietnamese company. Same group as Arowana rice.
+1. **Stop sending from this sheet.** At a 40% bounce rate you'll burn your sending domain, and that's much harder to repair than the list is.
+2. I've attached an audited version — filter `EMAIL DELIVERABILITY` to `MX OK` and those 59 rows are safe to send today.
+3. Give me the go-ahead and I'll rebuild the broken 55 properly — off the companies' real websites, with a source link on every row, same as I did before.
 
-Still can't reach Wuyutai, HEYTEA, Bama Tea, Trung Nguyên, Vinamit and Tufoco — those are geo-blocked from where I'm working. They're not dead, I just can't load them from here. You'd get through from Asia.
-
-Updated sheet attached.
+Let me know and I'll start on the 55.
