@@ -1,30 +1,33 @@
 # Penji — Dripify Campaign Tracker (Amanda Scott / Cristy / Eikko)
 
-**No API access.** Dripify has no working programmatic API — tested three separate keys (Cristy's, Amanda's, Whitney's) across two sessions (2026-09-01, 2026-09-02); all three gave the identical result: `Authorization: Bearer` returns a real "expects OAuth JWT" rejection, `X-API-KEY`/`Api-Key` return a generic 500 on every endpoint tried. This is a platform limitation, not account-specific — see `OUTPUT/End-of-Day Reports/Penji - End of Day Log.md`, 2026-09-01 and 2026-09-02 entries.
+**Correction, 2026-09-02:** the "no working API" conclusion below (and in the 2026-09-01/2026-09-02 EOD entries) was wrong. Dripify's real public API is `https://api.dripify.com/v1/open-api` with an `X-Api-Key` header — a different host and path from what was tested. This was live-verified against all four accounts (Amanda, Cristy, Whitney, Eikko) on 2026-09-02; see `RESOURCES/Tools & API Details/scripts/dripify_stats.py` and `RESOURCES/Tools & API Details/OAuth Credentials/dripify-api-keys-credentials.json`. Numbers below are pulled live from that API, not manually reported.
 
-**This means tracking here is manual**, same pattern as the tools with no API in `RESOURCES/Tools & API Details/Connected Tools Status.md` (Hubspot/Lemlist/LinkedIn for Chris Caffera). Update this table from whatever Eikko can report — a dashboard screenshot, an export, or numbers read off Dripify directly. I'll log and maintain it; I can't pull it myself.
-
----
-
-## Status by account
-
-| Account | Leads loaded | Campaign launched? | Connections sent | Accepted | Replies | Meetings | Last updated |
-|---|---|---|---|---|---|---|---|
-| **Amanda Scott** (`amanda@trypenji.co`) | 131 (CSV sent 2026-09-02) | **Unconfirmed** — CSV was sent for manual import, launch not yet confirmed back | — | — | — | — | 2026-09-02 |
-| **Cristy** (Cristy Jane Muñosco) | 62 clean + up to 80 in-flight from the old HeyReach campaign (see note below) | **Unconfirmed** — CSV of the 62 untouched leads sent 2026-09-01, import not yet confirmed | — | — | 3 replies were sitting unanswered as of 2026-09-01 (Christopher Campbell, Maxwell Veitch, Eric Hoffman) — status since unknown | — | 2026-09-01 |
-| **Eikko** (personal LinkedIn) | — | **Unknown — see open question below** | — | — | — | — | — |
-
-*(Whitney Cole also received a CSV — 130 leads, 2026-09-02 — not asked about in this task but tracked here for completeness since she's part of the same rollout.)*
+~~**No API access.** Dripify has no working programmatic API...~~ *(superseded — kept struck through rather than deleted so the record of what was tried is preserved)*
 
 ---
 
-## Open questions before this can be a real tracker
+## Status by account — live from Dripify Open API, 2026-09-02
 
-1. **Did the Amanda Scott and Cristy CSV imports actually happen, and were campaigns launched?** I prepared the data; I have no visibility into whether either was imported or started.
-2. **Is Eikko's own Dripify seat active?** Last known status (2026-08-25 EOD entry): billing/card not set up, unresolved, outreach running manually on personal LinkedIn in the meantime. If that's since been fixed, what's the account and is a campaign running on it?
-3. **Cristy's old HeyReach leads** — the 67 "connection sent, no accept" and 6 "accepted" leads from the dead HeyReach campaign were left alone pending a decision (2026-09-01 entry). Did those get resolved, folded into the new Dripify campaign, or left as-is?
-4. **What cadence and what numbers matter?** Connections sent/accepted/replies/meetings is my best guess at what's worth tracking (matches the columns on Penji's own Signal Tracker in Notion) — confirm or adjust.
+| Account | Campaign | Status | Total leads | Contacted | Accepted | Acceptance rate | Replies | Reply rate | Failed |
+|---|---|---|---|---|---|---|---|---|---|
+| **Amanda Scott** (`amanda@trypenji.co`) | Gojiberry -Agency (id 2064895) | ACTIVE | 75 | 5 | 0 | 0.0% | 0 | 0.0% | 0 |
+| **Cristy** | Gojiberry - Agency (id 2064892) | ACTIVE | 100 | 5 | 0 | 0.0% | 0 | 0.0% | 9 |
+| **Whitney Cole** | — | no campaign | — | — | — | — | — | — | — |
+| **Eikko** (personal LinkedIn) | Gojiberry Marketing (id 2044911) | ACTIVE | 322 | 149 | 28 | 18.8% | 4 | 2.7% | 4 |
+
+All four campaigns are live and running. Amanda's and Cristy's are both brand-new (created 2026-09-02) with most leads still queued (`gettingReady`/`uploading`) — too early for acceptance/reply data. Eikko's campaign has been running since 2026-08-17 and has real traction: 28 accepted connections, 4 replies.
+
+Lead-list totals (75 for Amanda, 100 for Cristy) are higher than the CSVs originally sent (Amanda's half-split CSV, Cristy's 62-lead CSV) — Dripify may be counting from a combined/pre-existing list rather than only the import. Not yet investigated; flagging for Eikko to confirm against what's actually loaded per campaign.
 
 ---
 
-**Last updated:** 2026-09-02
+## Open questions
+
+1. **Amanda's and Cristy's lead-list counts are higher than the CSVs sent.** Amanda's list shows 75 (CSV was ~half of 130-ish split); Cristy's shows 100 (CSV was 62 clean leads). Possible causes: combined with an existing list, duplicate imports, or a list that includes leads beyond what was exported. Needs Eikko to confirm what's actually in each Dripify list.
+2. **Whitney Cole's account has zero campaigns** despite the API key authenticating successfully. Either no campaign has been launched yet, or the key belongs to a separate/unlinked Dripify org from the one with the imported leads. Needs confirmation from Whitney or Eikko.
+3. **Cristy's old HeyReach leads** — the 67 "connection sent, no accept" and 6 "accepted" leads from the dead HeyReach campaign (flagged 2026-09-01) — status still unresolved; not visible via the Dripify API since that's a different platform.
+4. **Refresh cadence** — this table is now pulled live via `dripify_stats.py`; re-run it and update this table whenever an updated read is needed rather than waiting on manual reports.
+
+---
+
+**Last updated:** 2026-09-02 (live API data)
