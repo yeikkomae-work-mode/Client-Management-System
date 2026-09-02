@@ -1,32 +1,36 @@
-# Draft WhatsApp reply to Chris
+# Draft WhatsApp reply to Chris — 2 Sep
 
-Send as a few messages, not one wall.
+Send as a few messages.
 
 ---
 
-Yes I can handle this — and I actually ran it on 6 companies first so I'm quoting you off real numbers instead of guessing.
+Went back through every site on the list. Found real errors on my end and fixed them — but there's one thing I need to check with you first.
 
-Two things you'll want to know before you approve:
+**You mentioned Japanese rice and Japanese blades.** Neither of those is on the list I built. My rice rows are China and Vietnam only, and there's no knives/blades category at all — zero entries, any country. So at least some of what you're clicking through came from a different list. Can you send me the exact sheet you're working from? If there's a second list in play I want to be fixing the right one.
 
-**1. It's not 50 companies, it's 116.**
-The three lists you sent (Japan/China/Vietnam) come to 116 unique companies once I strip the duplicates — Kikkoman shows up in soy sauce AND vinegar, CHIN-SU in three categories, Lee Kum Kee in two, etc. That's the main thing driving the hours.
+**One thing about the columns.** Out of 116 rows only 43 ever had an actual email. The rest are web forms, phone numbers, or "no contact published" — because a lot of these Japanese and Chinese companies genuinely don't publish an email address anywhere. If those cells got pulled into a send list they'd bounce, but that's the column being used as an address rather than the data being wrong. Only email out of the "Best Media Contact" column where it actually contains an @.
 
-**2. You're right to not trust the AI on this.**
-When I searched Kikkoman, the AI tools confidently gave me `pr@kikkoman.com` and `media@kikkoman.com`. I opened Kikkoman's actual site — **neither address exists anywhere.** Both invented. Same thing happened with Gekkeikan. So every row I give you will have the source URL next to it so you can spot-check any of them.
+**Now the real errors — mine, and fixed:**
+- Richy: I had `richyexport.com`, which is a dead domain. Real site is richy.com.vn. New email `info@richy.com.vn`.
+- Bama Tea: I had `en.int-bamatea.com`, also dead.
+- Gold Plum: I had `jcof.com` — doesn't resolve. It's `jscof.com`, so `zhanghui@jscof.com`.
 
-One expectation to set: a lot of these Japanese and Chinese parent companies don't publish a press email at all — Kikkoman, Kinjirushi and Gekkeikan are all web-form-or-phone only. Your instinct about "for media inquiries go here / it's a PR firm" is very true for US-facing brands, less true for the Asian parents. Realistically I'd expect a real press email or PR firm on about 30-40%, a media web form on another 40%, and the rest are phone/no route. Where there's no press email I'll log the best real route rather than make one up — a bounced list is worse than a short one.
+Sorry about those three. They'd have wasted your time.
 
-**Options:**
+**And the upside — I pulled emails straight off the sites this time instead of trusting search. 43 real emails is now 56.** Best of them:
 
-- **A — Pilot, 15 companies (your top 10 Japan + top 5 China):** 2.5 hrs, **$18**
-- **B — Tier 1 only, 40 companies (US subsidiary, easiest to reach):** 8 hrs, **$56**
-- **C — Tier 1+2, 75 companies:** 17.5 hrs, **$123** ← my recommendation
-- **D — All 116:** 35 hrs, **$245**
+- **Masan / CHIN-SU: `pr@msn.masangroup.com`** — their PR desk. It was hidden behind Cloudflare scrambling so it doesn't show in any search; I decoded it out of the page source. That one contact covers CHIN-SU, Phúc Long and Vinacafe.
+- **Maxim's: `pcr@maxims.com.hk`** — PCR is Public/Corporate Relations, an actual PR desk.
+- SABECO, King Coffee, Acecook, White Rabbit/Bright Food, Luzhou Laojiao, SAFOCO, Sugimoto, Aiya — all new, all read off the live site.
 
-I'd steer you to **C**. The last 41 companies are half the total hours and the worst hit rate on the list — mostly mainland Chinese and Vietnamese parents that don't publish a Western press contact at all. Better to spend that after the first wave of outreach tells you which categories actually write back.
+**I also added a social column** for the ~20 companies that publish no email at all. For Kikkoman, Yamasa, Marukan, Gekkeikan, Ozeki, Glico and Suntory, a DM is genuinely the only inbound route that exists.
 
-If you want to see the quality before committing, A is $18 and I can have it to you quickly.
+**Two more things I caught so you don't hit them:**
+- `maruiwasabi.com` is a parked template site, not the company — the emails on it belong to typeface designers. Don't scrape it.
+- King Coffee's own contact page has `info@domainname.com` sitting on it, an unedited template placeholder. Ignore it.
 
-Sheet format: Company · Country · Category · Website · Media Contact · Contact Type · Named Contact · Source URL · Confidence · Notes.
+**Also: Nam Dương is Wilmar International-owned** — not an independent Vietnamese company. Same group as Arowana rice.
 
-I've already got the 116 deduped and sorted, plus 6 done. Say the word on which option and I'll run it.
+Still can't reach Wuyutai, HEYTEA, Bama Tea, Trung Nguyên, Vinamit and Tufoco — those are geo-blocked from where I'm working. They're not dead, I just can't load them from here. You'd get through from Asia.
+
+Updated sheet attached.
