@@ -22,6 +22,14 @@
 | Lemlist | Chris Caffera | Automation not possible | Manual metrics at end of day |
 | LinkedIn | Chris Caffera | Platform restriction | Manual post/engagement tracking |
 
+| Google Sheets (write) | Eikko / Penji | ✓ Connected (service account) | Service account `claude@noted-minutia-506607-j3.iam.gserviceaccount.com`, key stored at `RESOURCES/Tools & API Details/OAuth Credentials/google-service-account-cms-sheets-writer-credentials.json` (gitignored, two independent rules). Uses the Sheets API v4 directly (`google-auth` + `google-api-python-client`, not an MCP tool) — the Drive MCP connector only supports read/download/create-new-file, no in-place writes to an existing sheet. Verified 2026-08-25: appended 85 rows to the "Gojiberry Listing" tab (gid 1776270089) of Eikko's "Agency Master List" spreadsheet. Write access is per-sheet — only works on sheets explicitly shared with the service account email as Editor. To extend to another sheet, share it with that email first. |
+### ⚠️ LOCAL-ONLY (works on Eikko's Mac, NOT from cloud/web Claude sessions)
+
+| Tool | Client(s) | Status | Notes |
+|------|-----------|--------|-------|
+| Gojiberry | Penji | ✓ Connected (key) | Hosted MCP at `https://mcp.gojiberry.ai/mcp`, wired in `.mcp.json` as `gojiberry` via `Authorization: Bearer ${GOJIBERRY_API_KEY}`. Verified working 2026-08-25 from the cloud container — handshake succeeded, **25 tools** exposed. Server also supports OAuth (PKCE, dynamic registration) as an alternative. ⚠️ The issued key is an **org-level** credential for `business@penji.co` (not Eikko's personal login), valid until **2036-08-24**, and includes write/send tools: `impersonate_user`, `send_unibox_linkedin_message`, `update_campaign`, `create_contact`. Treat as production access. |
+| AdsPower | Penji | ⚠️ Local-only | API key held (stored in `tools_api_details.md`, gitignored). The AdsPower API is served by the desktop app on `localhost:50325` — `local.adspower.net` resolves to loopback by design, so a remote/web Claude session cannot reach it. Verified 2026-08-25: connection refused from the cloud container. Wired up in `.mcp.json` (`adspower-local-api`) + the `adspower-browser` skill; both only function in a **local** Claude Code session with AdsPower running. |
+
 ### ❓ TO BE TESTED (Report Back After Testing)
 
 | Tool | Client(s) | Target Status | Action |
@@ -111,4 +119,4 @@ I'll update this file and the automation workflows:
 
 Keep this file updated as tools are tested. It's your source of truth for what gets auto-pulled vs. manually logged.
 
-**Last updated:** 2026-08-05 — Initial setup, awaiting API test results
+**Last updated:** 2026-08-25 — Added AdsPower (Penji, local-only), Gojiberry (Penji, hosted MCP, org key verified working — 25 tools), and Google Sheets write access (service account, verified with a live 85-row append).
