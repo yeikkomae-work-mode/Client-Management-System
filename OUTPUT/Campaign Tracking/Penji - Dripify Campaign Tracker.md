@@ -30,4 +30,15 @@ Lead-list totals (75 for Amanda, 100 for Cristy) are higher than the CSVs origin
 
 ---
 
-**Last updated:** 2026-09-02 (live API data)
+## Update — 2026-09-07: Amanda's account retired; Gojiberry leads moved to Cristy via API
+
+- Amanda Scott's LinkedIn was restricted, so her Dripify account is no longer in use. Per Eikko, Cristy's account is now the destination for the Agency-Eikko leads.
+- Cross-referenced Cristy's existing campaign leads (131 in list "Gojiberry", id 3353134) against the full Gojiberry export of list "Agency - Eikko leads" (499 contacts, see `Penji - Agency-Eikko Gojiberry Leads Export (2026-09-07).xlsx`). Match key: LinkedIn public ID / profile slug.
+  - 126 of Cristy's 131 leads are the 2026-09-02 "Amanda Scott" import batch — that CSV had already been loaded into Cristy's account.
+  - 5 of Cristy's leads are not in the Gojiberry export at all (HeyReach leftovers).
+- **Uploaded 239 leads to Cristy's campaign 2064892 via `POST /campaigns/{id}/leads`** — new lead list "Gojiberry - Agency-Eikko export 2026-09-07" (id 3362829): 239 accepted, 0 duplicates. Record of exactly what was sent: `Agency-Eikko Leads - Uploaded to Cristy Dripify via API (2026-09-07).csv`. Breakdown: 234 new Gojiberry leads found after 09-02, plus 5 from the Amanda 09-02 batch that had not made it into Cristy's list.
+- **Held back, not uploaded:** the 130 leads in the 2026-09-02 "Whitney Cole" import batch (assumed to be Whitney's to work — Eikko to confirm; Whitney's account still shows no campaign), and 4 Gojiberry contacts whose first+last name already exists in Cristy's list under a different LinkedIn URL (Marc Mintle, Rene W., Tim Souers, Santiago Faus) — probable duplicates.
+- The Open API upload endpoint takes `{"name": <list name>, "leads": [{"linkedinUrl": ...}]}` (1–1000 per request) and returns accepted/duplicate counts; documented at https://api.dripify.com/ (Redoc).
+
+**Last updated:** 2026-09-07 (live API data)
+
