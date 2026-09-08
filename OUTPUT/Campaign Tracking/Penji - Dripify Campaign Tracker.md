@@ -40,5 +40,13 @@ Lead-list totals (75 for Amanda, 100 for Cristy) are higher than the CSVs origin
 - **Held back, not uploaded:** the 130 leads in the 2026-09-02 "Whitney Cole" import batch (assumed to be Whitney's to work — Eikko to confirm; Whitney's account still shows no campaign), and 4 Gojiberry contacts whose first+last name already exists in Cristy's list under a different LinkedIn URL (Marc Mintle, Rene W., Tim Souers, Santiago Faus) — probable duplicates.
 - The Open API upload endpoint takes `{"name": <list name>, "leads": [{"linkedinUrl": ...}]}` (1–1000 per request) and returns accepted/duplicate counts; documented at https://api.dripify.com/ (Redoc).
 
-**Last updated:** 2026-09-07 (live API data)
+## Update — 2026-09-08: Whitney's batch also moved to Cristy
+
+- Eikko confirmed Whitney Cole's account will not be used for outreach — her LinkedIn still needs to reach 100+ connections first. Her Dripify shows no campaign.
+- Uploaded the 130 leads from the 2026-09-02 "Whitney Cole" import batch to Cristy's campaign 2064892 via the Open API — new lead list "Gojiberry - Agency-Eikko (ex-Whitney batch) 2026-09-08" (id 3363938): 130 accepted, 0 duplicates. Record: `Agency-Eikko Leads - Uploaded to Cristy Dripify via API - Whitney batch (2026-09-08).csv`.
+- Cristy's campaign now has 3 lead lists (131 + 239 + 130). Both API-uploaded lists still show `READY_FOR_SEARCH` and 369 leads in `uploading`; totalLeads still reports 131 until Dripify finishes collecting them. Watch the daily sync — if `uploading` has not dropped by 2026-09-09, open the campaign in Dripify and check the lists are being processed.
+- Still not in Cristy: the 4 probable name duplicates (Marc Mintle, Rene W., Tim Souers, Santiago Faus). Only Amanda's now-retired 100-lead campaign and Eikko's own campaign remain elsewhere.
+
+**Last updated:** 2026-09-08 (live API data)
+
 
