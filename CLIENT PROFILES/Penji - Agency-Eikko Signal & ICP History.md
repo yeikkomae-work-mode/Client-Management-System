@@ -15,7 +15,7 @@ Running record of every ICP and signal configuration run on the Gojiberry "Agenc
 **ICP:**
 | Field | Value |
 |---|---|
-| Job Titles | Marketing Director, Director of Marketing, Head of Marketing, Head of Growth, Brand Director, Head of Brand, Creative Director, Associate Creative Director, Executive Creative Director, Art Director, Head of Creative, Head of Design, Design Director, Director of Creative Services, Director of Client Services, Head of Client Services, Account Director |
+| Job Titles | Marketing Director, Director of Marketing, Head of Marketing, VP of Marketing, VP Marketing, Head of Growth, Brand Director, Head of Brand, Creative Director, Associate Creative Director, Executive Creative Director, VP of Creative, Art Director, Head of Creative, Head of Design, Design Director, Director of Creative Services, Director of Client Services, Head of Client Services, Account Director *(VP titles added after the 2026-09-08 morning meeting, where Alan named Head / Director / VP as the target)* |
 | Industries | Marketing Services, Advertising, Design Services *(unchanged)* |
 | Company Sizes | 2-10, 11-50 employees *(unchanged)* |
 | Locations | United States *(unchanged)* |
