@@ -6,7 +6,36 @@ Running record of every ICP and signal configuration run on the Gojiberry "Agenc
 
 ---
 
-## Round 4 — live now (Round 2's config restored, 2026-08-28)
+## Round 5 — live now (head & director titles only, 2026-09-08)
+
+**Reason:** Shekinah's instruction relayed by Eikko on 2026-09-08: leads coming through as CEO / Co-Founder / Founder are not the ICP. The ICP is **head- and director-level** marketing, creative, and client-services roles. From this date the agent scrapes only those titles, Dripify outreach goes only to them, and Founder/CEO/Co-Founder responses are no longer forwarded to Slack (see `Penji - Agency Advisor Quick Reference.md` #3 and #9). Applied via `update_agent` in two writes at 00:36–00:37 UTC and verified with a fresh read.
+
+**What the data showed before the change:** of the 499 leads in list 45132 on 2026-09-07, 258 carried Founder / CEO / President / Managing Director / Owner / Partner titles — Round 4 (= Round 2's config) still targeted Founder, CEO, Managing Director and President explicitly, and both premium signals searched for CEO / Managing Director / President.
+
+**ICP:**
+| Field | Value |
+|---|---|
+| Job Titles | Marketing Director, Director of Marketing, Head of Marketing, Head of Growth, Brand Director, Head of Brand, Creative Director, Associate Creative Director, Executive Creative Director, Art Director, Head of Creative, Head of Design, Design Director, Director of Creative Services, Director of Client Services, Head of Client Services, Account Director |
+| Industries | Marketing Services, Advertising, Design Services *(unchanged)* |
+| Company Sizes | 2-10, 11-50 employees *(unchanged)* |
+| Locations | United States *(unchanged)* |
+| Company Types | Private Company, Startup *(unchanged)* |
+| Ignored Companies | Design Pickle, Kimp, Superside *(unchanged)* |
+| Min lead score | 0.8 *(unchanged — if volume drops too far under the narrower titles, 0.6 is the lever)* |
+
+**Signals (15 — only the two premium job-title signals changed; the other 13 are Round 4's, verbatim):**
+| Type | Value |
+|---|---|
+| RECENTLY_CHANGED_JOB (premium) | "Creative Director" OR "Art Director" OR "Marketing Director" OR "Head of Marketing" OR "Director of Marketing" |
+| RECENT_ACTIVITY (premium) | "Creative Director" OR "Art Director" OR "Marketing Director" OR "Head of Marketing" OR "Head of Creative" |
+
+Note: rewriting the variables array reset every signal's `last_usage` to epoch, so all 15 re-run from scratch on the next cycles — expect a burst, then the usual ~6-hourly rotation.
+
+**Downstream clean-up done the same day:** Cristy's Dripify import narrowed to 146 head/director-level leads (`OUTPUT/Campaign Tracking/Agency-Eikko Leads - Dripify Import - Cristy - Head & Director level only (2026-09-08).csv`). Still open: the 131 leads already active in Cristy's campaign and the 319 rows appended to the "Gojiberry Listing" sheet on 2026-09-08 still include founder-level people.
+
+---
+
+## Round 4 — retired 2026-09-08 (Round 2's config restored, ran 2026-08-28 to 2026-09-08)
 
 **Reason:** Round 3 was reverted a few hours after launch — Shekinah flagged it directly in Slack, with a screenshot of the Gojiberry agent dashboard showing 0 leads found on nearly every new signal (all 7 new keywords, all 3 new competitor pages, and Katelyn Bourgoin; only Dave Gerhardt and the two premium job-title signals showed any activity, and even those were minimal). Her guidance: adjust the signal, check what other reps are doing for ideas, and combine with other triggers rather than guessing blind.
 
