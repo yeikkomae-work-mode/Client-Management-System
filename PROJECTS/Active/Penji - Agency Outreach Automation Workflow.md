@@ -38,6 +38,7 @@ Every arrow above is a manual step today except the account pool build (AdsPower
 - Anything that passes moves to "ICP Confirmed"; anything borderline gets flagged for manual review rather than auto-rejected
 
 **Stage 3 — Enrichment (automated via API)**
+- **UNBLOCKED 2026-08-25:** Gojiberry's hosted MCP server (`https://mcp.gojiberry.ai/mcp`) is wired into `.mcp.json` and verified working with an org API key. `enrich_contact_email` is available directly, so this stage no longer waits on Alan. The server also exposes agent/ICP config (`update_agent`), list + campaign management, and unibox messaging — which means Stages 1, 4, 5 and 6 have API surface here too, not just Stage 3.
 - Once Gojiberry access is confirmed, call its API directly for every ICP-confirmed record — pulls verified email, LinkedIn URL, phone
 - Fallback waterfall (Hunter.io → Findymail) triggers automatically only if Gojiberry returns no verified email
 - Fully enriched records write back to the Sheet with an "Enriched ✅" flag
@@ -86,7 +87,8 @@ Every arrow above is a manual step today except the account pool build (AdsPower
 
 ## Blockers
 
-- Gojiberry, Dripify, and HeyReach API/account access — Dripify personal-LinkedIn connection is done (Aug 17), but seat/API access still coming from Alan; Dripify is on a **free trial expiring 2026-08-24**
+- ~~Gojiberry API access~~ — **RESOLVED 2026-08-25.** Org API key issued and verified against the hosted MCP server (25 tools). No longer blocked on Alan.
+- Dripify and HeyReach API/account access — Dripify personal-LinkedIn connection is done (Aug 17), but seat/API access still coming from Alan; Dripify is on a **free trial expiring 2026-08-24**
 - Lemlist/Email Bison are **out of scope entirely** — confirmed Aug 17, Jayvy's domain, not this pipeline
 - Confirm with Alan/Shekinah whether API access is something Eikko can request directly or needs to go through Penji's internal tooling/ops person
 - Slack app/bot permissions needed in the dotpenji workspace for automated posting + reaction listening
@@ -95,4 +97,4 @@ Every arrow above is a manual step today except the account pool build (AdsPower
 
 **Status:** The "Connect Dripify + Zapier + Claude" task (Stage 5/7) is now a live, dated task in Eikko's tracker (due 2026-08-18) — this has moved from design-only to active. Recommend building it before the Dripify trial expires Aug 24.
 
-**Last updated:** 2026-08-18
+**Last updated:** 2026-08-25

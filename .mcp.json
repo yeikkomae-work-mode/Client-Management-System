@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "adspower-local-api": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "local-api-mcp-typescript"
+      ],
+      "env": {
+        "PORT": "50325",
+        "API_KEY": "${ADSPOWER_API_KEY}"
+      }
+    },
+    "gojiberry": {
+      "type": "http",
+      "url": "https://mcp.gojiberry.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer ${GOJIBERRY_API_KEY}"
+      }
+    }
+  }
+}
