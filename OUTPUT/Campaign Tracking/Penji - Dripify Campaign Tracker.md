@@ -50,3 +50,12 @@ Lead-list totals (75 for Amanda, 100 for Cristy) are higher than the CSVs origin
 **Last updated:** 2026-09-08 (live API data)
 
 
+
+## Update — 2026-09-09: Cristy's API access back; 369-lead CSV imported via UI
+
+- Cristy's Dripify key returned `403 Active PRO or ADVANCED subscription required` on every endpoint at the 2026-09-09 07:00 PHT sync (worked at 00:05 UTC on 09-08). Access was back by 02:20 UTC 09-09 — treat as a temporary subscription/seat lapse; watch for a repeat.
+- The two API-created lead lists (3362829 "…export 2026-09-07", 239 leads; 3363938 "…ex-Whitney batch", 130 leads) are gone from the campaign. In their place: list **3363943 "Gojiberry "** (created 2026-09-08 00:18 UTC, 369 leads, SEARCH_COMPLETE) — i.e. Eikko imported `Agency-Eikko Leads - Dripify Import - Cristy - not yet in account (2026-09-08).csv` through the Dripify UI, and the UI import collected immediately where the API lists had stalled.
+- Campaign now: 496 total leads, 91 contacted, 11 accepted (12.1%), 3 replies (3.3%), 33 failed, 372 getting ready.
+- **Open issue:** the 369-lead import predates the head/director-only rule — it contains 199 Founder / CEO / President-level leads that will be messaged as the campaign works through "getting ready". The narrowed 146-lead file (`…Head & Director level only (2026-09-08).csv`) was produced after the import. Options: pause/remove the 199 in the Dripify UI, or let them run and simply never forward their replies (per the 2026-09-08 rule).
+
+**Last updated:** 2026-09-09 (live API data)
