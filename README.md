@@ -203,15 +203,17 @@ Full detail and reactivation notes: `ARCHIVE - Inactive Automations/README.md`
 ## ⚙️ Connector Status (verified Aug 14 — see `.claude/agents/_shared/connector-status.md` for full detail)
 
 **✅ Connected:**
-Apollo (raw API key, Satlas/Chris Drew + separate key for Krishna) · Pipedrive (Yoni/Albert Scott) · Smartlead (Albert Scott account only) · Gmail ×4 (yeikkomae@gmail.com native; Satlas, Albert Scott, and Fractio via custom multi-account script, read+draft only) · Notion (eikko mae ybanez's Space) · PlusVibe (Chris Drew/Satlas, raw API key) · Instantly + Hostinger (Cüneyt/Starfix — separate account from Satlas's, don't confuse the two) · **Fathom** (live meeting sync — see **Meeting Sync** above)
+Apollo (raw API key, Satlas/Chris Drew + separate key for Krishna) · Pipedrive (Yoni/Albert Scott) · Smartlead (Albert Scott account only) · Gmail ×4 (yeikkomae@gmail.com native; Satlas, Albert Scott, and Fractio via custom multi-account script, read+draft only) · Notion (native connector — ⚠️ see note below) · PlusVibe (Chris Drew/Satlas, raw API key) · Instantly + Hostinger (Cüneyt/Starfix — separate account from Satlas's, don't confuse the two) · **Fathom** (live meeting sync — see **Meeting Sync** above)
 
 **🟡 Needs authorizing / incomplete:**
-HubSpot · Slack · Fireflies (no longer needed now that Fathom is live) · Porkbun (key present, missing paired secret)
+HubSpot · Slack · Fireflies (no longer needed now that Fathom is live) · Porkbun (key present, missing paired secret) · Eikko's personal Notion workspace (he holds a token, no native connector reaches it — see note below)
+
+⚠️ *This whole block is a snapshot, not verified against `_shared/connector-status.md` as of 2026-08-25 — that file's own "Last verified" date is more recent for several rows (Porkbun, Zapmail, InboxKit). Read that file, not this list, for current status.*
 
 **⚫ Dead / no connector (manual or browser-only):**
 Instantly (Satlas — deprecated, migrated off) · Zapmail (dead key) · InboxKit (inconclusive, likely wrong path) · MillionVerifier (2FA, can't automate) · Lemlist (browser-only) · LinkedIn (no API path)
 
-**Note:** Satlas team's own "Cold Email" Notion hub is a different workspace from the one connected here — still needs separate access.
+**Note (corrected 2026-08-25):** the native Notion connector was documented as Eikko's personal workspace ("eikko mae ybanez's Space") separate from Satlas's "Cold Email" hub. Verified live via `notion-get-teams`: the connector is actually **Chris Drew's Space HQ (Satlas)** — likely the same workspace as the "Cold Email" hub, not a second one, and not Eikko's personal space. Eikko's personal Notion is a separate, currently-unconnected workspace. Full detail: `.claude/agents/_shared/connector-status.md`.
 
 ---
 
