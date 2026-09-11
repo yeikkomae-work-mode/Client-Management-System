@@ -4,6 +4,48 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-08-27 — Mortgage Brokers Campaign: Job-Title Decision-Maker Audit
+
+**Tasks Completed:**
+- ✅ Job-title audit of the "Mortgage Brokers - Google, Microsoft & Others" campaign in PlusVibe (Satlas workspace) — reviewed all 459 leads' job titles (202 distinct titles) against the Satlas playbook decision-maker criteria (keep Founder/Owner/CEO/Managing Director/Principal/Partner/GM/Director-level; remove functional non-buyers)
+- ✅ Deleted 15 non-decision-maker leads individually via lead Actions → Delete (each confirmed "Deleted Successfully")
+- ✅ Verified post-cleanup against live campaign data: 444 leads remain (459 − 15), none of the deleted 15 present, all keep-list leads intact
+
+**Leads removed (15):**
+
+| Name | Title | Company |
+|---|---|---|
+| Scott Macleod | Product Owner | BrokerEngine |
+| Thibault Calliauw | Product Owner | 28Watt |
+| Tripti Goyal | Associate Director | Trusted Financial Choice |
+| Renee Yarroll | Associate Director | Medi Financial |
+| Simone Bertalli | Senior Associate Director | Simcapital |
+| Tony Aleksovski | Development Director | Strategic Property Group |
+| Vincent Bass | Sales Director | Perthgrow Property & Finance |
+| Anne Stronach | Director of Sales & Services | Crystal Clear Finance Solutions |
+| Cullen Haynes | Director of Sales \| CA Home Loans | Accounting Home Loans |
+| Liz Licari | Executive Sales & Acquisition's Director | The Move |
+| Matt Campbell | Legal Director | RBK Advisory |
+| Donal Nee | Director of Operations | Home Equities |
+| Mark Bevan | Former Managing Director | JOUST (email had bounced) |
+| Robert Picone | Director (Board Member) | Transport Mutual Credit Union (off-ICP credit union) |
+| Sam Piper | CTO / Founding Engineer | LendUs |
+
+**Decisions:**
+- Kept 4 borderline co-founders with non-buying functions (Eikko's call — founders of small firms still count as decision makers): Aaron Ishac (Co-Founder & Head of Allied Health, Get My Lending), Emilien Perico (Co-Founder & CTO, Thryvve), Marlies Hobbs (Co-Founder / HR & Marketing, Evolve Loans), Simone O'Loughlin (Co-founder & Client Manager, Arch Brokerage)
+- Kept all bare "Director" titles (29) and Director + Broker hybrids — in AU mortgage broking these are almost always the owner-operator
+- Removal method: full delete from campaign (removes lead + send history) rather than mark-as-completed, per Eikko's choice
+
+**Metrics:**
+- PlusVibe campaign: 459 → 444 leads after cleanup. Status counts post-cleanup: 378 contacted, 58 completed, 4 bounced. Campaign remains Paused; deleted leads had all received Email 1 (a few at Step 2), so they exit before Emails 2–3 send on resume
+
+**Notes:**
+- List quality was strong overall — no blank titles, no admin/marketing/paraplanner/loan-processing titles found, so the original Apollo filtering held up. Only ~3% of the list was functional non-buyer roles
+- Mark Bevan (JOUST) was already bouncing — one small deliverability win from the removal
+- Next step when campaign resumes: no further list action needed; remaining 444 are all decision-maker titles
+
+---
+
 ## 2026-08-22 — Full Infra Audit: PlusVibe, InboxKit, Zapmail (reconnected), Porkbun
 
 **Tasks Completed:**
