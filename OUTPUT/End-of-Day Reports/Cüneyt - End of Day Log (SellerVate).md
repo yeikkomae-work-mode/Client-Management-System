@@ -4,6 +4,26 @@ Running daily record of work completed, metrics, and notes.
 
 ---
 
+## 2026-09-17
+
+**Source:** Eikko — "find the amazon link on each leads that show interest from the google sheet," then "already responded to Christian Wittich."
+
+**Major correction to weeks of reporting:** discovered that `campaign/stats`'s `replied_count` field silently excludes anything PlusVibe labels `AUTOMATIC_REPLY`/`OUT_OF_OFFICE` — which is most of this account's inbound traffic. Every daily health check since launch had been reporting "0 replies" off that field. The real picture, pulled from `unibox/emails` directly: **4 genuine INTERESTED/NOT_INTERESTED replies**, all on the new Amazon DE campaigns (none yet on the original English Rating/product-category campaigns):
+- Christian Wittich (autoteiledresden24@gmx.de, autoteile-dresden24) — asked about pricing 09-17 08:07 UTC. **Maximilian replied 09-17 11:47 UTC — handled**, ~3.5hr turnaround.
+- Bernard John, Ace Handels- Und Entwicklungs — asked to call; Ryan already replied.
+- Lara Kämpgen, Cellavent Healthcare — warm reply with ASIN + pricing question; Sebastian already sent a full audit + pricing breakdown.
+- Elisa D'Angelo, Om Mushroom Superfood — Ryan already sent an audit PDF.
+
+Pulled each lead's Amazon link: the 3 German leads came from Cüneyt's own source sheets in Google Drive (seller storefront pages, e.g. `amazon.de/sp?seller=...`); Om Mushroom already had ASIN-level product links as PlusVibe custom variables from the original build.
+
+**Built an hourly reply-watch automation** (`scripts/plusvibe-migration/check_new_replies.py` + Routine `trig_0158RqisZZgDQVUJDHdei8kf`) per Eikko's ask to get emailed at yeikkomae@gmail.com when leads respond. Filters `unibox/emails` for direction=IN, excluding `AUTOMATIC_REPLY`/`OUT_OF_OFFICE` labels and a text-based auto-ack backstop (labels lag real-time by at least an hour). Caught and fixed a false positive on its first live run (an unlabeled HubSpot ticket auto-ack) before it reached email.
+
+**Next Steps:**
+- Watch for the reply-watch's first genuine email notification to confirm it fires correctly end-to-end
+- No other interested leads currently waiting on a reply as of this entry
+
+---
+
 ## 2026-08-31
 
 **Source:** Eikko — "mailboxes with health below 95% remove from campaigns for it to focus on
