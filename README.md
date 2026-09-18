@@ -25,7 +25,7 @@ One consolidated profile per client (10 files).
 - `Krishna - Profile.md` — Free Lead Gen (3h/week, flexible)
 - `Chris Soriano - Profile.md` — Data Entry (as-needed, sporadic)
 - `Penji - Profile.md` + `Penji - Agency Advisor Quick Reference.md` — Signed Aug 10, role confirmed Aug 13 (Agency Advisor — Outbound Outreach Specialist)
-- `Cüneyt - Profile (Starfix).md` — Trial client (20h @ $7/hr), started Aug 13
+- `Cüneyt - Profile (SellerVate).md` — Trial client (20h @ $7/hr), started Aug 13
 - `Edward Lehner - Profile.md` — Prospective client, Talk-Through / Focus Accountability Partner role (Upwork)
 
 ### **SKILLS**
@@ -53,7 +53,7 @@ Reusable workflows and automation setup.
 Reports, data, metrics, and end-of-day summaries from your work.
 - **End-of-Day Reports/** — Daily logs, one per client/prospect (10 files): Chris Caffera, Chris Drew, Yoni, Krishna, Chris Soriano, Penji, Cüneyt, Edward Lehner, Top Acquisitions (closed)
 - **Meetings/** — One folder per client, one file per meeting, sourced live from Fathom (connected Aug 13). Each file has the meeting purpose, key takeaways, action items with owner + timestamp links, and either the full transcript or a note that it's available on request. Currently: Yoni (6), Chris Caffera (2), Cüneyt (1, trial agreement), Edward Lehner (2, hiring call + first session). See **Meeting Sync (Fathom)** below.
-- **Campaign Tracking/** — Live campaign metrics & logs (24 files), including Satlas infrastructure & Plusvibe health, Peru/Philippines/US Silver Chain campaigns (Krishna), Capital Financing (Chris Drew), Starfix campaign tracking & sequences (Cüneyt), Penji's agency email sequence, and Chris Caffera's Lemlist metrics + engaged-lead call list
+- **Campaign Tracking/** — Live campaign metrics & logs (24 files), including Satlas infrastructure & Plusvibe health, Peru/Philippines/US Silver Chain campaigns (Krishna), Capital Financing (Chris Drew), SellerVate campaign tracking & sequences (Cüneyt), Penji's agency email sequence, and Chris Caffera's Lemlist metrics + engaged-lead call list
 - **Monthly Reports/** — Monthly financial summaries & expense tracking
 - **Data & Metrics/** — `Salary & Income Tracking.md` (revenue across all clients)
 
@@ -104,7 +104,7 @@ Every meeting you record in Fathom now gets pulled, matched to a client, and fil
 
 **Current state:** 11 meetings backfilled at connection time — 6 Yoni, 2 Chris Caffera, 1 Cüneyt (trial agreement), 2 Edward Lehner (hiring + first session). Going forward, new Fathom recordings should be picked up each time you ask for a briefing/update, or you can say "check Fathom for new meetings" any time.
 
-**Note:** the Cüneyt trial call was actually with someone named **Junaid**, not Cüneyt directly — worth confirming with the client profile whether these are the same person or Junaid is a separate contact at Starfix.
+**Note:** the Cüneyt trial call was actually with someone named **Junaid**, not Cüneyt directly — worth confirming with the client profile whether these are the same person or Junaid is a separate contact at SellerVate.
 
 ---
 
@@ -160,7 +160,7 @@ Drop a signed-off PRD, wake up to a finished build — adapted from Tina Huang's
 | Krishna | Free | 3h/week | ✅ Active | Lead Gen, Apollo, Silver Chain campaigns |
 | Chris Soriano | $7/hr | As-needed | ✅ Active | Data Entry, Research, List building |
 | Penji | TBD | TBD | ✅ Signed (Aug 10) | Agency Advisor — Outbound Outreach |
-| Cüneyt (Starfix) | $7/hr | 20h trial | 🟡 Trial (started Aug 13) | Cold Email & Lead Gen, Deliverability |
+| Cüneyt (SellerVate) | $7/hr | 20h trial | 🟡 Trial (started Aug 13) | Cold Email & Lead Gen, Deliverability |
 | Edward Lehner | $5/hr billed | 5h/week | 🟠 Prospective | Talk-Through / Focus Accountability Partner |
 | Top Acquisitions | — | — | 🔴 Closed (Aug 13) | Not selected |
 
@@ -197,7 +197,7 @@ Full detail and reactivation notes: `ARCHIVE - Inactive Automations/README.md`
 ## ⚙️ Connector Status (verified Aug 14 — see `.claude/agents/_shared/connector-status.md` for full detail)
 
 **✅ Connected:**
-Apollo (raw API key, Satlas/Chris Drew + separate key for Krishna) · Pipedrive (Yoni/Albert Scott) · Smartlead (Albert Scott account only) · Gmail ×4 (yeikkomae@gmail.com native; Satlas, Albert Scott, and Fractio via custom multi-account script, read+draft only) · Notion (eikko mae ybanez's Space) · PlusVibe (Chris Drew/Satlas, raw API key) · Instantly + Hostinger (Cüneyt/Starfix — separate account from Satlas's, don't confuse the two) · **Fathom** (live meeting sync — see **Meeting Sync** above)
+Apollo (raw API key, Satlas/Chris Drew + separate key for Krishna) · Pipedrive (Yoni/Albert Scott) · Smartlead (Albert Scott account only) · Gmail ×4 (yeikkomae@gmail.com native; Satlas, Albert Scott, and Fractio via custom multi-account script, read+draft only) · Notion (eikko mae ybanez's Space) · PlusVibe (Chris Drew/Satlas, raw API key) · Instantly + Hostinger (Cüneyt/SellerVate — separate account from Satlas's, don't confuse the two) · **Fathom** (live meeting sync — see **Meeting Sync** above)
 
 **🟡 Needs authorizing / incomplete:**
 HubSpot · Slack · Fireflies (no longer needed now that Fathom is live) · Porkbun (key present, missing paired secret)
@@ -217,7 +217,7 @@ Instantly (Satlas — deprecated, migrated off) · Zapmail (dead key) · InboxKi
 3. **End of day:** Run `done for today`, or rely on `daily-eod-sync` (the one automation still live)
 
 ### **Weekly Tasks**
-- Monitor campaign health in Plusvibe / Starfix Instantly
+- Monitor campaign health in Plusvibe / SellerVate Instantly
 - Check in on Cüneyt's trial progress (DKIM fix, upfront payment)
 - Chase down connector gaps (HubSpot, Slack, Fireflies, Porkbun) when convenient
 

@@ -1,6 +1,16 @@
-# Cüneyt (Starfix) — Email Sequences by Campaign
+# Cüneyt (SellerVate) — Email Sequences by Campaign
 
-**Date compiled:** 2026-08-13 | **Source:** Instantly (live pull) | **Scope:** All active/paused Starfix campaigns
+> [!IMPORTANT]
+> **Brand name in the copy below is wrong — corrected 2026-08-25.**
+> The email copy on this page signs off as **"Starfix"**. The business is
+> **SellerVate** (https://sellervate.de). The copy is left here **verbatim** because
+> this page is a record of what was actually built/sent — do not silently edit it.
+> **Any of this copy must have "Starfix" swapped to "SellerVate" before it is reused
+> or relaunched.** The PlusVibe Amazon Seller campaign built on 2026-08-25 is not
+> affected: it names no brand and signs off with `{{sender_signature}}`.
+
+
+**Date compiled:** 2026-08-13 | **Source:** Instantly (live pull) | **Scope:** All active/paused SellerVate campaigns
 
 For Cüneyt's review of copy currently in use across all campaigns.
 

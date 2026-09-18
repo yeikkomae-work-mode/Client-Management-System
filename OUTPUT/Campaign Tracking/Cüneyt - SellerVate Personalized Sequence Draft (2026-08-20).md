@@ -1,6 +1,6 @@
-# Cüneyt (Starfix) — Personalized Email Sequence Draft
+# Cüneyt (SellerVate) — Personalized Email Sequence Draft
 
-**Purpose:** Draft copy for Cüneyt's Aug 20 request — personalize each cold email with the prospect's actual Amazon product data, so it's clear Starfix already checked their listing.
+**Purpose:** Draft copy for Cüneyt's Aug 20 request — personalize each cold email with the prospect's actual Amazon product data, so it's clear SellerVate already checked their listing.
 **Format:** Same convention as the existing Instantly campaigns and the earlier suggested sequence — merge fields + sentence-level `{{RANDOM | opt1 | opt2 | opt3}}` spintax. 3 emails (Day 0 / 3 / 7).
 **Status:** Draft for Cüneyt's review — not yet built in Instantly.
 
@@ -23,7 +23,7 @@
 | Star rating | ✅ Already there — column "Rating" (e.g. 4.4) |
 | Amazon URL | ✅ Already there — column "Amazon URL" |
 | Product name | ⚠️ **Not a real column.** Only the Amazon URL exists, and the "product name" would have to be scraped from the URL slug (e.g. `Alkaline-Ionised-Spring-Purified-Electrolytes`) — messy, not client-ready text without cleanup |
-| Negative review count | ❌ **Not in the sheet at all.** The "Review" column is the *total* review count (e.g. 2,915), not a count of 1–3 star / non-compliant reviews. Getting that number means actually auditing the listing — the same manual work behind Starfix's core service — it can't be pulled from a public field |
+| Negative review count | ❌ **Not in the sheet at all.** The "Review" column is the *total* review count (e.g. 2,915), not a count of 1–3 star / non-compliant reviews. Getting that number means actually auditing the listing — the same manual work behind SellerVate's core service — it can't be pulled from a public field |
 
 **Net effect:** star rating personalization is ready to go today. Product name needs a cleanup step (or manual naming) before it's usable. Negative review count can't be automated from this sheet — it would need to either (a) be dropped from the copy, (b) replaced with softer language ("reviews that may not comply" instead of a specific number), or (c) actually be pre-audited per lead, which is significant manual/tool work per campaign, not a one-time setup.
 
@@ -190,6 +190,6 @@ Hi {{first_name}},
 Two things to walk him through:
 
 1. **The full-personalization version above** — shows what it'd look like with product name, star rating, and negative review count all filled in. This is the vision he described.
-2. **The realistic version** — checked against his actual lead sheet (Amazon USA Product Review 2nd SMB), and only star rating is real, ready-to-use data today. Product name isn't a clean column (just a raw Amazon URL), and negative review count doesn't exist anywhere — pulling it means manually auditing each listing, which is Starfix's actual paid service, not a free data point. The realistic version above ships today using just the star rating and softer language, without promising a specific bad-review count that isn't actually known.
+2. **The realistic version** — checked against his actual lead sheet (Amazon USA Product Review 2nd SMB), and only star rating is real, ready-to-use data today. Product name isn't a clean column (just a raw Amazon URL), and negative review count doesn't exist anywhere — pulling it means manually auditing each listing, which is SellerVate's actual paid service, not a free data point. The realistic version above ships today using just the star rating and softer language, without promising a specific bad-review count that isn't actually known.
 
 Worth asking him directly: does he want to (a) launch with the realistic version now, or (b) wait and build out a proper per-lead audit step (more setup time, but delivers the full pitch he described)?

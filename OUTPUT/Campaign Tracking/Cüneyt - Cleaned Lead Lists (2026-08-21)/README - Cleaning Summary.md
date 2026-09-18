@@ -1,4 +1,4 @@
-# Starfix Lead Database Cleaning — 2026-08-21
+# SellerVate Lead Database Cleaning — 2026-08-21
 
 Source: 3 files Eikko uploaded (Amazon USA Product Review 2nd SMB, Amazon Leads MAIN List, UK_USA Amazon Seller). A 4th leftover file (SellerVeta Database) was already in uploads from a prior request and was **not** included here — flag if it should be merged in too.
 

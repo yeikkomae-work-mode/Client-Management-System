@@ -27,7 +27,7 @@ Apollo tracks replies natively per sequence (Peru, Philippines, US Sample Run �
 
 Lemlist has no connector (browser-only) and the intended CRM, HubSpot, isn't authorized yet either (`.claude/agents/_shared/connector-status.md`) — so this is fully manual today: read replies in the Lemlist browser dashboard, categorize using the general taxonomy, flag qualified leads to Eikko for manual HubSpot entry. Don't claim any automation here until both connectors are live.
 
-## Cüneyt / Starfix (Elevate Commerce)
+## Cüneyt / SellerVate (Elevate Commerce)
 
 Instantly is the reply source (not Smartlead/PlusVibe) — trial started Aug 13, no CRM connected for this client at all (no Pipedrive/HubSpot mentioned anywhere in the profile). 14 unique replies exist across the Jun 1–Aug 13 performance audit but haven't been individually triaged/tagged the way Yoni's are — this is historical backlog, not a live feed yet. Fully manual: read replies in Instantly, categorize using the general taxonomy, flag qualified/interested leads to Eikko. Communication with Cüneyt himself is via WhatsApp, not email or a ticketing tool.
 

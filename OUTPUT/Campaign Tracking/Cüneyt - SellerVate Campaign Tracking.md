@@ -1,6 +1,6 @@
-# Cüneyt (Starfix) — Campaign Tracking
+# Cüneyt (SellerVate) — Campaign Tracking
 
-**Client:** Cüneyt (Elevate Commerce / Starfix)
+**Client:** Cüneyt (Elevate Commerce / SellerVate)
 **Platform:** Instantly
 **Status:** 🟡 Trial — audit complete, optimization pending
 
