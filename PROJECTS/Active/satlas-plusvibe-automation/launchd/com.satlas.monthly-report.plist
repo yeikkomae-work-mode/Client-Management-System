@@ -7,10 +7,10 @@
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/python3</string>
-        <string>REPLACE_WITH_ABSOLUTE_PATH/monthly_report.py</string>
+        <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/monthly_report.py</string>
     </array>
     <key>WorkingDirectory</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation</string>
     <!-- launchd has no "last Thursday of month" primitive, so this fires
          every day at 19:00 and monthly_report.py itself no-ops unless
          today actually is the last Thursday of the month. -->
@@ -22,8 +22,8 @@
         <integer>0</integer>
     </dict>
     <key>StandardOutPath</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH/logs/launchd-monthly.out.log</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/logs/launchd-monthly.out.log</string>
     <key>StandardErrorPath</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH/logs/launchd-monthly.err.log</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/logs/launchd-monthly.err.log</string>
 </dict>
 </plist>
