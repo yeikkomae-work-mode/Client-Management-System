@@ -7,10 +7,10 @@
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/python3</string>
-        <string>REPLACE_WITH_ABSOLUTE_PATH/weekly_report.py</string>
+        <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/weekly_report.py</string>
     </array>
     <key>WorkingDirectory</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation</string>
     <key>StartCalendarInterval</key>
     <dict>
         <key>Weekday</key>
@@ -21,8 +21,8 @@
         <integer>0</integer>
     </dict>
     <key>StandardOutPath</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH/logs/launchd-weekly.out.log</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/logs/launchd-weekly.out.log</string>
     <key>StandardErrorPath</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH/logs/launchd-weekly.err.log</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/logs/launchd-weekly.err.log</string>
 </dict>
 </plist>

@@ -7,10 +7,10 @@
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/python3</string>
-        <string>REPLACE_WITH_ABSOLUTE_PATH/daily_check.py</string>
+        <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/daily_check.py</string>
     </array>
     <key>WorkingDirectory</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation</string>
     <key>StartCalendarInterval</key>
     <dict>
         <key>Hour</key>
@@ -19,8 +19,8 @@
         <integer>0</integer>
     </dict>
     <key>StandardOutPath</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH/logs/launchd-daily.out.log</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/logs/launchd-daily.out.log</string>
     <key>StandardErrorPath</key>
-    <string>REPLACE_WITH_ABSOLUTE_PATH/logs/launchd-daily.err.log</string>
+    <string>/Users/eikko/Client-Management-System/PROJECTS/Active/satlas-plusvibe-automation/logs/launchd-daily.err.log</string>
 </dict>
 </plist>
