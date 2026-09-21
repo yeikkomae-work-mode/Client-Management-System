@@ -76,7 +76,7 @@ def main():
         health_note = "Not available this run — PlusVibe account/list call failed"
 
     row = [
-        week_start.strftime("%-d %b %Y"),
+        week_end.strftime("%-d %b %Y"),
         totals["sent"],
         totals["contacted"],
         pct(totals["replied"], totals["contacted"]),
