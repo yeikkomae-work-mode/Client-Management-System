@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.satlas.monthly-report</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>REPLACE_WITH_ABSOLUTE_PATH/monthly_report.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>REPLACE_WITH_ABSOLUTE_PATH</string>
+    <!-- launchd has no "last Thursday of month" primitive, so this fires
+         every day at 19:00 and monthly_report.py itself no-ops unless
+         today actually is the last Thursday of the month. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>19</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>REPLACE_WITH_ABSOLUTE_PATH/logs/launchd-monthly.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>REPLACE_WITH_ABSOLUTE_PATH/logs/launchd-monthly.err.log</string>
+</dict>
+</plist>
