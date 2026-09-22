@@ -19,6 +19,8 @@ Follow `RESOURCES/Workflows/Smartlead-Pipedrive-Automation-Workflow.md` exactly.
 
 Warm replies get routed to **Joan within 1 hour** of receipt; **Oliver closes**. This is a hard non-negotiable from Penji's training, not a suggestion — don't sit on a warm reply. Replies come through Lemlist (email) or Dripify (LinkedIn); no CRM connector authorized yet, so routing is manual (Slack/direct message to Joan), not automated sync. Log what got routed and when in the client's sync log even though the routing itself is manual.
 
+**ICP exclusion (effective 2026-09-08, Shekinah via Eikko):** never forward a reply from a Founder, Co-Founder, or CEO to Penji's Slack channel — those titles are outside the ICP. Business Development titles and Asia-based leads (India, Pakistan) are excluded too. Only head-, director- and VP-level marketing/creative/client-services contacts get forwarded and routed (confirmed 2026-09-08 morning meeting). See `CLIENT PROFILES/Penji - Agency Advisor Quick Reference.md` #3 and #9.
+
 ## Krishna
 
 Apollo tracks replies natively per sequence (Peru, Philippines, US Sample Run — see `lead-prospector.md` for current status of each). No CRM sync or domain-block workflow has been built for Krishna yet — this is a gap, not a decision. Read replies in Apollo, categorize using the same general taxonomy below, and flag interested/qualified replies to Eikko rather than assuming a downstream sync step exists.
