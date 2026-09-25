@@ -9,7 +9,7 @@
 ## Key Context (Read This Every Session)
 
 - **User:** Eikko Ybanez (yeikkomae@gmail.com, eikko@satlas.com.au)
-- **7 Active Clients:** Chris Caffera (FT, Fractio, personal assistant), Chris Drew (FT, Satlas lead gen), Yoni (FT, Albert Scott outreach), Krishna (PT, 3hrs/wk lead gen), Chris Soriano (PT, as-needed data entry/research), Penji (signed Aug 10, Agency Advisor — hours/rate TBD), Cüneyt (trial, Starfix cold email/deliverability + lead gen, 20hrs @ $7/hr, signed Aug 13)
+- **7 Active Clients:** Chris Caffera (FT, Fractio, personal assistant), Chris Drew (FT, Satlas lead gen), Yoni (FT, Albert Scott outreach), Krishna (PT, 3hrs/wk lead gen), Chris Soriano (PT, as-needed data entry/research), Penji (signed Aug 10, Agency Advisor — hours/rate TBD), Cüneyt (trial, SellerVate cold email/deliverability + lead gen, 20hrs @ $7/hr, signed Aug 13)
 - **1 Prospective:** Edward Lehner (talk-through/focus accountability partner, $5/hr — Upwork offer pending, expires Aug 19, 2026)
 - **1 Closed (not selected):** Top Acquisitions / Nick Adasi (Aug 13, 2026) — open to reconsidering if a second role opens, no active follow-up
 - **Main blindspots:** WhatsApp pile-up, calendar conflicts, task deadlines, campaign metrics scattered across tools

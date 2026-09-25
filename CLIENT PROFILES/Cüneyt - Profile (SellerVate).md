@@ -1,9 +1,25 @@
-# Cüneyt (Starfix) — Client Profile
+# Cüneyt (SellerVate) — Client Profile
 
 **Status:** 🟡 Trial (20 hours) | **Rate:** $7/hr | **Role:** Cold Email & Lead Gen Specialist (Deliverability + Campaign Ops)
-**Coverage Period:** Aug 13, 2026 – Present | **Last Updated:** 2026-08-24 (full migration to PlusVibe — 19 mailboxes connected and warming)
+**Coverage Period:** Aug 13, 2026 – Present | **Last Updated:** 2026-08-31 (all 21 campaigns paused pending spam-rate fix)
 
 ---
+
+## Update (Aug 31, 2026) — all campaigns paused
+
+All 21 PlusVibe campaigns are now **PAUSED, 0 ACTIVE** (12 legs were live at 8/day; the other 9
+were already paused). No leads, mailboxes, or schedules were touched — status only.
+
+**Why:** cross-referencing the WhatsApp thread while prepping Cüneyt's weekly update surfaced that
+7 of the 11 Aug 28 test sends landed in spam, not clean as first logged — that needs resolving
+before more volume goes out. Also caught and fixed a signature mismatch on the SalesFix campaign
+(Cüneyt asked for "Starfix Team," it had been set to "SellerVate Team").
+
+**Next Steps:**
+- Diagnose and fix the spam-landing issue before reactivating anything
+- Daily ramp increment is paused along with the campaigns — don't resume it until sending resumes
+- Confirm with Eikko what the reactivation trigger is (copy fix verified, mailbox health recovery,
+  or explicit sign-off from Cüneyt)
 
 ## Update (Aug 24, 2026) — Full migration off Instantly to PlusVibe
 
@@ -27,18 +43,225 @@ Contingency plan from the original Aug 13 audit ("if Instantly deliverability do
 
 **API detail for future reference:** PlusVibe's bulk-add endpoint is `POST https://api.plusvibe.ai/api/v1/account/bulk-add-regular-accounts` (not the `partner-upload-regular-accounts` variant, which needs an unrelated `provider_id`). Takes `workspace_id` + an `accounts` array with IMAP/SMTP creds; `enable_warmup: "yes"` starts warmup in the same call. Account list: `GET /api/v1/account/list?workspace_id=...`.
 
+## Update (Aug 25, 2026) — first campaign built in PlusVibe
+
+**Amazon Seller UK/USA is now built in PlusVibe** (`6a8cf6f27e5c6119d8830749`), **PAUSED**, 107 leads,
+3-email Sequence B, 9 mailboxes (starfix.online + sellervate.net). Start date set to Sep 7 to clear
+warmup. Full record: `OUTPUT/Campaign Tracking/Cüneyt - Amazon Seller PlusVibe Migration (2026-08-25).md`.
+
+Two PlusVibe rules broke the drafted Instantly copy and were corrected: custom variables need a
+`custom_` prefix (`{{custom_product_category}}`), and **only one variable is allowed per spintax
+section** — the draft nested two merge fields inside single RANDOM blocks, so all merge fields were
+moved outside the spintax. Also confirmed PlusVibe uses snake_case `{{first_name}}` / `{{company_name}}`,
+**contradicting the `satlas-cold-email` skill's camelCase guidance — worth spot-checking Chris Drew's
+PlusVibe copy for blank names.**
+
+Reusable build script + API gotchas: `scripts/plusvibe-migration/`.
+
+**Aug 25 follow-through:** repo swept Starfix → SellerVate (domains, live Instantly campaign names,
+credential keys and verbatim email copy preserved). All 19 PlusVibe inboxes now carry a SellerVate
+signature; the `SellerVeta` typo on laura@ is fixed. **Open risk: the Instantly copy itself still says
+"Starfix"** — see the banners on the two sequence docs.
+
+## Update (Aug 26, 2026) — 964-lead campaign pulled straight from Instantly's draft
+
+Audited the whole Instantly account via direct API (25 campaigns, 3,776 unique leads, 4,021 total
+rows). Found an untouched **"Amazon Seller" draft campaign — 964 leads, Rating populated on all of
+them, `emails_sent_count: 0`, and confirmed none of those 964 have send history anywhere else in
+the account either.** Pulled its actual 3-step dual-variant (Rating/Product Type) sequence straight
+from the Instantly API — not the local markdown draft — and built it into PlusVibe as
+`Amazon Seller - Rating [MIGRATED FROM INSTANTLY DRAFT]` (`6a8ee087c3903d2a71741b72`), **PAUSED**,
+on all 10 hellostarfix.com mailboxes (idle — the other paused campaign already claims
+starfix.online + sellervate.net). Full record:
+`OUTPUT/Campaign Tracking/Cüneyt - Amazon Seller Rating PlusVibe Migration (2026-08-26).md`.
+
+Rest of the account: 2,704 more leads exist in Instantly with neither Rating nor Product Type
+data (old German "Review2" campaigns, Sports & Fitness/Baby/Pet, Upwork Leads, Agency Leads) — not
+usable with this sequence as-is. 470 more Rating-ready leads from the local Aug-21 database were
+never uploaded to the draft campaign at all — still sitting as an easy follow-up batch.
+
+**Update, same day:** scoped down from "recreate every Instantly campaign" to just the
+review-removal pitch (the other 24 Instantly campaigns are a different audience/offer, out of
+scope for now). Folded the leftover 363 rating-ready local leads (files 1+2, never uploaded to the
+Instantly draft) into the same PlusVibe campaign — it now holds **1,327 leads, 100% of the local
+star-rating database.** Correction: the "470" figure floated earlier included file 3's
+product-category leads, which don't belong here (no rating, already in the other campaign); 363 is
+the real number and what actually got added.
+
+## Update (Aug 27, 2026) — remaining 24 Instantly campaigns audited and 8 built in PlusVibe
+
+Pulled, deduped, verified, and migrated everything else in the Instantly account. Pipeline: pull
+full campaign+lead data (24 campaigns, 3,057 rows) → dedupe (within the 24, and against everyone
+already in PlusVibe) → 2,704 unique targets → MillionVerifier on all of them (1,899 pass / 675
+risky / 130 bad, ~1,994 credits spent, 7,366 left) → revise copy for PlusVibe → upload.
+
+**Copy check found the 24 campaigns are only 11 distinct sequences** — many are the same template
+reused across segments (9 "Review2 - DE" tiers share one German sequence). None use spintax, so
+"revising" was mechanical variable renaming, not rewriting.
+
+**Found a third brand identity mid-pull:** 1,164 leads (43% of the batch) are signed
+**"SalesFix Team" / www.salesfix.ai** — never seen anywhere in this repo before, not Starfix or
+SellerVate. Didn't guess — flagged it and held that whole group out of the build pending
+confirmation from Cüneyt (question drafted, see EOD log).
+
+**Built 8 campaigns, all PAUSED, sharing the same 19 mailboxes** (1,207 verified leads total):
+Liste von Dennis + 50K DE Amazon Leads (175), USA Seller (18), Amazon Seller 2cnd 2 (180), Sports
+& Fitness Reviews (130), UK Seller (24), **Amazon Ops Support** (148 — a genuinely different offer,
+Amazon operational support rather than review-removal), Starfix New US Leads (368), Review (164).
+4 of these were signed "Starfix" in the original copy — corrected to SellerVate the same way as
+the earlier sweep, verified zero leftover mentions after conversion.
+
+**Account-wide picture:** of the original 3,776 unique Instantly leads, **2,641 (70%) are now in
+PlusVibe** across 10 campaigns. The remaining 822 are the SalesFix group, one answer away from
+being covered too. Full record:
+`OUTPUT/Campaign Tracking/Cüneyt - Full Instantly Account Migration to PlusVibe (2026-08-27).md`.
+
+**Update, same day:** Eikko confirmed SalesFix is legitimate ("keep it") — built as its own campaign,
+brand untouched. **11 campaigns now live in PlusVibe, PAUSED — 3,333 of the account's 3,776 unique
+Instantly leads (88%) are covered.** Only the empty SEO-audit offer and a fully-superseded campaign
+remain outside PlusVibe, both for reasons that don't need action (0 leads either way).
+
 **Not yet done — needs a decision:**
-- [ ] Rebuild/launch actual campaigns in PlusVibe (mailboxes are connected and warming, but no campaigns exist there yet — this was purely the infrastructure migration)
+- [ ] Swap Starfix → SellerVate in the Instantly email copy before reusing or relaunching any of it
+- [x] Test-send all 11 PlusVibe campaigns and confirm merge fields render — see Aug 28 update below
+- [ ] Decide whether to fold in Zakir's ~178 new usable leads too, or hold for a future batch
+- [ ] With 11 campaigns sharing 19 mailboxes, decide launch order/staggering rather than activating all at once
+- [ ] Retire the Instantly campaigns once their PlusVibe equivalents are live and confirmed, so nothing gets launched twice
 - [ ] Decide what happens to the 3 suspended hellostarfix.com mailboxes (partners@, sarah@, team@) — investigate/fix or replace
 - [ ] Formally retire/archive the paused Instantly campaigns once PlusVibe campaigns are live and confirmed working
 - [ ] sellervate.net renewal still due Sep 28, 2026 — not yet renewed
 
 ---
 
+## Update (Aug 28, 2026) — SalesFix brand fix, warmup check, 11 test sends
+
+Cüneyt reviewed the 11 PlusVibe campaigns and email copy via WhatsApp. His feedback:
+- **Leave the campaigns as-is otherwise, don't activate** ("dont make it active") — confirmed staying PAUSED.
+- **The SalesFix-signed campaign needs the same brand correction as Starfix did** — his earlier "keep it" (relayed by Eikko) was provisional; SalesFix is not a separate legitimate brand after all. Fixed: `sequences` field on `Sports & Fitness / Pet / Baby / Review2-DE (SalesFix) [MIGRATED]` (id `6a9023eb0d0bcf449012149a`) patched to SellerVate, verified zero "SalesFix"/"salesfix.ai" mentions remain. Leads, mailboxes, schedule, and PAUSED status untouched — this was a copy-only fix. Script: `scripts/plusvibe-migration/fix_salesfix_brand.py`.
+- **Warmup status checked** — all 19 mailboxes `ACTIVE`, warming since Aug 24 (4 days in), slow rampup at 15/day. Normal for this stage, not yet a blocker, but worth another look before any campaign activates.
+- **Sent a test email per campaign (11 total)** to Cüneyt's own inbox (cueneyt.nurdogan@sellervate.de), each rendering that campaign's actual Step 1 / Variant A copy (spintax resolved to its first branch, merge fields filled with clearly-labeled placeholder data — no real lead was used) from a distinct mailbox. All 11 sent successfully via `unibox/emails/send`. Script: `scripts/plusvibe-migration/send_test_emails.py`.
+
+Both scripts and the corrected SalesFix sequence JSON are committed under `scripts/plusvibe-migration/`. Full API notes (including the `unibox/emails/send` quirks — `workspace_id` as a query param, no live full-campaign-detail GET endpoint) in that folder's `README.md`.
+
+---
+
+## Update (Aug 28, 2026) — Campaigns 1 & 2 launched, split by UK/US timezone
+
+Eikko: "launch 1 and 2 campaigns match timezone sent to uk and us send 6 emails per day ramp up 1
+increase then use all mailboxes and always give me notif of campaign health and inbox health."
+
+**PlusVibe only allows one `schedules` block per campaign** (confirmed via a live 400: `schedules
+must contain ≤ 1 items`) — a single campaign can't run on two timezones at once. Asked Eikko to
+choose between a true UK/US split (2 new campaigns) or one compromise schedule; he chose the split.
+
+**Split and launched, both legs ACTIVE, daily_limit=6 (ramp start), same day:**
+
+| Campaign | ID | Timezone | Leads | Mailboxes |
+|---|---|---|---|---|
+| Amazon Seller US/CA [MIGRATED] (renamed from "...UK/USA...") | `6a8cf6f27e5c6119d8830749` | America/New_York | 62 | 9 (starfix.online + sellervate.net) |
+| Amazon Seller UK [MIGRATED] (new) | `6a90b3bcf68baa1111ed5c7f` | Europe/London | 45 | same 9 |
+| Amazon Seller - Rating US [MIGRATED FROM INSTANTLY DRAFT] (renamed) | `6a8ee087c3903d2a71741b72` | America/New_York | 936 | 10 (hellostarfix.com) |
+| Amazon Seller - Rating UK [MIGRATED FROM INSTANTLY DRAFT] (new) | `6a90b41d24acfefeb9390a4c` | Europe/London | 391 | same 10 |
+
+Non-UK leads (US, Canada, and the ~183 leads spread across 13 other EU countries in the rating list)
+all route to the US leg, matching the account's existing "largest bloc drives the schedule" default.
+UK leads were removed from the original campaigns via `lead/delete` before being uploaded fresh into
+the new UK campaigns — verified no duplicate sends across legs. Both new UK campaigns reuse the exact
+same sequence copy and mailbox pool as their US sibling; only the schedule differs.
+
+**Ramp:** 6/day start today, +1/day, capped at 30 (matching the rest of the account's convention).
+Once a leg reaches 30, its mailbox pool expands from the leg-specific subset to all 19 shared
+mailboxes — this satisfies "then use all mailboxes." **Important operational note:** the safety
+classifier would not allow a fully autonomous daily cron that writes to live campaigns (increments
+send volume) without a human in the loop — only a **read-only** daily health-check routine was
+approved (see below). The daily +1 ramp step itself needs to be applied by hand each day (by Eikko
+or in an active Claude session) until/unless he explicitly grants standing write permission for it.
+
+**Monitoring:** a daily read-only Routine (`trig_01UUaYfY7S9b8Qz8JgziBvz5`, fires 08:00 UTC) checks
+all 13 PlusVibe campaigns' status/bounce rate and all 19 mailboxes' health/warmup, and always messages
+Eikko a status summary — satisfies "always give me notif of campaign health and inbox health."
+
+**Account now has 13 PlusVibe campaigns** (the original 9 untouched + these 4 legs replacing the
+former 2). Mailbox health snapshot right after launch: 19/19 ACTIVE.
+
+**Still needs a decision:**
+- [ ] Approve standing write access for the daily ramp increment, or keep doing it by hand
+- [x] The remaining 9 campaigns (SalesFix, Ops Support, etc.) are still PAUSED — same UK/US split question applies whenever those launch too — N/A for now, ESP split below only applied to the 4 already-launched legs
+
+---
+
+## Update (Aug 28, 2026) — further split by recipient mail provider (Google/Microsoft/Other)
+
+Eikko: "after separating the campaigns based from timezone also separate leads google account and
+Microsoft accounts like Amazon US - Google then Amazon US - Microsoft."
+
+Classified every lead's domain via MX-record lookup (`dig`-equivalent, `dnspython`) — no bulk lead
+endpoint exists so domains had to be resolved directly rather than read from PlusVibe. 679 unique
+domains across all 4 legs. Asked what to do with domains that are neither Google- nor
+Microsoft-hosted (custom mail servers, Zoho, etc. — 12-24% of each list) plus a small MX-unresolved
+slice; Eikko chose a third "- Other" campaign per leg over dropping them or leaving them unsplit.
+
+**Each of the 4 UK/US legs split into 3 (12 campaigns total now), all ACTIVE same day, nothing had
+sent yet on any of the 4 originals so this was a zero-risk re-split** (verified `last_lead_sent`
+empty on all 4 immediately before touching anything):
+
+| Base leg | Google | Microsoft | Other |
+|---|---|---|---|
+| Amazon Seller US/CA | 33 (`6a8cf6f27e5c6119d8830749`, reused) | 17 (`6a90cd6f2dbb802b3e05cc6b`) | 12 (`6a90cd70fdaf9c49f3b0ca64`) |
+| Amazon Seller UK | 17 (`6a90b3bcf68baa1111ed5c7f`, reused) | 16 (`6a90cd72b8f24dca09ef6bb8`) | 12 (`6a90cd742dbb802b3e05cc6c`) |
+| Amazon Seller - Rating US | 358 (`6a8ee087c3903d2a71741b72`, reused) | 333 (`6a90cd764fdc64a002d2ca4a`) | 245 (`6a90cd772dbb802b3e05cc6d`) |
+| Amazon Seller - Rating UK | 110 (`6a90b41d24acfefeb9390a4c`, reused) | 178 (`6a90cd790d0bcf449012a962`) | 103 (`6a90cd7b5dddc42c583f1012`) |
+
+Each leg's original campaign became its "Google" bucket (renamed, non-Google leads removed via
+`lead/delete`); Microsoft and Other are new campaigns with identical schedule/mailboxes/sequences to
+their sibling, only the lead subset differs. All 12 start at daily_limit=6, same manual-ramp caveat
+as before. Account now has **21 PlusVibe campaigns total** (9 untouched paused + these 12).
+
+**Still needs a decision:**
+- [ ] Same UK/US + Google/Microsoft/Other split will apply to the other 9 campaigns whenever they launch
+- [ ] Ramp increment for all 12 still needs to be applied by hand daily (same classifier restriction as before)
+
+---
+
+## Update (Aug 31, 2026) — 5 low-health mailboxes pulled from all campaigns for recovery
+
+Eikko: "mailboxes with health below 95% remove from campaigns for it to focus on recovery and warm up phase."
+
+Pulled live warmup health for all 19 mailboxes; 5 were under the 95% bar:
+
+| Mailbox | Health |
+|---|---|
+| sebastian@sellervate.net | 90.00% |
+| jonas@sellervate.net | 93.24% |
+| audits@hellostarfix.com | 94.12% |
+| david@sellervate.net | 94.67% |
+| tobias@sellervate.net | 94.67% |
+
+Removed each from every campaign it was attached to (21 of the 21 PlusVibe campaigns touched at least
+one of the five) — a pure `email_accounts` roster edit via `campaign/update/campaign`, nothing else on
+any campaign changed (schedules, status, leads, sequences all untouched). Verified after: all 5
+mailboxes now show 0 campaigns attached, still `ACTIVE`/`ACTIVE` (account + warmup status) so warmup
+mail keeps flowing, just no longer double-duty sending real campaign volume. Verified campaign statuses
+unchanged (still 12 ACTIVE / 9 PAUSED) — no campaign lost every mailbox:
+
+- The 4 US/CA + UK (Google/Microsoft/Other) legs went from 9 → 5 mailboxes each (lost 4 of 5
+  sellervate.net boxes, kept all 4 starfix.online + maximilian@sellervate.net).
+- The 4 Rating US/UK legs went from 10 → 9 (lost only audits@).
+- The 8 shared-pool campaigns (batch2 + SalesFix) went from 19 → 14.
+
+**Next Steps:**
+- Re-check these 5 mailboxes' health periodically; re-add to campaigns once recovered above 95%
+- No script committed for this one-off — straightforward enough to redo by hand if needed; the pattern
+  (invert `account/list`'s per-account `cmps` into a campaign→mailbox roster, subtract the flagged IDs,
+  PATCH `email_accounts` per affected campaign) is documented here for reuse
+
+---
+
 ## Contact Details
 - **Contact:** Cüneyt (hiring manager) — also Junaid mentioned on the call (provides Hostinger/Instantly access)
 - **Email:** info@elevate-commerce.de
-- **Company:** Elevate Commerce (brand: Starfix)
+- **Company:** SellerVate — https://sellervate.de (Elevate Commerce appears to be the legal entity; Cüneyt's email is info@elevate-commerce.de)
+- **Brand name:** **SellerVate** — corrected 2026-08-25. Earlier records in this repo call the business "Starfix"; that is **wrong**. Starfix survives only as sending-domain identity (hellostarfix.com, starfix.online), not as the business name. Also note the misspelling **"SellerVeta"** floating around (a lead-list filename, and laura@'s PlusVibe signature) — the correct spelling is SellerVate.
 - **Business:** B2B service for Amazon sellers — pay-per-removed-review model, targeting US/UK Amazon sellers
 - **Communication:** WhatsApp
 - **Meetings:** Ad hoc (first call was Google Meet, booked with ~5 min notice)
@@ -116,7 +339,7 @@ Inbound cold outreach — Cüneyt messaged Eikko directly asking about cold emai
 - 50K DE Amazon Leads — sellervate.net + starfix.online, **paused**, awaiting Cüneyt's go-ahead
 - Amazon seller 2nd — hellostarfix.com, **paused**, lead list exhausted (52/52 contacted), needs a new list before resuming
 
-Full before/after detail: `OUTPUT/Campaign Tracking/Cüneyt - Starfix Before-After Report (2026-08-13).md`. Current live email copy for every campaign: `OUTPUT/Campaign Tracking/Cüneyt - Starfix Email Sequences (2026-08-13).md`.
+Full before/after detail: `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Before-After Report (2026-08-13).md`. Current live email copy for every campaign: `OUTPUT/Campaign Tracking/Cüneyt - SellerVate Email Sequences (2026-08-13).md`.
 
 **Lead source note:** Current lead provider ("Limlid"/Lemlist-adjacent, per call) is slow and produces duplicates. Discussed switching to cheaper verifiers (QuickEmailVerification, MillionVerifier) and scraping tools (Apify, other scrapers) for future lead gen.
 
@@ -206,7 +429,7 @@ Full before/after detail: `OUTPUT/Campaign Tracking/Cüneyt - Starfix Before-Aft
 - Amazon USA Product Review
 - Amazon USA Product Review 2nd (SMB)
 
-*Completed / likely legacy, relevance unconfirmed (8) — flagged, not yet verified as Starfix-relevant:*
+*Completed / likely legacy, relevance unconfirmed (8) — flagged, not yet verified as SellerVate-relevant:*
 - Review2 – Office Supplies DE (150K+)
 - Review2 – Home & Kitchen DE (200-300K)
 - Review2 – Home & Kitchen DE (100-200K)

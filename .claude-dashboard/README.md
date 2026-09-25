@@ -44,7 +44,7 @@ Your choice is remembered per-browser via `localStorage`.
 first heading, using name tokens unique to that client (first names shared
 by multiple clients, like the three "Chris"es, are dropped from matching so
 they don't cross-contaminate each other's boards — only surname/nickname
-tokens like "Caffera", "Drew", "Starfix" are used for those). Only files
+tokens like "Caffera", "Drew", "SellerVate" are used for those). Only files
 that actually contain `- [ ]` / `- [x]` checkboxes contribute cards — design
 docs and notes are matched for reference but don't inject fake tasks.
 

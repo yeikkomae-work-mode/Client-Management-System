@@ -15,7 +15,7 @@ Added 2026-08-15, updated same day to fix the cross-session sync gap. Originally
 
 ## About Me
 
-- I'm Eikko Ybanez, a solo VA/agency operator managing multiple clients out of `Client-Management-System`: Chris Caffera (Fractio), Chris Drew (Satlas — cold email), Yoni/Albert Scott (outreach), Krishna, Chris Soriano, Penji (Agency Advisor role), Cüneyt (Starfix, trial), Edward Lehner (prospective), plus closed/archived clients.
+- I'm Eikko Ybanez, a solo VA/agency operator managing multiple clients out of `Client-Management-System`: Chris Caffera (Fractio), Chris Drew (Satlas — cold email), Yoni/Albert Scott (outreach), Krishna, Chris Soriano, Penji (Agency Advisor role), Cüneyt (SellerVate, trial), Edward Lehner (prospective), plus closed/archived clients.
 - My work is cold email infrastructure, lead gen, campaign management, CRM hygiene, and general VA ops — tools in daily use: Apollo, PlusVibe, Smartlead, Instantly, Pipedrive, HubSpot, Gmail (5 accounts), Notion, Fathom.
 - Biggest pain points: fragile automations that go stale silently, credentials/data scattered across client folders, and — the reason this doc exists — new sessions not picking up context I already set up, forcing me to repeat myself.
 - If something about my setup, a client, or a tool isn't in memory or the connected folder — ask, don't guess. Never fabricate metrics, connector status, or client data.
